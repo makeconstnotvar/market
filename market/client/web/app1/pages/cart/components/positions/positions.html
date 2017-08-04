@@ -1,0 +1,29 @@
+<div class="table-responsive">
+    <table class="table cart-list">
+        <tbody>
+        <tr *ngFor="let position of contract.positions; let i = index;">
+            <td>{{i+1}}</td>
+            <td class="cover text-center"><img src="/photos/{{position.product._id}}/s_{{position.product.cover}}" routerLink="/{{position.product.category.url}}/{{position.product.url}}"></td>
+            <td><a class="pointer" href="/{{position.product.category.url}}/{{position.product.url}}">{{position.product.name}}</a></td>
+            <td class="price text-center">{{position.product.price}}<i class="fa fa-rub"></i></td>
+            <td class="change">
+                <div class="input-group">
+                    <a class="btn btn-default input-group-addon" (click)="minus(i)"><i class="fa fa-minus"></i></a>
+                    <input disabled="true" class="form-control text-center" value="{{position.count}}">
+                    <a class="btn btn-default input-group-addon" (click)="plus(i)"><i class="fa fa-plus"></i></a>
+                </div>
+            </td>
+            <td class="sum text-center info" width="100px"><b>{{position.sum}}<i class="fa fa-rub"></i></b></td>
+            <td class="del btn-danger text-center pointer" (click)="del(i)"><i class="fa fa-times"></i></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="3"><b class="m-cart-result">Итого</b></td>
+            <td class="text-center info"><b>{{contract.final}}<i class="fa fa-rub"></i></b></td>
+            <td></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

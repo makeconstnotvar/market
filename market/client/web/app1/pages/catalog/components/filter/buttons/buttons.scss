@@ -1,0 +1,18 @@
+.filter-btn {
+
+    padding: 0 15px;
+    color: #000;
+    transition: background-color 300ms linear;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: #e94d51;
+        transition: background-color 300ms linear;
+    }
+}

@@ -1,0 +1,47 @@
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Добавить видео</label>
+
+    <div class="file-input-wrapper col-sm-8">
+        <input class="form-control" ng-model="uploadvideo">
+    </div>
+    <div class="col-sm-2">
+        <a class="btn btn-primary" ng-click="addVideo()">Добавить</a>
+    </div>
+
+</div>
+<div class="row form-group" ng-repeat="video in product.videos">
+    <div class="col-sm-3">
+        <iframe ng-src="{{trustSrc(video.path)}}"></iframe>
+
+    </div>
+    <div class="col-sm-8 form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Название</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="video.name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Ссылка</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="video.path">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Описание</label>
+
+            <div class="col-sm-10">
+                <textarea rows="4" class="form-control" ng-model="video.details"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1">
+        <a title="Удалить видео" ng-click="deleteVideo()" class="btn btn-danger js-remove">
+            <i class="fa fa-trash-o"></i>
+        </a>
+    </div>
+</div>
+

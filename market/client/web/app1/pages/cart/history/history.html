@@ -1,0 +1,46 @@
+<div class="container placed">
+    <div class="row">
+        <div class="col-xs-12">
+            <a routerLink="/cart" class="btn btn-red pull-right m-back">
+                <i class="fa fa-chevron-left fa--right-gap"></i>Назад
+            </a>
+            <h2>История заказов</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <p>Этот заказ был сделан {{contract.date | date:'dd.MM.yyyy'}} в {{contract.date | date:'HH:mm:ss'}}</p>
+            <p>Статус: {{contract.statusName}}</p>
+            <table class="table cart-list">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th></th>
+                    <th>Название</th>
+                    <th>Цена за ед.</th>
+                    <th>Кол-во</th>
+                    <th>Сумма</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let position of contract.positions;let i = index;">
+                    <td>{{i+1}}</td>
+                    <td class="cover text-center"><img class="pointer" src="{{'/photos/'+position.product._id+ '/s_'+ position.product.cover}}" routerLink="/{{position.product.category.url}}/{{position.product.url}}"></td>
+                    <td><a class="pointer" routerLink="/{{position.product.category.url}}/{{position.product.url}}">{{position.product.name}}</a></td>
+                    <td class="price2 text-center">{{position.product.price}}<i class="fa fa-rub"></i></td>
+                    <td class="change">{{position.count}}</td>
+                    <td class="sum text-center info" width="100px"><b>{{position.sum}} <i class="fa fa-rub"></i></b></td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="3"><b class="m-cart-result">Итого</b></td>
+                    <td class="text-center info"><b>{{contract.final}} <i class="fa fa-rub"></i></b></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

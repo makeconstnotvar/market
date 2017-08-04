@@ -1,0 +1,30 @@
+
+    <div class="me-image col-xxs-12 col-xs-6">
+        <div class="me-stock me-stock-img hidden-lg" *ngIf="product.stock">{{product.stockText}}</div>
+        <a class="me-link" routerLink="/{{categoryId}}/{{product.url}}">
+            <img src="/photos/{{product._id}}/l_{{product.cover}}">
+        </a>
+    </div>
+    <div class="me-screens visible-lg-block">
+        <a class="me-link" *ngFor="let list of product.list" routerLink="/{{categoryId}}/{{product.url}}">
+            <img src="/photos/{{product._id}}/s_{{list}}">
+        </a>
+    </div>
+    <div class="me-info col-xxs-12 col-xs-6">
+        <a class="me-name" routerLink="/{{categoryId}}/{{product.url}}">{{product.name}}</a>
+        <div class="mb-money">
+            <div class="me-status">
+                <span class="me-incart" ng-class="{'mm-yes':product.inCart}"><i class="fa fa-check-circle m-icon-gap"></i>В корзине</span>
+
+                <div class="me-available" ng-if="!product.inCart">
+                    <span class="mm-yes" ng-if="product.available"><i class="fa fa-check-square-o m-icon-gap"></i>В наличии</span>
+                    <span class="mm-no" ng-if="!product.available" ng-class="{'m-blink':product.blink}"><i class="fa fa-ban m-icon-gap"></i>Отсутствует</span>
+                </div>
+            </div>
+            <div class="me-price" ng-class="{'mm-no':!product.available}"><b ng-bind="product.price"></b> <i class="fa fa-rub"></i></div>
+            <a class="me-buy pointer" ng-click="postPosition(product)"><i class="fa fa-shopping-cart m-icon-gap"></i>в корзину</a>
+        </div>
+        <div class="me-stock visible-lg" *ngIf="product.stock">{{product.stockText}}</div>
+        <div class="me-details visible-lg" [innerHtml]="product.details"></div>
+    </div>
+

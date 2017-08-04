@@ -1,0 +1,89 @@
+#mp-view {
+    .me-social{
+        font-size: 28px;
+        display: inline-block;
+        margin-right: 6px;
+        transition: color 300ms ease-out;
+        &:hover{
+            color: #f75163;
+            transition: color 300ms ease-out;
+        }
+    }
+    .me-soc-msg{
+        margin-top: 6px;
+    }
+    .me-article {
+        font-size: 12px;
+        font-weight: bold;
+        color: #3a3a3a;
+        margin: 5px 0;
+    }
+
+    .me-buy {
+        max-width: 240px;
+    }
+
+    .me-image {
+        img {
+            &.hhh {
+                opacity: 0 !important;
+            }
+            min-height: 300px;
+            margin: auto;
+        }
+    }
+    .me-screens {
+        margin-top: 10px;
+        table {
+            width: 100%;
+        }
+        .me-link {
+            min-height: 96px;
+            min-width: 69px;
+            position: relative;
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+            border: 1px solid #e8e8e8;
+            transition: border-color 300ms ease-out;
+            &.mm-active {
+                border: solid 1px #f75163;
+            }
+            &:hover {
+                border: solid 1px #f75163;
+                transition: border-color 300ms ease-out;
+            }
+            img {
+                margin: auto;
+            }
+        }
+        .me-icon {
+            top: 10px;
+            left: 10px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    #mp-view {
+        .me-screens {
+            li {
+                padding: 0;
+            }
+
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    #mp-view {
+        .me-screens {
+            li {
+                width: 25%;
+            }
+        }
+    }
+}
+
+

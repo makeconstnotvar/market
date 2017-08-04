@@ -1,0 +1,15 @@
+<div class="row form-group">
+    <div class="col-sm-12">
+        Вы уверены что хотите удалить контракт №<span ng-bind="contract.number"/>?
+    </div>
+    <div class="col-sm-12" ng-show="isPermanent">
+        <b>(Контракт будет удален навсегда)</b>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-sm-12">
+        <button class="btn btn-success m-rgap" ng-click="ok()">Удалить</button>
+        <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+<div class="container placed">
+    <div class="row">
+        <div class="col-xs-12">
+            <a ng-href="/cart" class="btn btn-red pull-right m-back">
+                <i class="fa fa-chevron-left m-icon-gap"></i>Назад
+            </a>
+            <h2>История заказов</h2>
+        </div>
+    </div>
+    <div class="mb-cloak">
+        <div class="me-cloak" ng-show="showCloak"></div>
+        <div class="row">
+            <div class="col-xs-12 placed">
+                <p>Этот заказ был сделан <span ng-bind="contract.date | date:'dd.MM.yyyy'"></span> в <span ng-bind="contract.date | date:'HH:mm:ss'"></span></p>
+
+                <p>Статус: <span ng-bind="contract.statusName"></span></p>
+                <table class="table cart-list">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th></th>
+                        <th>Название</th>
+                        <th>Цена за ед.</th>
+                        <th>Кол-во</th>
+                        <th>Сумма</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="position in contract.positions">
+                        <td ng-bind="$index+1"></td>
+                        <td class="cover text-center"><img ng-src="{{'/photos/'+position.product._id+ '/s_'+ position.product.cover}}" ng-href="/{{position.product.category.url}}/{{position.product.url}}"></td>
+                        <td><a class="my-pointer" ng-bind="position.product.name" ng-href="/{{position.product.category.url}}/{{position.product.url}}"></a></td>
+                        <td class="price2 text-center"><span ng-bind="position.product.price"></span><i class="fa fa-rub"></i></td>
+                        <td class="change"><span ng-bind="position.count"></span></td>
+                        <td class="sum text-center info" width="100px"><b><span ng-bind="position.sum"></span> <i class="fa fa-rub"></i></b></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="3"><b class="m-cart-result">Итого</b></td>
+                        <td class="text-center info"><b><span ng-bind="contract.final"></span> <i class="fa fa-rub"></i></b></td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

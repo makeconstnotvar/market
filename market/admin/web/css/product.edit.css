@@ -1,0 +1,29 @@
+.product-edit .cover-wrap{
+    min-height: 210px;
+}
+.product-edit .cover {
+
+    display: block;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    text-align: center;
+}
+.product-edit .cover a{
+    display:block;
+    border: 1px solid #ddd;
+    text-align: center;
+    transition: border-color 300ms ease-out;
+}
+.product-edit .cover a:hover{
+    border: 1px solid #e94d51;
+    transition: border-color 300ms ease-out;
+}
+.product-edit textarea.form-control.noresize{
+    resize: none;
+}
+
+.product-edit .onecheck{
+    padding: 0 14px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}

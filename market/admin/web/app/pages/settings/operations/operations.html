@@ -1,0 +1,131 @@
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Подготовить Sitemap</label>
+
+    <div class="col-sm-10">
+        <a ng-click="sitemap()" class="btn btn-primary">Генерировать</a>
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Рендерить все</label>
+
+    <div class="col-sm-10">
+        <a ng-click="prerender()" class="btn btn-primary">Генерировать</a>
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Рендерить служебные</label>
+
+    <div class="col-sm-10">
+        <a ng-click="prerenderSrv()" class="btn btn-primary">Генерировать</a>
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Подготовить Yml</label>
+
+    <div class="col-sm-10">
+        <div class="mb-form-block">
+            <label for="deliveryCost">Стоимость курьерской доставки, рубли (0-9999)</label>
+            <input id="deliveryCost" ng-model="ymlParams.deliveryCost" class="form-control">
+            <span class="mb-input-help">пример: 0 = бесплатно, 350 = 350 рублей</span>
+        </div>
+        <div class="mb-form-block">
+            <label for="deliveryDays">Срок курьерской доставки, дни (0-32)</label>
+            <input id="deliveryDays" ng-model="ymlParams.deliveryDays" class="form-control">
+            <span class="mb-input-help">пример: 0 = сегодня, 1 = завтра, 2-4 = от двух до четырех дней, 32 = неизвестно</span>
+        </div>
+        <div class="mb-form-block">
+            <label for="orderBefore">Успеть заказать до, часы (0-24)</label>
+            <input id="orderBefore" ng-model="ymlParams.orderBefore" class="form-control">
+            <span class="mb-input-help">пример: 14 = успеть заказать до 14:00</span>
+        </div>
+        <div class="mb-form-block">
+            <label for="prodoductByImage">Режим генерации фотографий товара</label>
+            <label for="prodoductByImage" class="my-pointer regular margin-right-10 m-display-block">
+                <input type="checkbox" id="prodoductByImage" ng-model="ymlParams.prodoductByImage">
+                <span ng-if="ymlParams.prodoductByImage">Каждое фото создает отдельный продукт в прайс листе</span>
+                <span ng-if="!ymlParams.prodoductByImage">Фото крепятся списком к продукту</span>
+            </label>
+        </div>
+        <div class="mb-form-block">
+            <label for="store">Наличие стационарного магазина</label>
+            <label for="store" class="my-pointer regular margin-right-10 m-display-block">
+                <input type="checkbox" id="store" ng-model="ymlParams.store">
+                <span ng-if="ymlParams.store">Есть</span>
+                <span ng-if="!ymlParams.store">Нет</span>
+            </label>
+        </div>
+        <div class="mb-form-block">
+            <label for="pickup">Возможность самовывоза</label>
+            <label for="pickup" class="my-pointer regular margin-right-10 m-display-block">
+                <input type="checkbox" id="pickup" ng-model="ymlParams.pickup">
+                <span ng-if="ymlParams.pickup">Есть</span>
+                <span ng-if="!ymlParams.pickup">Нет</span>
+            </label>
+        </div>
+        <div class="mb-form-block">
+            <label for="delivery">Доставка курьером</label>
+            <label for="delivery" class="my-pointer regular margin-right-10 m-display-block">
+                <input type="checkbox" id="delivery" ng-model="ymlParams.delivery">
+                <span ng-if="ymlParams.delivery">Осуществляется</span>
+                <span ng-if="!ymlParams.delivery">Невозможна</span>
+            </label>
+        </div>
+        <div class="mb-form-block">
+            <label>Гарантия завода изготовителя</label>
+            <label for="warranty" class="my-pointer regular margin-right-10 m-display-block">
+                <input type="checkbox" id="warranty" ng-model="ymlParams.warranty">
+                <span ng-if="ymlParams.warranty">Есть</span>
+                <span ng-if="!ymlParams.warranty">Нет</span>
+            </label>
+        </div>
+        <div class="mb-form-block">
+            <label for="bid">Стоимость одного клика, в у.е.</label>
+            <input id="bid" ng-model="ymlParams.bid" class="form-control">
+            <span class="mb-input-help">пример: 0.1 = минимум, курс яндекса обычно 1:30</span>
+        </div>
+        <div class="mb-form-block">
+            <label for="salesNotes">Комментарий к объявлению, текст</label>
+            <input id="salesNotes" ng-model="ymlParams.salesNotes" class="form-control">
+            <span class="mb-input-help">пример: Курьеру - наличными, самовывоз - наличные и карты</span>
+        </div>
+        <div class="mb-form-block">
+            <label>Ссылка на YML прайс лист</label> <a target="_blank" href="http://fastlight.debug/yml.xml">yml.xml</a>
+        </div>
+        <div class="mb-form-block">
+        <a ng-click="yml()" class="btn btn-primary">Генерировать</a>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Ресайз картинок</label>
+
+    <div class="col-sm-10">
+        <a ng-click="resizeAll()" class="btn btn-primary">Генерировать</a>
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Список доступных url</label>
+
+    <div class="col-sm-10">
+        <a ng-click="makeUrls()" class="btn btn-primary">Генерировать</a>
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label">WS тест </label>
+
+    <div class="col-sm-10">
+        <a ng-click="test()" class="btn btn-primary">Выполнить</a>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-sm-12">
+        <p>Персонально: <span ng-bind="tweet"></span></p>
+        <p>Для всех: <span ng-bind="broad"></span></p>
+        <p>Остальные: <span ng-bind="other"></span></p>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-sm-12">
+        <textarea ng-model="log" class="form-control me-console" rows="10"></textarea>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="mb-template">
+    <div class="row form-group">
+        <label class="col-sm-2 control-label">Название</label>
+
+        <div class="col-sm-10 ">
+            <input ng-model="template.name" class="form-control">
+        </div>
+    </div>
+    <div class="row form-group">
+        <label class="col-sm-2 control-label">Фильтровать</label>
+
+        <div class="col-sm-10 ">
+            <label for="order" class="my-pointer regular">
+                <input type="checkbox" id="order" ng-model="order" ng-change="filter()"> <span>Только выбранные</span>
+            </label>
+            <a href="#" class="m-pointer" ng-click="sorting()">Сортировать</a>
+        </div>
+    </div>
+    <div class="row form-group" ng-show="parameters.length>0">
+        <label class="col-sm-2 control-label">Все параметры</label>
+
+        <div class="col-sm-10">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <tr ng-repeat="parameter in parameters">
+                    <td class="me-order">
+                        <div class="input-group" ng-show="parameter.selected">
+                            <a class="btn btn-default input-group-addon" ng-click="minus(parameter)">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                            <input class="form-control text-center" ng-model="parameter.order" type="text" ng-change="changeOrder(parameter)">
+                            <a class="btn btn-default input-group-addon" ng-click="plus(parameter)">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+
+                    </td>
+                    <td ng-if="parameter.selected" width="39px" title="Параметр в списке"
+                        class="btn-default text-center my-pointer success" ng-click="dismiss(parameter)">
+                        <i class="fa fa-check"></i>
+                    </td>
+                    <td ng-if="!parameter.selected" width="39px" title="Добавить параметр"
+                        class="btn-default text-center my-pointer" ng-click="append(parameter)">
+                        <i class="fa fa-minus"></i>
+                    </td>
+                    <td>
+                        <span ng-bind="parameter.name "></span>
+                        <span ng-if="parameter.details" ng-bind="'('+parameter.details+')'"></span>
+                        <ul class="list-inline no-margin">
+                            <li class="li-params" ng-repeat="v in parameter.values" ng-bind="v.value"></li>
+                        </ul>
+                    </td>
+                    <td width="39px" title="Редактировать параметр" class="btn-warning text-center my-pointer"
+                        ng-click="toEdit(parameter._id)"><i class="fa fa-pencil-square-o"></i></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <a ng-click="save()" class="btn btn-success">Сохранить</a>
+        <span ng-show="noNameError"
+              class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span>
+        </div>
+    </div>
+</div>

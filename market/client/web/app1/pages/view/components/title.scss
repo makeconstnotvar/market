@@ -1,0 +1,11 @@
+.btn-red {
+    color: #fff;
+    margin-top: 20px;
+    background-color: #f75163;
+    border-color: #d44756;
+}
+.btn-red.active, .btn-red.focus, .btn-red:active, .btn-red:focus, .btn-red:hover, .open>.dropdown-toggle.btn-red {
+    color: #fff;
+    background-color: #d03546;
+    border-color: #ba2a38;
+}

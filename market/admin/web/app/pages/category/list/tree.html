@@ -1,0 +1,39 @@
+<div class="media my-cat-block ">
+    <div class="media-left" ng-class="{'min-w78':category.children}">
+        <a ng-hide="category.collapse ||(!category.children)" title="Скрыть дочернии категории" ng-click="hideChilds(category)" class=" margin-right-10 mt7">
+            <i class="fa fa-minus-square-o"></i>
+        </a>
+        <a ng-hide="!category.collapse" title="Показать дочернии категории" ng-click="showChilds(category)" class=" margin-right-10 mt7">
+            <i class="fa fa-plus-square-o"></i>
+        </a>
+        <button title="Редактировать категорию" ng-click="edit(category._id)" class="btn btn-default">
+            <i class="fa fa-pencil-square-o"></i>
+        </button>
+    </div>
+    <div class="media-body me-cat-body">
+
+        <span ng-show="category.order" ng-bind="category.order+'. '"></span>
+    <span class="me-cat-name">
+        <span class="margin-right-10" ng-bind="category.name"></span>
+        <span class="m-url" ng-bind="category.url"></span>
+    </span>
+        <span class="margin-right-10"><img class="img-responsive" ng-repeat="photo in category.photos | filter:getCover" ng-src="{{'/photos/'+category._id+'/s_'+photo.fileId}}"></span>
+
+        <button title="Удалить категорию" ng-click="delete(category._id)" class="btn btn-danger pull-right">
+            <i class="fa fa-times"></i>
+        </button>
+        <div class="form-inline">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Дочерняя категория"
+                           ng-enter="addChild(category)" ng-model="category.childName">
+                    <a class="input-group-addon btn btn-success" ng-click="addChild(category)"><i
+                            class="fa fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+        <ul ng-if="category.children" ng-hide="category.collapse" class="list-unstyled my-cat-list">
+            <li ng-repeat="category in category.children" ng-include="'admin/pages/category/list/tree.html'"></li>
+        </ul>
+    </div>
+</div>

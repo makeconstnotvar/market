@@ -1,0 +1,18 @@
+<div class="row form-group" ng-show="templates.length==0">
+    <div class="col-sm-12 ">
+        <span>Вы не создали ни одного шаблона параметров</span>
+        <a ng-click="newTemplate()" class="btn btn-primary">Создать</a>
+    </div>
+</div>
+<div class="row form-group" ng-show="templates.length>0">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-hover">
+            <tr ng-repeat="model in templates">
+                <td width="82px" title="Выбрать шаблон" class="btn-success text-center my-pointer" ng-click="add(model)">Выбрать</td>
+                <td><i ng-show="model.selected" class="fa fa-check margin-right-10"></i><span ng-bind="model.name"></span></td>
+                <td width="39px" title="Редактировать шаблон" class="btn-warning text-center my-pointer" ng-click="edit(model._id)"><i class="fa fa-pencil-square-o"></i></td>
+                <td width="39px" title="Удалить шаблон" ng-click="remove(model._id)" class="btn-danger text-center my-pointer"><i class="fa fa-times"></i></td>
+            </tr>
+        </table>
+    </div>
+</div>

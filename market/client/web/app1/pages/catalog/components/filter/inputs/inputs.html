@@ -1,0 +1,27 @@
+<div class="parameter-head">
+    <b>{{parameter.name}}</b>
+</div>
+<div class="parameter-body">
+    <div class="parameter-string">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="parameter-input " [ngClass]="{'parameter-focus':f1}">
+                    <span class="parameter-input__prefix">от</span>
+                    <div class="parameter-input__area">
+                        <input class="parameter-input__field" type="text" [(ngModel)]="parameter.from" (ngModelChange)="changeFilter()" ng-focus="f1=true" ng-blur="f1=false"/>
+                    </div>
+                    <a class="parameter-input__clear pointer" (click)="clearFrom()"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="parameter-input col-sm-6" ng-class="{'parameter-focus':f2}">
+                    <span class="parameter-input__prefix">до</span>
+                    <div class="parameter-input__area">
+                        <input class="parameter-input__field" type="text" [(ngModel)]="parameter.to" (ngModelChange)="changeFilter()"  ng-focus="f2=true" ng-blur="f2=false"/>
+                    </div>
+                    <a class="parameter-input__clear pointer" (click)="clearTo()"><i class="fa fa-times"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

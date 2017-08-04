@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="form-signin">
+        <h2 class="form-signin-heading">Введите логин и пароль</h2>
+        <input type="text" class="form-control" placeholder="логин" required="" autofocus="" ng-model="passport.login">
+        <input type="password" class="form-control" placeholder="пароль" required="" ng-model="passport.password">
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me" ng-model="passport.remember"> Запомнить
+            </label>
+        </div>
+        <a class="btn btn-lg btn-primary btn-block margin-bottom-10"  ng-click="login()">Вход</a>
+        <div class="alert  alert-danger" ng-bind="error" ng-show="!!error"></div>
+    </div>
+</div>

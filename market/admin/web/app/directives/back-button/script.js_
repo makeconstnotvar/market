@@ -1,0 +1,15 @@
+myBackButton.$inject = ['DirectiveConfig', '$window'];
+
+function myBackButton(DirectiveConfig, $window) {
+    return {
+        restrict: 'E',
+        templateUrl:  '<a class="btn btn-warning" ng-bind="name" ng-click=""></a>',
+        scope: {
+            title: '@title',
+            icons: '@icons'
+        }
+    };
+}
+
+
+angular.module('router').directive('myBackButton', myBackButton);

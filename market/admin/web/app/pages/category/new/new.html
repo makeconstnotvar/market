@@ -1,0 +1,59 @@
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Родительская категория</label>
+
+    <div class="col-sm-10">
+        <select class="form-control"   ng-options="category.name for category in cats" ng-model="selectedCategory">
+            <option value="">Корневая</option>
+        </select>
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label text-nowrap">Название <i class="fa fa-asterisk my-red"></i></label>
+
+    <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="category.name" ng-model-options="{updateOn:'input'}" ng-change="nameToUrl()">
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label text-nowrap">Url</label>
+
+    <div class="col-sm-10">
+        <div class="input-group m-input-group">
+            <input id="url" ng-model="category.url" ng-change="hideUrlError()" class="form-control">
+            <a class="btn btn-default input-group-addon" ng-click="nameToUrl()" title="Создать url из названия">
+                <i class="fa fa-refresh"></i>
+            </a>
+        </div>
+
+    </div>
+</div>
+<div class="row form-group">
+    <label for="urlText" class="col-sm-2 control-label text-nowrap">Текст Url</label>
+
+    <div class="col-sm-10">
+        <input id="urlText" type="text" class="form-control" ng-model="category.urlText">
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Порядок</label>
+
+    <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="category.order" placeholder="порядковый номер для сортировки 1,2 или 3 и т.д.">
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Описание</label>
+
+    <div class="col-sm-10 ace-information">
+        <a class="m-pointer" ng-click="btf('details', category.details)">Выровнять</a>
+        <textarea ui-ace="aceOptions" ng-model="category.details"></textarea>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <a value="Сохранить" class="btn btn-success" ng-click="save()">Сохранить</a>
+        <a value="Назад" class="btn btn-warning" ng-click="back()">Назад</a>
+        <span ng-show="noNameError" class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span>
+    </div>
+</div>
+

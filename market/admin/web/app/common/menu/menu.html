@@ -1,0 +1,5 @@
+<ul class="bl nav nav-pills adm-margin10 col-sm-12">
+    <li ng-class="{active:menu.active}" ng-repeat="menu in menus">
+        <a class="my-pointer" ng-bind="menu.name" ng-click="toSubnav(menu.state)"></a>
+    </li>
+</ul>

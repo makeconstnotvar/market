@@ -1,0 +1,33 @@
+.mb-contract-status {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #eee;
+}
+
+.mb-contract-status > table > tbody > tr > td:first-child {
+    width: 20%;
+    min-width: 200px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.mb-contract-status > table > tbody > tr > td {
+    padding: 5px;
+}
+
+.mb-contract-status > table > tbody > tr > td.checkbox {
+    margin: 0;
+}
+.mb-contract-status table{
+    width: 100%;
+}
+.mb-contract-status textarea.form-control{
+    resize: none;
+}
+.me-contract-edit{
+    font-size: 30px;
+    position: absolute;
+    top: 20px;
+    right:20px;
+}

@@ -1,0 +1,13 @@
+<div class="parameter-head">
+    <b>{{parameter.name}}</b>
+</div>
+<div class="parameter-body">
+        <ul class="list-unstyled">
+            <li class="radio" *ngFor="let v of parameter.values">
+                <label [ngClass]="{'grey':!v.active}" class="parameter-name">
+                    <input type="radio" name="ggg" (change)="changeFilter(v._id)"  [value]="true" [checked]="v.selected==true" />
+                    <span>{{v.value}}</span>
+                </label>
+            </li>
+        </ul>
+</div>

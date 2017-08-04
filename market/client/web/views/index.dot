@@ -1,0 +1,16 @@
+---
+layout: layout.dot
+---
+[[##section:
+<div id="progress" ng-if="showProgress">
+    <div class="bar"></div>
+    <i class="fa fa-cog spinner"></i>
+</div>
+<div id="wrap">
+    <div id="mb-navbar" ui-view="navbar"></div>
+    <div id="mb-jumbo" ui-view="jumbo"></div>
+    <div id="mb-tabs" ui-view="tabs"></div>
+    <div id="content" ui-view="content"></div>
+</div>
+<div id="footer" ui-view="footer"></div>
+#]]

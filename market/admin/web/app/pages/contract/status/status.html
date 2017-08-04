@@ -1,0 +1,119 @@
+<div class="row form-group ">
+    <div class="col-xs-12">
+        <div class="mb-contract-status">
+            <a class=" me-contract-edit m-pointer" href="" ng-click="toEdit()"><i class="fa fa-cogs"></i></a>
+            <table>
+                <tbody>
+                <tr>
+                    <td>Номер заказа:</td>
+                    <td ng-bind="contract.number"></td>
+                </tr>
+                <tr>
+                    <td>Дата:</td>
+                    <td ng-bind="contract.date| date:'dd.MM.yyyy'"></td>
+                </tr>
+                <tr>
+                    <td>Время:</td>
+                    <td ng-bind="contract.date| date:'HH:mm:ss'"></td>
+                </tr>
+                <tr>
+                    <td>Имя клиента:</td>
+                    <td ng-bind="contract.name"></td>
+                </tr>
+                <tr>
+                    <td>Адрес доставки:</td>
+                    <td ng-bind="contract.address"></td>
+                </tr>
+                <tr>
+                    <td>Комментарий:</td>
+                    <td ng-bind="contract.note"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-12 ">
+        <div class="mb-contract-status">
+            <table>
+                <tbody>
+                <tr>
+                    <td>Текущий статус заказа</td>
+                    <td ng-bind="contract.status|statusName"></td>
+                </tr>
+                <tr>
+                    <td>Будет изменен на</td>
+                    <td>
+                        <select ng-options="status as status.name for status in statuses" ng-model="status">
+                            <option style="display:none" value="">select a region</option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-12 ">
+        <div class="mb-contract-status">
+            <table>
+                <tbody>
+                <tr>
+                    <td>Телефон клиента</td>
+                    <td ng-bind="contract.phone"></td>
+                </tr>
+                <tr>
+                    <td><i style="color: red" class="fa fa-asterisk m-icon-gap"></i><span>Исправленный телефон</span>
+                    </td>
+                    <td><input type="text" class="form-control" ng-model="contract.correctPhone"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="mb-contract-status">
+            <table>
+                <tbody>
+                <tr>
+                    <td>Форма доставки</td>
+                    <td>
+                        <span ng-if="contract.delivery=='auto'">Доставка курьером</span>
+                        <span ng-if="contract.delivery=='manual'">Самовывоз</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i ng-if="contract.sendSms && contract.notifyClient" style="color: red" class="fa fa-asterisk"></i>Текст
+                        сообщения (смс)
+                    </td>
+                    <td ng-if="contract.sendSms">
+                        <span ng-bind="'Заказ '+contract.number+' принят. '"></span><a ng-click="addAcceptText()">добавить
+                        в начало</a>
+                        <textarea rows="3" class="form-control" ng-model="contract.smsText"></textarea>
+                    </td>
+                    <td ng-if="!contract.sendSms">
+                        <span>Клиент не хочет получать смс уведомления</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Подтвердить отправку</td>
+                    <td class="checkbox">
+
+                        <label for="sendsms">
+                            <input type="checkbox" id="sendsms" ng-model="contract.notifyClient">
+                            <span ng-if="contract.notifyClient">Отправить сообщение</span>
+                            <span ng-if="!contract.notifyClient">Сообщение не будет отправлено</span>
+                        </label>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="row form-group ">
+    <div class="col-sm-offset-3 col-sm-9">
+        <button class="btn btn-primary m-rgap" ng-click="ok()">Подтвердить</button>
+        <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+    </div>
+</div>

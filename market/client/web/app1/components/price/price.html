@@ -1,0 +1,13 @@
+
+<div class="price__status">
+    <div class="price__status-incart" [hidden]="!product.inCart" [@inCartChanged]="product.inCart">
+        <span><i class="fa fa-check-circle fa--right-gap"></i>В корзине</span>
+    </div>
+
+    <div class="price__status-available" *ngIf="!product.inCart">
+        <span class="yes" *ngIf="product.available"><i class="fa fa-check-square-o fa--right-gap"></i>В наличии</span>
+        <span class="no" *ngIf="!product.available" [ngClass]="{'m-blink':product.blink}"><i class="fa fa-ban fa--right-gap"></i>Отсутствует</span>
+    </div>
+</div>
+<div class="price__value">{{product.price}} <i class="fa fa-rub"></i></div>
+<a class="price__purchase" (click)="postPosition(product)"><i class="fa fa-shopping-cart fa--right-gap"></i>в корзину</a>

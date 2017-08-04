@@ -1,0 +1,13 @@
+.mb-template .me-order{
+    width: 120px;
+    padding: 0;
+    position: relative;
+}
+.mb-template .me-order > input{
+    width: 39px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

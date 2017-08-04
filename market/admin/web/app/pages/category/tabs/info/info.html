@@ -1,0 +1,43 @@
+<div class="product-edit">
+    <div class="row form-group">
+        <label class="col-sm-offset-2 col-sm-10 control-label" ng-bind="category.name"></label>
+    </div>
+    <div class="row">
+        <div class="pull-right col-sm-3 cover-wrap">
+            <a class="cover" target="_blank" ng-href="{{'https://getyourbag.ru/'+category.url}}" ng-repeat="photo in category.photos | filter:getCover" ng-if="photo.fileId">
+                <img ng-src="{{'/photos/'+category._id+ '/srv_'+ photo.fileId}}">
+            </a>
+        </div>
+        <label class="col-sm-2 control-label my-pointer" for="title">Title</label>
+
+        <div class="col-sm-7">
+            <textarea id="title" rows="3" ng-model="category.title" class="form-control noresize"></textarea>
+        </div>
+        <label class="col-sm-2 control-label my-pointer" for="description">Description</label>
+
+        <div class="col-sm-7">
+            <textarea id="description" rows="3" ng-model="category.description" class="form-control noresize"></textarea>
+        </div>
+        <label class="col-sm-2 control-label my-pointer" for="keywords">Keywords</label>
+
+        <div class="col-sm-7">
+            <textarea id="keywords" rows="3" ng-model="category.keywords" class="form-control noresize"></textarea>
+        </div>
+    </div>
+    <div class="row  form-group">
+        <label class="col-sm-2 control-label">Краткое описание</label>
+
+        <div class="col-sm-10 ace-details">
+            <a class="m-pointer" ng-click="btf('shortDescription', category.shortDescription)">Выровнять</a>
+            <div ui-ace="aceOptions" ng-model="category.shortDescription"></div>
+        </div>
+    </div>
+    <div class="row  form-group">
+        <label class="col-sm-2 control-label">Полное описание</label>
+
+        <div class="col-sm-10 ace-information">
+            <a class="m-pointer" ng-click="btf('longDescription', category.longDescription)">Выровнять</a>
+            <div ui-ace="aceOptions" ng-model="category.longDescription"></div>
+        </div>
+    </div>
+</div>

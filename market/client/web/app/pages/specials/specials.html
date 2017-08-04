@@ -1,0 +1,68 @@
+<div id="mp-special" class="container">
+    <div class="row">
+
+        <h1 class="col-xs-12">Магазин сумок GetYourBag.ru</h1>
+
+        <p class="col-xs-12">Добро пожаловать в магазин сумок и рюкзаков GetYourBag.ru. Это наш маленький семейный бизнес,
+            и мы относимся к нему с предельной заботливостью. Каждый клиент для нас - многоуважаемый покупатель.
+        </p>
+
+        <p class="col-xs-12">Мы тщательно отбираем ассортимент. Осматриваем и ощупываем каждую модель, проверяем аккуратность швов,
+            плавность работы молнии и замков. Предлагаем вашему внимаю только то, что нравится самим и надеемся,
+            что наши вкусы совпадут с вашими.
+        </p>
+
+        <p class="col-xs-12">У нас нет регистрации и бесплатная доставка. Просто выбираете сумку, пишете номер телефона и курьер
+            выезжает к вам! Мы постарались и выбрали самых профессиональных, быстрых и исполнительных курьеров.
+        </p>
+        <h2 class="col-xs-12">Самое интересное</h2>
+        <div class="mb-cloak">
+            <div class="me-cloak" ng-show="showCloak"></div>
+            <div class="mb-item mm-special col-md-3 col-sm-4 col-xs-12" ng-class="{'hidden-lg hidden-md':$last}" ng-repeat="product in products track by product._id">
+                <div class="me-image m-pointer col-xxs-12 col-xs-6 col-sm-12">
+                    <a class="me-link" ng-href="/{{product.caturl}}/{{product.url}}">
+                        <img fade-in ng-src="{{'/photos/'+product._id+ '/l_'+ product.cover}}">
+                        <i class="me-icon mm-cover fa fa-picture-o faa-pulse animated "></i>
+                    </a>
+                </div>
+                <div class="me-info col-xxs-12 col-xs-6 col-sm-12">
+                    <a class="me-name m-pointer" ng-href="/{{product.caturl}}/{{product.url}}" ng-bind="product.name"></a>
+
+                    <div class="me-status">
+                        <span class="me-incart" ng-class="{'mm-yes':product.inCart}"><i class="fa fa-check-circle m-icon-gap"></i>В корзине</span>
+
+                        <div class="me-available" ng-if="!product.inCart">
+                            <span class="mm-yes" ng-if="product.available"><i class="fa fa-check-square-o m-icon-gap"></i>В наличии</span>
+                            <span class="mm-no" ng-if="!product.available" ng-class="{'m-blink':product.blink}"><i class="fa fa-ban m-icon-gap"></i>Отсутствует</span>
+                        </div>
+                    </div>
+                    <div class="me-price"><span ng-bind="product.price "></span> <i class="fa fa-rub"></i></div>
+
+                    <a class="me-buy m-pointer" ng-click="postPosition(product)"><i class="fa fa-shopping-cart m-icon-gap"></i>в корзину</a>
+                </div>
+            </div>
+        </div>
+        <h3 class="col-xs-12">Наши бренды</h3>
+        <p class="col-xs-12">
+            <b>Amelie Galanti</b> - Стильная, качественная и доступная по цене продукция. Мы предлагаем российским
+            женщинам возможность купить сумку, визуально и тактильно неотличимую от кожаной по значительно более низкой цене.
+            Сумки Amelie Galanti созданы для людей, которые ценят стиль и хорошее качество.
+            <a ng-href="/handbags">Каталог сумок</a>.
+        </p>
+        <p class="col-xs-12">
+            <b>Vera Victoria Vito</b> - Российская компания, которая использует только новейшие технологии и
+            суперсовременные материалы. Фирменная итальянская фурнитура, разнообразие материалов и различных
+            способов их обработки: кожа с эффектом старения, металлизированные и перламутровые покрытия, велюр,
+            затертый воском, отстрочки и аппликации, а так же принты.
+            <a ng-href="/handbags">Каталог сумок</a>.
+        </p>
+        <p class="col-xs-12">
+            <b>Alliance</b> - Российская кожгалантерейная фабрика Альянс делает превосходные ранцы для школьников.
+            Все ранцы выполнены из водонепроницаемой, легко очищаемой, прочной нейлоновой ткани. Швы дополнительно
+            прострочены армированной нитью. Яркие рисунки, жесткая спинка с мягкими подушками-накладками, плавный
+            ход молнии, удобные ручки. Все продумано до мелочей. По качеству эти ранцы превосходят даже европейские
+            модели при этом имеют китайскую цену.
+            <a ng-href="/backpacks">Каталог ранцев</a>.
+        </p>
+    </div>
+</div>

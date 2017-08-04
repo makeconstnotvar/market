@@ -1,0 +1,84 @@
+<div class="row form-group p-form-pad">
+    <label class="col-sm-2 control-label">Номер контракта</label>
+
+    <div class="col-sm-10">
+        <span ng-bind="contract.number"></span>
+    </div>
+</div>
+<div class="row form-group p-form-pad">
+    <label class="col-sm-2 control-label">Телефон <i style="color: red" class="fa fa-asterisk"></i></label>
+
+    <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="contract.phone">
+    </div>
+</div>
+<div class="row form-group p-form-pad">
+    <label class="col-sm-2 control-label">Имя</label>
+
+    <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="contract.name">
+    </div>
+</div>
+<div class="row form-group p-form-pad">
+    <label class="col-sm-2 control-label">Email</label>
+
+    <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="contract.mail">
+    </div>
+</div>
+<div class="row form-group p-form-pad">
+    <label class="col-sm-2 control-label">Адрес</label>
+
+    <div class="col-sm-10">
+        <input type="text" class="form-control" ng-model="contract.address">
+    </div>
+</div>
+<div class="row form-group p-form-pad">
+    <label class="col-sm-2 control-label">Уведомления</label>
+
+    <div class="col-sm-10">
+        <ul class="list-unstyled">
+            <li class="checkbox">
+                <label for="sendsms">
+                    <input type="checkbox" id="sendsms" ng-model="contract.sendSms"/>Отправлять в смс
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row form-group p-form-pad">
+    <label class="col-sm-2 control-label">Получение</label>
+
+    <div class="col-sm-10">
+        <ul class="list-unstyled">
+            <li class="radio">
+                <label for="auto">
+                    <input type="radio" name="delivery" id="auto" ng-model="contract.delivery" value="auto" checked>
+                    Доставка курьером
+                </label>
+            </li>
+            <li class="radio">
+                <label for="manual">
+                    <input type="radio" name="delivery" id="manual" ng-model="contract.delivery" value="manual">
+                    Самовывоз
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row form-group p-form-pad">
+    <label class="col-sm-2 control-label">Комментарий</label>
+
+    <div class="col-sm-10">
+        <textarea rows="4" cols="20" class="form-control" ng-model="contract.note"></textarea>
+    </div>
+</div>
+<div class="row form-group p-form-pad">
+    <div class="col-sm-offset-2 col-sm-10">
+        <a class="btn btn-success m-rgap" ng-click="save()">Сохранить</a>
+        <a class="btn btn-primary m-rgap" ng-click="toStatus()">Обработать</a>
+        <a class="btn btn-warning" ng-click="cancel()">Отмена</a>
+    </div>
+</div>
+
+

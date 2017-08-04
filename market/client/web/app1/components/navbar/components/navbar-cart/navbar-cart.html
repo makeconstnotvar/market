@@ -1,0 +1,6 @@
+<a class="navbar-cart__link" routerLinkActive="active" routerLink="{{data.link}}">
+    <i class="fa {{data.icon}} fa--right-gap"></i>{{data.name}}
+</a>
+<span class="navbar-cart__count" *ngIf="cartData.count!=0">{{cartData.count}}</span>
+<span class="navbar-cart__sum" *ngIf="cartData.sum!=0">{{cartData.sum}}</span>
+<b class="navbar-cart__label" *ngIf="cartData.count==0">{{data.label}}</b>

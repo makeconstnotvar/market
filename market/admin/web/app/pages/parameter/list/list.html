@@ -1,0 +1,33 @@
+<div class="row form-group" ng-if="parameters.length==0">
+    <div class="col-sm-12 ">
+        <span>Вы не создали ни одного параметра</span>
+        <a ng-click="toNew()" class="btn btn-primary">Создать</a>
+    </div>
+</div>
+<div class="row form-group" ng-if="parameters.length>0">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Тип</th>
+                <th>Возможные значения</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="parameter in parameters">
+                <td width="39px" title="Редактировать параметр" class="btn-warning text-center my-pointer" ng-click="toEdit(parameter._id)"><i class="fa fa-pencil-square-o"></i></td>
+                <td><span ng-bind="parameter.name"></span><span ng-if="parameter.unit" ng-bind="', '+parameter.unit"></span><div class="param-url" ng-bind="parameter.url"></div></td>
+                <td><span ng-if="parameter.details" ng-bind="parameter.details"></span></td>
+                <td ng-bind="parameter.behavior"></td>
+                <td><ul ng-if="parameter.values" class="list-inline  no-margin"><li class="li-params" ng-repeat="v in parameter.values"><span ng-bind="v.value"></span><div class="param-url" ng-bind="v.url"></div></li></ul></td>
+                <td width="39px" title="Удалить параметр" class="btn-danger text-center my-pointer" ng-click="toRemove(parameter._id)"><i class="fa fa-times"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

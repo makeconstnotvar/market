@@ -1,0 +1,52 @@
+<div class="row form-group">
+    <label class="col-sm-2 control-label my-pointer" for="name">Название <i class="fa fa-asterisk my-red"></i></label>
+
+    <div class="col-sm-10">
+        <input id="name" ng-model="product.name" class="form-control" ng-model-options="{updateOn:'input'}" ng-change="nameToUrl()">
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label my-pointer" for="url">Url</label>
+
+    <div class="col-sm-10">
+        <div class="input-group m-input-group">
+            <input id="url" ng-model="product.url"  class="form-control ">
+            <a class="btn btn-default input-group-addon" ng-click="nameToUrl()"  title="Создать url из названия">
+                <i class="fa fa-refresh"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label my-pointer" for="code">Модель</label>
+
+    <div class="col-sm-10">
+        <input id="code" ng-model="product.code" class="form-control">
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label my-pointer" for="article">Артикул</label>
+
+    <div class="col-sm-10">
+        <input id="article" ng-model="product.article" class="form-control">
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-sm-2 control-label">Описание</label>
+
+    <div class="col-sm-10">
+        <textarea rows="4" class="form-control" ng-model="product.details"></textarea>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <a ng-click="save()" class="btn btn-success margin-right-10">Сохранить</a>
+        <span ng-show="noNameError" class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span>
+    </div>
+</div>
+
+
+
+
+
+    

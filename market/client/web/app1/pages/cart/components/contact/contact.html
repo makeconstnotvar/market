@@ -1,0 +1,70 @@
+<div class="form-group p-form-pad">
+    <label for="phone" class="col-sm-2 control-label"><i style="color: red" class="fa fa-asterisk"></i> Телефон</label>
+
+    <div class="col-sm-10">
+        <input id="phone" type="text" class="form-control" [(ngModel)]="contract.phone">
+        <span class="mb-input-help" for="phone">например 89261234567, но можно так +7(926)123-45-67</span>
+    </div>
+</div>
+<div class="form-group p-form-pad">
+    <label for="name" class="col-sm-2 control-label">Ваше имя</label>
+
+    <div class="col-sm-10">
+        <input id="name" type="text" class="form-control" [(ngModel)]="contract.name">
+    </div>
+</div>
+<div class="form-group p-form-pad">
+    <label for="address" class="col-sm-2 control-label">Адрес</label>
+
+    <div class="col-sm-10">
+        <input type="text" id="address" class="form-control" [(ngModel)]="contract.address">
+    </div>
+</div>
+<div class="form-group p-form-pad">
+    <label class="col-sm-2 control-label"> Уведомления</label>
+
+    <div class="col-sm-10">
+        <ul class="list-unstyled">
+            <li class="checkbox">
+                <label for="sendsms">
+                    <input type="checkbox" id="sendsms" [(ngModel)]="contract.sendSms"/>Отправлять в смс
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="form-group p-form-pad">
+    <label class="col-sm-2 control-label"> Получение</label>
+
+    <div class="col-sm-10">
+        <ul class="list-unstyled">
+            <li class="radio">
+                <label for="auto">
+                    <input type="radio" name="delivery" id="auto" [(ngModel)]="contract.delivery"[value]=deliveryMode.Auto>
+                    Доставка курьером <a routerLink="/delivery">(бесплатно, срок 1-2 дня)</a>
+                </label>
+            </li>
+            <li class="radio">
+                <label for="manual">
+                    <input type="radio" name="delivery" id="manual" [(ngModel)]="contract.delivery"[value]=deliveryMode.Manual>
+                    Самовывоз <a routerLink="/delivery">(бесплатно от м. Новые черемушки 10:00-19:00)</a>
+                </label>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="form-group p-form-pad">
+    <label class="col-sm-2 control-label">Комментарий</label>
+
+    <div class="col-sm-10">
+        <textarea rows="4" cols="20" class="form-control" [(ngModel)]="contract.note"></textarea>
+    </div>
+</div>
+<div class="form-group p-form-pad">
+    <div class="col-sm-offset-2 col-sm-10">
+        <a class="btn btn-primary" (click)="submit()">Заказать</a>
+        <span *ngIf="showError" class="alert alert-danger inline">
+            <div>Нужно обязательно указать свой телефон</div>
+        </span>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="mb-filter">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <button class="pull-right btn btn-danger mm-margin10" ng-click="clear()">Сбросить</button>
+                <div class="input-group">
+                    <input ng-model="filter.text" ng-enter="query()" class="form-control" placeholder="название параметра">
+                    <a class="input-group-addon btn btn-success" ng-click="query()">Поиск</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

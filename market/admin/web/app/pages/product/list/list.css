@@ -1,0 +1,55 @@
+.product-list td.no-padding {
+    padding: 0 !important;
+    vertical-align: middle;
+}
+
+
+.product-list td.price {
+    width: 80px;
+}
+
+.product-list .category {
+    width: 100px;
+}
+
+.product-list td.button {
+    width: 39px;
+    vertical-align: middle;
+}
+
+.product-list td.button i {
+    min-width: 16px;
+    margin-left: 5px;
+}
+
+.product-list .cover {
+    padding: 0;
+    text-align: center;
+    min-width: 40px;
+    min-height: 40px;
+    width: 40px;
+}
+
+.product-list .name {
+    padding: 4px 8px;
+}
+
+.product-list  .url {
+    color: #0b97c4;
+    font-size: 10px;
+}
+.product-list  .url .m-url-red{
+    color: #ff5460;
+    font-weight: bold;
+}
+.product-list  .url .m-url-purple{
+    color: #7133c4;
+    font-weight: bold;
+}
+.product-list .cover img {
+    /*width: 30px;*/
+    height: 38px;
+}
+.product-list .me-price{
+    border-radius: 0;
+}

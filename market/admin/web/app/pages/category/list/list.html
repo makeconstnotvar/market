@@ -1,0 +1,14 @@
+<div class="row form-group" ng-show="categories.length==0">
+    <div class="col-sm-12">
+        <span>Вы не создали ни одной категории</span>
+        <a ng-click="newCatagory()" class="btn btn-primary">Создать</a>
+    </div>
+</div>
+<div class="row form-group" ng-show="categories.length>0">
+    <div class="col-sm-12">
+        <ul class="list-unstyled my-cat-list">
+            <li ng-repeat="category in categories" ng-include="'admin/pages/category/list/tree.html'"></li>
+        </ul>
+    </div>
+</div>
+

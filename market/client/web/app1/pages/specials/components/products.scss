@@ -1,0 +1,60 @@
+.special-product {
+    margin-bottom: 20px;
+    overflow: hidden;
+    &__image {
+        height: 242px;
+        cursor: pointer;
+        text-align: center;
+        border: 1px solid #e8e8e8;
+        transition: background-color 300ms linear;
+        &:hover {
+            background-color: #f7f7f7;
+            transition: background-color 300ms linear;
+        }
+        &-icon {
+            position: absolute;
+            color: #333333;
+            top: 48%;
+            left: 48%;
+        }
+        &-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+        }
+    }
+    &__info {
+        background: #313037;
+        padding: 18px;
+        text-align: center;
+
+    }
+    &__name {
+        cursor: pointer;
+        color: #9d9ca1;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 10px;
+        transition: color 300ms linear;
+        height: 66px;
+        overflow: hidden;
+        &:hover {
+            color: #f75163;
+            transition: color 300ms linear;
+        }
+    }
+
+
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+    .special-product {
+        &__info {
+            height: 242px;
+        }
+    }
+
+}

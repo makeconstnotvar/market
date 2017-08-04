@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 ">
+            <div class="mb-error">
+                <p>Вы пытались зайти на страницу <b ng-bind="requestUrl"></b>, которой нет на сайте.</p>
+                <p>Но вам повезло, у нас есть много других замечательных страниц.</p>
+                <h2>Главная</h2>
+                <p>Можно попробовать начать сначала:</p>
+                <ul>
+                    <li>
+                        <a ng-href="/">GetYourBag.ru</a>
+                    </li>
+                </ul>
+
+                <h2>Каталог товаров</h2>
+                <p>Либо сразу отправиться за покупками:</p>
+                <ul>
+                    <li ng-repeat="category in categories"><a ng-href="/{{category.url}}" ng-bind="category.name"></a></li>
+                </ul>
+                <h2>Информационные страницы</h2>
+                <p>Несколько слов о том, как легко и просто получить купленный у нас товар:</p>
+                <ul>
+                    <li><a ng-href="/delivery/auto">Бесплатная доставка курьером</a></li>
+                    <li><a ng-href="/delivery/manual">Самовывоз</a></li>
+                    <li><a ng-href="/delivery/guarantee">Наши гарантии</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

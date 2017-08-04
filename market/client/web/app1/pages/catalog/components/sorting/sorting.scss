@@ -1,0 +1,31 @@
+.sorting {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px 0;
+    user-select: none;
+    li {
+        position: relative;
+    }
+
+}
+
+.sorting-title {
+    margin-left: 20px;
+}
+
+.sorting-icon {
+    position: absolute;
+    top: 3px;
+    left: 0;
+}
+
+.sorting-btn {
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+
+    position: relative;
+}

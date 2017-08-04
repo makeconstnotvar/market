@@ -1,0 +1,39 @@
+<jumbotron></jumbotron>
+<div class="menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 title">Страница не найдена</div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 ">
+
+            <div class="mb-error">
+                <p *ngIf="url">Вы пытались зайти на страницу <b>{{requestUrl}}</b>, которой нет на сайте.</p>
+                <p>Но вам повезло, у нас есть много других замечательных страниц.</p>
+                <h2>Главная</h2>
+                <p>Можно попробовать начать сначала:</p>
+                <ul>
+                    <li>
+                        <a routerLink="/">GetYourBag.ru</a>
+                    </li>
+                </ul>
+
+                <h2>Каталог товаров</h2>
+                <p>Либо сразу отправиться за покупками:</p>
+                <ul>
+                    <li *ngFor="let category of categories"><a routerLink="/{{category.url}}">{{category.name}}</a></li>
+                </ul>
+                <h2>Информационные страницы</h2>
+                <p>Несколько слов о том, как легко и просто получить купленный у нас товар:</p>
+                <ul>
+                    <li><a routerLink="/stocks">Полный список актуальных и прошедших акций</a></li>
+                    <li><a routerLink="/delivery">Бесплатная доставка курьером и самовывоз</a></li>
+                    <li><a routerLink="/contacts">Контакты и наши гарантии</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

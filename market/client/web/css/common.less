@@ -1,0 +1,92 @@
+.mb-item {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.me-status {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+.me-incart,
+.me-available {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.me-incart {
+    color: #74b436;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 300ms linear;
+    &.mm-yes {
+        opacity: 1;
+        transition: opacity 300ms linear;
+    }
+}
+
+.me-available {
+    .mm-yes {
+        color: #74b436;
+    }
+    .mm-no {
+        color: #f75163;
+    }
+}
+
+.me-price {
+    color: #f75163;
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    &.mm-no {
+        color: #bbb;
+    }
+}
+
+.me-buy {
+    display: block;
+    font-size: 18px;
+    border-radius: 20px;
+    border: solid 1px #9d9ca1;
+    background-color: #313037;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 23px;
+    margin-bottom: 10px;
+    transition: background-color 300ms linear;
+    &:hover {
+        background-color: #f75163;
+        border-color: #f75163;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 300ms linear;
+    }
+
+}
+
+.me-image {
+    position: relative;
+    border: 1px solid #e8e8e8;
+    text-align: center;
+
+}
+
+.me-image,
+.me-screens {
+    .me-icon {
+        position: absolute;
+        color: #333333;
+        top: 48%;
+        left: 48%;
+    }
+}
+
+img.ng-hide-add + .me-icon {
+    display: none !important;
+}

@@ -1,0 +1,48 @@
+
+<div class="row form-group product-list">
+
+    <div class="col-sm-6">
+        <div ui-view="products"></div>
+    </div>
+    <div class="col-sm-6">
+        <table class="table table-bordered table-hover">
+            <tbody>
+            <tr ng-repeat="position in contract.positions">
+                <td width="39px" class="btn-danger text-center m-pointer" ng-click="remove(position.product._id)">
+                    <i class="fa fa-minus"></i></td>
+                <td class="cover">
+                    <img ng-repeat="photo in position.product.photos | filter:getCover" ng-src="{{'/photos/' + position.product._id + '/' + photo.fileId}}">
+                </td>
+                <td><a ng-href="{{'products/main/'+position.product._id}}" ng-bind="position.product.name"></a></td>
+                <td width="10%"><span ng-bind="position.product.price"></span><i class="fa fa-rub"></i></td>
+                <td class="my-cart-change no-padding">
+                    <div class="input-group">
+                        <a class="btn btn-default input-group-addon" ng-click="minus(position)">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                        <input ng-disabled="true" type="text" value="1" class="form-control m-cart-center" ng-model="position.count">
+                        <a class="btn btn-default input-group-addon" ng-click="plus(position)">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                </td>
+                <td width="10%" class="info"><span ng-bind="position.sum"></span><i class="fa fa-rub"></i></td>
+
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="3"><b>Итого</b></td>
+                <td class="info"><span ng-bind="contract.final"></span><i class="fa fa-rub"></i></td>
+
+            </tr>
+            </tfoot>
+        </table>
+        <a class="btn btn-success m-rgap" ng-click="save()">Сохранить</a>
+        <a class="btn btn-warning" ng-click="cancel()">Отмена</a>
+    </div>
+</div>
+
+
+

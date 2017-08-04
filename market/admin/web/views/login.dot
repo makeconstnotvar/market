@@ -1,0 +1,14 @@
+---
+layout: layout.dot
+---
+[[##section:
+<div id="wrap">
+    <div class="progress-block ">
+        <div class="container" ui-view="base"></div>
+    </div>
+    <div class="container" ui-view="content"></div>
+</div>
+<div id="footer">
+    <div class="container" ui-view="footer"></div>
+</div>
+#]]

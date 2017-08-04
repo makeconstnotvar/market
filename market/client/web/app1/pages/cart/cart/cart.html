@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <h2>Корзина покупок</h2>
+        <div class="alert alert-info" *ngIf="pageMode == cartMode.Empty">
+            <span>В корзине пока нет ни одного товара</span>
+        </div>
+        <div class="alert alert-success" *ngIf="pageMode == cartMode.Success">
+            <span><strong>Заказ № {{contract.number}} принят.</strong> Скоро наш менеджер свяжется с вами.</span>
+        </div>
+        <div *ngIf="pageMode == cartMode.Form">
+            <cart-positions [contract]="contract" (onDelete)="del($event)" (onMinus)="minus($event)" (onPlus)="plus($event)"></cart-positions>
+            <h2>Контакты</h2>
+
+            <p>Мы обещаем не использовать ваш номер телефона в рекламных целях. Так же обещаем не передавать его третьим лицам.</p>
+
+            <p>Если у вас имеются особые пожелания, напишите их в комментарии к заказу, мы обязательно прочитаем и постараемся выполнить.</p>
+
+            <cart-contact (onSubmit)="submit($event)"></cart-contact>
+        </div>
+        <div class="cart-history" *ngIf="showHistory">
+            <h2>История заказов</h2>
+            <ul class="list-unstyled">
+                <li *ngFor="let h of history" class="cart-history-item">
+                    <a routerLink="/cart/{{h._id}}"><b>{{h.status}}</b> <span>{{h.date | date:'dd.MM.yyyy HH:mm:ss'}}</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

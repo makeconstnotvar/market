@@ -1,0 +1,62 @@
+#mb-navbar {
+    -webkit-user-select: none;
+    background-color: #222222;
+}
+#mb-navbar .me-link {
+    color: #fff;
+    transition: background-color 0.25s ease-out;
+}
+#mb-navbar .me-link:hover,
+#mb-navbar .me-link:focus {
+    text-decoration: none;
+    background-color: #e94d51;
+    transition: background-color 0.25s ease-out;
+}
+#mb-navbar .me-header {
+    position: relative;
+    /*margin-right: -15px;*/
+    float: left;
+}
+#mb-navbar .me-header .me-label {
+    left: 15px;
+}
+#mb-navbar .me-header .me-brand {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+    height: 50px;
+    background-color: #e94d51;
+    line-height: 20px;
+    font-size: 20px;
+    transition: color 0.25s ease-out;
+}
+#mb-navbar .me-header .me-brand:focus,
+#mb-navbar .me-header .me-brand:hover {
+    cursor: pointer;
+    color: #333;
+    transition: color 0.25s ease-out;
+}
+#mb-navbar .me-label {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    font-size: 10px;
+    font-weight: normal;
+}
+.mb-navbar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.mb-navbar .me-nav {
+    float: left;
+    position: relative;
+}
+.mb-navbar .me-link,
+.mb-navbar .me-info {
+    display: block;
+    padding: 15px;
+    color: #fff;
+    line-height: 20px;
+}

@@ -1,0 +1,114 @@
+.navbar {
+    display: block;
+    -webkit-user-select: none;
+    background-color: #222222;
+    .navbar-item,
+    .navbar-cart {
+        display: inline-block;
+        position: relative;
+        //height: 50px;
+        //overflow: hidden;
+        transition: background-color .25s ease-out;
+        &.active,
+        &:hover,
+        &:focus {
+            .navbar-cart__sum, .navbar-cart__count {
+                background-color: #000;
+                transition: background-color .25s ease-out;
+            }
+            text-decoration: none;
+            background-color: #e94d51;
+            transition: background-color .25s ease-out;
+        }
+        .fa {
+            width: 16px;
+        }
+        &__label {
+            position: absolute;
+            //cursor: pointer;
+            bottom: 0;
+            left: 38px;
+            color: #fff;
+            font-size: 10px;
+            font-weight: normal;
+        }
+        &__link {
+            /*position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;*/
+            height: 50px;
+            z-index: 100;
+            padding: 0 15px;
+            display: block;
+            color: #fff;
+            line-height: 44px;
+            text-decoration: none;
+
+        }
+        &__count,
+        &__sum {
+            position: absolute;
+            padding: 2px 4px 2px 3px;
+            display: inline-block;
+            color: #fff;
+            //cursor: pointer;
+            left: 106px;
+            vertical-align: baseline;
+            white-space: nowrap;
+            font-size: 10px;
+            background-color: #e94d51;
+            border-radius: 5px;
+            line-height: 9px;
+            transition: background-color .25s ease-out;
+            &:after {
+                content: ' ';
+            }
+        }
+        &__count {
+            top: 6px;
+        }
+        &__sum {
+            top: 24px;
+        }
+        &--brand {
+
+            background-color: #e94d51;
+            font-size: 20px;
+            .navbar-item__link {
+                transition: color .25s ease-out;
+            }
+            .navbar-item__label {
+                left: 43px;
+            }
+
+            &:hover .navbar-item__link {
+                transition: color .25s ease-out;
+                color: #000;
+            }
+        }
+        &--brand {
+            width: 188px;
+            .fa {
+                width: 20px;
+            }
+        }
+        &--stocks {
+            width: 126px
+        }
+        &--delivery {
+            width: 126px
+        }
+        &--phone {
+            width: 176px
+        }
+        &--cart {
+            width: 160px;
+
+        }
+    }
+}
+
+
+
+

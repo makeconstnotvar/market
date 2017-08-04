@@ -1,0 +1,25 @@
+.parent {
+    position: absolute;
+    overflow: auto;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.parent:before {
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    content: '';
+}
+
+.block {
+    display: inline-block;
+    white-space: normal;
+    vertical-align: middle;
+
+}
+
+.block img, .block span {
+    display: block;
+    border: none;
+}

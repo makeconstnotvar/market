@@ -1,0 +1,6 @@
+<ul class="nav nav-tabs" >
+    <li ng-class="{active:tab.active}" ng-repeat="tab in tabs">
+        <a class="my-pointer" title="{{tab.title}}" ng-click="toState(tab.state)">{{tab.name}}</a>
+    </li>
+</ul>
+

@@ -1,0 +1,92 @@
+.m-progress {
+    position: absolute;
+    min-height: 200px;
+    z-index: 200;
+    opacity: 1;
+    transition: opacity 150ms linear;
+}
+
+.spinner {
+    /*font-size: 100px;*/
+    display: inline-block;
+    animation: anim-rotate 2s infinite linear;
+}
+
+@-webkit-keyframes anim-rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.m-progress.ng-hide {
+    transition: opacity 150ms linear;
+    opacity: 0;
+}
+
+#progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #B22222;
+    box-shadow: #B22222 0px 0px 10px 0px;
+    color: #B22222;
+    font-size: 40px;
+    z-index: 1000;
+
+}
+
+#progress .spinner {
+    position: absolute;
+    right: 24px;
+    top: 6px;
+    /*text-shadow: 0px 0px 10px #B22222;*/
+}
+
+#progress .bar {
+    position: absolute;
+    left: 0;
+    width: 10%;
+    height: 3px;
+    background-color: #fff;
+    box-shadow: #fff 0px 0px 20px 0px;
+    animation: progress-bar-run 2s linear infinite;
+}
+
+.mb-cloak {
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+    width: 100%;
+}
+
+.me-cloak {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 100;
+    opacity: 1;
+
+    &.ng-hide {
+        opacity: 0;
+        transition: opacity 300ms linear;
+    }
+
+}
+
+@-webkit-keyframes progress-bar-run {
+    0% {
+        -webkit-transform: translateX(-100%);
+    }
+    100% {
+        -webkit-transform: translateX(1000%);
+    }
+}
+

@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <v-title (onBack)="back()" [details]="product.details" [isBack]="isBack" [name]="product.name"></v-title>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <v-photo [productId]="product._id" [image]="selectedImage"></v-photo>
+        </div>
+        <div class="col-xs-12">
+            <v-socials [description]="product.description" [url]=""></v-socials>
+        </div>
+    </div>
+    <div class="row">
+        <v-gallery [productId]="product._id" [images]="product.images" (onImageSelect)="imageSelect($event)"></v-gallery>
+    </div>
+    <div class="row">
+        <price class="col-xs-12 price--w240" (onPostPosition)="postPosition($event)" [product]="product"></price>
+    </div>
+    <div class="row">
+        <v-information [information]="product.information"></v-information>
+        <v-specification [parameters]="product.parameters"></v-specification>
+    </div>
+</div>

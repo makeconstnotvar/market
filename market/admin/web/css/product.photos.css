@@ -1,0 +1,35 @@
+.product-photos table {
+    border: solid 1px #eee;
+    transition: background-color .3s ease-out;
+}
+.product-photos table.mm-cover {
+    background-color: #f1e0e0;
+}
+.product-photos table.mm-list {
+    background-color: #cee8f2;
+}
+.product-photos table.mm-image {
+    background-color: #fff;
+}
+
+.product-photos table:hover {
+    background-color: #e3e3e3;
+    transition: background-color .3s ease-out;
+}
+
+.product-photos img {
+    /*border: solid 1px #eee;*/
+}
+.product-photos .radio > label{
+    transition: color .3s ease-out;
+}
+.product-photos .radio > label:hover{
+    color: #e94d51;
+    transition: color .3s ease-out;
+}
+.product-photos td.no-padding{
+    padding: 0 !important;
+}
+.product-photos .me-order{
+    width: 120px;
+}

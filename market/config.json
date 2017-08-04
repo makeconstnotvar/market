@@ -1,0 +1,54 @@
+{
+    "path": {
+        "public": "C:\\Projects\\fastlight\\data\\public",
+        "photo": "C:\\Projects\\fastlight\\data\\photos",
+        "files": "C:\\Projects\\fastlight\\data\\files",
+        "prerender": "C:\\Projects\\fastlight\\data\\prerender",
+        "jquery": "C:\\Projects\\fastlight\\data\\jquery.js"
+    },
+    "system": {
+        "port": "3001",
+        "wsPort": "4001",
+        "baseName": "market",
+        "host": "http://market.debug",
+        "domain": "market.debug"
+    },
+    "contacts": {
+        "sendSms": false,
+        "sendMail": false,
+        "smsApi": "F3337DC7-705D-4D65-B398-CC302BF215EA",
+        "myPhone": "79261234567",
+        "serviceMail": "nuclear_fly@mail.ru",
+        "adminMail": "nuclear_fly@mail.ru",
+        "testMail": "nuclear_fly@mail.ru"
+    },
+    "settings": {
+        "pageSize": 5,
+        "ymlFileName": "yml.xml",
+        "sitemapFileName": "sitemap.xml",
+        "ymlCategorieFileName": "yml-categories.json",
+        "renderListFileName": "render-list.json",
+        "configWebFileName":"config-web.json",
+        "urlsFileNameSource": "request-list-source.json",
+        "urlsFileName": "request-list.json",
+        "siteName": "market.ru",
+        "companyName": "market.ru"
+    },
+    "secure": {
+        "admins": [
+            {
+                "login": "admin",
+                "password": "qwerty",
+                "salt": "B73ED4CB-B536-4566-8130-08528ACA78CB"
+            },
+            {
+                "login": "a",
+                "password": "a",
+                "salt": "EC4ADE51-6C2C-45EE-9D53-C8336B0C34DA"
+            }
+        ],
+        "secret": "6B7D254D-ACCD-4BCD-8B8A-0478B2780580",
+        "algorithm": "aes-256-ctr",
+        "https": false
+    }
+}

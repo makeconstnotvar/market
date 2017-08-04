@@ -1,0 +1,16 @@
+<div class="my-cat-block my-small">
+    <div class="radio-inline">
+        <label for="{{category._id}}">
+            <input id="{{category._id}}" ng-model="product.category" ng-value="category" ng-checked="category._id==product.category._id" name="catRadios" type="radio" >
+            <span ng-bind="category.name"></span>
+        </label>
+    </div>
+    <a title="Удалить категорию" ng-click="remove(category._id)" class="pull-right margin-left-10 text-danger">
+        <i class="fa fa-times"></i>
+    </a>
+    <a title="Редактировать категорию" ng-click="edit(category._id)" class="pull-right margin-left-10">
+        <i class="fa fa-pencil-square-o"></i></a>
+</div>
+<ul class="list-unstyled my-cat-list" ng-if="category.children">
+    <li ng-class="{'padding-left-40': category.level=='1', 'padding-left-80': category.level=='2', 'padding-left-120': category.level=='3'}" ng-repeat="category in category.children" ng-include="'admin/pages/product/category/tree.html'"></li>
+</ul>

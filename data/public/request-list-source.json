@@ -1,0 +1,10 @@
+[
+    "/",
+    "/delivery/auto",
+    "/delivery/manual",
+    "/delivery/guarantee",
+    "/laying",
+    "/cart",
+    "/cart/*",
+    "/error"
+]

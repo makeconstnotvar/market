@@ -1,0 +1,16 @@
+.sticky {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.sticky-content {
+    flex: 1;
+}
+
+@media only screen and (max-width: 768px) {
+    .content {
+        width: 100%;
+    }
+}
+

@@ -1,0 +1,65 @@
+/*.product-list-anime.ng-enter,
+.product-list-anime.ng-move,
+[ui-view="content"].ng-enter,
+[ui-view="section"].ng-enter,
+[ui-view="menu"].ng-enter {
+    transition: opacity 300ms ease-in-out;
+}
+
+.product-list-anime.ng-enter,
+.product-list-anime.ng-move,
+[ui-view="content"].ng-enter,
+[ui-view="section"].ng-enter,
+[ui-view="menu"].ng-enter {
+    opacity: 0;
+}
+
+.product-list-anime.ng-enter-active,
+[ui-view="content"].ng-enter-active,
+[ui-view="section"].ng-enter-active,
+[ui-view="menu"].ng-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+}
+
+.product-list-anime.ng-leave,
+[ui-view="content"].ng-leave,
+[ui-view="section"].ng-leave,
+[ui-view="menu"].ng-leave {
+    opacity: 1;
+}
+
+.product-list-anime.ng-leave-active,
+[ui-view="content"].ng-leave-active,
+[ui-view="section"].ng-leave-active,
+[ui-view="menu"].ng-leave-active {
+    opacity: 0;
+
+}
+*/
+html {
+
+    opacity: 0;
+}
+
+html.enable {
+    transition: opacity 300ms ease-in-out;
+    opacity: 1;
+}
+
+
+img.ng-hide-add,
+img.ng-hide-remove {
+    transition: opacity linear 300ms;
+}
+
+img.ng-hide-add.ng-hide-add-active,
+img.ng-hide-remove {
+    opacity: 0;
+}
+
+img.ng-hide-add,
+img.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+

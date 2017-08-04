@@ -1,0 +1,5 @@
+<ul class="pagination" ng-if="show && pages.length > 1">
+    <li ng-class="{active:page.active}" ng-repeat="page in pages">
+        <a ng-click="toPage(page.n)" ng-bind="page.n"></a>
+    </li>
+</ul>

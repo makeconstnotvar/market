@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 xxs delivery">
+            <div class="head">
+                <ul class="nav nav-tabs">
+                    <li><h2 class="pull-left">Доставка</h2></li>
+                    <li ng-class="{'active':isAuto}"><a ng-href="/delivery/auto">Курьерская доставка</a></li>
+                    <li ng-class="{'active':isManual}"><a ng-href="/delivery/manual">Самовывоз</a></li>
+                    <li ng-class="{'active':isGuarantee}"><a ng-href="/delivery/guarantee">Гарантии</a></li>
+                </ul>
+
+                <p>Доставка и самовывоз осуществляется с помощью профессиональных курьеров компании CDEK.</p>
+
+                <p>Сделать заказ можно по телефону <strong>+7 (925) 477-5001</strong> или воспользовавшись корзиной для покупок.</p>
+            </div>
+            <div ui-view="section" class="body"></div>
+        </div>
+    </div>
+</div>

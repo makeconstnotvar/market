@@ -1,0 +1,90 @@
+<div id="mp-view" class="container">
+    <div class="mb-cloak">
+        <div class="me-cloak" ng-show="showCloak"></div>
+        <div class="mb-item">
+            <div class="row">
+                <div class="me-info col-xs-12">
+                    <a ng-click="toBack()" ng-if="isBack" class="btn btn-red pull-right m-back">
+                        <i class="fa fa-chevron-left m-icon-gap"></i>Назад
+                    </a>
+
+                    <h1 class="me-name" ng-bind="product.name"></h1>
+
+                    <div ng-bind-html="product.details"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="me-image">
+
+                        <img fade-in class="img-responsive" ng-src="{{'/photos/'+product._id+ '/l_'+ selectedImage}}" ng-if="selectedImage">
+                        <i class="me-icon fa fa-picture-o faa-pulse animated"></i>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="me-soc-msg">Если Вам понравился этот товар, Вы можете рассказать о нем своим друзьям.</div>
+                    <a class="me-social" target="_blank" title="В контакте" ng-href="https://vk.com/share.php?url={{soc.url}}"><i class="fa fa-vk"></i></a>
+                    <a class="me-social" target="_blank" title="Facebook" ng-href="https://www.facebook.com/sharer/sharer.php?u={{soc.url}}"><i class="fa fa-facebook-official"></i></a>
+                    <a class="me-social" target="_blank" title="Twitter" ng-href="https://twitter.com/intent/tweet?url={{soc.url}}"><i class="fa fa-twitter-square"></i></a>
+                    <a class="me-social" target="_blank" title="Одноклассники" ng-href="https://www.ok.ru/dk?st.cmd=addShare&st.s=1&st._surl={{soc.url}}"><i class="fa fa-odnoklassniki-square"></i></a>
+                    <a class="me-social" target="_blank" title="Google+" ng-href="https://plus.google.com/share?url={{soc.url}}"><i class="fa fa-google-plus-square"></i></a>
+                    <a class="me-social" target="_blank" title="Linkedin" ng-href="https://www.linkedin.com/shareArticle?url={{soc.url}}"><i class="fa fa-linkedin-square"></i></a>
+                    <a class="me-social" target="_blank" title="Pinterest" ng-href="https://pinterest.com/pin/create/button/?url={{soc.url}}&description={{soc.desc}}&media={{soc.img}}"><i class="fa fa-pinterest-square"></i></a>
+                    <a class="me-social" target="_blank" title="Tumblr" ng-href="http://www.tumblr.com/share/link?url={{soc.url}}"><i class="fa fa-tumblr-square"></i></a>
+                    <a class="me-social" target="_blank" title="Мой мир" ng-href="https://connect.mail.ru/share?url={{soc.url}}"><i class="fa fa-at"></i></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 me-screens">
+                    <table>
+                        <tr>
+                            <td ng-repeat="image in product.images">
+                                <a class="me-link" ng-click="imageSelect($index)" ng-class="{'mm-active':selectedActive==$index}">
+                                    <img fade-in class="img-responsive" fade-in ng-src="{{'/photos/'+product._id+ '/m_'+  image}}">
+                                    <i class="me-icon fa fa-picture-o faa-pulse animated"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="me-info col-xs-12">
+                    <div class="me-article"><span ng-bind="'Артикул: '+product.article"></span><span ng-if="product.code" ng-bind="' Модель: '+product.code"></span></div>
+                    <div class="me-status">
+                        <span class="me-incart" ng-class="{'mm-yes':product.inCart}"><i class="fa fa-check-circle m-icon-gap"></i>В корзине</span>
+
+                        <div class="me-available" ng-if="!product.inCart">
+                            <span class="mm-yes" ng-if="product.available"><i class="fa fa-check-square-o m-icon-gap"></i>В наличии</span>
+                            <span class="mm-no" ng-if="!product.available" ng-class="{'m-blink':product.blink}"><i class="fa fa-ban m-icon-gap"></i>Отсутствует</span>
+                        </div>
+                    </div>
+                    <div class="me-price"><span ng-bind="product.price "></span> <i class="fa fa-rub"></i></div>
+                    <a class="me-buy m-pointer" ng-click="postPosition(product)"><i class="fa fa-shopping-cart m-icon-gap"></i>в корзину</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-6" ng-if="product.information">
+                    <h2>Описание</h2>
+
+                    <p ng-bind-html="product.information"></p>
+                </div>
+                <div class="col-md-12 col-lg-6" ng-if="product.parameters">
+                    <h2>Характеристики</h2>
+                    <table class="table table-bordered">
+                        <tr ng-repeat="parameter in product.parameters">
+                            <td>
+                                <span ng-bind="parameter.name"></span><span ng-if="parameter.unit" ng-bind="', '+parameter.unit"></span>
+                            </td>
+                            <td>
+
+                                <span ng-if="parameter.value" ng-bind="parameter.value"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

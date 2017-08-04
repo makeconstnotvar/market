@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.getyourbag.ru/sitemap.xml
+Host: https://getyourbag.ru
