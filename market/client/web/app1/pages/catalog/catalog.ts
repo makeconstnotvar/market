@@ -27,7 +27,7 @@ export class PageCatalog {
     categoryName: string;
 
     filterChange(parameter) {
-        let filterData = this.parametersService.filterToUrlFactory(parameter);
+        let filterData = this.parametersService.filterToUrl(parameter);
         this.navigate(filterData);
     }
 
@@ -66,7 +66,7 @@ export class PageCatalog {
             this.parameterProvider.getList(this.QueryEx.categoryName).subscribe(response => {
                 this.QueryEx.categoryId = response.catid;
                 this.parameters = response.parameters;
-                //this.setSelectedParameters();
+                this.setSelectedParameters();
                 this.getProducts();
             });
         });
@@ -97,11 +97,10 @@ export class PageCatalog {
     }
 
     private setSelectedParameters() {
-        return this.parameters.map(parameter => {
+        this.parameters.map(parameter => {
 
             if (this.QueryUrl) {
-                let urlToFilter = this.parametersService.urlToFilterFactory(parameter.behavior);
-                parameter = urlToFilter(parameter, this.QueryUrl);
+                return this.parametersService.urlToParameter(parameter, this.QueryUrl);
             }
             return parameter;
         });
@@ -123,14 +122,13 @@ export class PageCatalog {
     }
 
     private getProducts() {
-
         this.productProvider.list(Object.assign({parameters: this.getSelectedParameters()}, this.QueryEx)).subscribe(resp => {
             this.products = resp.products;
             this.pagerComponent.setup(resp.count, this.QueryEx.page);
         })
     }
 
-    private navigate(filterData) {
+    private navigate(filterData?) {
         let params = Object.assign({},{page:this.QueryEx.page},filterData);
         this.router.navigate([this.QueryEx.categoryName], {queryParams:params});
     }

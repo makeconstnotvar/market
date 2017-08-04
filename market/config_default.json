@@ -9,7 +9,7 @@
     "system": {
         "port": "3001",
         "wsPort": "4001",
-        "baseName": "bags",
+        "baseName": "market",
         "host": "http://market.debug",
         "domain": "market.debug"
     },

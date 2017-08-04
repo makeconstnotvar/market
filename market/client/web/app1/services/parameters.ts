@@ -11,7 +11,7 @@ export class ParametersService {
 
     private paramsFiltered: Map<string, object>;
 
-    public filterToUrlFactory(parameter: Parameter) {
+    public filterToUrl(parameter: Parameter) {
         switch (parameter.behavior) {
             case 'checklist':
             case 'radiolist':
@@ -76,35 +76,43 @@ export class ParametersService {
         return valuesArray.length ? Object.assign({}, ...valuesArray) : {};
     }
 
-    public urlToFilterFactory(behavior) {
-        switch (behavior) {
+    private mergeParamsWithFilter(parameters: Parameter[]) {
+        return parameters.map(parameter => {
+
+        })
+
+    }
+
+    public urlToParameter(parameter: Parameter, queryParams) {
+        switch (parameter.behavior) {
             case 'checklist':
             case 'radiolist':
             case 'onecheck':
-                return this.urlToFilterChecboxlist;
+                return this.urlToFilterChecboxlist(parameter, queryParams);
             case 'input':
-                return this.urlToFilterInput;
+                return this.urlToFilterInput(parameter, queryParams);
             default:
-                throw Error('Неизвестный тип фильтра')
+                throw Error('Неизвестный тип параметра фильтра')
         }
     }
 
-    private urlToFilterChecboxlist(parameter: Parameter, queryValue: string) {
+    private urlToFilterChecboxlist(parameter: Parameter, queryParams:any) {
         parameter.values.forEach(v => {
-            if (Array.isArray(queryValue))
-                v.selected = queryValue.includes(v.url);
-            else
-                v.selected = v.url == queryValue
+            //if (Array.isArray(queryParams))
+            let t = Object.keys(queryParams).map(k => queryParams[k]);
+                v.selected = t.includes(v.url);
+            //else
+            //    v.selected = v.url == Object.values(queryParams)[0]
         });
 
         return parameter;
     }
 
-    private urlToFilterInput(parameter: Parameter, queryValue: string) {
+    private urlToFilterInput(parameter: Parameter, queryParams:any) {
         let fromRegexp = new RegExp(/from_(\d+)/),
             toRegexp = new RegExp(/to_(\d+)/),
-            from = fromRegexp.exec(queryValue),
-            to = toRegexp.exec(queryValue);
+            from = fromRegexp.exec(queryParams),
+            to = toRegexp.exec(queryParams);
         if (from)
             parameter.from = from[1];
         if (to)

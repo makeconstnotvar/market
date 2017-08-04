@@ -9,7 +9,6 @@ const libs = [
         'market/client/web/styles/roboto.scss'
     ],
     styles = [
-
         'market/client/web/styles/sticky.scss',
         'market/client/web/styles/roboto.scss',
         'market/client/web/app1/**/*.scss'
@@ -33,8 +32,8 @@ gulp.task('styles', function () {
         .pipe(gulp.dest('market/client/web/build'))
 });
 
-gulp.task('watch',function () {
+gulp.task('watch', function () {
     return gulp.watch(styles, ['styles'])
 });
 
-gulp.task('default', ['libs','styles']);
+gulp.task('default', ['libs', 'styles']);

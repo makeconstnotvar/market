@@ -22,5 +22,5 @@ app.use('/', clientApp);
 app.set('port', process.env.PORT || config.system.port || '3000');
 
 server.listen(app.get('port'), function () {
-    console.log('Магазин Fastlight запущен http://getyourbag.debug порт:' + app.get('port'));
+    console.log(`Магазин Fastlight запущен http://${config.system.domain} порт:${app.get('port')}`);
 });
