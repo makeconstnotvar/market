@@ -77,13 +77,14 @@ export class PageCatalog {
             this.parameters = response.parameters;
             this.selectParameters();
             this.getProducts();
+            this.getActive();
         });
 
 
     }
 
     private excludeParams(params) {
-        let p = Object.assign({},params);
+        let p = Object.assign({}, params);
         delete p.page;
         delete p.sort;
         delete p.categoryName;
@@ -109,8 +110,24 @@ export class PageCatalog {
         return params;
     }
 
+    private getActive() {
+        let query = {
+            parameters: this.getSelectedParameters(),
+            categoryId: this.categoryId
+        };
+        this.parameterProvider.getActive(query).subscribe(resp => {
+            console.log(resp);
+        })
+    }
+
     private getProducts() {
-        this.productProvider.list({parameters: this.getSelectedParameters(),sort:this.sort,categoryId:this.categoryId,page:this.page}).subscribe(resp => {
+        let query = {
+            parameters: this.getSelectedParameters(),
+            sort: this.sort,
+            categoryId: this.categoryId,
+            page: this.page
+        };
+        this.productProvider.list(query).subscribe(resp => {
             console.log('получены продукты');
             this.products = resp.products;
             this.pagerComponent.setup(resp.count, this.page);
@@ -118,7 +135,7 @@ export class PageCatalog {
     }
 
     private navigate(filterData) {
-        let queryParams = Object.assign({}, {page: this.page, sort:this.sort}, filterData);
+        let queryParams = Object.assign({}, {page: this.page, sort: this.sort}, filterData);
         this.router.navigate([this.categoryName], {queryParams});
     }
 }

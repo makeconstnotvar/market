@@ -14,9 +14,9 @@ export class ParameterProvider {
             .map(r => r.json());
     }
 
-    getActive(filter) {
+    getActive(query) {
         return this.http
-            .post('/api/parameters/active', filter)
+            .post('/api/parameters/active', query)
             .map(r => r.json());
 
     }

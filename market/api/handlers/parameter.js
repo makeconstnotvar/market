@@ -48,12 +48,13 @@ module.exports = class extends Base {
     }
 
     active(req, res, next) {
-        var filter = req.body,
-            and = [{publish: true}, {'category': filter.catId}],
+        let filter = req.body,
+            parameters = filter.parameters,
+            and = [{publish: true}, {'category': filter.categoryId}],
             query,
             activeValues = [];
 
-        var or = utils.query.getParametersQuery(filter.parameters);
+        let or = utils.query.getParametersQuery(parameters);
         if (or)
             and = and.concat(or);
 
@@ -65,7 +66,7 @@ module.exports = class extends Base {
         }).populate('parameters.parameter').lean().exec((err, products)=> {
             if (err) return next(err);
             if (products)
-                filter.all.forEach(catParameter=> {
+                parameters.forEach(catParameter=> {
                     if (catParameter.values)
                         catParameter.values.forEach(catParamValue=> {
                             products.forEach(product=> {
