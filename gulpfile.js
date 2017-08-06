@@ -11,6 +11,7 @@ const libs = [
     styles = [
         'market/client/web/styles/sticky.scss',
         'market/client/web/styles/roboto.scss',
+        'market/client/web/styles/common.scss',
         'market/client/web/app1/**/*.scss'
     ];
 

@@ -16,8 +16,9 @@ export class ParametersService {
         return this.getUrlObject()
     }
 
-    public getSelectedParameters() {
-        return Object.assign({}, this.parameters);
+    public clearFilterData() {
+        this.filterData = new Map();
+        return this.getUrlObject()
     }
 
     public filterToUrl(parameter: Parameter) {

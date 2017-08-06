@@ -19,61 +19,11 @@ export class PageCatalog {
 
     products: Product[] = [];
     parameters: Parameter[] = [];
-    Filter = {};
-    Query = {};
-    QueryEx = {};
-    QueryUrl = {};
     categoryId: string;
     categoryName: string;
-
-    filterChange(parameter) {
-        let filterData = this.parametersService.filterToUrl(parameter);
-        this.navigate(filterData);
-    }
-
-    sortChange(sorting) {
-        console.log(sorting)
-    }
-
-    clearFilter() {
-        console.log('очистка фильтра')
-    }
-
-    applyFilter(parameter) {
-
-        //this.navigate();
-    }
-
-    pageChange(page) {
-        this.QueryEx.page = page;
-        let filterData = this.parametersService.getFilterData();
-        this.navigate(filterData);
-    }
-
-
-    test(parameter) {
-
-    }
-
-    ngOnInit() {
-        this.route.paramMap.subscribe(paramMap => {
-            this.QueryEx.categoryName = paramMap.params.categoryName;
-
-            this.route.queryParamMap.subscribe(queryParamMap => {
-                this.QueryEx.page = queryParamMap.params.page;
-                this.QueryEx.sort = queryParamMap.params.sort;
-                this.QueryUrl = queryParamMap.params;
-            });
-            this.parameterProvider.getList(this.QueryEx.categoryName).subscribe(response => {
-                this.QueryEx.categoryId = response.catid;
-                this.parameters = response.parameters;
-                this.setSelectedParameters();
-                this.getProducts();
-            });
-        });
-
-
-    }
+    params: any;
+    page: number;
+    sort: any;
 
     constructor(private productProvider: ProductProvider,
                 private parametersService: ParametersService,
@@ -82,24 +32,66 @@ export class PageCatalog {
                 private router: Router) {
     }
 
-    private getFilter() {
+    changeFilter(parameter) {
+        delete this.page;
+        let filterData = this.parametersService.filterToUrl(parameter);
+        this.navigate(filterData);
+        this.getProducts();
     }
 
-    private setFilter() {
+
+    clearFilter() {
+        delete this.page;
+        let filterData = this.parametersService.clearFilterData();
+        this.navigate(filterData);
+        this.selectParameters();
+        this.getProducts();
     }
 
-    private updateUrl() {
+    applyFilter() {
+        let filterData = this.parametersService.getFilterData();
+        this.navigate(filterData);
+        this.getProducts();
     }
 
-    private getFromUrl() {
+    changeSort(sorting) {
+        console.log(sorting)
+    }
+
+    changePage(page) {
+        this.page = page;
+        let filterData = this.parametersService.getFilterData();
+        this.navigate(filterData);
+        this.getProducts();
+    }
+
+    ngOnInit() {
+        this.categoryName = this.route.snapshot.paramMap.params.categoryName;
+        this.page = this.route.snapshot.queryParamMap.params.page;
+        this.sort = this.route.snapshot.queryParamMap.params.sort;
+        this.params = this.excludeParams(this.route.snapshot.queryParamMap.params);
+
+        this.parameterProvider.getList(this.categoryName).subscribe(response => {
+            console.log('получены параметры');
+            this.categoryId = response.catid;
+            this.parameters = response.parameters;
+            this.selectParameters();
+            this.getProducts();
+        });
+
 
     }
 
-    private setSelectedParameters() {
-        if (this.QueryUrl) {
-          let selectedParams =  this.parameters.map(parameter => this.parametersService.urlToParameter(parameter, this.QueryUrl));
-          console.log(selectedParams)
-        }
+    private excludeParams(params) {
+        let p = Object.assign({},params);
+        delete p.page;
+        delete p.sort;
+        delete p.categoryName;
+        return p;
+    }
+
+    private selectParameters() {
+        this.parameters.map(parameter => this.parametersService.urlToParameter(parameter, this.params));
     }
 
     private getSelectedParameters() {
@@ -118,15 +110,16 @@ export class PageCatalog {
     }
 
     private getProducts() {
-        this.productProvider.list(Object.assign({parameters: this.getSelectedParameters()}, this.QueryEx)).subscribe(resp => {
+        this.productProvider.list({parameters: this.getSelectedParameters(),sort:this.sort,categoryId:this.categoryId,page:this.page}).subscribe(resp => {
+            console.log('получены продукты');
             this.products = resp.products;
-            this.pagerComponent.setup(resp.count, this.QueryEx.page);
+            this.pagerComponent.setup(resp.count, this.page);
         })
     }
 
     private navigate(filterData) {
-        let params = Object.assign({}, {page: this.QueryEx.page}, filterData);
-        this.router.navigate([this.QueryEx.categoryName], {queryParams: params});
+        let queryParams = Object.assign({}, {page: this.page, sort:this.sort}, filterData);
+        this.router.navigate([this.categoryName], {queryParams});
     }
 }
 

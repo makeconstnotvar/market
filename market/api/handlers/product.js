@@ -95,9 +95,9 @@ module.exports = class extends Base {
     // клиентские методы
     list(req, res, next) {
         let that = this,
-            filter = req.body.filter,
+            filter = req.body,
             categoryId = filter.categoryId,
-            order = filter.order,
+            order = filter.sort,
             parameters = filter.parameters,
             take = config.settings.pageSize,
             page = filter.page || 1,

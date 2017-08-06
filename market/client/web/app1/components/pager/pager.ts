@@ -16,6 +16,7 @@ export class PagerComponent {
 
     @Input()
     category: string = '';
+
     @Input()
     params: string = '';
 

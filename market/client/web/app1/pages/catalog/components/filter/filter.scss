@@ -1,15 +1,4 @@
 
-.parameters {
-    user-select:none;
-    margin-top: 50px;
-    min-height: 550px;
-    &__buttons {
-        height: 40px;
-        line-height: 40px;
-        padding: 0;
-
-    }
-}
 
 @media (max-width: 768px) {
     .parameters {
@@ -24,10 +13,15 @@
 .parameters > li {
     border: solid #e8e8e8;
     border-width: 0 1px 1px 1px;
-    /*margin-right: 10px;*/
     padding: 0 10px;
     transition: background-color 300ms linear;
     overflow: hidden;
+    &.parameters__buttons {
+        height: 40px;
+        line-height: 40px;
+        padding: 0;
+
+    }
 }
 
 .parameters > li:hover {
@@ -64,6 +58,12 @@
 .parameter-focus {
     border-color: #e94d51;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(233, 77, 81, 0.6);
+}
+.parameters {
+    user-select:none;
+    margin-top: 50px;
+    min-height: 550px;
+
 }
 
 .mb-switch {

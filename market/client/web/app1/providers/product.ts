@@ -11,8 +11,8 @@ export class ProductProvider {
     }
 
 
-    list(filter): Observable<any> {
-        return this.http.post('/api/product/list', {filter: filter})
+    list(query): Observable<any> {
+        return this.http.post('/api/product/list',  query)
             .map((r: Response) => {
                 return r.json()
             });

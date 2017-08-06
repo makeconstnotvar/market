@@ -5,13 +5,13 @@
             <a class="me-btn pointer text-nowrap" (click)="clearFilter()"><i class="fa fa-times fa--right-gap"></i>Сбросить</a>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 product-menu" [ngClass]="{'hidden-xs':!hideList}">
-            <cat-filter (onFilterChange)="filterChange($event)" (onFilterApply)="applyFilter()" (onFilterClear)="clearFilter()" [parameters]="parameters"></cat-filter>
+            <cat-filter (onFilterChange)="changeFilter($event)" (onFilterApply)="applyFilter()" (onFilterClear)="clearFilter()" [parameters]="parameters"></cat-filter>
         </div>
         <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12" [ngClass]="{'hidden-xs':hideList}">
-            <cat-sorting (onSort)="sortChange($event)"></cat-sorting>
+            <cat-sorting (onSort)="changeSort($event)"></cat-sorting>
             <cat-alert *ngIf="products.length==0" (onClearFilter)="clearFilter($event)"></cat-alert>
             <cat-product *ngFor="let product of products" [product]="product" [categoryId]="categoryId" [ngClass]="{'last':last}"></cat-product>
-            <pager [category]="categoryId" [params]="queryParams" (onPageChange)="pageChange($event)" ></pager>
+            <pager  [category]="categoryId" [params]="queryParams" (onPageChange)="changePage($event)" ></pager>
         </div>
     </div>
 </div>

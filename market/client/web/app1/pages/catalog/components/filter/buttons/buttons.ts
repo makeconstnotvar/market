@@ -2,7 +2,6 @@ import {Component, EventEmitter, Output} from "@angular/core";
 
 @Component({
     selector: 'filter-buttons',
-    host: {'class': 'row block'},
     templateUrl: 'buttons.html'
 })
 export class ComponentFilterButtons {
