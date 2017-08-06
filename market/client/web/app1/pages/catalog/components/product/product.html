@@ -21,7 +21,7 @@
                     <span class="mm-no" ng-if="!product.available" ng-class="{'m-blink':product.blink}"><i class="fa fa-ban m-icon-gap"></i>Отсутствует</span>
                 </div>
             </div>
-            <div class="me-price" ng-class="{'mm-no':!product.available}"><b ng-bind="product.price"></b> <i class="fa fa-rub"></i></div>
+            <div class="me-price" ng-class="{'mm-no':!product.available}"><b>{{product.price}}</b> <i class="fa fa-rub"></i></div>
             <a class="me-buy pointer" ng-click="postPosition(product)"><i class="fa fa-shopping-cart m-icon-gap"></i>в корзину</a>
         </div>
         <div class="me-stock visible-lg" *ngIf="product.stock">{{product.stockText}}</div>

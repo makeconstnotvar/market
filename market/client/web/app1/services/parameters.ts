@@ -5,11 +5,20 @@ import {Parameter} from "../entities/parameter";
 export class ParametersService {
 
     constructor() {
-        if (!this.paramsFiltered)
-            this.paramsFiltered = new Map();
+        if (!this.filterData)
+            this.filterData = new Map();
     }
 
-    private paramsFiltered: Map<string, object>;
+    private filterData: Map<string, object>;
+    private parameters: Parameter[];
+
+    public getFilterData() {
+        return this.getUrlObject()
+    }
+
+    public getSelectedParameters() {
+        return Object.assign({}, this.parameters);
+    }
 
     public filterToUrl(parameter: Parameter) {
         switch (parameter.behavior) {
@@ -37,19 +46,19 @@ export class ParametersService {
             let valuesFiltered: string[] = valuesSelected.map(v => v.url);
             let fake = {};
             fake[parameter.url] = valuesFiltered;
-            this.paramsFiltered.set(parameter._id, fake)
+            this.filterData.set(parameter._id, fake)
         }
         else {
-            this.paramsFiltered.delete(parameter._id)
+            this.filterData.delete(parameter._id)
         }
-        return this.paramsFiltered
+        return this.filterData
     }
 
     private filterToUrlOnecheck(parameter: Parameter) {
         let valuesSelected = parameter.values[0].selected;
         let fake = {};
         fake[parameter.url] = valuesSelected ? parameter.values[0].url : 'net';
-        this.paramsFiltered.set(parameter._id, fake)
+        this.filterData.set(parameter._id, fake)
     }
 
     private filterToUrlInput(parameter: Parameter) {
@@ -63,24 +72,17 @@ export class ParametersService {
                 queryValues.push(`to_${parameter.to}`);
             if (queryValues.length)
                 fake[parameter.url] = queryValues;
-            this.paramsFiltered.set(parameter._id, fake)
+            this.filterData.set(parameter._id, fake)
         }
         else {
-            this.paramsFiltered.delete(parameter._id)
+            this.filterData.delete(parameter._id)
         }
     }
 
     private getUrlObject() {
-        let values = this.paramsFiltered.values();
+        let values = this.filterData.values();
         let valuesArray = Array.from(values);
         return valuesArray.length ? Object.assign({}, ...valuesArray) : {};
-    }
-
-    private mergeParamsWithFilter(parameters: Parameter[]) {
-        return parameters.map(parameter => {
-
-        })
-
     }
 
     public urlToParameter(parameter: Parameter, queryParams) {
@@ -96,27 +98,40 @@ export class ParametersService {
         }
     }
 
-    private urlToFilterChecboxlist(parameter: Parameter, queryParams:any) {
-        parameter.values.forEach(v => {
-            //if (Array.isArray(queryParams))
-            let t = Object.keys(queryParams).map(k => queryParams[k]);
-                v.selected = t.includes(v.url);
-            //else
-            //    v.selected = v.url == Object.values(queryParams)[0]
-        });
+    private urlToFilterChecboxlist(parameter: Parameter, queryParams: any) {
+        for (let prop in queryParams) {
+            if (parameter.url == prop) {
+
+                parameter.values.forEach(v => {
+                    if (Array.isArray(queryParams[prop]))
+                        v.selected = queryParams[prop].includes(v.url);
+                    else
+                        v.selected = queryParams[prop] == v.url;
+                });
+                this.filterToUrl(parameter);
+            }
+        }
+        return parameter;
+    }
+
+    private urlToFilterInput(parameter: Parameter, queryParams: any) {
+        for (let prop in queryParams) {
+            if (parameter.url == prop) {
+
+                let fromRegexp = new RegExp(/from_(\d+)/),
+                    toRegexp = new RegExp(/to_(\d+)/),
+                    from = fromRegexp.exec(queryParams[prop]),
+                    to = toRegexp.exec(queryParams[prop]);
+                if (from)
+                    parameter.from = from[1];
+                if (to)
+                    parameter.to = to[1];
+                this.filterToUrl(parameter);
+            }
+        }
 
         return parameter;
     }
 
-    private urlToFilterInput(parameter: Parameter, queryParams:any) {
-        let fromRegexp = new RegExp(/from_(\d+)/),
-            toRegexp = new RegExp(/to_(\d+)/),
-            from = fromRegexp.exec(queryParams),
-            to = toRegexp.exec(queryParams);
-        if (from)
-            parameter.from = from[1];
-        if (to)
-            parameter.to = to[1];
-        return parameter;
-    }
+
 }

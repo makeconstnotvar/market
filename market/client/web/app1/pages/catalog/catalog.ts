@@ -46,7 +46,8 @@ export class PageCatalog {
 
     pageChange(page) {
         this.QueryEx.page = page;
-        this.navigate();
+        let filterData = this.parametersService.getFilterData();
+        this.navigate(filterData);
     }
 
 
@@ -72,8 +73,6 @@ export class PageCatalog {
         });
 
 
-
-
     }
 
     constructor(private productProvider: ProductProvider,
@@ -97,24 +96,21 @@ export class PageCatalog {
     }
 
     private setSelectedParameters() {
-        this.parameters.map(parameter => {
-
-            if (this.QueryUrl) {
-                return this.parametersService.urlToParameter(parameter, this.QueryUrl);
-            }
-            return parameter;
-        });
+        if (this.QueryUrl) {
+          let selectedParams =  this.parameters.map(parameter => this.parametersService.urlToParameter(parameter, this.QueryUrl));
+          console.log(selectedParams)
+        }
     }
 
     private getSelectedParameters() {
         let params = this.parameters.map(x => Object.assign({}, x)).filter((p: Parameter) => {
             let selected = p.values.find(v => v.selected);
-            return p.to || p.from || selected;
+            return p.to || p.from || !!selected;
         });
         params.forEach((p: Parameter, i, array) => {
             if (p.values)
                 p.values = p.values.filter(v => v.selected && v.nomatter != true);
-            if (p.values.length == 0)
+            if (p.behavior != 'input' && p.values.length == 0)
                 array.splice(i, 1);
 
         });
@@ -128,9 +124,9 @@ export class PageCatalog {
         })
     }
 
-    private navigate(filterData?) {
-        let params = Object.assign({},{page:this.QueryEx.page},filterData);
-        this.router.navigate([this.QueryEx.categoryName], {queryParams:params});
+    private navigate(filterData) {
+        let params = Object.assign({}, {page: this.QueryEx.page}, filterData);
+        this.router.navigate([this.QueryEx.categoryName], {queryParams: params});
     }
 }
 
