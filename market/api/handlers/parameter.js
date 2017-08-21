@@ -49,12 +49,12 @@ module.exports = class extends Base {
 
     active(req, res, next) {
         let filter = req.body,
-            parameters = filter.parameters,
+            selectedParameters = filter.parameters,
             and = [{publish: true}, {'category': filter.categoryId}],
             query,
-            activeValues = [];
+            activeValues = new Set();
 
-        let or = utils.query.getParametersQuery(parameters);
+        let or = utils.query.getParametersQuery(selectedParameters);
         if (or)
             and = and.concat(or);
 
@@ -62,25 +62,21 @@ module.exports = class extends Base {
 
         bll.product.selectAll({
             query: query,
+            take:0,
             projection: {'parameters': 1}
         }).populate('parameters.parameter').lean().exec((err, products)=> {
             if (err) return next(err);
             if (products)
-                parameters.forEach(catParameter=> {
-                    if (catParameter.values)
-                        catParameter.values.forEach(catParamValue=> {
-                            products.forEach(product=> {
-                                if (product.parameters)
-                                    product.parameters.forEach(prodParameter=> {
-                                        //if (prodParameter.selected && prodParameter.selected.equals(catParamValue._id))
-                                        if (prodParameter.selected && prodParameter.selected.toString() == catParamValue._id)
-                                            activeValues.push(catParamValue._id);
+                products.forEach(product=>{
+                    if (product.parameters)
+                        product.parameters.forEach(productParameter=> {
+                            if (productParameter.selected)
+                                activeValues.add(productParameter.selected.toString());
 
-                                    })
-                            })
                         })
                 });
-            res.send(_.uniq(activeValues));
+
+            res.send(Array.from(activeValues));
         })
 
 

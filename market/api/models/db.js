@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     config = require('../../config');
 
-mongoose.connect('mongodb://127.0.0.1:27017/'+config.system.baseName);
+mongoose.connect('mongodb://127.0.0.1:27017/'+config.system.baseName,{useMongoClient: true});
 
 
 mongoose.connection.on('connected', function () {

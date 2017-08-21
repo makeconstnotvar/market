@@ -1,4 +1,4 @@
-<label class="parameter-name grey">
+<label class="parameter-name grey" [ngClass]="{'grey':parameter.values[0].active}">
     <input type="checkbox" [(ngModel)]="parameter.values[0].selected" (change)="changeFilter()">
     <span>{{parameter.name}}</span>
 </label>

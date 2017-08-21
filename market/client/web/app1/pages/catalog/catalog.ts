@@ -94,7 +94,13 @@ export class PageCatalog {
     private selectParameters() {
         this.parameters.map(parameter => this.parametersService.urlToParameter(parameter, this.params));
     }
-
+private setActiveParameters(activeParameters) {
+        this.parameters.forEach(parameter => {
+            parameter.values.forEach(v => {
+                v.active = activeParameters.includes(v._id)
+            })
+        })
+    }
     private getSelectedParameters() {
         let params = this.parameters.map(x => Object.assign({}, x)).filter((p: Parameter) => {
             let selected = p.values.find(v => v.selected);
@@ -116,7 +122,8 @@ export class PageCatalog {
             categoryId: this.categoryId
         };
         this.parameterProvider.getActive(query).subscribe(resp => {
-            console.log(resp);
+         this.setActiveParameters(resp);
+
         })
     }
 
