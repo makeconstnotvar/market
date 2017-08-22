@@ -8,7 +8,7 @@
             <cat-filter (onFilterChange)="changeFilter($event)" (onFilterApply)="applyFilter()" (onFilterClear)="clearFilter()" [parameters]="parameters"></cat-filter>
         </div>
         <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12" [ngClass]="{'hidden-xs':hideList}">
-            <cat-sorting (onSort)="changeSort($event)"></cat-sorting>
+            <cat-sorting (onSort)="changeSort($event)" [activeSort]="activeSort"></cat-sorting>
             <cat-alert *ngIf="products.length==0" (onClearFilter)="clearFilter($event)"></cat-alert>
             <cat-product *ngFor="let product of products" [product]="product" [categoryId]="categoryId" [ngClass]="{'last':last}"></cat-product>
             <pager  [category]="categoryId" [params]="queryParams" (onPageChange)="changePage($event)" ></pager>

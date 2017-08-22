@@ -1,38 +1,40 @@
-import {Component, Output, EventEmitter} from "@angular/core";
-import {SortingMode} from "./mode";
-import {Sort} from "./sort";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {Sort, SortingMode} from "entities/sort";
+import {SortingService} from "services/sort";
 
 @Component({
     selector: 'cat-sorting',
-    host:{'class':'sorting'},
+    host: {'class': 'sorting'},
     templateUrl: 'sorting.html'
 })
 export class ComponentCatalogSorting {
 
-    @Output()
-    onSort = new EventEmitter<Sort>();
+    @Input()
+    activeSort: string;
 
-    sorts: Sort[] = [
-        {
-            name: 'по названию',
-            field: 'name',
-            mode: SortingMode.Asc,
-            active: true
-        },
-        {
-            name: 'по цене',
-            field: 'price',
-            mode: SortingMode.Desc,
-            active: false
+    @Output()
+    onSort = new EventEmitter();
+
+    sorts: Sort[];
+
+    constructor(private sortingService: SortingService) {
+    }
+
+    ngOnInit() {
+        this.sorts = this.sortingService.getSorts();
+    }
+
+    ngOnChanges() {
+        if (this.activeSort) {
+            this.sorts = this.sortingService.change(this.activeSort)
         }
-    ];
+    }
+
     sortMode = SortingMode;
 
     doSort(sort: Sort, mode: SortingMode) {
-        let others = this.sorts.filter(s => s.field != sort.field);
-        others.forEach(s => s.active = false);
-        sort.active = true;
-        sort.mode = mode;
-        this.onSort.emit(sort);
+        this.sorts = this.sortingService.doSort(sort, mode);
+
+        this.onSort.emit();
     }
 }

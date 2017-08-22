@@ -1,4 +1,7 @@
-import {SortingMode} from "./mode";
+export enum SortingMode {
+    Asc = 1,
+    Desc = -1
+}
 
 export class Sort{
     name: string;

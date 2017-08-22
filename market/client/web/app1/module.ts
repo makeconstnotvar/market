@@ -16,6 +16,7 @@ import {Router, NavigationEnd} from "@angular/router";
 import {GlobalService} from "services/global";
 import {ParametersService} from "./services/parameters";
 import {NavbarComponent} from "./components/navbar/navbar";
+import {SortingService} from "./services/sort";
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import {NavbarComponent} from "./components/navbar/navbar";
         ConfigService,
         GlobalService,
         ParametersService,
-
+        SortingService,
         {
             provide: 'Window', useValue: window
         }

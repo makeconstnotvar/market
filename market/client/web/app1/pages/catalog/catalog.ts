@@ -8,6 +8,7 @@ import {Parameter} from "entities/parameter";
 import {ParametersService} from "services/parameters";
 import {PagerComponent} from "components/pager/pager";
 import {ComponentCatalogFilter} from "./components/filter/filter";
+import {SortingService} from "../../services/sort";
 
 @Component({
     templateUrl: 'catalog.html'
@@ -24,10 +25,12 @@ export class PageCatalog {
     params: any;
     page: number;
     sort: any;
+    activeSort: string;
 
     constructor(private productProvider: ProductProvider,
                 private parametersService: ParametersService,
                 private parameterProvider: ParameterProvider,
+                private sortingService: SortingService,
                 private route: ActivatedRoute,
                 private router: Router) {
     }
@@ -54,8 +57,10 @@ export class PageCatalog {
         this.getProducts();
     }
 
-    changeSort(sorting) {
-        console.log(sorting)
+    changeSort() {
+        let filterData = this.parametersService.getFilterData();
+        this.navigate(filterData);
+        this.getProducts();
     }
 
     changePage(page) {
@@ -68,9 +73,8 @@ export class PageCatalog {
     ngOnInit() {
         this.categoryName = this.route.snapshot.paramMap.params.categoryName;
         this.page = this.route.snapshot.queryParamMap.params.page;
-        this.sort = this.route.snapshot.queryParamMap.params.sort;
+        this.activeSort = this.route.snapshot.queryParamMap.params.sort;
         this.params = this.excludeParams(this.route.snapshot.queryParamMap.params);
-
         this.parameterProvider.getList(this.categoryName).subscribe(response => {
             console.log('получены параметры');
             this.categoryId = response.catid;
@@ -79,7 +83,6 @@ export class PageCatalog {
             this.getProducts();
             this.getActive();
         });
-
 
     }
 
@@ -94,13 +97,15 @@ export class PageCatalog {
     private selectParameters() {
         this.parameters.map(parameter => this.parametersService.urlToParameter(parameter, this.params));
     }
-private setActiveParameters(activeParameters) {
+
+    private setActiveParameters(activeParameters) {
         this.parameters.forEach(parameter => {
             parameter.values.forEach(v => {
                 v.active = activeParameters.includes(v._id)
             })
         })
     }
+
     private getSelectedParameters() {
         let params = this.parameters.map(x => Object.assign({}, x)).filter((p: Parameter) => {
             let selected = p.values.find(v => v.selected);
@@ -122,7 +127,7 @@ private setActiveParameters(activeParameters) {
             categoryId: this.categoryId
         };
         this.parameterProvider.getActive(query).subscribe(resp => {
-         this.setActiveParameters(resp);
+            this.setActiveParameters(resp);
 
         })
     }
@@ -130,7 +135,7 @@ private setActiveParameters(activeParameters) {
     private getProducts() {
         let query = {
             parameters: this.getSelectedParameters(),
-            sort: this.sort,
+            sort: this.sortingService.getSearch(),
             categoryId: this.categoryId,
             page: this.page
         };
@@ -142,7 +147,7 @@ private setActiveParameters(activeParameters) {
     }
 
     private navigate(filterData) {
-        let queryParams = Object.assign({}, {page: this.page, sort: this.sort}, filterData);
+        let queryParams = Object.assign({}, {page: this.page}, this.sortingService.getUrl(), filterData);
         this.router.navigate([this.categoryName], {queryParams});
     }
 }
