@@ -6,6 +6,6 @@ export enum SortingMode {
 export class Sort{
     name: string;
     field: string;
-    mode: SortingMode;
+    mode: number;
     active: boolean
 }

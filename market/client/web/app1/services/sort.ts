@@ -3,10 +3,16 @@ import {Sort, SortingMode} from "../entities/sort";
 export class SortingService {
     private sorts: Sort[] = [
         {
+            name: 'по умолчанию',
+            field: 'default',
+            mode: 0,
+            active: true
+        },
+        {
             name: 'по названию',
             field: 'name',
             mode: SortingMode.Asc,
-            active: true
+            active: false
         },
         {
             name: 'по цене',
@@ -27,7 +33,7 @@ export class SortingService {
     }
 
     private filterDefault(sort: Sort) {
-        if (!(sort.field == 'name' && sort.mode == SortingMode.Asc))
+        if (sort.field != 'default')
             return sort;
     }
 

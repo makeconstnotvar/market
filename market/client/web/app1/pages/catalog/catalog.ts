@@ -39,35 +39,35 @@ export class PageCatalog {
         delete this.page;
         let filterData = this.parametersService.filterToUrl(parameter);
         this.navigate(filterData);
-        this.getProducts();
+        this.fetchProducts();
     }
 
 
     clearFilter() {
         delete this.page;
-        let filterData = this.parametersService.clearFilterData();
-        this.navigate(filterData);
-        this.selectParameters();
-        this.getProducts();
+        this.parametersService.clearFilterData();
+
+        this.navigate();
+        this.fetchParameters();
     }
 
     applyFilter() {
-        let filterData = this.parametersService.getFilterData();
-        this.navigate(filterData);
-        this.getProducts();
+
+        this.navigate();
+        this.fetchProducts();
     }
 
     changeSort() {
-        let filterData = this.parametersService.getFilterData();
-        this.navigate(filterData);
-        this.getProducts();
+
+        this.navigate();
+        this.fetchProducts();
     }
 
     changePage(page) {
         this.page = page;
         let filterData = this.parametersService.getFilterData();
         this.navigate(filterData);
-        this.getProducts();
+        this.fetchProducts();
     }
 
     ngOnInit() {
@@ -75,14 +75,7 @@ export class PageCatalog {
         this.page = this.route.snapshot.queryParamMap.params.page;
         this.activeSort = this.route.snapshot.queryParamMap.params.sort;
         this.params = this.excludeParams(this.route.snapshot.queryParamMap.params);
-        this.parameterProvider.getList(this.categoryName).subscribe(response => {
-            console.log('получены параметры');
-            this.categoryId = response.catid;
-            this.parameters = response.parameters;
-            this.selectParameters();
-            this.getProducts();
-            this.getActive();
-        });
+        this.fetchParameters();
 
     }
 
@@ -121,18 +114,28 @@ export class PageCatalog {
         return params;
     }
 
-    private getActive() {
+    private fetchActive() {
         let query = {
             parameters: this.getSelectedParameters(),
             categoryId: this.categoryId
         };
         this.parameterProvider.getActive(query).subscribe(resp => {
+            console.log('получены активные параметры');
             this.setActiveParameters(resp);
-
         })
     }
 
-    private getProducts() {
+    private fetchParameters(){
+        this.parameterProvider.getList(this.categoryName).subscribe(response => {
+            console.log('получены параметры');
+            this.categoryId = response.catid;
+            this.parameters = response.parameters;
+            this.selectParameters();
+            this.fetchProducts();
+            this.fetchActive();
+        });
+    }
+    private fetchProducts() {
         let query = {
             parameters: this.getSelectedParameters(),
             sort: this.sortingService.getSearch(),
@@ -146,8 +149,8 @@ export class PageCatalog {
         })
     }
 
-    private navigate(filterData) {
-        let queryParams = Object.assign({}, {page: this.page}, this.sortingService.getUrl(), filterData);
+    private navigate() {
+        let queryParams = Object.assign({}, {page: this.page}, this.sortingService.getUrl(), this.parametersService.getFilterData());
         this.router.navigate([this.categoryName], {queryParams});
     }
 }

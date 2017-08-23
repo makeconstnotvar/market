@@ -18,7 +18,6 @@ export class ParametersService {
 
     public clearFilterData() {
         this.filterData = new Map();
-        return this.getUrlObject()
     }
 
     public filterToUrl(parameter: Parameter) {

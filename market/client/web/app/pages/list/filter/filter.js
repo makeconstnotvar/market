@@ -83,7 +83,7 @@ function FilterCtrl($scope, $rootScope, $state, $stateParams, $cacheFactory, Par
     }
 
     function activateParameters() {
-        Parameters.getActive({
+        Parameters.fetchActive({
             catId: catId,
             all: $scope.parameters.map(function (p) {
                 return {_id: p._id, values: p.values}
