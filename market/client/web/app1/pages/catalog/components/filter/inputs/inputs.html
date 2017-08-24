@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="parameter-input col-sm-6" ng-class="{'parameter-focus':f2}">
+                <div class="parameter-input col-sm-6" [ngClass]="{'parameter-focus':f2}">
                     <span class="parameter-input__prefix">до</span>
                     <div class="parameter-input__area">
                         <input class="parameter-input__field" type="text" [(ngModel)]="parameter.to" (ngModelChange)="changeFilter()"  ng-focus="f2=true" ng-blur="f2=false"/>

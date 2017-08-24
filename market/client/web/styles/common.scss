@@ -9,11 +9,12 @@ body {
     min-width: 320px;
 }
 
-.fa--right-gap {
-    display: inline-block;
+.rgap {
     margin-right: 6px;
 }
-
+.lgap{
+    margin-left: 6px;
+}
 .inline {
     display: inline-block;
 }

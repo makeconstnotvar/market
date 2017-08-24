@@ -1,8 +1,7 @@
-cat-product{
+cat-product {
     display: block;
     overflow: hidden;
     margin-bottom: 10px;
-
     .mb-sort {
         height: 30px;
         line-height: 30px;
@@ -10,17 +9,18 @@ cat-product{
         li {
             position: relative;
         }
-        .me-btn {
-            position: relative;
-        }
-        .me-title {
-            margin-left: 20px;
-        }
-        .me-icon {
-            position: absolute;
-            top: 3px;
-            left: 0;
-        }
+
+    }
+    .me-btn {
+         position: relative;
+     }
+    .me-title {
+        margin-left: 20px;
+    }
+    .me-icon {
+        position: absolute;
+        top: 3px;
+        left: 0;
     }
     .me-info {
         background: #313037;
@@ -49,16 +49,76 @@ cat-product{
             transition: background-color 300ms linear;
         }
     }
-
-        .me-link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-
+    .me-buy{
+        display: block;
+        font-size: 18px;
+        border-radius: 20px;
+        border: solid 1px #9d9ca1;
+        background-color: #313037;
+        text-align: center;
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 23px;
+        margin-bottom: 10px;
+        transition: background-color 300ms linear;
+        &:hover {
+            background-color: #f75163;
+            border-color: #f75163;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 300ms linear;
         }
 
+    }
+    .me-price {
+        color: #f75163;
+        font-size: 24px;
+        line-height: 24px;
+        margin-bottom: 10px;
+        &.mm-no {
+            color: #bbb;
+        }
+    }
+    .me-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+    }
+    .me-incart,
+    .me-available {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .me-incart {
+        color: #74b436;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 300ms linear;
+        &.mm-yes {
+            opacity: 1;
+            transition: opacity 300ms linear;
+        }
+    }
+
+    .me-available {
+        .mm-yes {
+            color: #74b436;
+        }
+        .mm-no {
+            color: #f75163;
+        }
+    }.me-status {
+         position: relative;
+         height: 30px;
+         line-height: 30px;
+         margin-bottom: 10px;
+     }
     .me-stock-img {
         position: absolute;
         top: 0;
@@ -75,14 +135,12 @@ cat-product{
 
 @media (min-width: 1200px) {
     cat-product {
+        border: 1px solid #e8e8e8;
         .me-stock {
             font-weight: bold;
             padding: 0;
             color: #f75163;
         }
-
-            border: 1px solid #e8e8e8;
-
         .me-image {
             width: 180px;
             border: 0;
@@ -90,37 +148,36 @@ cat-product{
         .me-screens {
             width: 60px;
             float: left;
-            .me-link {
+        }
+        .me-link {
+            transition: background-color 300ms linear;
+            position: relative;
+            width: 60px;
+            height: 80px;
+            display: inline-block;
+            &:hover {
+                background-color: #f7f7f7;
                 transition: background-color 300ms linear;
-                position: relative;
-                width: 60px;
-                height: 80px;
-                display: inline-block;
-                &:hover {
-                    background-color: #f7f7f7;
-                    transition: background-color 300ms linear;
-                }
-                .me-icon {
-                    position: absolute;
-                    top: 32px;
-                    left: 22px;
-                }
             }
+
+        }
+        .me-icon {
+            position: absolute;
+            top: 32px;
+            left: 22px;
         }
         .me-info {
             width: 605px;
             background-color: transparent;
             text-align: left;
-            .me-name {
-                height: auto;
-                font-size: 22px;
-                margin-bottom: 10px;
-            }
-            .me-name,
-            .me-article,
-            .me-details {
-                color: #333333;
-            }
+        }
+        .me-name {
+            height: auto;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .me-name, .me-article, .me-details {
+            color: #333333;
         }
         .mb-money {
             float: right;
@@ -129,6 +186,6 @@ cat-product{
         .me-details {
             margin-right: 170px;
         }
-}
+    }
 
 }

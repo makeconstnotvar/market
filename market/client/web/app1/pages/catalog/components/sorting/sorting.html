@@ -4,7 +4,7 @@
     </li>
     <li *ngFor="let sort of sorts">
         <a class="pointer sorting-btn" (click)="doSort(sort, sort.mode * -1)">
-            <i class="fa fa--right-gap sorting-icon" *ngIf="sort.active" [ngClass]="{'fa-sort-amount-asc':sort.mode==sortMode.Asc,'fa-sort-amount-desc':sort.mode==sortMode.Desc}"></i>
+            <i class="fa rgap sorting-icon" *ngIf="sort.active" [ngClass]="{'fa-sort-amount-asc':sort.mode==sortMode.Asc,'fa-sort-amount-desc':sort.mode==sortMode.Desc}"></i>
             <span class="sorting-title">{{sort.name}}</span>
         </a>
     </li>

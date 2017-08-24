@@ -14,15 +14,15 @@
         <a class="me-name" routerLink="/{{categoryId}}/{{product.url}}">{{product.name}}</a>
         <div class="mb-money">
             <div class="me-status">
-                <span class="me-incart" ng-class="{'mm-yes':product.inCart}"><i class="fa fa-check-circle m-icon-gap"></i>В корзине</span>
+                <span class="me-incart" [ngClass]="{'mm-yes':product.inCart}"><i class="fa fa-check-circle rgap"></i>В корзине</span>
 
-                <div class="me-available" ng-if="!product.inCart">
-                    <span class="mm-yes" ng-if="product.available"><i class="fa fa-check-square-o m-icon-gap"></i>В наличии</span>
-                    <span class="mm-no" ng-if="!product.available" ng-class="{'m-blink':product.blink}"><i class="fa fa-ban m-icon-gap"></i>Отсутствует</span>
+                <div class="me-available" *ngIf="!product.inCart">
+                    <span class="mm-yes" *ngIf="product.available"><i class="fa fa-check-square-o rgap"></i>В наличии</span>
+                    <span class="mm-no" *ngIf="!product.available" [ngClass]="{'m-blink':product.blink}"><i class="fa fa-ban rgap"></i>Отсутствует</span>
                 </div>
             </div>
-            <div class="me-price" ng-class="{'mm-no':!product.available}"><b>{{product.price}}</b> <i class="fa fa-rub"></i></div>
-            <a class="me-buy pointer" ng-click="postPosition(product)"><i class="fa fa-shopping-cart m-icon-gap"></i>в корзину</a>
+            <div class="me-price" [ngClass]="{'mm-no':!product.available}"><b>{{product.price}}</b> <i class="fa fa-rub"></i></div>
+            <a class="me-buy pointer" ng-click="postPosition(product)"><i class="fa fa-shopping-cart rgap"></i>в корзину</a>
         </div>
         <div class="me-stock visible-lg" *ngIf="product.stock">{{product.stockText}}</div>
         <div class="me-details visible-lg" [innerHtml]="product.details"></div>
