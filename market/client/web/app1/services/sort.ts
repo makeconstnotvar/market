@@ -1,4 +1,4 @@
-import {Sort, SortingMode} from "../entities/sort";
+import {Sort, SortingMode} from "../models/sort";
 
 export class SortingService {
     private sorts: Sort[] = [

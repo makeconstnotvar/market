@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
 import {Http, Response} from "@angular/http";
-import {Product} from "entities/product";
+import {Product} from "models/product";
 
 
 @Injectable()

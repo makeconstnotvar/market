@@ -1,29 +1,29 @@
 import "rxjs/Rx";
 import {NgModule, APP_INITIALIZER} from "@angular/core";
 import {PagesModule} from "pages/module";
-import {Layout} from "pages/layout/layout";
+import {RootLayout} from "layouts/module";
 import {BrowserModule} from "@angular/platform-browser";
-import {CategoryProvider} from "providers/category";
+import {CategoryProvider} from "providers";
 import {HttpModule} from "@angular/http";
-import {ContractProvider} from "providers/contract";
-import {ParameterProvider} from "providers/parameter";
-import {ProductProvider} from "providers/product";
-import {SettingsProvider} from "providers/settings";
-import {FooterComponent} from "components/footer/footer";
+import {ContractProvider} from "providers";
+import {ParameterProvider} from "providers";
+import {ProductProvider} from "providers";
+import {SettingsProvider} from "providers";
 import {NavbarService} from "services/navbar";
 import {ConfigService} from "services/config";
 import {Router, NavigationEnd} from "@angular/router";
 import {GlobalService} from "services/global";
 import {ParametersService} from "./services/parameters";
-import {NavbarComponent} from "./components/navbar/navbar";
 import {SortingService} from "./services/sort";
+import {LayoutsModule} from "./layouts/module";
 
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
-        PagesModule
+        PagesModule,
+        LayoutsModule
     ],
     providers: [
         SettingsProvider,
@@ -46,13 +46,11 @@ import {SortingService} from "./services/sort";
             provide: 'Window', useValue: window
         }
     ],
-    bootstrap: [
-        Layout,
-        NavbarComponent,
-        FooterComponent
+    exports: [
+        RootLayout
     ]
 })
-export class ModuleApplication {
+export class ApplicationModule {
     constructor(private router: Router,
                 private globalService: GlobalService,
                 private contractProvider: ContractProvider,

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {Sort, SortingMode} from "entities/sort";
+import {Sort, SortingMode} from "models/sort";
 import {SortingService} from "services/sort";
 
 @Component({

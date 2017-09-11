@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs/Subject";
-import {CartData} from "entities/cart";
+import {CartData} from "models";
 
 @Injectable()
 export class NavbarService{

@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Parameter} from "../entities/parameter";
+import {Parameter} from "../models/parameter";
 
 @Injectable()
 export class ParametersService {

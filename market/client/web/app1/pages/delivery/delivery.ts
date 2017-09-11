@@ -4,7 +4,7 @@ import {Component, Inject} from "@angular/core";
     templateUrl: 'delivery.html',
 
 })
-export class PageDelivery {
+export class DeliveryPage {
     window;
 
     constructor(@Inject('Window') window) {

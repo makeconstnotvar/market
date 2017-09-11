@@ -10,6 +10,6 @@ import {Component} from "@angular/core";
 </div>
 `
 })
-export class PageStocks {
+export class StocksPage {
 
 }

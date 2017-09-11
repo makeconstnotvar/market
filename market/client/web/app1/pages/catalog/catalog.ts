@@ -1,21 +1,21 @@
 import {Component, ViewChild} from "@angular/core";
-import {Product} from "entities/product";
-import {ProductProvider} from "providers/product";
+import {Product} from "models/product";
+import {ProductProvider} from "providers";
 
-import {ParameterProvider} from "providers/parameter";
+import {ParameterProvider} from "providers";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Parameter} from "entities/parameter";
+import {Parameter} from "models/parameter";
 import {ParametersService} from "services/parameters";
-import {PagerComponent} from "components/pager/pager";
+import {PagerControl} from "controls/pager/pager";
 import {ComponentCatalogFilter} from "./components/filter/filter";
 import {SortingService} from "../../services/sort";
 
 @Component({
     templateUrl: 'catalog.html'
 })
-export class PageCatalog {
+export class CatalogPage {
 
-    @ViewChild(PagerComponent) pagerComponent;
+    @ViewChild(PagerControl) pagerComponent;
     @ViewChild(ComponentCatalogFilter) catalogFilter;
 
     products: Product[] = [];
@@ -37,8 +37,8 @@ export class PageCatalog {
 
     changeFilter(parameter) {
         delete this.page;
-        let filterData = this.parametersService.filterToUrl(parameter);
-        this.navigate(filterData);
+
+        this.navigate();
         this.fetchProducts();
     }
 
@@ -65,16 +65,18 @@ export class PageCatalog {
 
     changePage(page) {
         this.page = page;
-        let filterData = this.parametersService.getFilterData();
-        this.navigate(filterData);
+
+        this.navigate();
         this.fetchProducts();
     }
 
     ngOnInit() {
-        this.categoryName = this.route.snapshot.paramMap.params.categoryName;
-        this.page = this.route.snapshot.queryParamMap.params.page;
-        this.activeSort = this.route.snapshot.queryParamMap.params.sort;
-        this.params = this.excludeParams(this.route.snapshot.queryParamMap.params);
+        let pm = this.route.snapshot.paramMap as any;
+        let qpm = this.route.snapshot.queryParamMap as any;
+        this.categoryName = pm.params.categoryName;
+        this.page = qpm.params.page;
+        this.activeSort = qpm.sort;
+        this.params = this.excludeParams(qpm.params);
         this.fetchParameters();
 
     }

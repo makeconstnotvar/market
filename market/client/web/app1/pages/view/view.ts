@@ -1,20 +1,20 @@
 import {Component, OnInit} from "@angular/core";
-import {ProductProvider} from "providers/product";
-import {Product} from "entities/product";
+import {ProductProvider} from "providers";
+import {Product} from "models/product";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ConfigService} from "services/config";
-import {Config} from "entities/config";
-import {Color} from "entities/color";
-import {ContractProvider} from "providers/contract";
+import {Config} from "models/config";
+import {Color} from "models/color";
+import {ContractProvider} from "providers";
 import {NavbarService} from "services/navbar";
-import {Position} from "entities/position";
+import {Position} from "models/position";
 import {GlobalService} from "services/global";
 
 
 @Component({
     templateUrl: 'view.html'
 })
-export class PageView {
+export class ViewPage {
     product: Product = new Product;
     isBack: boolean;
     selectedImage: string;

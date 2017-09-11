@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from "@angular/core";
-import {Contract} from "entities/contract";
+import {Contract} from "models/contract";
 @Component({
     selector: 'cart-positions',
     templateUrl: 'positions.html'

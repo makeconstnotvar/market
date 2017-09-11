@@ -19,7 +19,7 @@
         "baseUrl": "./market/client/web/app1"
     },
     "include": [
-        "./market/client/web/app1/index.ts",
-        "./market/client/web/app1/libs.ts"
+        "./market/client/web/app1/_browser/index.ts",
+        "./market/client/web/app1/_browser/libs.ts"
     ]
 }

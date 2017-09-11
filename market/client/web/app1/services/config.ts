@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Config} from "entities/config";
+import {Config} from "models/config";
 
 @Injectable()
 export class ConfigService {

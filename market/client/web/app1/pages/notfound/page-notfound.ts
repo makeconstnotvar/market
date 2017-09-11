@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from "@angular/core";
-import {Category} from "entities/category";
-import {CategoryProvider} from "providers/category";
+import {Category} from "models/category";
+import {CategoryProvider} from "providers";
 import {ActivatedRoute, Params} from "@angular/router";
 import {ConfigService} from "services/config";
 
@@ -8,7 +8,7 @@ import {ConfigService} from "services/config";
 @Component({
     templateUrl: 'notfound.html'
 })
-export class PageNotfound implements OnInit {
+export class NotfoundPage implements OnInit {
 
     url: string;
     requestUrl: string;

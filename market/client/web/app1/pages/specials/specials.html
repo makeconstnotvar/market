@@ -1,0 +1,10 @@
+
+<div class="container">
+    <div class="row">
+        <sp-welcome></sp-welcome>
+        <sp-products [products]="products"  (onPostPosition)="postPosition($event)"></sp-products>
+
+        <sp-promo></sp-promo>
+        <sp-seo></sp-seo>
+    </div>
+</div>

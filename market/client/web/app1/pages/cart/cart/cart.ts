@@ -1,13 +1,13 @@
 import {Component} from "@angular/core";
-import {Contract} from "entities/contract";
-import {ContractProvider} from "providers/contract";
+import {Contract} from "models/contract";
+import {ContractProvider} from "providers";
 import {CartMode} from "../components/mode";
 import {NavbarService} from "services/navbar";
-import {Product} from "entities/product";
+import {Product} from "models/product";
 @Component({
     templateUrl: 'cart.html',
 })
-export class PageCart {
+export class CartPage {
     history: any[] = [];
     cartMode = CartMode;
     contract: Contract = new Contract;

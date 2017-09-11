@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
 import {Http, Response} from "@angular/http";
-import {Position} from "entities/position";
-import {CartData} from "entities/cart";
-import {Contract} from "entities/contract";
+import {Position} from "models/position";
+import {CartData} from "models/cart";
+import {Contract} from "models/contract";
 
 @Injectable()
 export class ContractProvider {

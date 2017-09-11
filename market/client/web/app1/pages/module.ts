@@ -1,53 +1,51 @@
 import {NgModule} from "@angular/core";
-import {PageCart} from "./cart/cart/cart";
-import {PageHistory} from "./cart/history/history";
-import {PageCatalog} from "./catalog/catalog";
-import {PageDelivery} from "./delivery/delivery";
-import {Layout} from "./layout/layout";
-import {PageSpecials} from "./specials/page-specials";
-import {PageStocks} from "./stocks/page-stocks";
-import {PageView} from "./view/view";
-import {ModuleComponents} from "components/module";
+import {CartPage} from "./cart/cart/cart";
+import {HistoryPage} from "./cart/history/history";
+import {CatalogPage} from "./catalog/catalog";
+import {DeliveryPage} from "./delivery/delivery";
+import {SpecialsPage} from "./specials/specials";
+import {StocksPage} from "./stocks/page-stocks";
+import {ViewPage} from "./view/view";
+import {ControlsModule} from "controls/module";
 import {RouterModule, Routes} from "@angular/router";
 import {ModuleComponentsSpecials} from "./specials/components/module";
 import {BrowserModule} from "@angular/platform-browser";
-import {PageNotfound} from "./notfound/page-notfound";
-import {PageContacts} from "./contacts/contacts";
+import {NotfoundPage} from "./notfound/page-notfound";
+import {ContactsPage} from "./contacts/contacts";
 import {ModuleComponentsView} from "./view/components/module";
 import {ModuleComponentsCart} from "./cart/components/module";
 import {ModuleComponentsCatalog} from "./catalog/components/module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const appRoutes: Routes = [
-    {path: '', component: PageSpecials},
-    {path: 'delivery', component: PageDelivery},
-    {path: 'contacts', component: PageContacts},
-    {path: 'cart', component: PageCart},
-    {path: 'cart/:order', component: PageHistory},
-    {path: 'stocks', component: PageStocks},
-    {path: 'notfound', component: PageNotfound},
-    {path: ':categoryName/:productId', component: PageView},
-    {path: ':categoryName', component: PageCatalog},
+    {path: '', component: SpecialsPage},
+    {path: 'delivery', component: DeliveryPage},
+    {path: 'contacts', component: ContactsPage},
+    {path: 'cart', component: CartPage},
+    {path: 'cart/:order', component: HistoryPage},
+    {path: 'stocks', component: StocksPage},
+    {path: 'notfound', component: NotfoundPage},
+    {path: ':categoryName/:productId', component: ViewPage},
+    {path: ':categoryName', component: CatalogPage},
     {path: '**', redirectTo: '/notfound'},
 ];
 
 @NgModule({
     declarations: [
-        PageCart,
-        PageHistory,
-        PageCatalog,
-        PageDelivery,
-        Layout,
-        PageSpecials,
-        PageStocks,
-        PageView,
-        PageNotfound,
-        PageContacts
+        CartPage,
+        HistoryPage,
+        CatalogPage,
+        DeliveryPage,
+        SpecialsPage,
+        StocksPage,
+        ViewPage,
+        NotfoundPage,
+        ContactsPage
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        ModuleComponents,
+        ControlsModule,
         ModuleComponentsSpecials,
         ModuleComponentsView,
         ModuleComponentsCart,
@@ -55,18 +53,30 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes)
     ],
     exports: [
-        PageCart,
-        PageHistory,
-        PageCatalog,
-        PageDelivery,
-        Layout,
-        PageSpecials,
-        PageStocks,
-        PageView,
-        PageNotfound,
-        PageContacts
+        CartPage,
+        HistoryPage,
+        CatalogPage,
+        DeliveryPage,
+        SpecialsPage,
+        StocksPage,
+        ViewPage,
+        NotfoundPage,
+        ContactsPage
     ]
 })
-export class PagesModule {
+class PagesModule {
 
+}
+
+export{
+    PagesModule,
+    CartPage,
+    HistoryPage,
+    CatalogPage,
+    DeliveryPage,
+    SpecialsPage,
+    StocksPage,
+    ViewPage,
+    NotfoundPage,
+    ContactsPage
 }

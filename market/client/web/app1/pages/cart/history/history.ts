@@ -1,13 +1,13 @@
 import {Component} from "@angular/core";
-import {Contract} from "entities/contract";
-import {ContractProvider} from "providers/contract";
+import {Contract} from "models/contract";
+import {ContractProvider} from "providers";
 import {ActivatedRoute, Params} from "@angular/router";
 
 
 @Component({
     templateUrl: 'history.html'
 })
-export class PageHistory {
+export class HistoryPage {
     contract: Contract = new Contract;
 
     constructor(private contractProvider:ContractProvider,

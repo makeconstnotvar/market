@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {Product} from "entities/product";
+import {Product} from "models/product";
 @Component({
     selector: 'v-similar',
     template: `

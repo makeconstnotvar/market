@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {Parameter,  ParamValue} from "entities/parameter";
+import {Parameter,  ParamValue} from "models/parameter";
 @Component({
     selector: 'filter-checkbox',
     host: {'class': 'checkbox'},

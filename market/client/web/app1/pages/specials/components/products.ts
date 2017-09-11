@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from "@angular/core";
-import {Product} from "entities/product";
+import {Product} from "models/product";
 @Component({
     selector: 'sp-products',
 

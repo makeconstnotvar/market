@@ -9,4 +9,3 @@ market/client/web/tmp
 market/client/web/views/layout.dot
 *.orig
 market/config.json
-package-lock.json

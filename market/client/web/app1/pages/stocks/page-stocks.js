@@ -5,9 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { Component } from "@angular/core";
-let PageStocks = class PageStocks {
+let StocksPage = class StocksPage {
 };
-PageStocks = __decorate([
+StocksPage = __decorate([
     Component({
         template: `
 <div class="container">
@@ -17,6 +17,6 @@ PageStocks = __decorate([
 </div>
 `
     })
-], PageStocks);
-export { PageStocks };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGFnZS1zdG9ja3MuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJwYWdlLXN0b2Nrcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQSxPQUFPLEVBQUMsU0FBUyxFQUFDLE1BQU0sZUFBZSxDQUFDO0FBWXhDLElBQWEsVUFBVSxHQUF2QjtDQUVDLENBQUE7QUFGWSxVQUFVO0lBVHRCLFNBQVMsQ0FBQztRQUNQLFFBQVEsRUFBRTs7Ozs7O0NBTWI7S0FDQSxDQUFDO0dBQ1csVUFBVSxDQUV0QjtTQUZZLFVBQVUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge0NvbXBvbmVudH0gZnJvbSBcIkBhbmd1bGFyL2NvcmVcIjtcclxuXHJcblxyXG5AQ29tcG9uZW50KHtcclxuICAgIHRlbXBsYXRlOiBgXHJcbjxkaXYgY2xhc3M9XCJjb250YWluZXJcIj5cclxuICAgIDxkaXYgY2xhc3M9XCJyb3dcIj5cclxuICAgICAgICA8aDI+0JLRgdC1INCw0LrRhtC40Lg8L2gyPlxyXG4gICAgPC9kaXY+XHJcbjwvZGl2PlxyXG5gXHJcbn0pXHJcbmV4cG9ydCBjbGFzcyBQYWdlU3RvY2tzIHtcclxuXHJcbn0iXX0=
+], StocksPage);
+export { StocksPage };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGFnZS1zdG9ja3MuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJwYWdlLXN0b2Nrcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQSxPQUFPLEVBQUMsU0FBUyxFQUFDLE1BQU0sZUFBZSxDQUFDO0FBWXhDLElBQWEsVUFBVSxHQUF2QjtDQUVDLENBQUE7QUFGWSxVQUFVO0lBVHRCLFNBQVMsQ0FBQztRQUNQLFFBQVEsRUFBRTs7Ozs7O0NBTWI7S0FDQSxDQUFDO0dBQ1csVUFBVSxDQUV0QjtTQUZZLFVBQVUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge0NvbXBvbmVudH0gZnJvbSBcIkBhbmd1bGFyL2NvcmVcIjtcclxuXHJcblxyXG5AQ29tcG9uZW50KHtcclxuICAgIHRlbXBsYXRlOiBgXHJcbjxkaXYgY2xhc3M9XCJjb250YWluZXJcIj5cclxuICAgIDxkaXYgY2xhc3M9XCJyb3dcIj5cclxuICAgICAgICA8aDI+0JLRgdC1INCw0LrRhtC40Lg8L2gyPlxyXG4gICAgPC9kaXY+XHJcbjwvZGl2PlxyXG5gXHJcbn0pXHJcbmV4cG9ydCBjbGFzcyBTdG9ja3NQYWdlIHtcclxuXHJcbn0iXX0=

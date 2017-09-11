@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {Parameter} from "entities/parameter";
+import {Parameter} from "models/parameter";
 @Component({
     selector: 'filter-inputs',
     templateUrl: 'inputs.html'
