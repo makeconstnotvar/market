@@ -1,5 +1,5 @@
 <ul class="list-unstyled parameters">
-    <li class="parameters__buttons">
+    <li class="buttons">
         <filter-buttons (onApplyFilter)="applyFilter()" (onClearFilter)="clearFilter()"></filter-buttons>
     </li>
     <li *ngFor="let parameter of parameters" [ngSwitch]="parameter.behavior">
@@ -8,7 +8,7 @@
         <filter-radiolist *ngSwitchCase="'radiolist'" [parameter]="parameter" (onChangeFilter)="changeFilter($event)"></filter-radiolist>
         <filter-inputs *ngSwitchCase="'input'" [parameter]="parameter" (onChangeFilter)="changeFilter($event)"></filter-inputs>
     </li>
-    <li class="parameters__buttons">
+    <li class="buttons">
         <filter-buttons (onApplyFilter)="applyFilter()" (onClearFilter)="clearFilter()"></filter-buttons>
     </li>
 </ul>

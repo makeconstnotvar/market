@@ -1,9 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
 import {Http, Response} from "@angular/http";
-import {Position} from "models/position";
-import {CartData} from "models/cart";
-import {Contract} from "models/contract";
+import {CartData, Contract, Position} from "models";
+
 
 @Injectable()
 export class ContractProvider {
@@ -25,7 +24,7 @@ export class ContractProvider {
             });
     }
 
-    postPosition(position:Position): Observable<any> {
+    postPosition(position: Position): Observable<any> {
         return this.http.post('/api/contract/position', position)
             .map((r: Response) => {
                 return r.json() as any

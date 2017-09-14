@@ -3,8 +3,8 @@ const webpack = require('webpack'),
 
 module.exports = {
     entry: {
-        app: './market/client/web/app1/index.js',
-        libs: './market/client/web/app1/libs.js',
+        app: './market/client/web/app1/_browser/index.js',
+        libs: './market/client/web/app1/_browser/libs.js',
     },
     output: {
         filename: '[name].js',

@@ -1,4 +1,4 @@
-import {ModuleComponents} from "components/module";
+import {ControlsModule} from "controls/module";
 import {RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
@@ -13,7 +13,12 @@ import {FormsModule} from "@angular/forms";
         ComponentCartHistory,
         ComponentCartContact
     ],
-    imports: [BrowserModule, RouterModule,FormsModule,ModuleComponents],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        FormsModule,
+        ControlsModule
+    ],
     providers: [],
     exports: [
         ComponentCartPositions,

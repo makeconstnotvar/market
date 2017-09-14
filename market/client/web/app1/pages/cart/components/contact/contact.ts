@@ -1,6 +1,6 @@
 import {Component, Output, EventEmitter} from "@angular/core";
 import {Contract} from "models/contract";
-import {DeliveryMode} from "models/delivery";
+import {DeliveryMode} from "models";
 @Component({
     selector: 'cart-contact',
     host: {'class': 'form-horizontal'},

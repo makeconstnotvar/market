@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {CategoryProvider} from "../providers";
+import {CategoryProvider} from "providers";
 import {Category} from "models";
 
 

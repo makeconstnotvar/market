@@ -6,7 +6,7 @@ import {ComponentSpecialsPromo} from "./promo";
 import {ComponentSpecialsProducts} from "./products";
 import {ComponentSpecialsWelcome} from "./welcome";
 import {RouterModule} from "@angular/router";
-import {ModuleComponents} from "components/module";
+import {ControlsModule} from "controls/module";
 
 @NgModule({
     declarations: [
@@ -16,7 +16,11 @@ import {ModuleComponents} from "components/module";
         ComponentSpecialsSeo,
         ComponentSpecialsWelcome
     ],
-    imports: [BrowserModule, RouterModule,ModuleComponents],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        ControlsModule
+    ],
     providers: [],
     exports: [
         ComponentSpecialsProduct,

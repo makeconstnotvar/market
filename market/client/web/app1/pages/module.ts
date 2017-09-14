@@ -16,18 +16,24 @@ import {ModuleComponentsView} from "./view/components/module";
 import {ModuleComponentsCart} from "./cart/components/module";
 import {ModuleComponentsCatalog} from "./catalog/components/module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {DefaultLayout} from "../layouts/default";
 
 const appRoutes: Routes = [
-    {path: '', component: SpecialsPage},
-    {path: 'delivery', component: DeliveryPage},
-    {path: 'contacts', component: ContactsPage},
-    {path: 'cart', component: CartPage},
-    {path: 'cart/:order', component: HistoryPage},
-    {path: 'stocks', component: StocksPage},
-    {path: 'notfound', component: NotfoundPage},
-    {path: ':categoryName/:productId', component: ViewPage},
-    {path: ':categoryName', component: CatalogPage},
-    {path: '**', redirectTo: '/notfound'},
+    {
+        path: '', component: DefaultLayout, children: [
+            {path: '', component: SpecialsPage},
+            {path: 'delivery', component: DeliveryPage},
+            {path: 'contacts', component: ContactsPage},
+            {path: 'cart', component: CartPage},
+            {path: 'cart/:order', component: HistoryPage},
+            {path: 'stocks', component: StocksPage},
+            {path: 'notfound', component: NotfoundPage},
+            {path: ':categoryName/:productId', component: ViewPage},
+            {path: ':categoryName', component: CatalogPage},
+            {path: '**', redirectTo: '/notfound'}
+    ]
+    }
+
 ];
 
 @NgModule({
@@ -68,7 +74,7 @@ class PagesModule {
 
 }
 
-export{
+export {
     PagesModule,
     CartPage,
     HistoryPage,

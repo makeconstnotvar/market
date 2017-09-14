@@ -1,3 +1,11 @@
+@import "awesome";
+@import "bootstrap";
+@import "roboto";
+@import "variables";
+@import "sticky";
+@import "override/pagination";
+@import "override/utils";
+@import "../app1/styles";
 html {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -12,20 +20,26 @@ body {
 .rgap {
     margin-right: 6px;
 }
-.lgap{
+
+.lgap {
     margin-left: 6px;
 }
+
 .inline {
     display: inline-block;
 }
-.block{
+
+.block {
     display: block;
 }
 
-market{
-    margin-bottom: 20px;
-}
-
-.pointer{
+.pointer {
     cursor: pointer;
+}
+a.undecorate{
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
 }

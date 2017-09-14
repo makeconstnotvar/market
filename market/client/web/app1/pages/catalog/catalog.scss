@@ -1,0 +1,22 @@
+catalog {
+    .c-buttons {
+        margin-top: 10px;
+        height: 40px;
+        line-height: 40px;
+        z-index: 1000;
+
+    }
+    .c-button {
+        border: 1px solid $border-color;
+        margin-right: 10px;
+        display: inline-block;
+        padding: 2px 10px;
+        color: $black;
+        transition: background-color 300ms linear;
+        &:hover {
+            color: $white;
+            background-color: $red;
+            transition: background-color 300ms linear;
+        }
+    }
+}

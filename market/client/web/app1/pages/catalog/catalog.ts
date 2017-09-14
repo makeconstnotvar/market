@@ -1,16 +1,14 @@
 import {Component, ViewChild} from "@angular/core";
 import {Product} from "models/product";
-import {ProductProvider} from "providers";
-
-import {ParameterProvider} from "providers";
+import {ParameterProvider, ProductProvider} from "providers";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Parameter} from "models/parameter";
-import {ParametersService} from "services/parameters";
+import {ParametersService, SortingService} from "services";
 import {PagerControl} from "controls/pager/pager";
 import {ComponentCatalogFilter} from "./components/filter/filter";
-import {SortingService} from "../../services/sort";
 
 @Component({
+    selector: 'catalog',
     templateUrl: 'catalog.html'
 })
 export class CatalogPage {
@@ -26,6 +24,7 @@ export class CatalogPage {
     page: number;
     sort: any;
     activeSort: string;
+    xs: boolean = false;
 
     constructor(private productProvider: ProductProvider,
                 private parametersService: ParametersService,
@@ -33,6 +32,10 @@ export class CatalogPage {
                 private sortingService: SortingService,
                 private route: ActivatedRoute,
                 private router: Router) {
+    }
+
+    xsChange() {
+        this.xs = !this.xs;
     }
 
     changeFilter(parameter) {
@@ -52,7 +55,7 @@ export class CatalogPage {
     }
 
     applyFilter() {
-
+        this.xs = false;
         this.navigate();
         this.fetchProducts();
     }
@@ -127,7 +130,7 @@ export class CatalogPage {
         })
     }
 
-    private fetchParameters(){
+    private fetchParameters() {
         this.parameterProvider.getList(this.categoryName).subscribe(response => {
             console.log('получены параметры');
             this.categoryId = response.catid;
@@ -137,6 +140,7 @@ export class CatalogPage {
             this.fetchActive();
         });
     }
+
     private fetchProducts() {
         let query = {
             parameters: this.getSelectedParameters(),

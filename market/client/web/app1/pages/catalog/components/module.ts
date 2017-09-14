@@ -5,7 +5,7 @@ import {ComponentCatalogProduct} from "./product/product";
 import {ComponentCatalogAlert} from "./alert/alert";
 import {BrowserModule} from "@angular/platform-browser";
 import {RouterModule} from "@angular/router";
-import {ModuleComponents} from "components/module";
+import {ControlsModule} from "controls/module";
 import {FormsModule} from "@angular/forms";
 import {ComponentFilterButtons} from "./filter/buttons/buttons";
 import {ComponentFilterCheckbox} from "./filter/checkbox/checkbox";
@@ -25,7 +25,12 @@ import {ComponentFilterInputs} from "./filter/inputs/inputs";
         ComponentFilterRadiolist,
         ComponentFilterInputs
     ],
-    imports: [BrowserModule, RouterModule, ModuleComponents, FormsModule],
+    imports: [
+        BrowserModule,
+        RouterModule,
+        FormsModule,
+        ControlsModule
+    ],
     exports: [
         ComponentCatalogSorting,
         ComponentCatalogFilter,

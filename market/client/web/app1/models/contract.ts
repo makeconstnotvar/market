@@ -1,5 +1,5 @@
 import {Position} from "./position";
-import {DeliveryMode} from "./delivery";
+import {DeliveryMode} from "./deliveryMode";
 export class Contract {
     positions: Position[];
     name:string;
