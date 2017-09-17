@@ -5,11 +5,11 @@
   "scripts": {
     "build": "gulp && tsc && wepack",
     "gulp": "gulp",
-    "gulp-watch": "gulp watch",
     "tsc": "tsc -p tsconfig.json",
-    "tsc-watch": "tsc -p tsconfig.json --watch",
     "webpack": "webpack",
-    "webpack-watch": "webpack --watch"
+    "watch-webpack": "webpack --watch",
+    "watch-gulp": "gulp watch",
+    "watch-tsc": "tsc -p tsconfig.json --watch"
   },
   "dependencies": {
     "@angular/animations": "^4.4.0-RC.0",

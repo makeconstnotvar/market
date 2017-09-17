@@ -1,14 +1,10 @@
-<ul class="list-unstyled parameters">
-    <li class="buttons">
-        <filter-buttons (onApplyFilter)="applyFilter()" (onClearFilter)="clearFilter()"></filter-buttons>
-    </li>
+<filter-buttons class="first" (onApplyFilter)="applyFilter()" (onClearFilter)="clearFilter()"></filter-buttons>
+<ul class="list-unstyled parameters mb-0">
     <li *ngFor="let parameter of parameters" [ngSwitch]="parameter.behavior">
         <filter-checkbox *ngSwitchCase="'onecheck'" [parameter]="parameter" (onChangeFilter)="changeFilter($event)"></filter-checkbox>
         <filter-checkboxlist *ngSwitchCase="'checklist'" [parameter]="parameter" (onChangeFilter)="changeFilter($event)"></filter-checkboxlist>
         <filter-radiolist *ngSwitchCase="'radiolist'" [parameter]="parameter" (onChangeFilter)="changeFilter($event)"></filter-radiolist>
         <filter-inputs *ngSwitchCase="'input'" [parameter]="parameter" (onChangeFilter)="changeFilter($event)"></filter-inputs>
     </li>
-    <li class="buttons">
-        <filter-buttons (onApplyFilter)="applyFilter()" (onClearFilter)="clearFilter()"></filter-buttons>
-    </li>
 </ul>
+<filter-buttons class="last" (onApplyFilter)="applyFilter()" (onClearFilter)="clearFilter()"></filter-buttons>

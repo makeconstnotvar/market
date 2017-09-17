@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from "@angular/core";
 
 @Component({
     selector: 'filter-buttons',
+    host:{'class':'d-flex'},
     templateUrl: 'buttons.html'
 })
 export class ComponentFilterButtons {

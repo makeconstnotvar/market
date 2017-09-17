@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Parameter,  ParamValue} from "models/parameter";
 @Component({
     selector: 'filter-checkbox',
-    host: {'class': 'checkbox'},
+    host: {'class': 'checkbox d-block'},
     templateUrl: 'checkbox.html'
 })
 export class ComponentFilterCheckbox {

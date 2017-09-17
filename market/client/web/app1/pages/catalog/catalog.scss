@@ -1,4 +1,5 @@
 catalog {
+    margin-bottom: 20px;
     .c-buttons {
         margin-top: 10px;
         height: 40px;
@@ -18,5 +19,13 @@ catalog {
             background-color: $red;
             transition: background-color 300ms linear;
         }
+    }
+    .product-menu {
+        width: 280px;
+        min-width: 280px;
+        margin-right: 10px;
+    }
+    .product-list {
+        flex-grow: 1
     }
 }

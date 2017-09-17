@@ -1,7 +1,5 @@
 <ul class="pagination" *ngIf="pages.length>1">
-    <li [ngClass]="{'active':page==currentPage}" *ngFor="let page of pages">
-        <a (click)="pageChange($event, page)">
-            {{page}}
-        </a>
+    <li class="page-item" [ngClass]="{'active':page==currentPage}" *ngFor="let page of pages">
+        <a class="page-link" (click)="pageChange($event, page)">{{page}}</a>
     </li>
 </ul>

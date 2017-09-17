@@ -2,34 +2,29 @@ cat-product {
     display: block;
     overflow: hidden;
     margin-bottom: 10px;
-    .mb-sort {
-        height: 30px;
-        line-height: 30px;
-        margin: 10px 0;
-        li {
-            position: relative;
-        }
-
+    transition: background-color 300ms;
+    &:hover{
+        background-color: #f7f7f7;
+        transition: background-color 300ms;
     }
-    .me-btn {
-         position: relative;
-     }
-    .me-title {
-        margin-left: 20px;
+    .image {
+        position: relative;
+        height: 240px;
     }
-    .me-icon {
+    .stock {
         position: absolute;
-        top: 3px;
+        top: 0;
         left: 0;
+        right: 0;
+        z-index: 1000;
+        color: $red;
     }
-    .me-info {
-        background: #313037;
-        padding: 18px;
-        text-align: center;
-        height: 242px;
+    .info {
+        padding: 10px 15px;
+        height: 240px;
     }
-    .me-name {
-        color: #9d9ca1;
+    .name {
+        color: #333;
         font-weight: bold;
         display: block;
         margin-bottom: 10px;
@@ -41,25 +36,22 @@ cat-product {
             transition: color 300ms linear;
         }
     }
-    .me-image {
-        height: 242px;
-        transition: background-color 300ms linear;
-        &:hover {
-            background-color: #f7f7f7;
-            transition: background-color 300ms linear;
-        }
+    .details{
+        margin-right: 10px;
     }
-    .me-buy{
-        display: block;
+    .money {
+        width: 130px;
+        min-width: 130px;
+    }
+    .buy {
         font-size: 18px;
-        border-radius: 20px;
+        border-radius: 8px;
         border: solid 1px #9d9ca1;
         background-color: #313037;
         text-align: center;
         color: #fff;
         text-decoration: none;
-        padding: 12px 23px;
-        margin-bottom: 10px;
+        padding: 10px;
         transition: background-color 300ms linear;
         &:hover {
             background-color: #f75163;
@@ -70,67 +62,32 @@ cat-product {
         }
 
     }
-    .me-price {
+    .price {
         color: #f75163;
         font-size: 24px;
         line-height: 24px;
         margin-bottom: 10px;
-        &.mm-no {
+        &.no {
             color: #bbb;
         }
     }
-    .me-link {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-    }
-    .me-incart,
-    .me-available {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
-
-    .me-incart {
+    .incart {
         color: #74b436;
         font-weight: bold;
-        opacity: 0;
-        transition: opacity 300ms linear;
-        &.mm-yes {
-            opacity: 1;
-            transition: opacity 300ms linear;
-        }
     }
-
-    .me-available {
-        .mm-yes {
+    .available {
+        &.yes {
             color: #74b436;
         }
-        .mm-no {
+        &.no {
             color: #f75163;
         }
-    }.me-status {
-         position: relative;
-         height: 30px;
-         line-height: 30px;
-         margin-bottom: 10px;
-     }
-    .me-stock-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        background: #f75163;
     }
-    .me-stock {
-        color: #fff;
-        padding: 2px 4px;
+    .status {
+        line-height: 30px;
+        margin-bottom: 10px;
     }
+
 }
 
 @media (min-width: 1200px) {
@@ -161,31 +118,26 @@ cat-product {
             }
 
         }
-        .me-icon {
-            position: absolute;
-            top: 32px;
-            left: 22px;
-        }
+
         .me-info {
             width: 605px;
             background-color: transparent;
             text-align: left;
         }
-        .me-name {
+        .name {
             height: auto;
             font-size: 22px;
             margin-bottom: 10px;
         }
-        .me-name, .me-article, .me-details {
+        .name,
+        .details {
             color: #333333;
         }
         .mb-money {
             float: right;
             width: 160px;
         }
-        .me-details {
-            margin-right: 170px;
-        }
+
     }
 
 }

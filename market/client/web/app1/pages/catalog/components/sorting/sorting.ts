@@ -17,6 +17,8 @@ export class ComponentCatalogSorting {
 
     sorts: Sort[];
 
+    sortMode = SortingMode;
+
     constructor(private sortingService: SortingService) {
     }
 
@@ -30,11 +32,8 @@ export class ComponentCatalogSorting {
         }
     }
 
-    sortMode = SortingMode;
-
     doSort(sort: Sort, mode: SortingMode) {
         this.sorts = this.sortingService.doSort(sort, mode);
-
         this.onSort.emit();
     }
 }

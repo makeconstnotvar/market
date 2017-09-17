@@ -21,7 +21,7 @@ gulp.task('default', function () {
         .pipe(gulp.dest('market/client/web/build'))
 });
 
-gulp.task('watch', function () {
+gulp.task('watch',['default'], function () {
     return gulp.watch([
         'market/client/web/styles/**/*.scss',
         'market/client/web/app1/**/*.scss'

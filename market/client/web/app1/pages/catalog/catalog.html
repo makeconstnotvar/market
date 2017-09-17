@@ -1,19 +1,15 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12 c-buttons" [ngClass]="{'hidden-sm-up':!xs,'hidden-sm-down':xs}">
-            <a class="c-button pointer text-nowrap" (click)="xsChange()"><i class="fa fa-bars rgap"></i>Фильтры</a>
-            <a class="c-button pointer text-nowrap" (click)="clearFilter()"><i class="fa fa-times rgap"></i>Сбросить</a>
-        </div>
+<div class="d-flex flex-nowrap">
+    <div class="c-buttons" [ngClass]="{'hidden-sm-up':!xs,'hidden-sm-down':xs}">
+        <a class="c-button pointer text-nowrap" (click)="xsChange()"><i class="fa fa-bars rgap"></i>Фильтры</a>
+        <a class="c-button pointer text-nowrap" (click)="clearFilter()"><i class="fa fa-times rgap"></i>Сбросить</a>
     </div>
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 product-menu" [ngClass]="{'hidden-sm-down':!xs}">
-            <cat-filter (onFilterChange)="changeFilter($event)" (onFilterApply)="applyFilter()" (onFilterClear)="clearFilter()" [parameters]="parameters"></cat-filter>
-        </div>
-        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12" [ngClass]="{'hidden-sm-down':xs}">
-            <cat-sorting (onSort)="changeSort($event)" [activeSort]="activeSort"></cat-sorting>
-            <cat-alert *ngIf="products.length==0" (onClearFilter)="clearFilter($event)"></cat-alert>
-            <cat-product *ngFor="let product of products" [product]="product" [categoryId]="categoryId" [ngClass]="{'last':last}"></cat-product>
-            <pager [category]="categoryId" [params]="queryParams" (onPageChange)="changePage($event)"></pager>
-        </div>
+</div>
+<div class="d-flex flex-nowrap">
+    <cat-filter [ngClass]="{'hidden-sm-down':!xs}" (onFilterChange)="changeFilter($event)" (onFilterApply)="applyFilter()" (onFilterClear)="clearFilter()" [parameters]="parameters"></cat-filter>
+    <div class="product-list" [ngClass]="{'hidden-sm-down':xs}">
+        <cat-sorting (onSort)="changeSort($event)" [activeSort]="activeSort"></cat-sorting>
+        <cat-alert *ngIf="products.length==0" (onClearFilter)="clearFilter($event)"></cat-alert>
+        <cat-product *ngFor="let product of products" [product]="product" [categoryName]="categoryName" [ngClass]="{'last':last}"></cat-product>
+        <pager [category]="categoryId" [params]="queryParams" (onPageChange)="changePage($event)"></pager>
     </div>
 </div>

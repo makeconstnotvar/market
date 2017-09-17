@@ -4,6 +4,7 @@ import {ParametersService} from "../../../../services/parameters";
 
 @Component({
     selector: 'cat-filter',
+    host:{'class':'product-menu'},
     templateUrl: 'filter.html'
 })
 export class ComponentCatalogFilter {

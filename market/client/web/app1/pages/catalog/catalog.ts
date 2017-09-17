@@ -9,6 +9,7 @@ import {ComponentCatalogFilter} from "./components/filter/filter";
 
 @Component({
     selector: 'catalog',
+    host:{'class':'container d-block'},
     templateUrl: 'catalog.html'
 })
 export class CatalogPage {
@@ -61,7 +62,6 @@ export class CatalogPage {
     }
 
     changeSort() {
-
         this.navigate();
         this.fetchProducts();
     }

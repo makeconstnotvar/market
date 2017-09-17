@@ -1,14 +1,12 @@
 cat-filter {
-    .buttons {
-        height: 42px;
-        line-height: 42px;
-    }
+    margin-top: 50px;
     .parameters {
         & > li {
             border: solid #e8e8e8;
             border-width: 0 1px 1px 1px;
             transition: background-color 300ms;
             overflow: hidden;
+            padding: 0 15px;
             &:first-child {
                 border-top-width: 1px;
             }
@@ -19,19 +17,9 @@ cat-filter {
         }
     }
 
-    @media (max-width: 768px) {
-        .parameters {
-            margin-top: 10px;
-        }
-    }
 
     .parameter-head {
         margin: 4px 0;
-    }
-
-    .parameter-head,
-    .parameter-body {
-        /*box-sizing: border-box;*/
     }
 
     .parameter-body .grey {
@@ -56,12 +44,9 @@ cat-filter {
     }
     .parameters {
         user-select: none;
-        margin-top: 50px;
+
         min-height: 550px;
 
     }
 
-    .product-menu {
-        position: relative;
-    }
 }
