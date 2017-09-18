@@ -1,48 +1,33 @@
-.footer {
-    padding-top: 10px;
+market-footer {
+    padding: 30px 0;
     display: block;
     color: #fff;
     background-color: #222222;
-}
-
-.footer-socials {
-
-
-    &__link {
+    .social {
         border-radius: 50%;
-        border: 1px solid #337ab7;
+        border: 1px solid #fff;
+        color: #fff;
         display: inline-block;
         overflow: hidden;
         height: 40px;
         width: 40px;
-        margin-left: 10px;
         text-align: center;
         line-height: 38px;
         font-size: 20px;
         transition: background-color .25s ease-out;
+        margin-right: 8px;
         &:hover {
             border-color: #f75163;
-            background-color: #fff;
+            color: #f75163;
             transition: background-color .25s ease-out;
         }
-    }
 
-}
-
-.footer-slogan {
-    position: relative;
-    line-height: 38px;
-    &__label {
-        display: inline-block;
-        height: 40px;
-        line-height: 38px;
-        float: left;
     }
-    &__comment {
-        position: absolute;
-        font-size: 10px;
-        left: 0;
-        top: 16px;
+    .like {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+    .socials{
+        margin-bottom: 10px;
     }
 }
-

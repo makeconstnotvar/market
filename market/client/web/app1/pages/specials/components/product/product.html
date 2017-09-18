@@ -1,0 +1,9 @@
+<div class="special-product__image col-12 col-sm-6 col-md-12">
+    <a class="special-product__image-link" routerLink="/{{product.caturl}}/{{product.url}}">
+        <img fade-in src="/photos/{{product._id}}/l_{{product.cover}}">
+    </a>
+</div>
+<div class="special-product__info col-12 col-sm-6 col-md-12">
+    <a class="special-product__name" routerLink="/{{product.caturl}}/{{product.url}}">{{product.name}}</a>
+    <price (onPostPosition)="postPosition($event)" [product]="product"></price>
+</div>

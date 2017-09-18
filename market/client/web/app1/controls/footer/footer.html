@@ -1,19 +1,15 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-xs-12 ">
-            <div class="footer-slogan">
-                <b class="footer-slogan__label">Мы в социальных сетях:</b>
-                <span class="footer-slogan__comment">Лайкните нас, пожалуйста</span>
+    <div class="d-flex flex-wrap justify-content-between">
+        <div>
+            <div>Мы в социальных сетях</div>
+            <div class="like">Лайкните нас, пожалуйста</div>
+            <div class="socials">
+                <a class="social" *ngFor="let social of socials" target="_blank" title="{{social.name}}" href="{{social.link}}"><i class="fa {{social.icon}}"></i></a>
             </div>
-            <ul class="footer-socials list-unstyled list-inline">
-                <li *ngFor="let social of socials">
-                    <a class="footer-socials__link" target="_blank" title="{{social.name}}" href="{{social.link}}"><i class="fa {{social.icon}}"></i></a>
-                </li>
-            </ul>
         </div>
-        <div class="col-sm-6 col-xs-12 footer-contacts">
-            <div><i class="fa fa-envelope-o rgap"></i> <span class="footer-contacts__mail">email: support@getyourbag.ru</span></div>
-            <div><i class="fa fa-phone rgap"></i> <span class="footer-contacts__phone">телефон: +7(925)477-5001</span></div>
+        <div>
+            <div><i class="fa fa-envelope-o rgap"></i>email: support@getyourbag.ru</div>
+            <div><i class="fa fa-phone rgap"></i>телефон: +7(925)477-5001</div>
         </div>
     </div>
 </div>

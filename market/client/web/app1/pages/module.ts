@@ -4,7 +4,7 @@ import {HistoryPage} from "./cart/history/history";
 import {CatalogPage} from "./catalog/catalog";
 import {DeliveryPage} from "./delivery/delivery";
 import {SpecialsPage} from "./specials/specials";
-import {StocksPage} from "./stocks/page-stocks";
+import {StocksPage} from "./stocks/stocks";
 import {ViewPage} from "./view/view";
 import {ControlsModule} from "controls/module";
 import {RouterModule, Routes} from "@angular/router";

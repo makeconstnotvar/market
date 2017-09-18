@@ -1,0 +1,6 @@
+<h2 class="col-12">Самое интересное</h2>
+<sp-product class="special-product mm-special col-md-3 col-sm-4 col-12"
+            (onPostPosition)="postPosition($event)"
+            [ngClass]="{'hidden-md-down':last}"
+            *ngFor="let product of products; let last = last;"
+            [product]="product"></sp-product>

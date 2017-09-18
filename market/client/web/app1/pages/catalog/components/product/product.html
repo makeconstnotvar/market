@@ -15,9 +15,8 @@
                 <span class="available no" *ngIf="!product.inCart && !product.available" [ngClass]="{'blink':product.blink}"><i class="fa fa-ban rgap"></i>Отсутствует</span>
             </div>
             <div class="price" [ngClass]="{'no':!product.available}">{{product.price}} руб.</div>
-            <a class="buy pointer d-block" ng-click="postPosition(product)"><i class="fa fa-shopping-cart rgap"></i>в корзину</a>
+            <a class="buy pointer d-block" (click)="postPosition(product)"><i class="fa fa-shopping-cart rgap"></i>в корзину</a>
         </div>
-
     </div>
 </div>
 

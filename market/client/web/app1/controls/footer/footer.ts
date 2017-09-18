@@ -1,7 +1,6 @@
 import {Component} from "@angular/core";
 
 @Component({
-    host: {'class': 'footer'},
     selector: 'market-footer',
     templateUrl: 'footer.html'
 })

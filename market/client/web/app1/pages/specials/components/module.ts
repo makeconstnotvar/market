@@ -1,10 +1,10 @@
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {ComponentSpecialsProduct} from "./product";
-import {ComponentSpecialsSeo} from "./seo";
-import {ComponentSpecialsPromo} from "./promo";
-import {ComponentSpecialsProducts} from "./products";
-import {ComponentSpecialsWelcome} from "./welcome";
+import {ComponentSpecialsProduct} from "./product/product";
+import {ComponentSpecialsSeo} from "./seo/seo";
+import {ComponentSpecialsPromo} from "./promo/promo";
+import {ComponentSpecialsProducts} from "./products/products";
+import {ComponentSpecialsWelcome} from "./welcome/welcome";
 import {RouterModule} from "@angular/router";
 import {ControlsModule} from "controls/module";
 
@@ -21,7 +21,6 @@ import {ControlsModule} from "controls/module";
         RouterModule,
         ControlsModule
     ],
-    providers: [],
     exports: [
         ComponentSpecialsProduct,
         ComponentSpecialsProducts,
@@ -30,6 +29,15 @@ import {ControlsModule} from "controls/module";
         ComponentSpecialsWelcome
     ]
 })
-export class ModuleComponentsSpecials {
+class ModuleComponentsSpecials {
 
+}
+
+export {
+    ModuleComponentsSpecials,
+    ComponentSpecialsProduct,
+    ComponentSpecialsProducts,
+    ComponentSpecialsPromo,
+    ComponentSpecialsSeo,
+    ComponentSpecialsWelcome
 }

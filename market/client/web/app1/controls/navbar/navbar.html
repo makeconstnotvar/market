@@ -1,17 +1,17 @@
 <div class="container">
     <div class="row">
         <navbar-item [data]="settings.brand" class="navbar-item navbar-item--brand navbar-block"></navbar-item>
-
-        <div class="inline pull-right navbar-block">
-            <navbar-item [data]="settings.stocks" class="navbar-item navbar-item--stocks visible-lg-inline-block visible-md-inline-block"></navbar-item>
-            <navbar-item [data]="settings.delivery" class="navbar-item navbar-item--delivery visible-lg-inline-block visible-md-inline-block"></navbar-item>
-            <navbar-cart [data]="settings.cart" [cartData]="cartData" class="navbar-item navbar-item--cart visible-lg-inline-block visible-md-inline-block"></navbar-cart>
+        <navbar-item [data]="settings.stocks" class="navbar-item navbar-item--stocks hidden-md-down"></navbar-item>
+        <navbar-item [data]="settings.delivery" class="navbar-item navbar-item--delivery hidden-md-down"></navbar-item>
+        <navbar-cart [data]="settings.cart" [cartData]="cartData" class="navbar-item navbar-item--cart hidden-md-down"></navbar-cart>
+        <div class="d-flex justify-content-end flex1">
             <navbar-item [data]="settings.phone" class="navbar-item navbar-item--phone"></navbar-item>
         </div>
-        <div class="hidden-lg hidden-md inline pull-right">
+
+        <div class="d-flex hidden-lg-up">
             <navbar-item [data]="settings.stocks" class="navbar-item navbar-item--stocks "></navbar-item>
             <navbar-item [data]="settings.delivery" class="navbar-item navbar-item--delivery"></navbar-item>
-            <navbar-cart [data]="settings.cart" class="navbar-item navbar-item--cart"></navbar-cart>
+            <navbar-cart [data]="settings.cart" [cartData]="cartData" class="navbar-item navbar-item--cart"></navbar-cart>
         </div>
     </div>
 </div>

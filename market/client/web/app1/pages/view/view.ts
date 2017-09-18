@@ -1,13 +1,10 @@
 import {Component, OnInit} from "@angular/core";
 import {ProductProvider} from "providers";
-import {Product} from "models/product";
+import {Product,Config,Color,Position} from "models";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ConfigService} from "services/config";
-import {Config} from "models/config";
-import {Color} from "models/color";
 import {ContractProvider} from "providers";
 import {NavbarService} from "services/navbar";
-import {Position} from "models/position";
 import {GlobalService} from "services/global";
 
 

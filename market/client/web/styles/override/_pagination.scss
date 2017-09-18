@@ -7,8 +7,12 @@
 }
 
 .page-item {
+    .page-link {
+        color: #333;
+    }
     &.active {
         .page-link {
+
             background-color: $red;
             border-color: $red;
         }

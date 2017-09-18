@@ -1,15 +1,15 @@
 import {Component, ViewChild} from "@angular/core";
 import {Product} from "models/product";
-import {ParameterProvider, ProductProvider} from "providers";
+import {ContractProvider, ParameterProvider, ProductProvider} from "providers";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Parameter} from "models/parameter";
-import {ParametersService, SortingService} from "services";
+import {Parameter, Position} from "models";
+import {NavbarService, ParametersService, SortingService} from "services";
 import {PagerControl} from "controls/pager/pager";
 import {ComponentCatalogFilter} from "./components/filter/filter";
 
 @Component({
     selector: 'catalog',
-    host:{'class':'container d-block'},
+    host: {'class': 'container d-block'},
     templateUrl: 'catalog.html'
 })
 export class CatalogPage {
@@ -30,7 +30,9 @@ export class CatalogPage {
     constructor(private productProvider: ProductProvider,
                 private parametersService: ParametersService,
                 private parameterProvider: ParameterProvider,
+                private contractProvider: ContractProvider,
                 private sortingService: SortingService,
+                private navbarService: NavbarService,
                 private route: ActivatedRoute,
                 private router: Router) {
     }
@@ -82,6 +84,21 @@ export class CatalogPage {
         this.params = this.excludeParams(qpm.params);
         this.fetchParameters();
 
+    }
+
+    postPosition(product: Product) {
+        let position: Position = <Position>{
+            product: product._id,
+            count: 1,
+            price: product.price,
+            sum: product.price,
+            //color: new Color() //пока затычка
+        };
+        this.contractProvider.postPosition(position).subscribe(
+            response => {
+                console.log(response);
+                this.navbarService.updateCartData(response)
+            });
     }
 
     private excludeParams(params) {

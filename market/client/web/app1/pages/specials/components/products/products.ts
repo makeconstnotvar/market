@@ -3,12 +3,7 @@ import {Product} from "models/product";
 @Component({
     selector: 'sp-products',
 
-    template: `
-<h2 class="col-xs-12">Самое интересное</h2>
-<sp-product (onPostPosition)="postPosition($event)"  class="special-product mm-special col-md-3 col-sm-4 col-xs-12" [ngClass]="{'hidden-lg hidden-md':last}" *ngFor="let product of products;let last = last;" [product]="product"></sp-product>
-
-    
-`
+    templateUrl: 'products.html'
 })
 export class ComponentSpecialsProducts {
 
