@@ -1,9 +1,6 @@
-
 <div class="container">
-    <div class="row">
-        <sp-welcome></sp-welcome>
-        <sp-products [products]="products"  (onPostPosition)="postPosition($event)"></sp-products>
-        <sp-promo></sp-promo>
-        <sp-seo></sp-seo>
-    </div>
+    <sp-welcome class="row"></sp-welcome>
+    <sp-products class="row" [products]="products" (onPostPosition)="postPosition($event)"></sp-products>
+    <sp-promo class="row"></sp-promo>
+    <sp-seo class="row"></sp-seo>
 </div>

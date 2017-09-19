@@ -1,14 +1,14 @@
 import {RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {ComponentViewInformation} from "./information";
-import {ComponentViewGallery} from "./gallery";
-import {ComponentViewPhoto} from "./photo";
-import {ComponentViewSimilar} from "./similar";
-import {ComponentViewSocials} from "./socials";
-import {ComponentViewSpecification} from "./specification";
-import {ComponentViewTitle} from "./title";
-import {ComponentViewSeo} from "./seo";
+import {ComponentViewInformation} from "./information/information";
+import {ComponentViewGallery} from "./gallery/gallery";
+import {ComponentViewPhoto} from "./photo/photo";
+import {ComponentViewSimilar} from "./similar/similar";
+import {ComponentViewSocials} from "./socials/socials";
+import {ComponentViewSpecification} from "./specification/specification";
+import {ComponentViewTitle} from "./title/title";
+import {ComponentViewSeo} from "./seo/seo";
 
 
 @NgModule({
@@ -35,6 +35,17 @@ import {ComponentViewSeo} from "./seo";
         ComponentViewSeo
     ]
 })
-export class ModuleComponentsView {
+class ModuleComponentsView {
 
+}
+export {
+    ModuleComponentsView,
+    ComponentViewInformation,
+    ComponentViewGallery,
+    ComponentViewPhoto,
+    ComponentViewSimilar,
+    ComponentViewSocials,
+    ComponentViewSpecification,
+    ComponentViewTitle,
+    ComponentViewSeo
 }

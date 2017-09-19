@@ -3,7 +3,7 @@
         position: relative;
         height: 30px;
         line-height: 30px;
-        margin-bottom: 10px;
+        //margin-bottom: 10px;
         &-available {
             .yes {
                 color: #74b436;
@@ -38,14 +38,14 @@
         cursor: pointer;
         display: block;
         font-size: 18px;
-        border-radius: 20px;
+        border-radius: 10px;
         border: solid 1px #9d9ca1;
         background-color: #313037;
         color: #fff;
         text-align: center;
         text-decoration: none;
         padding: 12px 23px;
-        margin-bottom: 10px;
+        //margin-bottom: 10px;
         transition: background-color 300ms linear;
         &:hover,
         &.active {
