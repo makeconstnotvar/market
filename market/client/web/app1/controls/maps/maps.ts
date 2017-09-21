@@ -1,14 +1,13 @@
-import {Component, OnInit, OnDestroy, Inject} from "@angular/core";
+import {Component, Inject} from "@angular/core";
 
 @Component({
     selector: 'maps-yandex',
-    templateUrl: 'maps.html',
-    styles: [`#maps-container {height: 500px;}`]
+    templateUrl: 'maps.html'
 })
-export class MapsControl{
-    constructor(@Inject('Window') window){
-        this.window = window;
+export class MapsControl {
+    constructor(@Inject('Window') private window) {
     }
+
     ngOnDestroy(): void {
         this.close();
     }
@@ -19,7 +18,6 @@ export class MapsControl{
     }
 
 
-    window;
     mapScript = 'https://api-maps.yandex.ru/2.1/?lang=ru_RU';
     map;
     myPlacemark;

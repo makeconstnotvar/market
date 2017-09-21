@@ -5,12 +5,14 @@ import {Category} from "models";
 
 @Component({
     selector: 'default',
-
+    host: {'class': 'sticky'},
     template: `
-        <market-navbar></market-navbar>
-        <jumbotron></jumbotron>
-        <market-menu [categories]="categories"></market-menu>
-        <router-outlet></router-outlet>
+        <div class="sticky-content">
+            <market-navbar></market-navbar>
+            <jumbotron></jumbotron>
+            <market-menu [categories]="categories"></market-menu>
+            <router-outlet></router-outlet>
+        </div>
         <market-footer></market-footer>
     `
 })

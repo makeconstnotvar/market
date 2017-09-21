@@ -3,7 +3,9 @@
 @import "controls/menu/menu";
 @import "controls/navbar/navbar";
 @import "controls/price/price";
+@import "controls/maps/maps";
 @import "pages/cart/cart/cart";
+@import "pages/delivery/delivery";
 @import "pages/catalog/catalog";
 @import "pages/catalog/components/alert/alert";
 @import "pages/catalog/components/filter/checkbox/checkbox";
@@ -12,7 +14,6 @@
 @import "pages/catalog/components/filter/filter";
 @import "pages/catalog/components/product/product";
 @import "pages/catalog/components/sorting/sorting";
-@import "pages/delivery/delivery";
 @import "pages/specials/components/products/products";
 @import "pages/view/components/gallery/gallery";
 @import "pages/view/components/photo/photo";
