@@ -1,3 +1,8 @@
-<div class="jumbo-slide {{jumbo.image}}" *ngFor="let jumbo of jumbos" [hidden]="!jumbo.show">
-    <jumbo [jumbo]="jumbo"></jumbo>
+<div class="slider {{jumbo.image}}" *ngFor="let jumbo of jumbos" [hidden]="!jumbo.show">
+    <div class="container">
+        <div class="slogan hidden-xs-down">
+            <h1>{{jumbo.title}}</h1>
+            <p>{{jumbo.text}} <i class="fa {{jumbo.icon}}"></i></p>
+        </div>
+    </div>
 </div>

@@ -1,6 +1,7 @@
 import {Component, Inject} from "@angular/core";
 
 @Component({
+    selector: 'delivery',
     templateUrl: 'delivery.html',
 
 })

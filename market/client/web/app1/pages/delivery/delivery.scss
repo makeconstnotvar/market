@@ -1,6 +1,27 @@
+delivery {
 
-.delivery-label {
-    display: inline-block;
-    width: 100px;
-    text-align: right;
+    .separ {
+        border-bottom: 1px solid #eee;
+    }
+    @include media-breakpoint-down(sm) {
+        h2 {
+            font-size: 1.9rem;
+        }
+        h3 {
+            font-size: 1.6rem;
+        }
+    }
+    @include media-breakpoint-up(sm) {
+        h3 {
+            font-size: 1rem;
+        }
+        .separ {
+            margin-bottom: 15px;
+        }
+        .label{
+            border-radius: 4px;
+            margin-top: 0;
+            font-weight: bold;
+        }
+    }
 }

@@ -1,7 +1,6 @@
 import {NgModule} from "@angular/core";
 import {FooterControl} from "./footer/footer";
 import {JumbotronControl} from "./jumbotron/jumbotron";
-import {JumboComponent} from "./jumbotron/components/jumbo";
 import {MapsControl} from "./maps/maps";
 import {MenuControl} from "./menu/menu";
 import {PriceControl} from "./price/price";
@@ -18,7 +17,6 @@ import {BrowserModule} from "@angular/platform-browser";
     declarations: [
         FooterControl,
         JumbotronControl,
-        JumboComponent,
         MapsControl,
         MenuControl,
         NavbarControl,
@@ -50,7 +48,6 @@ class ControlsModule {}
 export {
     ControlsModule,
     FooterControl,
-    JumboComponent,
     JumbotronControl,
     MapsControl,
     MenuControl,

@@ -15,7 +15,7 @@
 
             <p>Если у вас имеются особые пожелания, напишите их в комментарии к заказу, мы обязательно прочитаем и постараемся выполнить.</p>
 
-            <cart-contact (onSubmit)="submit($event)"></cart-contact>
+            <cart-contact class="d-flex flex-column justify-content-center" (onSubmit)="submit($event)"></cart-contact>
         </div>
         <div class="cart-history" *ngIf="showHistory">
             <h2>История заказов</h2>
