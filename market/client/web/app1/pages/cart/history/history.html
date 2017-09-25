@@ -1,15 +1,8 @@
 <div class="container placed">
-    <div class="row">
-        <div class="col-xs-12">
             <a routerLink="/cart" class="btn btn-red pull-right m-back">
                 <i class="fa fa-chevron-left rgap"></i>Назад
             </a>
             <h2>История заказов</h2>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12">
             <p>Этот заказ был сделан {{contract.date | date:'dd.MM.yyyy'}} в {{contract.date | date:'HH:mm:ss'}}</p>
             <p>Статус: {{contract.statusName}}</p>
             <table class="table cart-list">
@@ -41,6 +34,5 @@
                 </tr>
                 </tfoot>
             </table>
-        </div>
-    </div>
+
 </div>

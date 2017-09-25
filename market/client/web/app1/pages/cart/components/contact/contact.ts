@@ -1,6 +1,7 @@
-import {Component, Output, EventEmitter} from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 import {Contract} from "models/contract";
 import {DeliveryMode} from "models";
+
 @Component({
     selector: 'cart-contact',
     host: {'class': 'form-horizontal'},
@@ -20,7 +21,12 @@ export class ComponentCartContact {
     }
 
     submit() {
-        this.onSubmit.emit(this.contract);
+        if (this.contract.phone) {
+            this.onSubmit.emit(this.contract);
+        }
+        else {
+            this.showError = true;
+        }
     }
 
 }

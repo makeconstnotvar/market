@@ -4,6 +4,7 @@ import {ContractProvider} from "providers";
 import {CartMode} from "../components/mode";
 import {NavbarService} from "services/navbar";
 import {Product} from "models/product";
+
 @Component({
     templateUrl: 'cart.html',
 })
@@ -24,23 +25,20 @@ export class CartPage {
             this.contract.final = this.getFinal(this.contract.positions);
             if (this.contract.positions && this.contract.positions.length > 0)
                 this.pageMode = CartMode.Form;
-            console.log(this.showHistory)
         })
     }
 
     submit(contract) {
         this.contract = Object.assign(this.contract, contract);
-        if (this.contract.phone) {
+
             this.contractProvider.placeContract(this.contract).subscribe(response => {
                 this.pageMode = CartMode.Success;
                 this.history.unshift(response);
                 this.navbarService.updateCartData({sum: 0, count: 0});
             });
         }
-        else {
-            this.showError = true;
-        }
-    }
+
+
 
     del(idx) {
         this.contract.positions.splice(idx, 1);

@@ -1,48 +1,58 @@
-<div class="form-group">
-    <label class="title" for="phone"><i style="color: red" class="fa fa-asterisk"></i> Телефон</label>
-    <input id="phone" type="text" class="form-control" [(ngModel)]="contract.phone">
-    <span class="text-muted">например, 89261234567, но можно так +7(926)123-45-67</span>
+<div class="form-group row">
+    <label class="title col-12 col-md-2" for="phone"><i style="color: red" class="fa fa-asterisk"></i> Телефон</label>
+    <div class="col-12 col-md-10">
+        <input class="form-control" id="phone" type="text" [(ngModel)]="contract.phone">
+        <span class="text-muted">например, 89261234567, но можно так +7(926)123-45-67</span>
+    </div>
 </div>
-<div class="form-group">
-    <label class="title" for="name">Ваше имя</label>
-    <input id="name" type="text" class="form-control" [(ngModel)]="contract.name">
+<div class="form-group row">
+    <label class="title col-12 col-md-2" for="name">Ваше имя</label>
+    <div class="col-12 col-md-10">
+        <input class="form-control" id="name" type="text" [(ngModel)]="contract.name">
+    </div>
 </div>
-<div class="form-group">
-    <label class="title" for="address">Адрес</label>
-    <input type="text" id="address" class="form-control" [(ngModel)]="contract.address">
+<div class="form-group row">
+    <label class="title col-12 col-md-2" for="address">Адрес</label>
+    <div class="col-12 col-md-10">
+        <input type="text" id="address" class="form-control" [(ngModel)]="contract.address">
+    </div>
 </div>
-<div class="form-group">
-    <label class="title">Уведомления</label>
-    <ul class="list-unstyled">
-        <li class="checkbox">
-            <label for="sendsms">
-                <input type="checkbox" id="sendsms" [(ngModel)]="contract.sendSms"/>Отправлять в смс
+<div class="form-group row">
+    <label class="title col-12 col-md-2">Уведомления</label>
+    <div class="col-12 col-md-10">
+        <div class="form-check">
+            <label class="form-check-label" for="sendsms">
+                <input class="form-check-input" type="checkbox" id="sendsms" [(ngModel)]="contract.sendSms"/> Отправлять в смс
             </label>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>
-<div class="form-group">
-    <label class="title">Получение</label>
-    <ul class="list-unstyled">
-        <li class="radio">
-            <label for="auto">
-                <input type="radio" name="delivery" id="auto" [(ngModel)]="contract.delivery" [value]=deliveryMode.Auto>
+<div class="form-group row">
+    <label class="title col-12 col-md-2">Получение</label>
+    <div class="col-12 col-md-10">
+        <div class="form-check">
+            <label class="form-check-label" for="auto">
+                <input class="form-check-input" type="radio" name="delivery" id="auto" [(ngModel)]="contract.delivery" [value]=deliveryMode.Auto>
                 Доставка курьером <a routerLink="/delivery">(бесплатно, срок 1-2 дня)</a>
             </label>
-        </li>
-        <li class="radio">
-            <label for="manual">
-                <input type="radio" name="delivery" id="manual" [(ngModel)]="contract.delivery" [value]=deliveryMode.Manual>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label" for="manual">
+                <input class="form-check-input" type="radio" name="delivery" id="manual" [(ngModel)]="contract.delivery" [value]=deliveryMode.Manual>
                 Самовывоз <a routerLink="/delivery">(бесплатно от м. Новые черемушки 10:00-19:00)</a>
             </label>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>
-<div class="form-group">
-    <label class="title" for="note">Комментарий</label>
-    <textarea id="note" rows="4" cols="20" class="form-control" [(ngModel)]="contract.note"></textarea>
+<div class="form-group row">
+    <label class="title col-12 col-md-2" for="note">Комментарий</label>
+    <div class="col-12 col-md-10">
+        <textarea id="note" rows="4" cols="20" class="form-control" [(ngModel)]="contract.note"></textarea>
+    </div>
 </div>
-<div class="form-group">
-    <a class="btn btn-primary" (click)="submit()">Заказать</a>
-    <div *ngIf="showError" class="alert alert-danger d-inline">Нужно обязательно указать свой телефон</div>
+<div class="form-group row">
+    <div class="ml-auto col-10 d-flex">
+        <a class="btn btn-primary pointer mr-3" (click)="submit()">Заказать</a>
+        <div *ngIf="showError" class="cart-alert alert-danger d-inline">Нужно обязательно указать свой телефон</div>
+    </div>
 </div>

@@ -25,7 +25,7 @@ const appRoutes: Routes = [
             {path: 'delivery', component: DeliveryPage},
             {path: 'contacts', component: ContactsPage},
             {path: 'cart', component: CartPage},
-            {path: 'cart/:order', component: HistoryPage},
+            {path: 'cart/:contract', component: HistoryPage},
             {path: 'stocks', component: StocksPage},
             {path: 'notfound', component: NotfoundPage},
             {path: ':categoryName/:productId', component: ViewPage},
