@@ -1,6 +1,5 @@
 node_modules/
 .idea/
-build/
 data/prerender/
 data/photos/
 market/admin/web/tmp/
@@ -8,5 +7,8 @@ market/admin/web/views/layout.dot
 market/client/web/tmp
 market/client/web/build
 market/client/web/app1/**/*.js
+market/client/web/app1/**/*.ngfactory.ts
+market/client/web/app1/**/*.ngsummary.json
+market/client/web/app1/**/*.map
 market/client/web/views/layout.dot
 market/config.json
