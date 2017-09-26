@@ -10,6 +10,6 @@
         <cat-sorting (onSort)="changeSort($event)" [activeSort]="activeSort"></cat-sorting>
         <cat-alert *ngIf="products.length==0" (onClearFilter)="clearFilter($event)"></cat-alert>
         <cat-product *ngFor="let product of products" [product]="product" [categoryName]="categoryName" [ngClass]="{'last':last}" (onPostPosition)="postPosition($event)"></cat-product>
-        <pager [category]="categoryId" [params]="queryParams" (onPageChange)="changePage($event)"></pager>
+        <pager [category]="categoryId" (onPageChange)="changePage($event)"></pager>
     </div>
 </div>

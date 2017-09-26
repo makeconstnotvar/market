@@ -7,7 +7,7 @@ import {Component} from "@angular/core";
 export class JumbotronControl {
     private intervalId;
 
-    private jumbos: Jumbo[] = jumbos;
+    jumbos: Jumbo[] = jumbos;
 
     ngOnInit() {
         this.intervalId = setInterval(() => {

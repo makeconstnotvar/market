@@ -8,7 +8,7 @@ import {NavbarService} from "services";
     templateUrl: 'navbar.html'
 })
 export class NavbarControl {
-    private settings: Settings = {
+     settings: Settings = {
         brand: {
             icon: 'fa-shopping-bag',
             name: 'GetYourBag.ru',
@@ -41,7 +41,7 @@ export class NavbarControl {
         },
     };
 
-    private cartData: CartData;
+     cartData: CartData;
 
     constructor(private navbarService: NavbarService) {
         this.cartData = {sum:0,count:0};

@@ -6,7 +6,7 @@ import {ConfigService} from "services/config";
 
 
 @Injectable()
-export class SettingsProvider {
+class SettingsProvider {
     constructor(private http: Http,
                 private configService: ConfigService) {
     }
@@ -26,4 +26,13 @@ export class SettingsProvider {
                 return r.json() as any
             });
     }
+}
+
+function SettingsFactory(settings: SettingsProvider) {
+    return () => settings.config();
+}
+
+export {
+    SettingsProvider,
+    SettingsFactory
 }

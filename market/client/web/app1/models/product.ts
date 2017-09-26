@@ -14,4 +14,5 @@ export class Product {
     details:string;
     code:number;
     parameters:any[];
+    stock:any;
 }

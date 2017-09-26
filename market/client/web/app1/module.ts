@@ -1,21 +1,12 @@
 import "rxjs/Rx";
-import {NgModule, APP_INITIALIZER} from "@angular/core";
-import {PagesModule} from "pages/module";
-import {RootLayout} from "layouts/module";
+import {APP_INITIALIZER, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {CategoryProvider} from "providers";
 import {HttpModule} from "@angular/http";
-import {ContractProvider} from "providers";
-import {ParameterProvider} from "providers";
-import {ProductProvider} from "providers";
-import {SettingsProvider} from "providers";
-import {NavbarService} from "services/navbar";
-import {ConfigService} from "services/config";
-import {Router, NavigationEnd} from "@angular/router";
-import {GlobalService} from "services/global";
-import {ParametersService} from "./services/parameters";
-import {SortingService} from "./services/sort";
-import {LayoutsModule} from "./layouts/module";
+import {NavigationEnd, Router} from "@angular/router";
+import {PagesModule} from "pages/module";
+import {RootLayout,LayoutsModule} from "layouts/module";
+import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider, SettingsProvider, SettingsFactory} from "providers";
+import {ConfigService, GlobalService, NavbarService, ParametersService, SortingService} from "services";
 
 
 @NgModule({
@@ -29,7 +20,7 @@ import {LayoutsModule} from "./layouts/module";
         SettingsProvider,
         {
             provide: APP_INITIALIZER,
-            useFactory: (settingsProvider: SettingsProvider) => () => settingsProvider.config(),
+            useFactory: SettingsFactory,
             deps: [SettingsProvider],
             multi: true
         },
@@ -41,10 +32,7 @@ import {LayoutsModule} from "./layouts/module";
         ConfigService,
         GlobalService,
         ParametersService,
-        SortingService,
-        {
-            provide: 'Window', useValue: window
-        }
+        SortingService
     ],
     exports: [
         RootLayout

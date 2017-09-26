@@ -1,4 +1,5 @@
-import {Component, Inject} from "@angular/core";
+import {Component, Inject, PLATFORM_ID} from "@angular/core";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'delivery',
@@ -6,14 +7,16 @@ import {Component, Inject} from "@angular/core";
 
 })
 export class DeliveryPage {
-    window;
+    _window;
 
-    constructor(@Inject('Window') window) {
-        this.window = window;
+    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+        if (isPlatformBrowser(this.platformId)) {
+            this._window = window;
+        }
     }
 
     toSdekList() {
-        this.window.open('http://www.edostavka.ru/contacts/city-list.html');
+        this._window.open('http://www.edostavka.ru/contacts/city-list.html');
     }
 
 }

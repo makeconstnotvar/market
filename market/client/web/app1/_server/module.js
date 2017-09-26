@@ -20,7 +20,7 @@ var ServerAppModule = /** @class */ (function () {
             bootstrap: [module_2.RootLayout],
             imports: [
                 platform_browser_1.BrowserModule.withServerTransition({
-                    appId: 'D3BC8453-6C51-4847-97D4-F8238DB69B0D'
+                    appId: 'BD484954-6626-4699-86BD-AF9CA21F0DE8'
                 }),
                 platform_server_1.ServerModule,
                 animations_1.NoopAnimationsModule,

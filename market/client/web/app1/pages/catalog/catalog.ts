@@ -63,7 +63,7 @@ export class CatalogPage {
         this.fetchProducts();
     }
 
-    changeSort() {
+    changeSort(e) {
         this.navigate();
         this.fetchProducts();
     }

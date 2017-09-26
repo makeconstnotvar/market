@@ -17,8 +17,6 @@ export class PagerControl {
     @Input()
     category: string = '';
 
-    @Input()
-    params: string = '';
 
     @Input()
     size: number = 10;
