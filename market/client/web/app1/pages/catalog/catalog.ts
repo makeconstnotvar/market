@@ -6,6 +6,7 @@ import {Parameter, Position} from "models";
 import {NavbarService, ParametersService, SortingService} from "services";
 import {PagerControl} from "controls/pager/pager";
 import {ComponentCatalogFilter} from "./components/filter/filter";
+import 'rxjs/add/operator/switchMap'
 
 @Component({
     selector: 'catalog',
@@ -76,13 +77,21 @@ export class CatalogPage {
     }
 
     ngOnInit() {
-        let pm = this.route.snapshot.paramMap as any;
+        this.route.paramMap.switchMap((pm: any) => this.parameterProvider.getList(pm.params.categoryName)).subscribe(response => {
+            console.log('получены параметры');
+            this.categoryId = response.catid;
+            this.parameters = response.parameters;
+            this.selectParameters();
+            this.fetchProducts();
+            this.fetchActive();
+        });
+
+
         let qpm = this.route.snapshot.queryParamMap as any;
-        this.categoryName = pm.params.categoryName;
         this.page = qpm.params.page;
         this.activeSort = qpm.sort;
         this.params = this.excludeParams(qpm.params);
-        this.fetchParameters();
+        //this.fetchParameters();
 
     }
 

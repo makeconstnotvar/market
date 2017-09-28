@@ -11,7 +11,7 @@
     "webpack": "webpack --config webpack.debug.config.js",
     "webpack-browser": "webpack --config webpack.browser.config.js",
     "webpack-server": "webpack --config webpack.server.config.js",
-    "watch-webpack": "webpack --watch",
+    "watch-webpack": "webpack --config webpack.debug.config.js --watch",
     "watch-gulp": "gulp watch",
     "watch-tsc": "tsc -p tsconfig.json --watch"
   },
