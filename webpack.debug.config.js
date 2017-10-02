@@ -61,5 +61,5 @@ module.exports = {
 
     },
     //stats: {children: false},
-    devtool: 'inline-source-map'
+    devtool: 'source-map'
 };

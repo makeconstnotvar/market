@@ -44,24 +44,26 @@ export class CatalogPage {
 
     changeFilter(parameter) {
         delete this.page;
-
+        this.parametersService.filterToUrl(parameter);
         this.navigate();
         this.fetchProducts();
+        this.fetchActive();
     }
 
 
     clearFilter() {
         delete this.page;
         this.parametersService.clearFilterData();
-
         this.navigate();
         this.fetchParameters();
+        this.fetchActive();
     }
 
     applyFilter() {
         this.xs = false;
         this.navigate();
         this.fetchProducts();
+        this.fetchActive();
     }
 
     changeSort(e) {
@@ -71,13 +73,15 @@ export class CatalogPage {
 
     changePage(page) {
         this.page = page;
-
         this.navigate();
         this.fetchProducts();
     }
 
     ngOnInit() {
-        this.route.paramMap.switchMap((pm: any) => this.parameterProvider.getList(pm.params.categoryName)).subscribe(response => {
+        this.route.paramMap.switchMap((pm: any) => {
+            this.categoryName = pm.params.categoryName;
+            return this.parameterProvider.getList(pm.params.categoryName)
+        }).subscribe(response => {
             console.log('получены параметры');
             this.categoryId = response.catid;
             this.parameters = response.parameters;
