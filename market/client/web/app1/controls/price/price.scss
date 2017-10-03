@@ -3,7 +3,6 @@
         position: relative;
         height: 30px;
         line-height: 30px;
-        //margin-bottom: 10px;
         &-available {
             .yes {
                 color: #74b436;
@@ -13,21 +12,13 @@
             }
         }
         &-incart {
-            /*&[hidden] {
-                opacity: 0;
-                transition: opacity 300ms linear;
-            }*/
             opacity: 0;
             color: #74b436;
             font-weight: bold;
-            /*opacity: 1;
-            transition: opacity 300ms linear;*/
-
         }
     }
     &__value {
         color: #f75163;
-        font-size: 24px;
         line-height: 24px;
         margin-bottom: 10px;
         &.no {
@@ -37,7 +28,6 @@
     &__purchase {
         cursor: pointer;
         display: block;
-        font-size: 18px;
         border-radius: 10px;
         border: solid 1px #9d9ca1;
         background-color: #313037;
@@ -45,7 +35,6 @@
         text-align: center;
         text-decoration: none;
         padding: 12px 23px;
-        //margin-bottom: 10px;
         transition: background-color 300ms linear;
         &:hover,
         &.active {
@@ -55,12 +44,10 @@
             text-decoration: none;
             transition: background-color 300ms linear;
         }
-
     }
     &--w240{
         .price__purchase{
             width: 240px;
         }
     }
-
 }

@@ -2,10 +2,12 @@ cat-product {
     display: block;
     overflow: hidden;
     margin-bottom: 10px;
-    transition: background-color 300ms;
-    &:hover{
+
+    @include transition300(background-color);
+
+    &:hover {
         background-color: #f7f7f7;
-        transition: background-color 300ms;
+        @include transition300(background-color);
     }
     .image {
         position: relative;
@@ -17,34 +19,30 @@ cat-product {
         left: 0;
         right: 0;
         z-index: 1000;
-        color: $red;
+        color: $red-light;
     }
     .info {
         padding: 10px 15px;
         height: 240px;
     }
+
     .name {
-        color: #333;
-        font-weight: bold;
-        display: block;
-        margin-bottom: 10px;
-        transition: color 300ms linear;
-        height: 66px;
-        overflow: hidden;
+
+        @include transition300(color);
         &:hover {
-            color: #f75163;
-            transition: color 300ms linear;
+            color: $red-light;
+            @include transition300(color);
         }
     }
-    .details{
+    .details {
         margin-right: 10px;
     }
+
     .money {
         width: 130px;
         min-width: 130px;
     }
     .buy {
-        font-size: 18px;
         border-radius: 8px;
         border: solid 1px #9d9ca1;
         background-color: #313037;
@@ -64,9 +62,7 @@ cat-product {
     }
     .price {
         color: #f75163;
-        font-size: 24px;
-        line-height: 24px;
-        margin-bottom: 10px;
+        font-size: 1.7rem;
         &.no {
             color: #bbb;
         }
@@ -83,61 +79,21 @@ cat-product {
             color: #f75163;
         }
     }
-    .status {
-        line-height: 30px;
-        margin-bottom: 10px;
-    }
-
-}
-
-@media (min-width: 1200px) {
-    cat-product {
-        border: 1px solid #e8e8e8;
-        .me-stock {
-            font-weight: bold;
-            padding: 0;
-            color: #f75163;
-        }
-        .me-image {
-            width: 180px;
-            border: 0;
-        }
-        .me-screens {
-            width: 60px;
-            float: left;
-        }
-        .me-link {
-            transition: background-color 300ms linear;
-            position: relative;
-            width: 60px;
-            height: 80px;
-            display: inline-block;
-            &:hover {
-                background-color: #f7f7f7;
-                transition: background-color 300ms linear;
-            }
-
-        }
-
-        .me-info {
-            width: 605px;
-            background-color: transparent;
-            text-align: left;
-        }
-        .name {
-            height: auto;
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-        .name,
+    @include media-breakpoint-down(lg) {
         .details {
-            color: #333333;
+            font-size: 0.9rem;
         }
-        .mb-money {
-            float: right;
-            width: 160px;
-        }
-
     }
-
+    @include media-breakpoint-up(lg) {
+        border: 1px solid #e8e8e8;
+    }
+    @include media-breakpoint-down(md) {
+        .image {
+            border: 1px solid #e8e8e8;
+        }
+        .info {
+            border: 1px solid #313037;
+            background: #313037;
+        }
+    }
 }
