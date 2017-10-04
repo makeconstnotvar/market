@@ -34,15 +34,16 @@
         color: #fff;
         text-align: center;
         text-decoration: none;
-        padding: 12px 23px;
-        transition: background-color 300ms linear;
+        padding: 10px 14px;
+        @include transition300(background-color);
+        white-space: nowrap;
         &:hover,
         &.active {
             background-color: #f75163;
             border-color: #f75163;
             color: #fff;
             text-decoration: none;
-            transition: background-color 300ms linear;
+            @include transition300(background-color);
         }
     }
     &--w240{

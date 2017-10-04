@@ -27,10 +27,13 @@ cat-product {
     }
 
     .name {
-
+        color: #212529;
+        font-size: 1.5rem;
+        font-weight: bold;
         @include transition300(color);
         &:hover {
             color: $red-light;
+            text-decoration: none;
             @include transition300(color);
         }
     }
@@ -38,7 +41,7 @@ cat-product {
         margin-right: 10px;
     }
 
-    .money {
+    /*.money {
         width: 130px;
         min-width: 130px;
     }
@@ -62,7 +65,7 @@ cat-product {
     }
     .price {
         color: #f75163;
-        font-size: 1.7rem;
+        //font-size: 1.7rem;
         &.no {
             color: #bbb;
         }
@@ -78,16 +81,32 @@ cat-product {
         &.no {
             color: #f75163;
         }
-    }
+    }*/
     @include media-breakpoint-down(lg) {
         .details {
             font-size: 0.9rem;
         }
+        .name{
+            font-size: 1.2rem;
+            font-weight: normal;
+        }
     }
     @include media-breakpoint-up(lg) {
         border: 1px solid #e8e8e8;
+
     }
     @include media-breakpoint-down(md) {
+        .money {
+            flex: 1;
+            text-align: center;
+        }
+        .name{
+            font-size: 1rem;
+            font-weight: normal;
+            color: $white;
+            text-align: center;
+            height: 80px;
+        }
         .image {
             border: 1px solid #e8e8e8;
         }

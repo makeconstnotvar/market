@@ -34,13 +34,9 @@
 
     }
     &__name {
-        cursor: pointer;
-        color: #9d9ca1;
-        font-weight: bold;
+        color: $white;
         display: block;
-        //margin-bottom: 10px;
         transition: color 300ms linear;
-        //overflow: hidden;
         @include media-breakpoint-up(sm) {
             height: 66px;
         }
@@ -48,6 +44,7 @@
         &:hover {
             color: #f75163;
             transition: color 300ms linear;
+            text-decoration: none;
         }
     }
 

@@ -9,5 +9,5 @@
         <span class="no" *ngIf="!product.available" [ngClass]="{'m-blink':product.blink}"><i class="fa fa-ban rgap"></i>Отсутствует</span>
     </div>
 </div>
-<div class="price__value">{{product.price}} <i class="fa fa-rub"></i></div>
+<div class="price__value">{{product.price}} руб.</div>
 <a class="price__purchase" (click)="postPosition(product)"><i class="fa fa-shopping-cart rgap"></i>в корзину</a>
