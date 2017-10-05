@@ -24,6 +24,7 @@ cat-product {
     .info {
         padding: 10px 15px;
         height: 240px;
+        flex:1;
     }
 
     .name {
@@ -41,47 +42,6 @@ cat-product {
         margin-right: 10px;
     }
 
-    /*.money {
-        width: 130px;
-        min-width: 130px;
-    }
-    .buy {
-        border-radius: 8px;
-        border: solid 1px #9d9ca1;
-        background-color: #313037;
-        text-align: center;
-        color: #fff;
-        text-decoration: none;
-        padding: 10px;
-        transition: background-color 300ms linear;
-        &:hover {
-            background-color: #f75163;
-            border-color: #f75163;
-            color: #fff;
-            text-decoration: none;
-            transition: background-color 300ms linear;
-        }
-
-    }
-    .price {
-        color: #f75163;
-        //font-size: 1.7rem;
-        &.no {
-            color: #bbb;
-        }
-    }
-    .incart {
-        color: #74b436;
-        font-weight: bold;
-    }
-    .available {
-        &.yes {
-            color: #74b436;
-        }
-        &.no {
-            color: #f75163;
-        }
-    }*/
     @include media-breakpoint-down(lg) {
         .details {
             font-size: 0.9rem;

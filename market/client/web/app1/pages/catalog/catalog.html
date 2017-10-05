@@ -1,5 +1,5 @@
 <div class="d-flex flex-nowrap">
-    <div class="c-buttons" [ngClass]="{'hidden-sm-up':!xs,'hidden-sm-down':xs}">
+    <div class="c-buttons" [ngClass]="{'hidden-md-up':!xs,'hidden-md-down':xs}">
         <a class="c-button pointer text-nowrap" (click)="xsChange()"><i class="fa fa-bars rgap"></i>Фильтры</a>
         <a class="c-button pointer text-nowrap" (click)="clearFilter()"><i class="fa fa-times rgap"></i>Сбросить</a>
     </div>
@@ -9,7 +9,7 @@
     <div class="product-list" [ngClass]="{'hidden-sm-down':xs}">
         <cat-sorting (onSort)="changeSort($event)" [activeSort]="activeSort"></cat-sorting>
         <cat-alert *ngIf="products.length==0" (onClearFilter)="clearFilter($event)"></cat-alert>
-        <cat-product *ngFor="let product of products" [product]="product" [categoryName]="categoryName" [ngClass]="{'last':last}" (onPostPosition)="postPosition($event)"></cat-product>
+        <cat-product class="d-flex" *ngFor="let product of products" [product]="product" [categoryName]="categoryName" [ngClass]="{'last':last}" (onPostPosition)="postPosition($event)"></cat-product>
         <pager [category]="categoryId" (onPageChange)="changePage($event)"></pager>
     </div>
 </div>

@@ -1,11 +1,5 @@
 <div class="container">
-    <div class="row">
-        <table class="col-sm-12 nopadding">
-            <tr class="menu-table">
-                <td [ngClass]="{'active':cat.active}" width="{{(100 /categories.length)+'%'}}" *ngFor="let cat of categories;let last = last;">
-                    <a [ngClass]="{'last':last}" routerLink="/{{cat.url}}/"><span>{{cat.name}}</span></a>
-                </td>
-            </tr>
-        </table>
+    <div class="d-flex  align-items-center  justify-content-around menu-container">
+        <a class="menu-item" routerLink="/{{cat.url}}/"  routerLinkActive="active" *ngFor="let cat of categories;let last = last;">{{cat.name}}</a>
     </div>
 </div>

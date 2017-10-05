@@ -2,8 +2,7 @@ import {Component, Input} from "@angular/core";
 import {Category} from "models";
 @Component({
     selector: 'market-menu',
-    host: {'class': 'menu'},
-    templateUrl: 'menu.html'
+       templateUrl: 'menu.html'
 })
 export class MenuControl {
 

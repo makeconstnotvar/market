@@ -1,49 +1,31 @@
-.menu {
+market-menu {
     display: block;
     background-image: url(/img/menu_bg.jpg);
-    height: 71px;
-    -webkit-user-select: none;
-
-    .title {
-        color: #fff;
-        line-height: 70px;
+    height: 70px;
+    user-select: none;
+    .menu-container {
+        height: 70px;
     }
-
-    .menu-table {
-        height: 71px;
-        & > .active > a {
+    .menu-item {
+        transition: color 300ms, background-color 300ms;
+        color: #fff;
+        line-height: 40px;
+        border-radius: 10px;
+        margin: 0 20px;
+        padding: 0 40px;
+        font-size: 1.5rem;
+        &.active,
+        &:hover {
+            text-decoration: none;
             color: #555555;
             background-color: #fff;
-        }
-        & > td {
-            vertical-align: middle;
-            /*width: 16.66666666666667%;*/
-
-        }
-        & > td > a {
-            color: #fff;
-            text-align: center;
-            border-radius: 10px;
-            display: block;
-            text-decoration: none;
-            overflow: hidden;
-            margin-right: 20px;
-        }
-        & > td > a.last {
-            margin-right: 0;
-        }
-        & > td > a > span {
-            display: block;
-            padding: 8px 15px;
-            transition: background-color .3s linear;
-        }
-        & > td > a > span:hover {
-            color: #333333;
-            transition: background-color .3s linear;
-            background-color: #fff;
-            border-radius: 10px;
-            text-decoration: none;
+            transition: color 300ms, background-color 300ms;
         }
     }
-
+    @include media-breakpoint-down(xs) {
+        .menu-item {
+            font-size: 1rem;
+            padding: 0 20px;
+        }
+    }
 }
