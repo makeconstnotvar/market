@@ -25,6 +25,15 @@ catalog {
         min-width: 280px;
         margin-right: 10px;
     }
+    @include media-breakpoint-down(sm) {
+        .product-menu{
+            display: block;
+            width: 100%;
+            min-width:100%;
+        }
+    }
+
+
     .product-list {
         flex-grow: 1
     }

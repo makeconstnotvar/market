@@ -8,15 +8,23 @@
 @import "override/pagination";
 @import "override/utils";
 @import "../app1/styles";
+
 html {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+}
+
+html, body, application {
+    min-height: 100%;
 }
 
 body {
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
     min-width: 320px;
+
+
+
 }
 
 .rgap {
@@ -38,10 +46,45 @@ body {
 .pointer {
     cursor: pointer;
 }
-a.undecorate{
+
+a.undecorate {
     &:hover,
     &:focus,
     &:active {
         text-decoration: none;
     }
 }
+
+a.unstyled {
+    color: $body-color;
+}
+/*
+@include media-breakpoint-up(xs) {
+    body {
+        background-color: rgba(255, 0, 0, 0.25)
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    body {
+        background-color: rgba(0, 128, 0, 0.25)
+    }
+}
+
+@include media-breakpoint-up(md) {
+    body {
+        background-color: rgba(0, 0, 255, 0.25)
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    body {
+        background-color: rgba(238, 130, 238, 0.25)
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    body {
+        background-color: rgba(255, 165, 0, 0.25)
+    }
+}*/

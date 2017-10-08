@@ -26,10 +26,15 @@ export class SortingService {
         return this.sorts
     }
 
+
     getActive(): Sort {
         let actives = this.sorts.filter(s => s.active);
         if (actives && actives.length)
-            return actives[0]
+            return actives[0];
+        else {
+            this.reset();
+            return this.getActive()
+        }
     }
 
     private filterDefault(sort: Sort) {
@@ -53,6 +58,7 @@ export class SortingService {
     }
 
     change(activeSort): Sort[] {
+        if(!activeSort) this.reset();
         let sort = this.fromUrl(activeSort);
         this.sorts.forEach(s => {
             if (s.field == sort.field) {
@@ -77,6 +83,10 @@ export class SortingService {
                 s.active = false
         });
         return this.sorts;
+    }
+
+    private reset() {
+        this.sorts.forEach(s => s.active = s.field == 'default')
     }
 
     private toUrl(sort: Sort): object {

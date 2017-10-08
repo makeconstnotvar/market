@@ -5,16 +5,11 @@
     </a>
 </div>
 <div class="info">
-    <a class="d-block name mb-3" routerLink="/{{categoryName}}/{{product.url}}">{{product.name}}</a>
+    <a class="d-block name" routerLink="/{{categoryName}}/{{product.url}}">{{product.name}}</a>
     <div class="d-flex">
         <div class="details hidden-md-down">{{product.details}}</div>
         <div class="money d-flex flex-column">
             <price (onPostPosition)="postPosition($event)" [product]="product"></price>
-            <!--<p class="incart" *ngIf="product.inCart"><i class="fa fa-check-circle rgap"></i>В корзине</p>-->
-            <!--<p class="available yes" *ngIf="!product.inCart && product.available"><i class="fa fa-check-square-o rgap"></i>В наличии</p>-->
-            <!--<p class="available no" *ngIf="!product.inCart && !product.available" [ngClass]="{'blink':product.blink}"><i class="fa fa-ban rgap"></i>Отсутствует</p>-->
-            <!--<p class="price" [ngClass]="{'no':!product.available}">{{product.price}} руб.</p>-->
-            <!--<a class="buy pointer d-block" (click)="postPosition()"><i class="fa fa-shopping-cart rgap"></i>в корзину</a>-->
         </div>
     </div>
 </div>

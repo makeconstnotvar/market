@@ -1,9 +1,9 @@
 <ul class="list-inline">
-    <li class="list-inline-item hidden-sm-down">
+    <li class="list-inline-item hidden-md-down">
         <b>Сортировка</b>
     </li>
-    <li class="list-inline-item" *ngFor="let sort of sorts">
-        <a class="pointer sorting-btn" (click)="doSort(sort, sort.mode * -1)">
+    <li class="list-inline-item" [ngClass]="{'active':sort.active, 'default':sort.mode==0}" *ngFor="let sort of sorts">
+        <a class="pointer unstyled undecorate" (click)="doSort(sort, sort.mode * -1)">
             <i class="fa rgap sorting-icon" *ngIf="sort.active" [ngClass]="{'fa-sort-amount-asc':sort.mode==sortMode.Asc,'fa-sort-amount-desc':sort.mode==sortMode.Desc}"></i>
             <span class="sorting-title">{{sort.name}}</span>
         </a>

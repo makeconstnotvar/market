@@ -32,21 +32,25 @@
     <style>
         .loading {
             display: flex;
-            flex: 1;
-            height: 100vh;
             justify-content: center;
             align-items: center;
         }
 
-        html, body, application {
+        html,
+        body,
+        application,
+        .loading {
             height: 100%;
         }
-        body {
-            display: flex;
+        body{
+            background-color: #efefef
+        }
+        application{
+            display: block;
         }
     </style>
 </head>
-<body class="sticky">
+<body>
 <application>
     <div class="loading">Загрузка...</div>
 </application>

@@ -78,6 +78,7 @@ export class CatalogPage {
     }
 
     ngOnInit() {
+        console.log('инит каталога');
         this.route.paramMap.switchMap((pm: any) => {
             this.categoryName = pm.params.categoryName;
             return this.parameterProvider.getList(pm.params.categoryName)
@@ -90,12 +91,13 @@ export class CatalogPage {
             this.fetchActive();
         });
 
-
-        let qpm = this.route.snapshot.queryParamMap as any;
-        this.page = qpm.params.page;
-        this.activeSort = qpm.sort;
-        this.params = this.excludeParams(qpm.params);
-        //this.fetchParameters();
+        this.route.queryParamMap.subscribe((qpm: any) => {
+            console.log('qpm');
+            this.activeSort = qpm.params.sort;
+            this.page = qpm.params.page;
+            this.params = this.excludeParams(qpm.params);
+            this.sortingService.change(this.activeSort);
+        });
 
     }
 
