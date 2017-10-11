@@ -4,6 +4,8 @@ import {ContractProvider} from "providers";
 import {CartMode} from "../components/mode";
 import {NavbarService} from "services/navbar";
 import {Product} from "models/product";
+import {GlobalService} from "../../../services/global";
+import {Router} from "@angular/router";
 
 @Component({
     templateUrl: 'cart.html',
@@ -17,7 +19,9 @@ export class CartPage {
     showError: boolean = false;
 
     constructor(private contractProvider: ContractProvider,
-                private navbarService: NavbarService) {
+                private navbarService: NavbarService,
+                private globalService: GlobalService,
+                private router: Router) {
         this.contractProvider.getCart().subscribe(response => {
             this.contract = response.current;
             this.history = response.history;
@@ -31,14 +35,16 @@ export class CartPage {
     submit(contract) {
         this.contract = Object.assign(this.contract, contract);
 
-            this.contractProvider.placeContract(this.contract).subscribe(response => {
-                this.pageMode = CartMode.Success;
-                this.history.unshift(response);
-                this.navbarService.updateCartData({sum: 0, count: 0});
-            });
-        }
+        this.contractProvider.placeContract(this.contract).subscribe(response => {
+            this.pageMode = CartMode.Success;
+            this.history.unshift(response);
+            this.navbarService.updateCartData({sum: 0, count: 0});
+        });
+    }
 
-
+    back() {
+        this.router.navigateByUrl(this.globalService.previousState.url)
+    }
 
     del(idx) {
         this.contract.positions.splice(idx, 1);
