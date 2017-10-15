@@ -8,6 +8,8 @@ import {GlobalService} from "../../../services/global";
 import {Router} from "@angular/router";
 
 @Component({
+    selector:'cart',
+    host:{'class':'container d-block'},
     templateUrl: 'cart.html',
 })
 export class CartPage {

@@ -9,6 +9,7 @@ export class Contract {
     delivery:DeliveryMode;
     note:string;
     final:number;
+    number:string;
     date:any;
     statusName:string;
 }

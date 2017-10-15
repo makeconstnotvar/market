@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter} from "@angular/core";
 import {Contract} from "models/contract";
 @Component({
     selector: 'cart-positions',
+
     templateUrl: 'positions.html'
 })
 export class ComponentCartPositions {

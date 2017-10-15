@@ -3,8 +3,9 @@
         <i class="fa fa-chevron-left rgap"></i>Назад
     </a>
     <h2>История заказов</h2>
-    <p>Этот заказ был сделан {{contract.date | date:'dd.MM.yyyy'}} в {{contract.date | date:'HH:mm:ss'}}</p>
-    <p>Статус: {{contract.statusName}}</p>
+    <p>Этот заказ был сделан <strong>{{contract.date | date:'dd.MM.yyyy'}}</strong> в <strong>{{contract.date | date:'HH:mm:ss'}}</strong></p>
+    <p>Номер: <strong>{{contract.number}}</strong></p>
+    <p>Статус: <strong>{{contract.statusName}}</strong></p>
     <table class="table cart-list">
         <thead>
         <tr>
@@ -27,7 +28,7 @@
         </tr>
         </tbody>
         <tfoot>
-        <tr>
+        <tr class="final">
             <td colspan="2"></td>
             <td colspan="3"><b class="m-cart-result">Итого</b></td>
             <td class="text-center info"><b>{{contract.final}} <i class="fa fa-rub"></i></b></td>
