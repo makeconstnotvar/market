@@ -1,11 +1,12 @@
 import {Component, OnInit} from "@angular/core";
-import {CategoryProvider} from "providers";
 import {Category} from "models/category";
 import {ProductProvider} from "providers";
 import {Product} from "models/product";
 import {ContractProvider} from "providers";
 import {Position} from "models/position";
 import {NavbarService} from "services/navbar";
+import {SeoService} from "services/seo";
+import {SettingsProvider} from "../../providers/settings";
 
 
 @Component({
@@ -19,8 +20,9 @@ export class SpecialsPage implements OnInit {
     constructor(
                 private productProvider: ProductProvider,
                 private contractProvider: ContractProvider,
-                private navbarService: NavbarService) {
-
+                private navbarService: NavbarService,
+                private seoService:SeoService,
+                private settingsProvider:SettingsProvider) {
     }
 
     ngOnInit(): void {
@@ -29,6 +31,9 @@ export class SpecialsPage implements OnInit {
             response => {
                 this.products = response
             });
+        this.settingsProvider.meta('specials').subscribe(meta=>{
+            this.seoService.setMeta(meta)
+        })
 
     }
 

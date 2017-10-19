@@ -20,8 +20,8 @@ module.exports = class extends Base {
     
     // клиентские методы
     meta(req, res, next) {
-        var state = req.body.state;
-        var url = req.body.url;
+        let {state} = req.body;
+
         bll.settings.select().lean().exec((err, settings)=> {
             if (err) return next(err);
             var result = {};

@@ -27,10 +27,9 @@ const appRoutes: Routes = [
             {path: 'cart', component: CartPage},
             {path: 'cart/:contract', component: HistoryPage},
             {path: 'stocks', component: StocksPage},
-            {path: 'notfound', component: NotfoundPage},
             {path: ':categoryName/:productId', component: ViewPage},
             {path: ':categoryName', component: CatalogPage},
-            {path: '**', redirectTo: '/notfound'}
+            {path: '**', component: NotfoundPage}
     ]
     }
 

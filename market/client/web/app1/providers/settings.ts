@@ -20,8 +20,8 @@ class SettingsProvider {
             }).toPromise();
     }
 
-    meta(item): Observable<any> {
-        return this.http.post('/api/settings/meta', {state: item.state, url: item.url})
+    meta(state): Observable<any> {
+        return this.http.post('/api/settings/meta', {state})
             .map((r: Response) => {
                 return r.json() as any
             });

@@ -1,7 +1,6 @@
 SettingsSeoCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'Settings', 'States'];
 
 function SettingsSeoCtrl($scope, $rootScope, $state, $stateParams, $timeout, Settings, States) {
-    //var toState = $state.current.data.toState;
 
     Settings.select({projection: {'seoParams': 1}}).then(function (response) {
         $scope.settings = response.data;

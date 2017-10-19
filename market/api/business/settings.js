@@ -1,6 +1,5 @@
-'use strict';
 
-var models = require('../models'),
+let models = require('../models'),
     Base = require('./base');
 
 module.exports = class extends Base {
