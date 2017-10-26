@@ -7,7 +7,7 @@ import {PagesModule} from "pages/module";
 import {RootLayout,LayoutsModule} from "layouts/module";
 import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider, SettingsProvider, SettingsFactory} from "providers";
 import {ConfigService, GlobalService, NavbarService, ParametersService, SortingService} from "services";
-import {SeoService} from "./services/seo";
+import {SeoService} from "./services/seo1";
 
 
 @NgModule({

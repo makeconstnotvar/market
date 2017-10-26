@@ -5,7 +5,7 @@ import {Product} from "models/product";
 import {ContractProvider} from "providers";
 import {Position} from "models/position";
 import {NavbarService} from "services/navbar";
-import {SeoService} from "services/seo";
+import {SeoService} from "services/seo1";
 import {SettingsProvider} from "../../providers/settings";
 
 
