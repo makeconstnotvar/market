@@ -1,11 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {ProductProvider} from "providers";
-import {Product,Config,Color,Position} from "models";
+import {Component ,Location } from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {ConfigService} from "services/config";
-import {ContractProvider} from "providers";
-import {NavbarService} from "services/navbar";
-import {GlobalService} from "services/global";
+
+import {ProductProvider,ContractProvider} from "providers";
+import {Product,Config,Position} from "models";
+import {GlobalService,SeoService,NavbarService,ConfigService} from "services";
 
 
 @Component({
@@ -35,9 +33,7 @@ export class ViewPage {
             sum: product.price,
             //color: new Color() //пока затычка
         };
-        this.contractProvider.postPosition(position).subscribe(
-            response => {
-                console.log(response);
+        this.contractProvider.postPosition(position).subscribe(response => {
                 this.navbarService.updateCartData(response)
             });
     }
@@ -50,13 +46,21 @@ export class ViewPage {
                 private navbarService: NavbarService,
                 private configService: ConfigService,
                 private globalService: GlobalService,
-                private router: Router) {
+                private router: Router,
+                private seoService:SeoService) {
         this.activatedRoute.params.subscribe((params: Params) => {
             this.productId = params['productId'];
             this.categoryId = params['categoryId'];
             this.productProvider.view(this.productId).subscribe(response => {
                 this.product = response;
-                this.selectedImage = this.product.images[0]
+                this.selectedImage = this.product.images[0];
+                this.seoService.setMeta({
+                    title:this.product.title,
+                    description: `${this.product.description} ${this.product.price} руб.`,
+                    keywords: this.product.keywords,
+                    img: `/photos/${this.product._id}/${this.selectedImage}`,
+                    //url: `${this.location.origin}://${this.location.host}/${this.categoryId}/${this.product.url}`
+                })
             })
         });
 
