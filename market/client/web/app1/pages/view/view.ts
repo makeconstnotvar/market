@@ -58,8 +58,7 @@ export class ViewPage {
                     title:this.product.title,
                     description: `${this.product.description} ${this.product.price} руб.`,
                     keywords: this.product.keywords,
-                    img: `/photos/${this.product._id}/${this.selectedImage}`,
-                    //url: `${this.location.origin}://${this.location.host}/${this.categoryId}/${this.product.url}`
+                    image: `/photos/${this.product._id}/${this.selectedImage}`,
                 })
             })
         });

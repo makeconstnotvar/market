@@ -13,6 +13,12 @@
         "host": "http://market.debug",
         "domain": "market.debug"
     },
+    "client": {
+        "host": "http://market.debug",
+        "protocol": "http://",
+        "phone": "+7(925)477-5001",
+        "mail": "support@getyourbag.ru"
+    },
     "contacts": {
         "sendSms": false,
         "sendMail": false,
@@ -28,7 +34,7 @@
         "sitemapFileName": "sitemap.xml",
         "ymlCategorieFileName": "yml-categories.json",
         "renderListFileName": "render-list.json",
-        "configWebFileName":"config-web.json",
+        "configWebFileName": "config-web.json",
         "urlsFileNameSource": "request-list-source.json",
         "urlsFileName": "request-list.json",
         "siteName": "market.ru",

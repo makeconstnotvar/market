@@ -1,13 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {Category} from "models/category";
-import {ProductProvider} from "providers";
-import {Product} from "models/product";
-import {ContractProvider} from "providers";
-import {Position} from "models/position";
-import {NavbarService} from "services/navbar";
-import {SeoService} from "services/seo1";
-import {SettingsProvider} from "../../providers/settings";
-
+import {Category, Position, Product} from "models";
+import {ContractProvider, ProductProvider, SettingsProvider} from "providers";
+import {ConfigService, NavbarService, SeoService} from "services";
 
 @Component({
     selector: 'specials',
@@ -17,21 +11,22 @@ export class SpecialsPage implements OnInit {
     categories: Category[];
     products: Product[];
 
-    constructor(
-                private productProvider: ProductProvider,
+    constructor(private productProvider: ProductProvider,
                 private contractProvider: ContractProvider,
                 private navbarService: NavbarService,
-                private seoService:SeoService,
-                private settingsProvider:SettingsProvider) {
+                private seoService: SeoService,
+                private settingsProvider: SettingsProvider,
+                private configService: ConfigService) {
     }
 
     ngOnInit(): void {
-
+        let config = this.configService.config;
         this.productProvider.special().subscribe(
             response => {
                 this.products = response
             });
-        this.settingsProvider.meta('specials').subscribe(meta=>{
+        this.settingsProvider.meta('specials').subscribe(meta => {
+            meta.image = '/img/logo.jpg';
             this.seoService.setMeta(meta)
         })
 

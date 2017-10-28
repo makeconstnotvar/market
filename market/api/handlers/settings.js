@@ -1,6 +1,7 @@
 'use strict';
 
-var bll = require('../business'),
+let bll = require('../business'),
+    config = require('../../config.json'),
     Base = require('./base');
 
 
@@ -41,9 +42,6 @@ module.exports = class extends Base {
     }
 
     config(req, res, next){
-        res.send({
-            host:'getyourbag.ru',
-            phone:'+7926-123-4567'
-        })
+        res.send(config.client)
     }
 };

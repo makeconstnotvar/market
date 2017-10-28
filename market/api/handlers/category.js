@@ -62,14 +62,14 @@ module.exports = class extends Base {
 
     list(req, res, next) {
         var options = req.body;
-        options.projection = {
+        /*options.projection = {
             'name': 1,
             'details': 1,
             'url': 1,
             'urlText': 1,
             'photos': {$elemMatch: {fileType: 'image'}},
             'photos.fileId': 1
-        };
+        };*/
         bll.category.selectAll(options).lean().exec((err, categories)=> {
             if (err) return next(err);
             var cats = createTree(categories);
