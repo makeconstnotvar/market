@@ -1,20 +1,20 @@
 import {Component} from "@angular/core";
-import {Contract} from "models/contract";
-import {ContractProvider} from "providers";
-import {CartMode} from "../components/mode";
-import {NavbarService} from "services/navbar";
-import {Product} from "models/product";
-import {GlobalService} from "../../../services/global";
 import {Router} from "@angular/router";
+import {Contract, Product} from "models/index";
+import {ContractProvider} from "providers/index";
+import {GlobalService, NavbarService} from "services/index";
+import {CartMode} from "../components/mode";
+
 
 @Component({
-    selector:'cart',
-    host:{'class':'container d-block'},
+    selector: 'cart',
+    host: {'class': 'container d-block'},
     templateUrl: 'cart.html',
 })
 export class CartPage {
     history: any[] = [];
     cartMode = CartMode;
+    isBack = false;
     contract: Contract = new Contract;
     pageMode: CartMode = CartMode.Empty;
     showHistory: boolean = false;

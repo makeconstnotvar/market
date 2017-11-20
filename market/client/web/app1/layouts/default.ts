@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {CategoryProvider} from "providers";
-import {Category} from "models";
+import {CategoryProvider} from "providers/index";
+import {Category} from "models/index";
 
 
 @Component({

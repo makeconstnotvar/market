@@ -1,30 +1,26 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
-import {Http, Response} from "@angular/http";
 import {Config} from "models/config";
 import {ConfigService} from "services/config";
+import {HttpClient} from "@angular/common/http";
 
 
 @Injectable()
 class SettingsProvider {
-    constructor(private http: Http,
+    constructor(private http: HttpClient,
                 private configService: ConfigService) {
     }
 
     config(): Promise<Config> {
         return this.http.post('/api/settings/config', {})
-            .map((r: Response) => {
-                let config = r.json() as Config;
+            .map((config:Config )=> {
                 this.configService.config = config;
                 return config;
             }).toPromise();
     }
 
     meta(state): Observable<any> {
-        return this.http.post('/api/settings/meta', {state})
-            .map((r: Response) => {
-                return r.json() as any
-            });
+        return this.http.post('/api/settings/meta', {state});
     }
 }
 

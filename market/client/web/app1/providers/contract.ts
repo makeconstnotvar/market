@@ -1,54 +1,36 @@
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Rx";
-import {Http, Response} from "@angular/http";
-import {CartData, Contract, Position} from "models";
+import {Observable} from "rxjs/Observable";
+import {CartData, Contract, Position} from "models/index";
+import {HttpClient} from "@angular/common/http";
 
 
 @Injectable()
 export class ContractProvider {
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
 
     }
 
     getById(id): Observable<Contract> {
-        return this.http.post('/api/contract/select', {id: id})
-            .map((r: Response) => {
-                return r.json() as Contract
-            })
+        return this.http.post<Contract>('/api/contract/select', {id: id});
     }
 
     placeContract(item): Observable<any> {
-        return this.http.post('/api/contract/place', item)
-            .map((r: Response) => {
-                return r.json() as any
-            });
+        return this.http.post('/api/contract/place', item);
     }
 
     postPosition(position: Position): Observable<any> {
-        return this.http.post('/api/contract/position', position)
-            .map((r: Response) => {
-                return r.json() as any
-            });
+        return this.http.post('/api/contract/position', position);
     }
 
     put(item): Observable<CartData> {
-        return this.http.post('/api/contract/update', item)
-            .map((r: Response) => {
-                return r.json() as CartData
-            });
+        return this.http.post<CartData>('/api/contract/update', item);
     }
 
     getCartStatus(): Observable<any> {
-        return this.http.post('/api/contract/status', {})
-            .map((r: Response) => {
-                return r.json() as any
-            });
+        return this.http.post('/api/contract/status', {});
     }
 
     getCart(): Observable<any> {
-        return this.http.post('/api/contract/cart', {})
-            .map((r: Response) => {
-                return r.json() as any
-            });
+        return this.http.post('/api/contract/cart', {});
     }
 }

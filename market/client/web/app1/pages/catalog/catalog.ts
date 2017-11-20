@@ -1,12 +1,13 @@
 import {Component, ViewChild} from "@angular/core";
-import {Product} from "models/product";
-import {ContractProvider, ParameterProvider, ProductProvider} from "providers";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Parameter, Position} from "models";
-import {NavbarService, ParametersService, SortingService} from "services";
+import {Product} from "models/index";
+import {ContractProvider, ParameterProvider, ProductProvider} from "providers/index";
+
+import {Parameter, Position} from "models/index";
+import {NavbarService, ParametersService, SortingService} from "services/index";
 import {PagerControl} from "controls/pager/pager";
 import {ComponentCatalogFilter} from "./components/filter/filter";
-import 'rxjs/add/operator/switchMap'
+import {switchMap}from 'rxjs/operators'
 
 @Component({
     selector: 'catalog',
@@ -82,7 +83,7 @@ export class CatalogPage {
         this.route.paramMap.switchMap((pm: any) => {
             this.categoryName = pm.params.categoryName;
             return this.parameterProvider.getList(pm.params.categoryName)
-        }).subscribe(response => {
+        }).subscribe((response:any )=> {
             console.log('получены параметры');
             this.categoryId = response.catid;
             this.parameters = response.parameters;
@@ -117,7 +118,7 @@ export class CatalogPage {
     }
 
     private excludeParams(params) {
-        let p = Object.assign({}, params);
+        let p:any = Object.assign({}, params);
         delete p.page;
         delete p.sort;
         delete p.categoryName;
@@ -163,7 +164,7 @@ export class CatalogPage {
     }
 
     private fetchParameters() {
-        this.parameterProvider.getList(this.categoryName).subscribe(response => {
+        this.parameterProvider.getList(this.categoryName).subscribe((response:any) => {
             console.log('получены параметры');
             this.categoryId = response.catid;
             this.parameters = response.parameters;

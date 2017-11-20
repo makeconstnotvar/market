@@ -1,13 +1,17 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs/Subject";
-import {CartData} from "models";
+import {CartData} from "models/index";
 
 @Injectable()
-export class NavbarService{
+export class NavbarService {
+    cartDataSubject;
 
-    private cartDataSubject = new Subject<CartData>();
+    constructor() {
+        this.cartDataSubject = new Subject<CartData>();
+    }
 
-    public observable = this.cartDataSubject.asObservable();//.subscribe;
+
+    //public observable = this.cartDataSubject.asObservable();//.subscribe;
 
     public updateCartData(cartData: CartData) {
         this.cartDataSubject.next(cartData);

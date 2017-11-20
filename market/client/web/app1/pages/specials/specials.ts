@@ -1,13 +1,13 @@
 import {Component, OnInit} from "@angular/core";
-import {Category, Position, Product} from "models";
-import {ContractProvider, ProductProvider, SettingsProvider} from "providers";
-import {ConfigService, NavbarService, SeoService} from "services";
+import {Category, Position, Product} from "models/index";
+import {ContractProvider, ProductProvider, SettingsProvider} from "providers/index";
+import {ConfigService, NavbarService, SeoService} from "services/index";
 
 @Component({
     selector: 'specials',
     templateUrl: 'specials.html'
 })
-export class SpecialsPage implements OnInit {
+export class SpecialsPage implements OnInit{
     categories: Category[];
     products: Product[];
 
@@ -17,9 +17,11 @@ export class SpecialsPage implements OnInit {
                 private seoService: SeoService,
                 private settingsProvider: SettingsProvider,
                 private configService: ConfigService) {
+        console.log(1)
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
+        console.log(2);
         let config = this.configService.config;
         this.productProvider.special().subscribe(
             response => {

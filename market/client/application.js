@@ -1,36 +1,25 @@
 const express = require('express'),
     app = express(),
-    path = require('path'),
-    fs = require('fs'),
-    dot = require('express-dot-engine'),
-    config = require('../config.json'),
-    configWeb = require(path.join(config.path.public, config.settings.configWebFileName)),
     secure = require('../api/handlers').secure,
     apiRouter = require('./router'),
-    urls = require(path.join(config.path.public, config.settings.urlsFileName));
+    server = require('./server'),
+    browser = require('./browser');
 
 app.use('/api', apiRouter);
 app.use('/', secure.cookies, function (req, res, next) {
     let ua = req.headers['user-agent'];
     if (/bot|google|yandex|mail\.ru|bing|embedly|guzzlehttp|validator|vk\.com|facebook|slurp|tumblr|undefined|seopult|mailru|mrpc|ok\.ru/i.test(ua)) {
         console.log('робот: ' + ua + ' url: ' + req.url);
-        fs.access(path.join(config.path.prerender, req.url, 'index.html'), fs.R_OK, (err) => {
-            if (err) {
-                res.status(404);
-                return next();
-            }
-            res.sendFile('index.html', {root: path.join(config.path.prerender, req.url)});
-        });
+        server(req, res);
     }
     else {
         console.log('юзер: ' + ua + ' url: ' + req.url);
-        res.sendFile('index.html',{root:path.join(__dirname,'web')});
+        browser(req, res);
     }
 });
 
 app.use(function (req, res, next) {
     console.error("сработало 404");
-
     //res.redirect('/error?url='+req.url);
 });
 
@@ -42,6 +31,5 @@ app.use(function (err, req, res, next) {
         res.status(500);
     res.send(err.userMessage);
 });
-
 
 module.exports = app;

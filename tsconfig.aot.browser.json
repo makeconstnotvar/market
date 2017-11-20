@@ -3,6 +3,7 @@
         "baseUrl": "market/client/web/app1",
         "target": "es6",
         "module": "es6",
+        "outDir":"market/client/web/build/aot/browser",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
@@ -12,10 +13,11 @@
         "typeRoots": [
             "node_modules/@types"
         ]
-
     },
     "include": [
-        "market/client/web/app1/_browser/index.ts",
-        "market/client/web/app1/_server/index.ts"
-    ]
+        "market/client/web/app1/_browser/index.ts"
+    ],
+    "angularCompilerOptions": {
+        "strictMetadataEmit" : true
+    }
 }

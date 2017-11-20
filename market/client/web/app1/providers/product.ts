@@ -1,34 +1,25 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
-import {Http, Response} from "@angular/http";
 import {Product} from "models/product";
+import {HttpClient} from "@angular/common/http";
 
 
 @Injectable()
 export class ProductProvider {
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
 
     }
 
 
     list(query): Observable<any> {
-        return this.http.post('/api/product/list',  query)
-            .map((r: Response) => {
-                return r.json()
-            });
+        return this.http.post('/api/product/list',  query);
     }
 
     view(id: string): Observable<Product> {
-        return this.http.post('/api/product/view', {id: id})
-            .map((r: Response) => {
-                return r.json() as Product
-            });
+        return this.http.post<Product>('/api/product/view', {id: id});
     }
 
     special(): Observable<Product[]> {
-        return this.http.post('/api/product/special', {})
-            .map((r: Response) => {
-                return r.json() as Product[]
-            });
+        return this.http.post<Product[]> ('/api/product/special', {});
     }
 }

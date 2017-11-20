@@ -1,20 +1,16 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
-import {Http, Response} from "@angular/http";
 import {Category} from "models/category";
+import {HttpClient} from "@angular/common/http";
 
 
 @Injectable()
 export class CategoryProvider {
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
 
     }
 
     getTree(): Observable<Category[]> {
-        return this.http
-            .post('/api/category/list', {})
-            .map((r: Response) => {
-                return r.json() as Category[]
-            });
+        return this.http.post<Category[]>('/api/category/list', {});
     }
 }

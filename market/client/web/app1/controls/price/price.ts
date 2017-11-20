@@ -1,9 +1,9 @@
-import {Component, Input, Output, EventEmitter, trigger, state, style, transition, animate} from "@angular/core";
-import {Product} from "models";
+import {Component, Input, Output, EventEmitter} from "@angular/core";
+
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Product} from "models/index";
 @Component({
     selector: 'price',
-    host: {'class': 'price'},
-
     animations: [
         trigger('inCartChanged', [
             state('true', style({opacity: 1})),

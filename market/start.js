@@ -1,12 +1,9 @@
 const express = require('express'),
     helmet = require('helmet'),
-    path = require('path'),
     compression = require('compression'),
     bodyParser = require('body-parser'),
     app = express(),
-    http = require('http'),
-    server = http.createServer(app),
-    io = require('socket.io')(server),
+    server = require('http').createServer(app),
     config = require('./config'),
     adminApp = require('./admin/application'),
     clientApp = require('./client/application');

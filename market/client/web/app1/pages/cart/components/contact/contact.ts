@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Output} from "@angular/core";
-import {Contract} from "models/contract";
-import {DeliveryMode} from "models";
+import {DeliveryMode,Contract} from "models/index";
 
 @Component({
     selector: 'cart-contact',

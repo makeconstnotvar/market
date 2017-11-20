@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {Settings,CartData} from "models";
-import {NavbarService} from "services";
+import {Settings,CartData} from "models/index";
+import {NavbarService} from "services/index";
 
 @Component({
     selector: 'market-navbar',
@@ -45,7 +45,7 @@ export class NavbarControl {
 
     constructor(private navbarService: NavbarService) {
         this.cartData = {sum:0,count:0};
-        navbarService.observable.subscribe(cartData => {
+        navbarService.cartDataSubject.subscribe(cartData => {
             this.cartData = cartData;
         })
     }

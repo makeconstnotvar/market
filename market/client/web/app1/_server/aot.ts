@@ -1,12 +1,12 @@
 import 'zone.js/dist/zone-node';
-import 'reflect-metadata';
-import {ServerAppModuleNgFactory} from './module.ngfactory';
-import {ngExpressEngine} from '@nguniversal/express-engine';
+
+import {ServerAppModuleNgFactory} from './module.ngfactory.js';
+import {ngExpressEngine} from '@nguniversal/express-engine/src/main';
 import {enableProdMode} from "@angular/core";
 
 enableProdMode();
-
 let expressEngine = ngExpressEngine({
     bootstrap: ServerAppModuleNgFactory
 });
+
 export {expressEngine};

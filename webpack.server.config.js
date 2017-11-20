@@ -1,18 +1,17 @@
-let webpack = require('webpack'),
-    path = require('path');
+let path = require('path');
 
 module.exports = {
     entry: {
-        server: './market/client/web/app1/_server/aot.js'
+        server: './market/client/web/app1/_browser/index.js'
     },
     output: {
-        filename: '[name].js',
+        filename: 'server.js',
         path: path.resolve(__dirname, './market/client/web/build'),
         libraryTarget: "commonjs"
     },
     target: 'node',
     resolve: {
-        extensions: ['.js', '.html'],
+
         modules: [
             path.resolve(__dirname, 'node_modules'),
             path.resolve(__dirname, 'market/client/web/app1')

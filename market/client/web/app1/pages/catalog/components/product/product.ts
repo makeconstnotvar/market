@@ -16,7 +16,7 @@ export class ComponentCatalogProduct {
     onPostPosition = new EventEmitter<Product>();
 
     postPosition() {
-        this.product.inCart=true;
+        this.product.inCart = true;
         this.onPostPosition.emit(this.product);
     }
 }

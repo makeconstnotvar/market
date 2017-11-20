@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs/Subject";
 import {NavigationEnd} from "@angular/router";
+
 @Injectable()
 export class GlobalService {
     private previousStateSubject = new Subject<Object>();

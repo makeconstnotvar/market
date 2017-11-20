@@ -1,19 +1,19 @@
 import "rxjs/Rx";
 import {APP_INITIALIZER, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {HttpModule} from "@angular/http";
 import {NavigationEnd, Router} from "@angular/router";
 import {PagesModule} from "pages/module";
 import {RootLayout,LayoutsModule} from "layouts/module";
-import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider, SettingsProvider, SettingsFactory} from "providers";
-import {ConfigService, GlobalService, NavbarService, ParametersService, SortingService} from "services";
-import {SeoService} from "./services/seo1";
+import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider, SettingsProvider, SettingsFactory} from "providers/index";
+import {ConfigService, GlobalService, NavbarService, ParametersService, SortingService} from "services/index";
+import {SeoService} from "services/index";
+import { HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
     imports: [
         BrowserModule,
-        HttpModule,
+        HttpClientModule,
         PagesModule,
         LayoutsModule
     ],

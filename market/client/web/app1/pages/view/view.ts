@@ -1,9 +1,9 @@
-import {Component ,Location } from "@angular/core";
+import {Component  } from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 
-import {ProductProvider,ContractProvider} from "providers";
-import {Product,Config,Position} from "models";
-import {GlobalService,SeoService,NavbarService,ConfigService} from "services";
+import {ProductProvider,ContractProvider} from "providers/index";
+import {Product,Config,Position} from "models/index";
+import {GlobalService,SeoService,NavbarService,ConfigService} from "services/index";
 
 
 @Component({

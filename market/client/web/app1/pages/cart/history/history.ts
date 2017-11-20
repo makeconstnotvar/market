@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {Contract} from "models/contract";
-import {ContractProvider} from "providers";
+import {Contract} from "models/index";
+import {ContractProvider} from "providers/index";
 import {ActivatedRoute, Params} from "@angular/router";
 
 

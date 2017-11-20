@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {NavbarItem, CartData} from "models";
+import {NavbarItem, CartData} from "models/index";
 
 @Component({
     selector: 'navbar-cart',

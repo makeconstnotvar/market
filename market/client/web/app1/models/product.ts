@@ -1,5 +1,6 @@
 export class Product {
     caturl: string;
+    stockText: string;
     url: string;
     title: string;
     keywords: string;

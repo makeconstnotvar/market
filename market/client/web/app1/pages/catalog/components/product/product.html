@@ -9,7 +9,7 @@
     <div class="d-flex">
         <div class="details hidden-md-down">{{product.details}}</div>
         <div class="money d-flex flex-column">
-            <price (onPostPosition)="postPosition($event)" [product]="product"></price>
+            <price (onPostPosition)="postPosition()" [product]="product"></price>
         </div>
     </div>
 </div>
