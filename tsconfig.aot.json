@@ -2,7 +2,6 @@
     "compilerOptions": {
         "target": "es6",
         "module": "es6",
-        "outDir":"market/client/web/build/aot",
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
@@ -15,8 +14,8 @@
         "baseUrl": "market/client/web/app1"
     },
     "include": [
-        "market/client/web/app1/_browser/module.ts",
-        "market/client/web/app1/_server/module.ts"
+        "market/client/web/app1/_browser/index.ts",
+        "market/client/web/app1/_server/index.ts"
     ],
     "angularCompilerOptions": {
         "skipMetadataEmit": true

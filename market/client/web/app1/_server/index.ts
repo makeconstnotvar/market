@@ -1,13 +1,13 @@
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone-node';
 
-import {ServerAppModule} from './module';
+import {ServerAppModuleNgFactory} from './module.ngfactory.js';
 import {ngExpressEngine} from '@nguniversal/express-engine/src/main';
 import {enableProdMode} from "@angular/core";
 
 enableProdMode();
 let expressEngine = ngExpressEngine({
-    bootstrap: ServerAppModule
+    bootstrap: ServerAppModuleNgFactory
 });
 
 export {expressEngine};

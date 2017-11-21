@@ -3,7 +3,7 @@ let webpack = require('webpack'),
 
 module.exports = {
     entry: {
-        browser: './market/client/web/build/aot/browser/market/client/web/app1/_browser/index.js'
+        browser: './market/client/web/app1/_browser/index.js'
     },
     output: {
         filename: 'browser.js',
@@ -15,19 +15,19 @@ module.exports = {
             output: {comments: false}
         })*/
     ],
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules|ngfactory/,
-                use: ["source-map-loader"],
-                enforce: "pre"
-            }]
-    },
+    // module: {
+    //     rules: [
+    //         {
+    //             test: /\.js$/,
+    //             exclude: /node_modules|ngfactory/,
+    //             use: ["source-map-loader"],
+    //             enforce: "pre"
+    //         }]
+    // },
     resolve: {
         modules: [
             path.resolve(__dirname, 'node_modules'),
-            path.resolve(__dirname, 'market/client/web/build/aot/browser/market/client/web/app1')
+            path.resolve(__dirname, 'market/client/web/app1')
         ]
     },
     devtool: 'source-map',

@@ -4,11 +4,7 @@ import {CartData} from "models/index";
 
 @Injectable()
 export class NavbarService {
-    cartDataSubject;
-
-    constructor() {
-        this.cartDataSubject = new Subject<CartData>();
-    }
+    public cartDataSubject= new Subject<CartData>();
 
 
     //public observable = this.cartDataSubject.asObservable();//.subscribe;

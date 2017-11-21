@@ -2,7 +2,7 @@ let path = require('path');
 
 module.exports = {
     entry: {
-        server: './market/client/web/app1/_browser/index.js'
+        server: './market/client/web/build/aot/market/client/web/app1/_server/index.js'
     },
     output: {
         filename: 'server.js',
@@ -14,7 +14,7 @@ module.exports = {
 
         modules: [
             path.resolve(__dirname, 'node_modules'),
-            path.resolve(__dirname, 'market/client/web/app1')
+            path.resolve(__dirname, 'market/client/web/build/aot/market/client/web/app1')
         ]
     },
     devtool: false,
