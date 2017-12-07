@@ -63,3 +63,4 @@ ApplicationModule.ctorParameters = () => [
     { type: NavbarService, },
 ];
 export { ɵ0 };
+//# sourceMappingURL=module.js.map

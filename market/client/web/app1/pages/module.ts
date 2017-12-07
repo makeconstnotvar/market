@@ -15,7 +15,6 @@ import {ContactsPage} from "./contacts/contacts";
 import {ModuleComponentsView} from "./view/components/module";
 import {ModuleComponentsCart} from "./cart/components/module";
 import {ModuleComponentsCatalog} from "./catalog/components/module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DefaultLayout} from "../layouts/default";
 
 const appRoutes: Routes = [
@@ -49,7 +48,6 @@ const appRoutes: Routes = [
     ],
     imports: [
         BrowserModule,
-        BrowserAnimationsModule,
         ControlsModule,
         ModuleComponentsSpecials,
         ModuleComponentsView,

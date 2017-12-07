@@ -1,21 +1,25 @@
 const express = require('express'),
     app = express(),
+    path = require('path'),
     secure = require('../api/handlers').secure,
     apiRouter = require('./router'),
-    server = require('./server'),
-    browser = require('./browser');
+    config = require('../config.json'),
+    minifyHTML = require('express-minify-html'),
+    serverjs = require('./web/build/server'),
+    engine = serverjs.expressEngine;
+
+let prodivers = [
+    {provide: 'serverUrl', useValue: config.system.host}
+];
+
+app.engine('html', engine(prodivers));
+app.set('view engine', 'html');
+app.set('views', path.join(__dirname, 'web/views'));
+app.use(minifyHTML({override: true}));
 
 app.use('/api', apiRouter);
-app.use('/', secure.cookies, function (req, res, next) {
-    let ua = req.headers['user-agent'];
-    if (/bot|google|yandex|mail\.ru|bing|embedly|guzzlehttp|validator|vk\.com|facebook|slurp|tumblr|undefined|seopult|mailru|mrpc|ok\.ru/i.test(ua)) {
-        console.log('робот: ' + ua + ' url: ' + req.url);
-        server(req, res);
-    }
-    else {
-        console.log('юзер: ' + ua + ' url: ' + req.url);
-        browser(req, res);
-    }
+app.use('/', secure.cookies, function (req, res) {
+    res.render('index', {req, res});
 });
 
 app.use(function (req, res, next) {

@@ -6,8 +6,11 @@ import {ngExpressEngine} from '@nguniversal/express-engine/src/main';
 import {enableProdMode} from "@angular/core";
 
 enableProdMode();
-let expressEngine = ngExpressEngine({
-    bootstrap: ServerAppModuleNgFactory
-});
+let expressEngine = (providers) => {
+    return ngExpressEngine({
+        bootstrap: ServerAppModuleNgFactory,
+        providers: providers
+    });
+};
 
 export {expressEngine};

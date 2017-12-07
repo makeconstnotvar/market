@@ -9,22 +9,25 @@
 @import "override/utils";
 @import "../app1/styles";
 
+html,
+body,
+application {
+    height: 100%;
+}
+
+application{
+    display: block;
+}
+
 html {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
-}
-
-html, body, application {
-    min-height: 100%;
 }
 
 body {
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
     min-width: 320px;
-
-
-
 }
 
 .rgap {

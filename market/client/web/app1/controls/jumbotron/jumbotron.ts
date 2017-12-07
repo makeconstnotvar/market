@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, Inject, PLATFORM_ID} from "@angular/core";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'jumbotron',
@@ -10,9 +11,11 @@ export class JumbotronControl {
     jumbos: Jumbo[] = jumbos;
 
     ngOnInit() {
+        if (isPlatformBrowser(this.platformId)) {
         this.intervalId = setInterval(() => {
             showNextJumbo();
         }, 5000);
+        }
     }
 
     ngOnDestroy() {
@@ -20,6 +23,7 @@ export class JumbotronControl {
             clearInterval(this.intervalId);
         }
     }
+    constructor(@Inject(PLATFORM_ID) private platformId: Object){}
 }
 
 let jumbos: Jumbo[] = [

@@ -4,6 +4,7 @@ import {NavbarService} from "./navbar";
 import {ParametersService} from "./parameters";
 import {SortingService} from "./sort";
 import {SeoService} from "./seo1";
+import {UniversalInterceptor} from "./universal";
 
 export {
     ConfigService,
@@ -11,5 +12,6 @@ export {
     NavbarService,
     ParametersService,
     SortingService,
-    SeoService
+    SeoService,
+    UniversalInterceptor
 }
