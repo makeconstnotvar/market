@@ -7,7 +7,7 @@ module.exports = {
     },
     output: {
         filename: 'browser.js',
-        path: path.resolve(__dirname, 'build/client')
+        path: path.resolve(__dirname, 'build')
     },
     module: {
         rules: [

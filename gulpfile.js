@@ -15,16 +15,16 @@ let commonCss = [
         'market/client/web/styles/loading.scss',
     ],
     injectJs = [
-        'build/client/browser.js'
+        'build/browser.js'
     ],
     injectCss = [
-        'build/client/styles.css'
+        'build/styles.css'
     ],
     pugs = [
         'market/client/web/views/browser.pug',
         'market/client/web/views/server.pug'
     ],
-    destination = 'build/client';
+    destination = 'build';
 
 function tildaResolver(url, prev, done) {
     if (url[0] === '~') {
@@ -54,8 +54,8 @@ gulp.task('inject', function () {
     const cssFiles = gulp.src(injectCss);
     const jsFiles = gulp.src(injectJs);
     return gulp.src(pugs)
-        .pipe(inject(cssFiles, {ignorePath: 'build/client',addPrefix:'css'}))
-        .pipe(inject(jsFiles, {ignorePath: 'build/client',addPrefix:'js'}))
+        .pipe(inject(cssFiles, {ignorePath: 'build/client/web',addPrefix:'css'}))
+        .pipe(inject(jsFiles, {ignorePath: 'build/client/web',addPrefix:'js'}))
         .pipe(pug())
         .pipe(gulp.dest('market/client/web/views'));
 });
