@@ -1,35 +1,52 @@
-SpecialsCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'Product', 'Contract', 'Settings'];
-
-function SpecialsCtrl($scope, $rootScope, $state, $timeout, Product, Contract, Settings) {
-
-    Settings.meta({state: $state.current.name, url: $state.current.url}).then(function (response) {
-        $rootScope.$broadcast('head:change', response.data);
-    });
-
-    Product.special().then(function (response) {
-        $scope.products = response.data.products;
-    });
-
-    $scope.postPosition = function (product) {
-        //одинаковый метод 3 раза повторяется
-        if (product.available) {
-            var position = {
-                product: product._id,
-                count: 1,
-                sum: product.price
-            };
-            Contract.postPosition(position).then(function (response) {
-                product.inCart = true;
-                $rootScope.$broadcast('contract:change', response.data);
-            })
-        } else {
-            product.blink = true;
-            $timeout(function () {
-                product.blink = false;
-            }, 2000);
-        }
+import { Component } from "@angular/core";
+import { ContractProvider, ProductProvider, SettingsProvider } from "providers/index";
+import { ConfigService, NavbarService, SeoService } from "services/index";
+export class SpecialsPage {
+    constructor(productProvider, contractProvider, navbarService, seoService, settingsProvider, configService) {
+        this.productProvider = productProvider;
+        this.contractProvider = contractProvider;
+        this.navbarService = navbarService;
+        this.seoService = seoService;
+        this.settingsProvider = settingsProvider;
+        this.configService = configService;
+        console.log(1);
+    }
+    ngOnInit() {
+        console.log(2);
+        let config = this.configService.config;
+        this.productProvider.special().subscribe(response => {
+            this.products = response;
+        });
+        this.settingsProvider.meta('specials').subscribe(meta => {
+            meta.image = '/img/logo.jpg';
+            this.seoService.setMeta(meta);
+        });
+    }
+    postPosition(product) {
+        let position = {
+            product: product._id,
+            count: 1,
+            price: product.price,
+            sum: product.price,
+        };
+        this.contractProvider.postPosition(position).subscribe(response => {
+            console.log(response);
+            this.navbarService.updateCartData(response);
+        });
     }
 }
-
-angular.module('controller').controller('SpecialsCtrl', SpecialsCtrl);
-
+SpecialsPage.decorators = [
+    { type: Component, args: [{
+                selector: 'specials',
+                templateUrl: 'specials.html'
+            },] },
+];
+SpecialsPage.ctorParameters = () => [
+    { type: ProductProvider, },
+    { type: ContractProvider, },
+    { type: NavbarService, },
+    { type: SeoService, },
+    { type: SettingsProvider, },
+    { type: ConfigService, },
+];
+//# sourceMappingURL=specials.js.map

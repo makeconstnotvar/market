@@ -53,12 +53,13 @@ module.exports = class {
 
     cookies(req, res, next) {
         var cookie = cookies(req, res);
-        var cookieVal = cookie.get('uid');
-        var data = crypto.decryptToObj(cookieVal, next);
-        if (!data.uid) {
-            var uid = uuid.v4();
-            req.uid = uid;
-            cookie.set('uid', crypto.encryptObj({uid: uid}), {
+        var uid = cookie.get('uid') || {};
+        //var cookieVal = cookie.get('uid');
+        //var data = crypto.decryptToObj(cookieVal, next);
+        if (!uid) {
+            var newUid = uuid.v4();
+            req.uid = newUid;
+            cookie.set('uid',  newUid/*crypto.encryptObj({uid: uid})*/, {
                 secure: config.secure.https,
                 maxAge: 365 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
@@ -66,9 +67,20 @@ module.exports = class {
                 domain: config.system.domain
             });
         } else {
-            req.uid = data.uid;
+            req.uid = uid;
         }
+        console.log(req.uid);
         next();
     }
+
+    cookies1(req, res, next){
+        var cookie = cookies(req, res);
+        var uid = cookie.get('uid');
+        if(!uid)
+            console.log('нет куки');
+        else
+            req.uid = uid;
+        next();
+}
 };
 

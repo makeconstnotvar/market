@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "baseUrl": "market/client/web/app1",
+        "baseUrl": "market/client/web/app",
         "target": "es6",
         "module": "es6",
         "moduleResolution": "node",
@@ -15,8 +15,8 @@
         ]
     },
     "include": [
-        "market/client/web/app1/_browser/index.ts",
-        "market/client/web/app1/_server/index.ts"
+        "market/client/web/app/_browser/index.ts",
+        "market/client/web/app/_server/index.ts"
     ],
     "angularCompilerOptions": {
         "strictMetadataEmit": true

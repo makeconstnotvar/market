@@ -293,9 +293,8 @@ module.exports = class extends Base {
         }
 
         function getContract(callback) {
-            bll.contract.select({
-                query: {uid: req.uid, status: 'temp'}
-            }).populate('positions.product').lean().exec((err, contract) => {
+            bll.contract.select({query: {uid: req.uid, status: 'temp'}})
+                .populate('positions.product').lean().exec((err, contract) => {
                 if (err) callback(err);
                 else callback(null, contract);
             });
@@ -417,7 +416,7 @@ function getListFields(products, contract) {
             }
         }
     }
-    return products;
+     return products;
 }
 
 function getValue(paramContainer) {

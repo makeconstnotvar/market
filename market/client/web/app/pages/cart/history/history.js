@@ -1,36 +1,27 @@
-HistoryCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', 'Contract', 'Settings'];
-
-function HistoryCtrl($scope, $rootScope, $state, $stateParams, Contract, Settings) {
-
-
-    Settings.meta({state: $state.current.name}).then(function (response) {
-        $rootScope.$broadcast('head:change', response.data);
-    });
-
-    Contract.getById($stateParams.cid).then(function (response) {
-        var contract = response.data;
-        contract.delivery = contract.delivery || 'auto';
-        $scope.contract = contract;
-        $scope.showEmpty = !!(!contract || !contract.positions || contract.positions.length == 0);
-        $scope.contract.final = getFinal($scope.contract.positions);
-
-        $rootScope.$broadcast('head:change', response.data.seo);
-    });
-
-    function getFinal(positions) {
-        var sum = 0;
-        if (positions)
-            positions.forEach(function (p) {
-                if (p.sum) {
-                    sum += parseFloat(p.sum);
-                }
-                else {
-                    sum += parseFloat(p.price);
-                }
+import { Component } from "@angular/core";
+import { Contract } from "models/index";
+import { ContractProvider } from "providers/index";
+import { ActivatedRoute } from "@angular/router";
+export class HistoryPage {
+    constructor(contractProvider, activatedRoute) {
+        this.contractProvider = contractProvider;
+        this.activatedRoute = activatedRoute;
+        this.contract = new Contract;
+        this.activatedRoute.params.subscribe((params) => {
+            this.contractProvider.getById(params['contract']).subscribe(response => {
+                this.contract = response;
             });
-        return sum;
+        });
     }
 }
-
-
-angular.module('controller').controller('HistoryCtrl', HistoryCtrl);
+HistoryPage.decorators = [
+    { type: Component, args: [{
+                selector: 'cart-history',
+                templateUrl: 'history.html'
+            },] },
+];
+HistoryPage.ctorParameters = () => [
+    { type: ContractProvider, },
+    { type: ActivatedRoute, },
+];
+//# sourceMappingURL=history.js.map

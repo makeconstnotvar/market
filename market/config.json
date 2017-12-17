@@ -1,10 +1,11 @@
 {
     "path": {
-        "public": "C:\\Projects\\fastlight\\data\\public",
-        "photo": "C:\\Projects\\fastlight\\data\\photos",
-        "files": "C:\\Projects\\fastlight\\data\\files",
-        "prerender": "C:\\Projects\\fastlight\\data\\prerender",
-        "jquery": "C:\\Projects\\fastlight\\data\\jquery.js"
+        "public": "C:\\Projects\\market\\data\\public",
+        "photo": "C:\\Projects\\market\\data\\photos",
+        "files": "C:\\Projects\\market\\data\\files",
+        "prerender": "C:\\Projects\\market\\data\\prerender",
+        "jquery": "C:\\Projects\\market\\data\\jquery.js",
+        "serverjs":"C:\\Projects\\market\\build\\client\\server.js"
     },
     "system": {
         "port": "3001",

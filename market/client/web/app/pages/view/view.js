@@ -1,86 +1,67 @@
-ViewCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', '$timeout', '$location', 'Product', 'Contract'];
-
-function ViewCtrl($scope, $rootScope, $state, $stateParams, $timeout, $location, Product, Contract) {
-
-    $scope.isBack = !!$state.previousState.name;
-
-    $scope.soc = {url: $location.absUrl()};
-    $scope.$on('error:not-found', function (e) {
-        $state.go('error', {url:$location.url()})
-    });
-    Product.view($stateParams.pid).then(function (response) {
-        var product = response.data;
-        $scope.soc.desc = product.description + ' ' + product.price + 'руб.';
-        $scope.soc.img = $location.protocol() + '://' + $location.host() + '/photos/' + product._id + '/l_' + product.images[0];
-        $rootScope.$broadcast('head:change', {
-            title: product.title,
-            description: $scope.soc.desc,
-            keywords: product.keywords,
-            img: $scope.soc.img,
-            url: $scope.soc.url
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ProductProvider, ContractProvider } from "providers/index";
+import { Product } from "models/index";
+import { GlobalService, SeoService, NavbarService, ConfigService } from "services/index";
+export class ViewPage {
+    constructor(productProvider, activatedRoute, contractProvider, navbarService, configService, globalService, router, seoService) {
+        this.productProvider = productProvider;
+        this.activatedRoute = activatedRoute;
+        this.contractProvider = contractProvider;
+        this.navbarService = navbarService;
+        this.configService = configService;
+        this.globalService = globalService;
+        this.router = router;
+        this.seoService = seoService;
+        this.product = new Product;
+        this.activatedRoute.params.subscribe((params) => {
+            this.productId = params['productId'];
+            this.categoryId = params['categoryId'];
+            this.productProvider.view(this.productId).subscribe(response => {
+                this.product = response;
+                this.selectedImage = this.product.images[0];
+                this.seoService.setMeta({
+                    title: this.product.title,
+                    description: `${this.product.description} ${this.product.price} руб.`,
+                    keywords: this.product.keywords,
+                    image: `/photos/${this.product._id}/${this.selectedImage}`,
+                });
+            });
         });
-
-        if (product.images) {
-            $scope.selectedActive = 0;
-            $scope.selectedImage = product.images[0];
-        }
-        $scope.product = product;
-
-    });
-
-    $scope.toBack = function () {
-        $state.go($state.previousState.name, $state.previousParams)
-    };
-
-    $scope.getImage = function (photo) {
-        return photo.type == 'image';
-    };
-
-    $scope.getCover = function (photo) {
-        return photo.type == 'cover';
-    };
-
-    $scope.getDimension = function (photo) {
-        return photo.type == 'dimension';
-    };
-
-    $scope.showImage = function (idx) {
-
-        $scope.selectedActive = idx;
-        $scope.selectedImage = $scope.product.images[idx];
-    };
-
-    $scope.showSelected = function (selected) {
-        var vals = this.parameter.values, val = '';
-        for (var i = 0; i < vals.length; i++) {
-            if (vals[i].id == selected) {
-                val = vals[i].value;
-                break;
-            }
-        }
-        return val;
-    };
-
-    $scope.postPosition = function (product) {
-        if (product.available) {
-            var position = {
-                product: product._id,
-                count: 1,
-                sum: product.price
-            };
-            Contract.postPosition(position).then(function (response) {
-                product.inCart = true;
-                $rootScope.$broadcast('contract:change', response.data);
-            })
-        } else {
-            product.blink = true;
-            $timeout(function () {
-                product.blink = false;
-            }, 2000);
-        }
+        this.globalService.existPreviousState.subscribe(state => this.isBack = true);
+        this.config = this.configService.config;
+    }
+    imageSelect(image) {
+        this.selectedImage = image;
+    }
+    back() {
+        this.router.navigateByUrl(this.globalService.previousState.url);
+    }
+    postPosition(product) {
+        let position = {
+            product: product._id,
+            count: 1,
+            price: product.price,
+            sum: product.price,
+        };
+        this.contractProvider.postPosition(position).subscribe(response => {
+            this.navbarService.updateCartData(response);
+        });
     }
 }
-
-
-angular.module('controller').controller('ViewCtrl', ViewCtrl);
-
+ViewPage.decorators = [
+    { type: Component, args: [{
+                templateUrl: 'view.html'
+            },] },
+];
+ViewPage.ctorParameters = () => [
+    { type: ProductProvider, },
+    { type: ActivatedRoute, },
+    { type: ContractProvider, },
+    { type: NavbarService, },
+    { type: ConfigService, },
+    { type: GlobalService, },
+    { type: Router, },
+    { type: SeoService, },
+];
+//# sourceMappingURL=view.js.map

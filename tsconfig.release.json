@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "baseUrl": "market/client/web/app",
+        "target": "es5",
+        "module": "es6",
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "removeComments": true,
+        "sourceMap": false,
+        "noImplicitAny": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["es2015", "dom"]
+    },
+    "include": [
+        "market/client/web/app/_browser/index.ts",
+        "market/client/web/app/_browser/ie.ts",
+        "market/client/web/app/_server/index.ts"
+    ],
+    "angularCompilerOptions": {
+        "strictMetadataEmit": true
+    }
+}

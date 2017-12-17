@@ -1,30 +1,23 @@
 const express = require('express'),
     app = express(),
-    path = require('path'),
     secure = require('../api/handlers').secure,
     apiRouter = require('./router'),
-    config = require('../config.json'),
-    minifyHTML = require('express-minify-html'),
-    serverjs = require('./web/build/server'),
-    engine = serverjs.expressEngine;
+    server = require('./server'),
+    browser = require('./browser');
 
-let prodivers = [
-    {provide: 'serverUrl', useValue: config.system.host}
-];
 
-app.engine('html', engine(prodivers));
-app.set('view engine', 'html');
-app.set('views', path.join(__dirname, 'web/views'));
-app.use(minifyHTML({override: true}));
-
-app.use('/api', apiRouter);
-app.use('/', secure.cookies, function (req, res) {
-    res.render('index', {req, res});
+app.use('/api', secure.cookies1, apiRouter);
+app.use('/', secure.cookies, function (req, res, next) {
+    let ua = req.headers['user-agent'];
+    if (/bot|google|yandex|mail\.ru|bing|embedly|guzzlehttp|validator|vk\.com|facebook|slurp|tumblr|undefined|seopult|mailru|mrpc|ok\.ru/i.test(ua))
+        server(req, res, next);
+    else
+        browser(req, res, next);
 });
 
 app.use(function (req, res, next) {
     console.error("сработало 404");
-    //res.redirect('/error?url='+req.url);
+    res.redirect('/error?url='+req.url);
 });
 
 app.use(function (err, req, res, next) {

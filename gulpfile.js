@@ -11,16 +11,20 @@ let gulp = require('gulp'),
 let commonCss = [
         'market/client/web/styles/common.scss',
     ],
+    loadingCss = [
+        'market/client/web/styles/loading.scss',
+    ],
     injectJs = [
-        'market/client/web/build/browser.js'
+        'build/client/browser.js'
     ],
     injectCss = [
-        'market/client/web/build/styles.css'
+        'build/client/styles.css'
     ],
     pugs = [
-        'market/client/web/views/index.pug'
+        'market/client/web/views/browser.pug',
+        'market/client/web/views/server.pug'
     ],
-    destination = 'market/client/web/build';
+    destination = 'build/client';
 
 function tildaResolver(url, prev, done) {
     if (url[0] === '~') {
@@ -35,7 +39,13 @@ gulp.task('commonCss', function () {
         //.pipe(sourcemaps.init())
         .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
         .pipe(concat('styles.css'))
-        .pipe(clean())
+        //.pipe(clean())
+        .pipe(gulp.dest(destination))
+});
+gulp.task('loadingCss', function () {
+    return gulp
+        .src(loadingCss)
+        .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
         .pipe(gulp.dest(destination))
 });
 
@@ -44,8 +54,8 @@ gulp.task('inject', function () {
     const cssFiles = gulp.src(injectCss);
     const jsFiles = gulp.src(injectJs);
     return gulp.src(pugs)
-        .pipe(inject(cssFiles, {ignorePath: 'market/client/web/build',addPrefix:'css'}))
-        .pipe(inject(jsFiles, {ignorePath: 'market/client/web/build',addPrefix:'js'}))
+        .pipe(inject(cssFiles, {ignorePath: 'build/client',addPrefix:'css'}))
+        .pipe(inject(jsFiles, {ignorePath: 'build/client',addPrefix:'js'}))
         .pipe(pug())
         .pipe(gulp.dest('market/client/web/views'));
 });
@@ -53,8 +63,8 @@ gulp.task('inject', function () {
 gulp.task('watch', ['commonCss'], function () {
     return gulp.watch([
         'market/client/web/styles/**/*.scss',
-        'market/client/web/app1/**/*.scss'
+        'market/client/web/app/**/*.scss'
     ], ['default'])
 });
 
-gulp.task('default',['commonCss','inject']);
+gulp.task('default',['commonCss','loadingCss','inject']);
