@@ -6,7 +6,7 @@ let app = require('express')(),
 
 
 try {
-       serverjs = require(config.path.serverjs);
+    serverjs = require(config.path.serverjs);
 }
 catch (err) {
     console.error(`Не найден файл server.js по адресу "${config.path.serverjs}.js"`);
@@ -20,13 +20,13 @@ if (serverjs) {
     app.engine('html', engine);
     app.set('view engine', 'html');
     app.set('views', path.join(__dirname, 'web/views'));
-    /*app.use(minifyHTML({
+    app.use(minifyHTML({
         override: true,
-        removeAttributeQuotes:false,
-        collapseBooleanAttributes:false ,
-        minifyJS:false,
-        removeEmptyAttributes:false
-    }));*/
+        removeAttributeQuotes: false,
+        collapseBooleanAttributes: false,
+        //minifyJS: false,
+        removeEmptyAttributes: false
+    }));
 
     app.use('/', function (req, res) {
         res.render('server', {req, res});

@@ -9,13 +9,7 @@ let gulp = require('gulp'),
     sass = require('gulp-sass'),
     imagemin = require('gulp-imagemin');
 
-let injectList = [
-        'build/client/scripts/ie-*.js',
-        'build/client/scripts/browser-*.js',
-        'build/client/styles/styles-*.css'
-    ],
-
-    favicons = ['market/favicon/**/*',],
+let favicons = ['market/favicon/**/*',],
     application = [
         'market/api/**/*',
         'market/start.js',
@@ -50,6 +44,13 @@ let injectList = [
     ],
     serverJs = [
         'build/server.js'
+    ],
+    injectJs = [
+        'build/client/web/scripts/ie-*.js',
+        'build/client/web/scripts/browser-*.js'
+    ],
+    injectCss = [
+        'build/client/web/styles/styles-*.css'
     ],
     pugs = [
         'market/client/web/views/browser.pug',
@@ -99,6 +100,7 @@ gulp.task('commonCss', function () {
         .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
         .pipe(concat('styles.css'))
         .pipe(clean())
+        .pipe(hash())
         .pipe(gulp.dest(destination+'/styles'))
 });
 gulp.task('loadingCss', function () {
@@ -120,9 +122,11 @@ gulp.task('clean', function () {
 });
 
 gulp.task('move-to-production', ['commonCss','loadingCss','application', 'favicons', 'json', 'scripts', 'loading', 'styles', 'server', 'images'], function () {
-    const files = gulp.src(injectList);
+    const cssFiles = gulp.src(injectCss);
+    const jsFiles = gulp.src(injectJs);
     return gulp.src(pugs)
-        .pipe(inject(files, {ignorePath: 'build/client'}))
+        .pipe(inject(cssFiles, {ignorePath: 'build/client/web'}))
+        .pipe(inject(jsFiles, {ignorePath: 'build/client/web'}))
         .pipe(pug())
         .pipe(gulp.dest(`${destination}/views`));
 });
