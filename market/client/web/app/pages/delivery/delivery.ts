@@ -1,5 +1,7 @@
 import {Component, Inject, PLATFORM_ID} from "@angular/core";
 import {isPlatformBrowser} from "@angular/common";
+import {SettingsProvider} from "../../providers";
+import {SeoService} from "../../services";
 
 @Component({
     selector: 'delivery',
@@ -9,7 +11,14 @@ import {isPlatformBrowser} from "@angular/common";
 export class DeliveryPage {
     _window;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    constructor(@Inject(PLATFORM_ID) private platformId: Object,
+                settingsProvider: SettingsProvider,
+                seoService: SeoService) {
+
+        settingsProvider.meta('delivery').subscribe(resp => {
+            seoService.setMeta(resp)
+        });
+
         if (isPlatformBrowser(this.platformId)) {
             this._window = window;
         }

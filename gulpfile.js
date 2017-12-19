@@ -54,8 +54,8 @@ gulp.task('inject', function () {
     const cssFiles = gulp.src(injectCss);
     const jsFiles = gulp.src(injectJs);
     return gulp.src(pugs)
-        .pipe(inject(cssFiles, {ignorePath: 'build/client/web',addPrefix:'css'}))
-        .pipe(inject(jsFiles, {ignorePath: 'build/client/web',addPrefix:'js'}))
+        .pipe(inject(cssFiles, {ignorePath: 'build',addPrefix:'styles'}))
+        .pipe(inject(jsFiles, {ignorePath: 'build',addPrefix:'scripts'}))
         .pipe(pug())
         .pipe(gulp.dest('market/client/web/views'));
 });

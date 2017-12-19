@@ -4,6 +4,8 @@ import {Contract, Product} from "models/index";
 import {ContractProvider} from "providers/index";
 import {GlobalService, NavbarService} from "services/index";
 import {CartMode} from "../components/mode";
+import {SettingsProvider} from "../../../providers";
+import {SeoService} from "../../../services";
 
 
 @Component({
@@ -23,7 +25,9 @@ export class CartPage {
     constructor(private contractProvider: ContractProvider,
                 private navbarService: NavbarService,
                 private globalService: GlobalService,
-                private router: Router) {
+                private router: Router,
+                settingsProvider: SettingsProvider,
+                seoService: SeoService) {
         this.contractProvider.getCart().subscribe(response => {
             this.contract = response.current;
             this.history = response.history;
@@ -31,7 +35,10 @@ export class CartPage {
             this.contract.final = this.getFinal(this.contract.positions);
             if (this.contract.positions && this.contract.positions.length > 0)
                 this.pageMode = CartMode.Form;
-        })
+        });
+        settingsProvider.meta('cart').subscribe(resp => {
+            seoService.setMeta(resp)
+        });
     }
 
     submit(contract) {

@@ -1,4 +1,6 @@
 import {Component} from "@angular/core";
+import {SettingsProvider} from "../../providers";
+import {SeoService} from "../../services";
 
 
 @Component({
@@ -6,5 +8,13 @@ import {Component} from "@angular/core";
     templateUrl: 'contacts.html'
 })
 export class ContactsPage {
+    constructor(settingsProvider: SettingsProvider,
+                seoService: SeoService) {
 
+        settingsProvider.meta('contacts').subscribe(resp => {
+            seoService.setMeta(resp)
+        });
+
+
+    }
 }
