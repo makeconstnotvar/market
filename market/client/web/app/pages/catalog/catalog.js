@@ -1,13 +1,15 @@
 import { Component, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ContractProvider, ParameterProvider, ProductProvider } from "providers/index";
+import { CategoryProvider, ContractProvider, ParameterProvider, ProductProvider } from "providers/index";
 import { NavbarService, ParametersService, SortingService } from "services/index";
 import { PagerControl } from "controls/pager/pager";
 import { ComponentCatalogFilter } from "./components/filter/filter";
+import { Category } from "../../models/category";
 export class CatalogPage {
-    constructor(productProvider, parametersService, parameterProvider, contractProvider, sortingService, navbarService, route, router) {
+    constructor(productProvider, parametersService, categoryProvider, parameterProvider, contractProvider, sortingService, navbarService, route, router) {
         this.productProvider = productProvider;
         this.parametersService = parametersService;
+        this.categoryProvider = categoryProvider;
         this.parameterProvider = parameterProvider;
         this.contractProvider = contractProvider;
         this.sortingService = sortingService;
@@ -16,6 +18,7 @@ export class CatalogPage {
         this.router = router;
         this.products = [];
         this.parameters = [];
+        this.category = new Category();
         this.xs = false;
     }
     xsChange() {
@@ -51,20 +54,18 @@ export class CatalogPage {
         this.fetchProducts();
     }
     ngOnInit() {
-        console.log('инит каталога');
         this.route.paramMap.switchMap((pm) => {
             this.categoryName = pm.params.categoryName;
             return this.parameterProvider.getList(pm.params.categoryName);
         }).subscribe((response) => {
-            console.log('получены параметры');
             this.categoryId = response.catid;
             this.parameters = response.parameters;
+            this.selectCategory();
             this.selectParameters();
             this.fetchProducts();
             this.fetchActive();
         });
         this.route.queryParamMap.subscribe((qpm) => {
-            console.log('qpm');
             this.activeSort = qpm.params.sort;
             this.page = qpm.params.page;
             this.params = this.excludeParams(qpm.params);
@@ -79,7 +80,6 @@ export class CatalogPage {
             sum: product.price,
         };
         this.contractProvider.postPosition(position).subscribe(response => {
-            console.log(response);
             this.navbarService.updateCartData(response);
         });
     }
@@ -92,6 +92,9 @@ export class CatalogPage {
     }
     selectParameters() {
         this.parameters.map(parameter => this.parametersService.urlToParameter(parameter, this.params));
+    }
+    selectCategory() {
+        this.categoryProvider.getTree().subscribe((response) => this.category = response.find(cat => cat.url == this.categoryName));
     }
     setActiveParameters(activeParameters) {
         this.parameters.forEach(parameter => {
@@ -119,13 +122,11 @@ export class CatalogPage {
             categoryId: this.categoryId
         };
         this.parameterProvider.getActive(query).subscribe(resp => {
-            console.log('получены активные параметры');
             this.setActiveParameters(resp);
         });
     }
     fetchParameters() {
         this.parameterProvider.getList(this.categoryName).subscribe((response) => {
-            console.log('получены параметры');
             this.categoryId = response.catid;
             this.parameters = response.parameters;
             this.selectParameters();
@@ -141,7 +142,6 @@ export class CatalogPage {
             page: this.page
         };
         this.productProvider.list(query).subscribe(resp => {
-            console.log('получены продукты');
             this.products = resp.products;
             this.pagerComponent.setup(resp.count, this.page);
         });
@@ -161,6 +161,7 @@ CatalogPage.decorators = [
 CatalogPage.ctorParameters = () => [
     { type: ProductProvider, },
     { type: ParametersService, },
+    { type: CategoryProvider, },
     { type: ParameterProvider, },
     { type: ContractProvider, },
     { type: SortingService, },

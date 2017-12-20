@@ -7115,7 +7115,8 @@ filter-inputs .clear {
   position: absolute; }
 
 cat-filter {
-  margin-top: 50px; }
+  margin-top: 50px;
+  margin-bottom: 20px; }
   cat-filter .parameters > li {
     border: solid #e8e8e8;
     border-width: 0 1px 1px 1px;

@@ -1,13 +1,14 @@
 import {Component, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from "models/index";
-import {ContractProvider, ParameterProvider, ProductProvider} from "providers/index";
+import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider} from "providers/index";
 
 import {Parameter, Position} from "models/index";
 import {NavbarService, ParametersService, SortingService} from "services/index";
 import {PagerControl} from "controls/pager/pager";
 import {ComponentCatalogFilter} from "./components/filter/filter";
 import {switchMap}from 'rxjs/operators'
+import {Category} from "../../models/category";
 
 @Component({
     selector: 'catalog',
@@ -21,6 +22,7 @@ export class CatalogPage {
 
     products: Product[] = [];
     parameters: Parameter[] = [];
+    category:Category = new Category();
     categoryId: string;
     categoryName: string;
     params: any;
@@ -31,6 +33,7 @@ export class CatalogPage {
 
     constructor(private productProvider: ProductProvider,
                 private parametersService: ParametersService,
+                private categoryProvider: CategoryProvider,
                 private parameterProvider: ParameterProvider,
                 private contractProvider: ContractProvider,
                 private sortingService: SortingService,
@@ -79,21 +82,24 @@ export class CatalogPage {
     }
 
     ngOnInit() {
-        console.log('инит каталога');
+        //console.log('инит каталога');
+
         this.route.paramMap.switchMap((pm: any) => {
             this.categoryName = pm.params.categoryName;
+
             return this.parameterProvider.getList(pm.params.categoryName)
         }).subscribe((response:any )=> {
-            console.log('получены параметры');
+            //console.log('получены параметры');
             this.categoryId = response.catid;
             this.parameters = response.parameters;
+            this.selectCategory();
             this.selectParameters();
             this.fetchProducts();
             this.fetchActive();
         });
 
         this.route.queryParamMap.subscribe((qpm: any) => {
-            console.log('qpm');
+            //console.log('qpm');
             this.activeSort = qpm.params.sort;
             this.page = qpm.params.page;
             this.params = this.excludeParams(qpm.params);
@@ -112,7 +118,7 @@ export class CatalogPage {
         };
         this.contractProvider.postPosition(position).subscribe(
             response => {
-                console.log(response);
+                //console.log(response);
                 this.navbarService.updateCartData(response)
             });
     }
@@ -127,6 +133,10 @@ export class CatalogPage {
 
     private selectParameters() {
         this.parameters.map(parameter => this.parametersService.urlToParameter(parameter, this.params));
+    }
+
+    private selectCategory(){
+        this.categoryProvider.getTree().subscribe((response:Category[] )=> this.category = response.find(cat=>cat.url==this.categoryName));
     }
 
     private setActiveParameters(activeParameters) {
@@ -158,14 +168,14 @@ export class CatalogPage {
             categoryId: this.categoryId
         };
         this.parameterProvider.getActive(query).subscribe(resp => {
-            console.log('получены активные параметры');
+            //console.log('получены активные параметры');
             this.setActiveParameters(resp);
         })
     }
 
     private fetchParameters() {
         this.parameterProvider.getList(this.categoryName).subscribe((response:any) => {
-            console.log('получены параметры');
+            //console.log('получены параметры');
             this.categoryId = response.catid;
             this.parameters = response.parameters;
             this.selectParameters();
@@ -182,7 +192,7 @@ export class CatalogPage {
             page: this.page
         };
         this.productProvider.list(query).subscribe(resp => {
-            console.log('получены продукты');
+            //console.log('получены продукты');
             this.products = resp.products;
             this.pagerComponent.setup(resp.count, this.page);
         })

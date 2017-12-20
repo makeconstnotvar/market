@@ -2,12 +2,7 @@ import { Component } from "@angular/core";
 import { CategoryProvider } from "providers/index";
 export class DefaultLayout {
     constructor(categoryProvider) {
-        this.categoryProvider = categoryProvider;
-    }
-    ngOnInit() {
-        this.categoryProvider.getTree().subscribe(response => {
-            this.categories = response;
-        });
+        categoryProvider.getTree().subscribe(response => this.categories = response);
     }
 }
 DefaultLayout.decorators = [

@@ -17,16 +17,9 @@ import {Category} from "models/index";
     `
 })
 export class DefaultLayout {
-    constructor(private categoryProvider: CategoryProvider) {
-
-    }
-
     categories: Category[];
 
-    ngOnInit() {
-        this.categoryProvider.getTree().subscribe(
-            response => {
-                this.categories = response
-            });
+    constructor(categoryProvider: CategoryProvider) {
+        categoryProvider.getTree().subscribe(response => this.categories = response);
     }
 }
