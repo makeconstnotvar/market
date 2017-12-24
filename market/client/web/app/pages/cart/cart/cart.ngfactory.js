@@ -14,7 +14,7 @@ import * as i12 from "../../../services/seo1";
 var styles_CartPage = [];
 var RenderType_CartPage = i0.ɵcrt({ encapsulation: 2, styles: styles_CartPage, data: {} });
 export { RenderType_CartPage as RenderType_CartPage };
-function View_CartPage_1(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "a", [["class", "btn btn-red pull-right m-back"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
+function View_CartPage_1(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 3, "button", [["class", "btn btn-red pull-right m-back"]], null, [[null, "click"]], function (_v, en, $event) { var ad = true; var _co = _v.component; if (("click" === en)) {
         var pd_0 = (_co.back() !== false);
         ad = (pd_0 && ad);
     } return ad; }, null, null)), (_l()(), i0.ɵted(-1, null, ["\n        "])), (_l()(), i0.ɵeld(2, 0, null, null, 0, "i", [["class", "fa fa-chevron-left rgap"]], null, null, null, null, null)), (_l()(), i0.ɵted(-1, null, ["\u041D\u0430\u0437\u0430\u0434\n    "]))], null, null); }

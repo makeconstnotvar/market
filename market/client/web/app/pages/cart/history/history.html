@@ -2,37 +2,28 @@
     <a routerLink="/cart" class="btn btn-red pull-right m-back">
         <i class="fa fa-chevron-left rgap"></i>Назад
     </a>
-    <h2>История заказов</h2>
+    <h1>История заказов</h1>
     <p>Этот заказ был сделан <strong>{{contract.date | date:'dd.MM.yyyy'}}</strong> в <strong>{{contract.date | date:'HH:mm:ss'}}</strong></p>
     <p>Номер: <strong>{{contract.number}}</strong></p>
     <p>Статус: <strong>{{contract.statusName}}</strong></p>
-    <table class="table cart-list">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th></th>
-            <th>Название</th>
-            <th>Цена за ед.</th>
-            <th>Кол-во</th>
-            <th>Сумма</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let position of contract.positions;let i = index;">
-            <td>{{i+1}}</td>
-            <td class="cover text-center"><img class="pointer" src="{{'/photos/'+position.product._id+ '/s_'+ position.product.cover}}" routerLink="/{{position.product.category.url}}/{{position.product.url}}"></td>
-            <td><a class="pointer" routerLink="/{{position.product.category.url}}/{{position.product.url}}">{{position.product.name}}</a></td>
-            <td class="price2 text-center">{{position.product.price}}<i class="fa fa-rub"></i></td>
-            <td class="change">{{position.count}}</td>
-            <td class="sum text-center info" width="100px"><b>{{position.sum}} <i class="fa fa-rub"></i></b></td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr class="final">
-            <td colspan="2"></td>
-            <td colspan="3"><b class="m-cart-result">Итого</b></td>
-            <td class="text-center info"><b>{{contract.final}} <i class="fa fa-rub"></i></b></td>
-        </tr>
-        </tfoot>
-    </table>
+
+    <div class="row position-item" *ngFor="let position of contract.positions;let i = index; let even=even" [class.even]="even">
+        <div class="col-sm-12 col-md-6 d-flex position-first">
+            <span class="align-self-center mr-2"><img src="/photos/{{position.product._id}}/s_{{position.product.cover}}" routerLink="/{{position.product.category.url}}/{{position.product.url}}"></span>
+            <a class="pointer align-self-center" routerLink="/{{position.product.category.url}}/{{position.product.url}}">{{position.product.name}}</a>
+        </div>
+        <div class="col-sm-12 col-md-6 d-flex">
+            <span class="align-self-center mr-2 align-self-center">{{position.count}} x {{position.product.price}} = {{position.sum}} рублей</span>
+        </div>
+    </div>
+    <div class="row final">
+        <div class="col-3 col-sm-6"><div class="final-name">Итого</div></div>
+        <div class="col-9 col-sm-6">
+            <div class="final-price">{{contract.final}} рублей</div>
+        </div>
+    </div>
+
+
+
+
 </div>

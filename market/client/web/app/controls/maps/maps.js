@@ -33,6 +33,13 @@ export class MapsControl {
                     });
                     this.map.geoObjects.add(this.myPlacemark);
                     this.map.behaviors.disable('scrollZoom');
+                    this.map.behaviors.disable('drag');
+                    this.map.container.events.add(['fullscreenenter'], () => {
+                        this.map.behaviors.enable('drag');
+                    });
+                    this.map.container.events.add(['fullscreenexit'], () => {
+                        this.map.behaviors.disable('drag');
+                    });
                     this.myPlacemark.balloon.open();
                 });
         };

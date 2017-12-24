@@ -15,8 +15,8 @@
         ]
     },
     "include": [
-        "market/client/web/app/_browser/index.ts",
-        "market/client/web/app/_server/index.ts"
+        "market/client/web/app/_browser/libs.ts",
+        "market/client/web/app/_browser/index.ts"
     ],
     "angularCompilerOptions": {
         "strictMetadataEmit": true

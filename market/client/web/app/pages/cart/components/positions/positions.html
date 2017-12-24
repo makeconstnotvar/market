@@ -1,8 +1,8 @@
-<div class="row mb-1" *ngFor="let position of contract.positions;let i = index;">
-    <div class="col-sm-12 col-md-6 d-flex">
+<div class="row position-item" *ngFor="let position of contract.positions;let i = index; let even=even" [class.even]="even">
+    <div class="col-sm-12 col-md-6 d-flex position-first">
         <span class="align-self-center mr-2">{{i+1}}</span>
         <span class="align-self-center mr-2"><img src="/photos/{{position.product._id}}/s_{{position.product.cover}}" routerLink="/{{position.product.category.url}}/{{position.product.url}}"></span>
-        <a class="pointer align-self-center" href="/{{position.product.category.url}}/{{position.product.url}}">{{position.product.name}}</a>
+        <a class="pointer align-self-center" routerLink="/{{position.product.category.url}}/{{position.product.url}}">{{position.product.name}}</a>
     </div>
     <div class="col-sm-12 col-md-6 d-flex">
         <button class="btn btn-secondary pointer mr-2 align-self-center" (click)="minus(i)"><i class="fa fa-minus"></i></button>
@@ -12,8 +12,8 @@
     </div>
 </div>
 <div class="row final">
-    <div class="col-6 mr-auto"><div class="final-name">Итого</div></div>
-    <div class="col-6">
+    <div class="col-3 col-sm-6"><div class="final-name">Итого</div></div>
+    <div class="col-9 col-sm-6">
         <div class="final-price">{{contract.final}} рублей</div>
     </div>
 </div>

@@ -15,6 +15,8 @@ let commonCss = [
         'market/client/web/styles/loading.scss',
     ],
     injectJs = [
+        'build/common.js',
+        'build/libs.js',
         'build/browser.js'
     ],
     injectCss = [

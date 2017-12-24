@@ -3,12 +3,23 @@ let webpack = require('webpack'),
 
 module.exports = {
     entry: {
-        browser: './market/client/web/app/_browser/index.js'
+        browser: './market/client/web/app/_browser/index.js',
+        libs: './market/client/web/app/_browser/libs.js'
     },
     output: {
-        filename: 'browser.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'build')
     },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'common',
+            minChunks: 2,
+            chunks: [
+                'browser',
+                'libs'
+            ]
+        }),
+    ],
     module: {
         rules: [
             {

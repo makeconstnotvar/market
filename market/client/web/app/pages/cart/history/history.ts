@@ -11,9 +11,9 @@ import {ActivatedRoute, Params} from "@angular/router";
 export class HistoryPage {
     contract: Contract = new Contract;
 
+
     constructor(private contractProvider: ContractProvider,
                 private activatedRoute: ActivatedRoute) {
-
 
         this.activatedRoute.params.subscribe((params: Params) => {
             this.contractProvider.getById(params['contract']).subscribe(response => {

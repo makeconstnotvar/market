@@ -19,6 +19,7 @@ export class CartPage {
         this.pageMode = CartMode.Empty;
         this.showHistory = false;
         this.showError = false;
+        this.globalService.existPreviousState.subscribe(state => this.isBack = true);
         this.contractProvider.getCart().subscribe(response => {
             this.contract = response.current;
             this.history = response.history;

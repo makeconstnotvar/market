@@ -1,7 +1,7 @@
 
-    <a (click)="back()" *ngIf="isBack" class="btn btn-red pull-right m-back">
+    <button (click)="back()" *ngIf="isBack" class="btn btn-red pull-right m-back">
         <i class="fa fa-chevron-left rgap"></i>Назад
-    </a>
+    </button>
     <h1>Корзина покупок</h1>
     <div class="d-flex" *ngIf="pageMode == cartMode.Empty">
         <div class="w-100 alert alert-info">

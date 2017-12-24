@@ -28,6 +28,7 @@ export class CartPage {
                 private router: Router,
                 settingsProvider: SettingsProvider,
                 seoService: SeoService) {
+        this.globalService.existPreviousState.subscribe(state => this.isBack = true);
         this.contractProvider.getCart().subscribe(response => {
             this.contract = response.current;
             this.history = response.history;
