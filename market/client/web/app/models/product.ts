@@ -12,7 +12,7 @@ export class Product {
     available: boolean;
     blink: boolean;
     information:string;
-    images:string;
+    images:string[];
     description:string;
     details:string;
     code:number;

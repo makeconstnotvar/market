@@ -1,11 +1,7 @@
 import {Component, Input} from "@angular/core";
 @Component({
     selector: 'v-photo',
-
-    host:{'class':'me-image'},
-    template: `
-<img *ngIf="image" class="img-responsive" src="{{'/photos/'+productId+ '/l_'+ image}}">
-`
+    templateUrl: 'photo.html'
 })
 export class ComponentViewPhoto {
 

@@ -4,10 +4,7 @@ export class ComponentViewPhoto {
 ComponentViewPhoto.decorators = [
     { type: Component, args: [{
                 selector: 'v-photo',
-                host: { 'class': 'me-image' },
-                template: `
-<img *ngIf="image" class="img-responsive" src="{{'/photos/'+productId+ '/l_'+ image}}">
-`
+                templateUrl: 'photo.html'
             },] },
 ];
 ComponentViewPhoto.ctorParameters = () => [];

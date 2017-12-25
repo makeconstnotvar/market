@@ -14,6 +14,7 @@ export class ViewPage {
         this.router = router;
         this.seoService = seoService;
         this.product = new Product;
+        this.selectedIdx = 0;
         this.activatedRoute.params.subscribe((params) => {
             this.productId = params['productId'];
             this.categoryId = params['categoryId'];
@@ -31,8 +32,9 @@ export class ViewPage {
         this.globalService.existPreviousState.subscribe(state => this.isBack = true);
         this.config = this.configService.config;
     }
-    imageSelect(image) {
-        this.selectedImage = image;
+    imageSelect(idx) {
+        this.selectedIdx = idx;
+        this.selectedImage = this.product.images[idx];
     }
     back() {
         this.router.navigateByUrl(this.globalService.previousState.url);
@@ -51,6 +53,7 @@ export class ViewPage {
 }
 ViewPage.decorators = [
     { type: Component, args: [{
+                selector: 'view-page',
                 templateUrl: 'view.html'
             },] },
 ];

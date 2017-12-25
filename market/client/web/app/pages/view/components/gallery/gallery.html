@@ -1,0 +1,3 @@
+<a class="me-link" (click)="imageSelect(i)" [ngClass]="{'mm-active':selected==i}" *ngFor="let image of images; let i=index;">
+    <img class="img-responsive" src="{{'/photos/'+productId+ '/m_'+  image}}">
+</a>

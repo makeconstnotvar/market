@@ -7,18 +7,21 @@ import {GlobalService,SeoService,NavbarService,ConfigService} from "services/ind
 
 
 @Component({
+    selector:'view-page',
     templateUrl: 'view.html'
 })
 export class ViewPage {
     product: Product = new Product;
     isBack: boolean;
     selectedImage: string;
+    selectedIdx: number=0;
     productId: string;
     categoryId: string;
     config: Config;
 
-    imageSelect(image) {
-        this.selectedImage = image;
+    imageSelect(idx) {
+        this.selectedIdx = idx;
+        this.selectedImage = this.product.images[idx];
     }
 
     back() {
