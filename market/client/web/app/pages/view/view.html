@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="row">
-        <a class="me-link col-6 col-sm-3" (click)="imageSelect(i)" [ngClass]="{'active':selectedIdx==i}" *ngFor="let image of product.images; let i=index;">
+        <a class="me-link col-3 text-center" (click)="imageSelect(i)" [ngClass]="{'active':selectedIdx==i}" *ngFor="let image of product.images; let i=index;">
             <img class="img-fluid" src="{{'/photos/'+product._id+ '/m_'+  image}}">
         </a>
     </div>

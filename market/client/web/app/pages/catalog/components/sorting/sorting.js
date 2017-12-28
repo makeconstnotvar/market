@@ -23,7 +23,6 @@ export class ComponentCatalogSorting {
 ComponentCatalogSorting.decorators = [
     { type: Component, args: [{
                 selector: 'cat-sorting',
-                host: { 'class': 'sorting' },
                 templateUrl: 'sorting.html'
             },] },
 ];

@@ -24,7 +24,7 @@ cat-product {
     .info {
         padding: 10px 15px;
         height: 240px;
-        flex:1;
+        flex: 1;
     }
 
     .name {
@@ -46,7 +46,7 @@ cat-product {
         .details {
             font-size: 0.9rem;
         }
-        .name{
+        .name {
             font-size: 1.2rem;
             font-weight: normal;
         }
@@ -60,12 +60,12 @@ cat-product {
             flex: 1;
             text-align: center;
         }
-        .name{
+        .name {
             font-size: 1rem;
             font-weight: normal;
             color: $white;
             text-align: center;
-            height: 80px;
+            height: 86px;
         }
         .image {
             border: 1px solid #e8e8e8;
@@ -75,4 +75,22 @@ cat-product {
             background: #313037;
         }
     }
+    @include media-breakpoint-down(sm) {
+        .info {
+            padding: 10px;
+            height: 220px;
+
+        }
+        .name {
+            font-size: 1rem;
+        }
+        .image {
+            width: auto;
+            height: 220px;
+            img {
+                height: 220px;
+            }
+        }
+    }
+
 }

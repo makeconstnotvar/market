@@ -4,7 +4,6 @@ import {SortingService} from "services/sort";
 
 @Component({
     selector: 'cat-sorting',
-    host: {'class': 'sorting'},
     templateUrl: 'sorting.html'
 })
 export class ComponentCatalogSorting {
