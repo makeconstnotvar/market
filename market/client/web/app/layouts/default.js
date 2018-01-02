@@ -1,8 +1,11 @@
 import { Component } from "@angular/core";
 import { CategoryProvider } from "providers/index";
+import { ContractProvider } from "../providers";
+import { NavbarService } from "../services";
 export class DefaultLayout {
-    constructor(categoryProvider) {
+    constructor(categoryProvider, contractProvider, navbarService) {
         categoryProvider.getTree().subscribe(response => this.categories = response);
+        contractProvider.getCartStatus().subscribe(response => navbarService.updateCartData(response));
     }
 }
 DefaultLayout.decorators = [
@@ -22,5 +25,7 @@ DefaultLayout.decorators = [
 ];
 DefaultLayout.ctorParameters = () => [
     { type: CategoryProvider, },
+    { type: ContractProvider, },
+    { type: NavbarService, },
 ];
 //# sourceMappingURL=default.js.map

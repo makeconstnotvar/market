@@ -10,18 +10,13 @@ import { SeoService } from "services/index";
 import { HttpClientModule } from "@angular/common/http";
 const ɵ0 = SettingsFactory;
 export class ApplicationModule {
-    constructor(router, globalService, contractProvider, navbarService) {
+    constructor(router, globalService) {
         this.router = router;
         this.globalService = globalService;
-        this.contractProvider = contractProvider;
-        this.navbarService = navbarService;
         this.router.events
             .filter(e => e instanceof NavigationEnd)
             .pairwise()
             .subscribe(states => globalService.updateState(states));
-        this.contractProvider.getCartStatus().subscribe(response => {
-            this.navbarService.updateCartData(response);
-        });
     }
 }
 ApplicationModule.decorators = [
@@ -59,8 +54,6 @@ ApplicationModule.decorators = [
 ApplicationModule.ctorParameters = () => [
     { type: Router, },
     { type: GlobalService, },
-    { type: ContractProvider, },
-    { type: NavbarService, },
 ];
 export { ɵ0 };
 //# sourceMappingURL=module.js.map

@@ -43,18 +43,13 @@ import { HttpClientModule} from "@angular/common/http";
 export class ApplicationModule {
     constructor(private router: Router,
                 private globalService: GlobalService,
-                private contractProvider: ContractProvider,
-                private navbarService: NavbarService) {
+                ) {
 
         this.router.events
             .filter(e => e instanceof NavigationEnd)
             .pairwise()
             .subscribe(states => globalService.updateState(states));
-        this.contractProvider.getCartStatus().subscribe(
-            response => {
-                this.navbarService.updateCartData(response)
-            }
-        )
+
 
     }
 }

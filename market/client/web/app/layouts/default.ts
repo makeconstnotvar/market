@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import {CategoryProvider} from "providers/index";
 import {Category} from "models/index";
+import {ContractProvider} from "../providers";
+import {NavbarService} from "../services";
 
 
 @Component({
@@ -19,7 +21,10 @@ import {Category} from "models/index";
 export class DefaultLayout {
     categories: Category[];
 
-    constructor(categoryProvider: CategoryProvider) {
+    constructor(categoryProvider: CategoryProvider,
+                contractProvider: ContractProvider,
+                navbarService: NavbarService) {
         categoryProvider.getTree().subscribe(response => this.categories = response);
+        contractProvider.getCartStatus().subscribe(response => navbarService.updateCartData(response))
     }
 }
