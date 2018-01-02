@@ -56,6 +56,7 @@ export class CatalogPage {
 
 
     clearFilter() {
+        this.xs = false;
         delete this.page;
         this.parametersService.clearFilterData();
         this.navigate();

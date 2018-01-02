@@ -10,11 +10,9 @@
         <div class="col-12">
             <v-photo class="d-block text-center" [productId]="product._id" [image]="selectedImage"></v-photo>
         </div>
-        <div class="col-12">
-            <v-socials [description]="product.description" [url]=""></v-socials>
-        </div>
+
     </div>
-    <div class="row">
+    <div class="row no-gutters">
         <a class="me-link col-3 text-center" (click)="imageSelect(i)" [ngClass]="{'active':selectedIdx==i}" *ngFor="let image of product.images; let i=index;">
             <img class="img-fluid" src="{{'/photos/'+product._id+ '/m_'+  image}}">
         </a>
@@ -25,5 +23,10 @@
     <div class="row">
         <v-information [information]="product.information"></v-information>
         <v-specification [parameters]="product.parameters"></v-specification>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <v-socials class="d-block mb-3" [description]="product.description" [url]=""></v-socials>
+        </div>
     </div>
 </div>

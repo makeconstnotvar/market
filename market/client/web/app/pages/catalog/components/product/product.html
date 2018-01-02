@@ -1,7 +1,7 @@
-<div class="image">
+<div class="image d-flex align-items-center">
     <div class="stock" *ngIf="product.stock">{{product.stockText}}</div>
     <a class="link d-inline-block" routerLink="/{{categoryName}}/{{product.url}}">
-        <img src="/photos/{{product._id}}/l_{{product.cover}}">
+        <img class="img-fluid" src="/photos/{{product._id}}/l_{{product.cover}}">
     </a>
 </div>
 <div class="info">

@@ -7233,12 +7233,12 @@ cat-product {
       padding: 10px;
       height: 220px; }
     cat-product .name {
-      font-size: 1rem; }
+      font-size: 0.9rem; }
     cat-product .image {
       width: auto;
       height: 220px; }
       cat-product .image img {
-        height: 220px; } }
+        max-height: 220px; } }
 
 cat-sorting {
   display: block;
@@ -7262,7 +7262,11 @@ cat-sorting {
       background-color: #e9ecef; }
   @media (max-width: 767px) {
     cat-sorting {
-      font-size: 13px; } }
+      font-size: 13px; }
+      cat-sorting .list-inline-item {
+        padding: 2px 5px 2px 20px; }
+      cat-sorting .list-inline-item:not(:last-child) {
+        margin-right: 2px; } }
 
 .special-product {
   margin-bottom: 20px;

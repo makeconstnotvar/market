@@ -3,7 +3,7 @@ cart-contact{
         font-weight: bold;
     }
     @include media-breakpoint-up(md) {
-        .submit {
+        . {
             margin-left: auto !important;
         }
 

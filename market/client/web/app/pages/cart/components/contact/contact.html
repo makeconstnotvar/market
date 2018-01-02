@@ -51,8 +51,14 @@
     </div>
 </div>
 <div class="form-group row">
+    <div class="col-10 submit">
+        <p>Нажимая на кнопку "Заказать", я даю согласие на <a href="/files/privacy_policy.pdf" target="_blank">обработку персональных данных</a></p>
+    </div>
     <div class="col-10 d-flex submit">
+
         <button class="btn btn-primary pointer mr-3" (click)="submit()">Заказать</button>
-        <div *ngIf="showError" class="cart-alert alert-danger d-inline">Нужно обязательно указать свой телефон</div>
+        <div *ngIf="showError" class="cart-alert alert-danger d-inline">Чтобы сделать заказ на сайте, нужно указать свой телефон.
+            Если вы не хотите указывать телефон, и не хотите сами звонить,
+            впишите в поле телефон любые цифры, а в комментарии, как с вами можно связаться.</div>
     </div>
 </div>

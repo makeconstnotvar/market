@@ -82,13 +82,13 @@ cat-product {
 
         }
         .name {
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         .image {
             width: auto;
             height: 220px;
             img {
-                height: 220px;
+                max-height: 220px;
             }
         }
     }
