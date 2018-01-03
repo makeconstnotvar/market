@@ -15,18 +15,18 @@ let commonCss = [
         'market/client/web/styles/loading.scss',
     ],
     injectJs = [
-        'build/common.js',
-        'build/libs.js',
-        'build/browser.js'
+        'common.js',
+        'libs.js',
+        'browser.js'
     ],
     injectCss = [
-        'build/styles.css'
+        'styles.css'
     ],
     pugs = [
         'market/client/web/views/browser.pug',
         'market/client/web/views/server.pug'
     ],
-    destination = 'build';
+    destination = 'build/temp';
 
 function tildaResolver(url, prev, done) {
     if (url[0] === '~') {
@@ -38,10 +38,11 @@ function tildaResolver(url, prev, done) {
 gulp.task('commonCss', function () {
     return gulp
         .src(commonCss)
-        //.pipe(sourcemaps.init())
+        .pipe(sourcemaps.init())
         .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
         .pipe(concat('styles.css'))
         //.pipe(clean())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(destination))
 });
 gulp.task('loadingCss', function () {
@@ -53,11 +54,11 @@ gulp.task('loadingCss', function () {
 
 
 gulp.task('inject', function () {
-    const cssFiles = gulp.src(injectCss);
-    const jsFiles = gulp.src(injectJs);
+    const cssFiles = gulp.src(injectCss.map(css=>path.join(destination,css)));
+    const jsFiles = gulp.src(injectJs.map(js=>path.join(destination,js)));
     return gulp.src(pugs)
-        .pipe(inject(cssFiles, {ignorePath: 'build',addPrefix:'styles'}))
-        .pipe(inject(jsFiles, {ignorePath: 'build',addPrefix:'scripts'}))
+        .pipe(inject(cssFiles, {ignorePath: destination,addPrefix:'styles'}))
+        .pipe(inject(jsFiles, {ignorePath: destination,addPrefix:'scripts'}))
         .pipe(pug())
         .pipe(gulp.dest('market/client/web/views'));
 });

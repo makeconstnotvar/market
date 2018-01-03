@@ -28,14 +28,14 @@ let favicons = ['market/favicon/**/*',],
     ],
     json = ['data/package.json'],
     browserJs = [
-        'build/ie.js',
-        'build/browser.js'
+        'ie.js',
+        'browser.js'
     ],
     images = [
         'market/client/web/img/**/*'
     ],
-    styles = [
-        'build/styles.css',
+    bowserCss = [
+        'styles.css',
 
     ],
     loading = [
@@ -56,11 +56,12 @@ let favicons = ['market/favicon/**/*',],
         'market/client/web/views/browser.pug',
         'market/client/web/views/server.pug'
     ],
-    destination = 'build/client/web';
+    destination = 'build/client/web',
+    temp = 'build/temp';
 
 gulp.task('application', function () {
     return gulp.src(application, {base: 'market'})
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest(temp));
 });
 gulp.task('favicons', function () {
     return gulp.src(favicons, {base: './market'})
@@ -68,10 +69,10 @@ gulp.task('favicons', function () {
 });
 gulp.task('json', function () {
     return gulp.src(json)
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest(temp));
 });
 gulp.task('scripts', function () {
-    return gulp.src(browserJs)
+    return gulp.src(browserJs.map(js => path.join(temp,js)))
         .pipe(hash())
         .pipe(gulp.dest(`${destination}/scripts`));
 });
@@ -81,7 +82,7 @@ gulp.task('loading', function () {
         .pipe(gulp.dest(`${destination}/scripts`));
 });
 gulp.task('styles', function () {
-    return gulp.src(styles)
+    return gulp.src(bowserCss.map(css => path.join(temp,css)))
         .pipe(hash())
         .pipe(gulp.dest(`${destination}/styles`));
 });
@@ -101,13 +102,13 @@ gulp.task('commonCss', function () {
         .pipe(concat('styles.css'))
         .pipe(clean())
         .pipe(hash())
-        .pipe(gulp.dest(destination+'/styles'))
+        .pipe(gulp.dest(destination + '/styles'))
 });
 gulp.task('loadingCss', function () {
     return gulp
         .src(loadingCss)
         .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
-        .pipe(gulp.dest(destination+'/styles'))
+        .pipe(gulp.dest(destination + '/styles'))
 });
 gulp.task('clean', function () {
     return del([
@@ -121,7 +122,7 @@ gulp.task('clean', function () {
     ])
 });
 
-gulp.task('move-to-production', ['commonCss','loadingCss','application', 'favicons', 'json', 'scripts', 'loading', 'styles', 'server', 'images'], function () {
+gulp.task('move-to-production', ['commonCss', 'loadingCss', 'application', 'favicons', 'json', 'scripts', 'loading', 'styles', 'server', 'images'], function () {
     const cssFiles = gulp.src(injectCss);
     const jsFiles = gulp.src(injectJs);
     return gulp.src(pugs)
@@ -135,5 +136,5 @@ function tildaResolver(url, prev, done) {
     if (url[0] === '~') {
         url = path.resolve('node_modules', url.substr(1));
     }
-    return { file: url };
+    return {file: url};
 }
