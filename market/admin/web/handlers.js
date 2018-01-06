@@ -1,9 +1,10 @@
+let path = require('path');
 module.exports = {
     login(req, res, next){
-        res.render('login')
+        res.sendFile('login.html', {root: path.join(__dirname, 'views')})
     },
     index(req, res, next){
-        res.render('index');
+        res.sendFile('index.html', {root: path.join(__dirname, 'views')});
     },
     notAuth(err, req, res, next){
         if (res.statusCode == 400 || res.statusCode == 401) {

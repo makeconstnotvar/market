@@ -1,0 +1,22 @@
+doctype html
+html(lang='ru' ng-app="router")
+    head
+        base(href='/')
+        title Система администрирования
+        include meta
+        include favicons
+        //- inject:css
+        //- endinject
+    body
+        div#wrap
+            div#mb-navbar(ui-view="navbar")
+            div.container(ui-view="menu")
+            div.progress-block
+                div.container(ui-view="base")
+            div#mb-status(ui-view="status")
+            div.container(ui-view="content")
+            div.container(ui-view="pager")
+        div#footer
+            div.container(ui-view="footer")
+        //- inject:js
+        //- endinject
