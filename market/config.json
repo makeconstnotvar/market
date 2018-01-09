@@ -4,8 +4,8 @@
         "photo": "C:\\Projects\\market\\data\\photos",
         "files": "C:\\Projects\\market\\data\\files",
         "prerender": "C:\\Projects\\market\\data\\prerender",
-        "jquery": "C:\\Projects\\market\\data\\jquery.js",
-        "serverjs":"C:\\Projects\\market\\build\\client\\web\\scripts\\server.js"
+
+        "serverjs":"C:\\Projects\\market\\build\\temp\\server.js"
     },
     "system": {
         "port": "3001",

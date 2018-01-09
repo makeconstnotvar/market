@@ -3,7 +3,7 @@ let app = require('express')(),
     config = require('../config.json'),
     minifyHTML = require('express-minify-html'),
     serverjs, engine;
-
+const puppeteer = require('puppeteer');
 
 try {
     serverjs = require(config.path.serverjs);

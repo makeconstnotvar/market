@@ -3,11 +3,10 @@ import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { NavigationEnd, Router } from "@angular/router";
 import { PagesModule } from "pages/module";
-import { RootLayout, LayoutsModule } from "layouts/module";
-import { CategoryProvider, ContractProvider, ParameterProvider, ProductProvider, SettingsProvider, SettingsFactory } from "providers/index";
-import { ConfigService, GlobalService, NavbarService, ParametersService, SortingService } from "services/index";
-import { SeoService } from "services/index";
-import { HttpClientModule } from "@angular/common/http";
+import { LayoutsModule, RootLayout } from "layouts/module";
+import { CategoryProvider, ContractProvider, ParameterProvider, ProductProvider, SettingsFactory, SettingsProvider } from "./providers";
+import { ConfigService, GlobalService, NavbarService, ParametersService, RequestInterceptor, SeoService, ServerResponseService1, SortingService } from "./services";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 const ɵ0 = SettingsFactory;
 export class ApplicationModule {
     constructor(router, globalService) {
@@ -35,6 +34,11 @@ ApplicationModule.decorators = [
                         deps: [SettingsProvider],
                         multi: true
                     },
+                    {
+                        provide: HTTP_INTERCEPTORS,
+                        useClass: RequestInterceptor,
+                        multi: true,
+                    },
                     CategoryProvider,
                     ContractProvider,
                     ParameterProvider,
@@ -44,7 +48,8 @@ ApplicationModule.decorators = [
                     GlobalService,
                     ParametersService,
                     SortingService,
-                    SeoService
+                    SeoService,
+                    ServerResponseService1,
                 ],
                 exports: [
                     RootLayout

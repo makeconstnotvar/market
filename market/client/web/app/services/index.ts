@@ -5,6 +5,8 @@ import {ParametersService} from "./parameters";
 import {SortingService} from "./sort";
 import {SeoService} from "./seo1";
 import {UniversalInterceptor} from "./universal";
+import {RequestInterceptor} from "./interceptor";
+import {ServerResponseService1} from "./status1";
 
 export {
     ConfigService,
@@ -13,5 +15,7 @@ export {
     ParametersService,
     SortingService,
     SeoService,
-    UniversalInterceptor
+    UniversalInterceptor,
+    RequestInterceptor,
+    ServerResponseService1
 }

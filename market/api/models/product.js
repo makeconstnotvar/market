@@ -1,10 +1,10 @@
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
     embeddedParameter = require('./embeddedParameter'),
     embeddedPhoto = require('./embeddedPhoto'),
     embeddedFile = require('./embeddedFile'),
     tools = require('./tools');
 
-var productSchema = mongoose.Schema({
+const productSchema = mongoose.Schema({
     name: String,
     code: String,
     article: {type: String, default: tools.getArticle(8)},
@@ -14,9 +14,9 @@ var productSchema = mongoose.Schema({
     storeNumber: String,
     details: String,
     publish: {type: Boolean, default: false},
-
     fileTemplate: String,
     url: String,
+    historyUrls: [String],
     title: String,
     description: String,
     keywords: String,

@@ -1,20 +1,20 @@
-import {Component  } from "@angular/core";
+import {Component} from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 
-import {ProductProvider,ContractProvider} from "providers/index";
-import {Product,Config,Position} from "models/index";
-import {GlobalService,SeoService,NavbarService,ConfigService} from "services/index";
+import {ContractProvider, ProductProvider} from "../../providers";
+import {Config, Position, Product} from "../../models";
+import {ConfigService, GlobalService, NavbarService, SeoService, ServerResponseService1} from "../../services";
 
 
 @Component({
-    selector:'view-page',
-    templateUrl: 'view.html'
+    selector: 'view-page',
+    templateUrl: 'view.html', providers: [ServerResponseService1]
 })
 export class ViewPage {
     product: Product = new Product;
     isBack: boolean;
     selectedImage: string;
-    selectedIdx: number=0;
+    selectedIdx: number = 0;
     productId: string;
     categoryId: string;
     config: Config;
@@ -37,32 +37,38 @@ export class ViewPage {
             //color: new Color() //пока затычка
         };
         this.contractProvider.postPosition(position).subscribe(response => {
-                this.navbarService.updateCartData(response)
-            });
+            this.navbarService.updateCartData(response)
+        });
     }
 
 
-
-    constructor(private productProvider: ProductProvider,
+    constructor(private serverResponseService: ServerResponseService1,
+                private productProvider: ProductProvider,
                 private activatedRoute: ActivatedRoute,
                 private contractProvider: ContractProvider,
                 private navbarService: NavbarService,
                 private configService: ConfigService,
                 private globalService: GlobalService,
                 private router: Router,
-                private seoService:SeoService) {
+                private seoService: SeoService) {
         this.activatedRoute.params.subscribe((params: Params) => {
             this.productId = params['productId'];
             this.categoryId = params['categoryId'];
             this.productProvider.view(this.productId).subscribe(response => {
-                this.product = response;
-                this.selectedImage = this.product.images[0];
-                this.seoService.setMeta({
-                    title:this.product.title,
-                    description: `${this.product.description} ${this.product.price} руб.`,
-                    keywords: this.product.keywords,
-                    image: `/photos/${this.product._id}/${this.selectedImage}`,
-                })
+                if (response.notFoundUrl)
+                    this.serverResponseService.setNotFound(response.notFoundUrl);
+                if (response.redirectUrl)
+                    this.serverResponseService.setRedirect(response.redirectUrl);
+                else {
+                    this.product = response;
+                    this.selectedImage = this.product.images[0];
+                    this.seoService.setMeta({
+                        title: this.product.title,
+                        description: `${this.product.description} ${this.product.price} руб.`,
+                        keywords: this.product.keywords,
+                        image: `/photos/${this.product._id}/${this.selectedImage}`,
+                    })
+                }
             })
         });
 

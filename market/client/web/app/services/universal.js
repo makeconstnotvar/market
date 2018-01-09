@@ -1,4 +1,4 @@
-import { Injectable, Inject, Optional } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { REQUEST } from "@nguniversal/express-engine/tokens";
 export class UniversalInterceptor {
     constructor(serverUrl, request) {
@@ -7,9 +7,10 @@ export class UniversalInterceptor {
     }
     intercept(req, next) {
         const serverReq = !this.serverUrl ? req : req.clone({
-            url: `${this.serverUrl}${req.url}`
+            url: `${this.serverUrl}${req.url}`,
         });
-        serverReq['uid'] = this.request['uid'];
+        serverReq.headers['uid'] = this.request['uid'];
+        serverReq.headers['test'] = 111;
         return next.handle(serverReq);
     }
 }

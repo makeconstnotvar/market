@@ -45790,29 +45790,6 @@ ErrorCtrl.$inject = ['$scope', '$state'];
 angular.module('controller').controller('ErrorCtrl', ErrorCtrl);
 
 
-function MenuCtrl($scope, $state) {
-    $scope.menus = $state.current.data.menus;
-
-    $scope.toSubnav = function (state) {
-        $state.go(state, $state.params);
-    };
-
-    setActive($state.current);
-
-    $scope.$on('updateActivate', function (e, args) {
-        setActive(args.state);
-    });
-
-    function setActive(state) {
-        for (var i = 0; i < $scope.menus.length; i++) {
-            $scope.menus[i].active = $scope.menus[i].state == state.name;
-        }
-    }
-}
-
-MenuCtrl.$inject = ['$scope', '$state'];
-
-angular.module('controller').controller('MenuCtrl', MenuCtrl);
 function AddurlCtrl($scope, $stateParams, Product, _, list, item, modalName) {
     if ($stateParams.id && $stateParams.id != 0) {
         Product.getById($stateParams.id).then(function (response) {
@@ -45870,6 +45847,29 @@ AddurlCtrl.$inject = ['$scope', '$stateParams', 'Product', '_', 'list', 'item','
 
 angular.module('controller').controller('AddurlCtrl', AddurlCtrl);
 
+function MenuCtrl($scope, $state) {
+    $scope.menus = $state.current.data.menus;
+
+    $scope.toSubnav = function (state) {
+        $state.go(state, $state.params);
+    };
+
+    setActive($state.current);
+
+    $scope.$on('updateActivate', function (e, args) {
+        setActive(args.state);
+    });
+
+    function setActive(state) {
+        for (var i = 0; i < $scope.menus.length; i++) {
+            $scope.menus[i].active = $scope.menus[i].state == state.name;
+        }
+    }
+}
+
+MenuCtrl.$inject = ['$scope', '$state'];
+
+angular.module('controller').controller('MenuCtrl', MenuCtrl);
 function NavbarCtrl($scope, $state) {
     $scope.navs = $state.current.data.navs;
 
@@ -45902,46 +45902,6 @@ NavbarCtrl.$inject = ['$scope', '$state'];
 
 angular.module('controller').controller('NavbarCtrl', NavbarCtrl);
 
-
-ProductAddListCtrl.$inject = ['$rootScope', '$scope'];
-
-function ProductAddListCtrl($rootScope, $scope) {
-
-    $scope.$on('productAddList:init', getProducts);
-
-    $scope.$on('productAddList:add', add);
-
-    $scope.$on('productAddList:remove', remove);
-
-    $scope.add = function (product) {
-        $rootScope.$broadcast('productAddList:add', product);
-    };
-
-    $scope.remove = function (product) {
-        $rootScope.$broadcast('productAddList:remove', product._id);
-    };
-
-    $scope.getCover = function (photo) {
-        return photo.fileType == 'cover';
-    };
-
-    function getProducts(e, products) {
-        $scope.products = products;
-    }
-
-    function remove(e, productId) {
-        var product = $scope.products.find(function (product) {
-            return product._id == productId;
-        });
-        product.selected = false;
-    }
-
-    function add(e, product) {
-        product.selected = true;
-    }
-}
-
-angular.module('controller').controller('ProductAddListCtrl', ProductAddListCtrl);
 
 PagerCtrl.$inject = ['$rootScope', '$scope', '$state', 'Filter'];
 
@@ -45986,6 +45946,46 @@ function PagerCtrl($rootScope, $scope, $state, Filter) {
 
 angular.module('controller').controller('PagerCtrl', PagerCtrl);
 
+
+ProductAddListCtrl.$inject = ['$rootScope', '$scope'];
+
+function ProductAddListCtrl($rootScope, $scope) {
+
+    $scope.$on('productAddList:init', getProducts);
+
+    $scope.$on('productAddList:add', add);
+
+    $scope.$on('productAddList:remove', remove);
+
+    $scope.add = function (product) {
+        $rootScope.$broadcast('productAddList:add', product);
+    };
+
+    $scope.remove = function (product) {
+        $rootScope.$broadcast('productAddList:remove', product._id);
+    };
+
+    $scope.getCover = function (photo) {
+        return photo.fileType == 'cover';
+    };
+
+    function getProducts(e, products) {
+        $scope.products = products;
+    }
+
+    function remove(e, productId) {
+        var product = $scope.products.find(function (product) {
+            return product._id == productId;
+        });
+        product.selected = false;
+    }
+
+    function add(e, product) {
+        product.selected = true;
+    }
+}
+
+angular.module('controller').controller('ProductAddListCtrl', ProductAddListCtrl);
 
 function ProgressCtrl($rootScope, $scope, $timeout) {
     var needProgress = false;
@@ -46326,29 +46326,6 @@ function CategoryWrapCtrl($scope, $state) {
 
 angular.module('controller').controller('CategoryWrapCtrl', CategoryWrapCtrl);
 
-LoginCtrl.$inject = ['$scope', '$location', '$stateParams', 'Secure', '$window'];
-
-function LoginCtrl($scope, $location, $stateParams, Secure, $window) {
-    $scope.login = function () {
-        Secure.login($scope.passport).then(function (response) {
-            var url = '/admin';
-            if ($stateParams.url)
-                url += $stateParams.url;
-            //$location.path(url);
-            $window.location.href = url;
-
-        }, function (err) {
-            if (err)
-                $scope.error = err.data;
-        });
-
-    };
-
-}
-
-angular.module('controller').controller('LoginCtrl', LoginCtrl);
-
-
 
 ContractRouter.$inject = ['$stateProvider','config','OnExitHandlerProvider'];
 
@@ -46538,6 +46515,29 @@ function ContractRouter($stateProvider,config,OnExitHandlerProvider) {
 }
 
 angular.module('router').config(ContractRouter);
+LoginCtrl.$inject = ['$scope', '$location', '$stateParams', 'Secure', '$window'];
+
+function LoginCtrl($scope, $location, $stateParams, Secure, $window) {
+    $scope.login = function () {
+        Secure.login($scope.passport).then(function (response) {
+            var url = '/admin';
+            if ($stateParams.url)
+                url += $stateParams.url;
+            //$location.path(url);
+            $window.location.href = url;
+
+        }, function (err) {
+            if (err)
+                $scope.error = err.data;
+        });
+
+    };
+
+}
+
+angular.module('controller').controller('LoginCtrl', LoginCtrl);
+
+
 ParameterRouter.$inject = ['$stateProvider', 'config','OnExitHandlerProvider'];
 
 function ParameterRouter($stateProvider, config,OnExitHandlerProvider) {
@@ -47001,6 +47001,27 @@ function TemplatesRouter($stateProvider, config,OnExitHandlerProvider) {
 
 
 angular.module('router').config(TemplatesRouter);
+function CategoryDeleteCtrl($scope, $stateParams, $state, Category) {
+    var toState = $state.current.data.toState;
+    Category.select({query:{_id:$stateParams.cid}}).then(function (response) {
+        $scope.category = response.data;
+    });
+
+    $scope.ok = function (id) {
+        Category.remove(id).then(function () {
+            $state.go(toState.list);
+        });
+    };
+
+    $scope.cancel = function () {
+        $state.go(toState.list);
+    };
+}
+
+CategoryDeleteCtrl.$inject = ['$scope', '$stateParams', '$state', 'Category'];
+
+angular.module('controller').controller('CategoryDeleteCtrl', CategoryDeleteCtrl);
+
 function CategoryListCtrl($scope, $state, $cacheFactory, Category) {
     var toState = $state.current.data.toState;
     var cache = $cacheFactory.get('cats') || $cacheFactory('cats');
@@ -47122,27 +47143,6 @@ function CategoryNewCtrl($scope, $stateParams, $state, Category, beautify, trans
 CategoryNewCtrl.$inject = ['$scope', '$stateParams', '$state', 'Category', 'beautify', 'translit'];
 
 angular.module('controller').controller('CategoryNewCtrl', CategoryNewCtrl);
-function CategoryDeleteCtrl($scope, $stateParams, $state, Category) {
-    var toState = $state.current.data.toState;
-    Category.select({query:{_id:$stateParams.cid}}).then(function (response) {
-        $scope.category = response.data;
-    });
-
-    $scope.ok = function (id) {
-        Category.remove(id).then(function () {
-            $state.go(toState.list);
-        });
-    };
-
-    $scope.cancel = function () {
-        $state.go(toState.list);
-    };
-}
-
-CategoryDeleteCtrl.$inject = ['$scope', '$stateParams', '$state', 'Category'];
-
-angular.module('controller').controller('CategoryDeleteCtrl', CategoryDeleteCtrl);
-
 function CategoryParentCtrl($scope, $stateParams, $state, Category, $q) {
     var toState = $state.current.data.toState;
 
@@ -47172,65 +47172,6 @@ function CategoryParentCtrl($scope, $stateParams, $state, Category, $q) {
 CategoryParentCtrl.$inject = ['$scope', '$stateParams', '$state', 'Category', '$q'];
 
 angular.module('controller').controller('CategoryParentCtrl', CategoryParentCtrl);
-CategoryTabsCtrl.$inject = ['$scope', '$rootScope', '$state', 'Category', 'translit'];
-
-function CategoryTabsCtrl($scope, $rootScope, $state, Category, translit) {
-    var urlCanChange = false;
-
-    $scope.$on('state:leave', save);
-
-    Category.selectById({id: $state.params.cid}).then(function (response) {
-        $scope.category = response.data;
-        urlCanChange = !$scope.category.url;
-    });
-
-    $scope.nameToUrl = function (force) {
-        if (urlCanChange || force) {
-            $scope.category.url = translit($scope.category.name);
-            urlCanChange = true;
-        }
-    };
-
-    $scope.save = function () {
-        return save();
-    };
-
-    function save() {
-        urlCanChange = false;
-        return Category.update($scope.category).then(function () {
-            $rootScope.$broadcast('status:success', 'Категория сохранена')
-        }, function (response) {
-            $rootScope.$broadcast('status:error', 'Категория не сохранена<br/>' + response)
-        })
-
-    }
-
-    $scope.aceOptions = {
-        mode: 'html',
-        theme: 'chrome',
-        workerPath: 'js/',
-        //workerPath: 'temp/libs/ace/',
-        useWrapMode: true,
-        showGutter: true,
-        behavioursEnabled: true,
-        displayIndentGuides: true,
-        showPrintMargin: false,
-        onLoad: function (editor) {
-            editor.setHighlightSelectedWord(false);
-            editor.$blockScrolling = Infinity;
-        },
-        require: ['ace/ext/language_tools'],
-        //rquire: ['ace/ext-language_tools.js'],
-        advanced: {
-            enableSnippets: true,
-            enableBasicAutocompletion: true,
-            enableLiveAutocompletion: false
-        }
-    };
-}
-
-angular.module('controller').controller('CategoryTabsCtrl', CategoryTabsCtrl);
-
 function CategoryTemplateCtrl($scope, $stateParams, $state, $q, Category, Templates) {
     var toState = $state.current.data.toState;
     var chains = [], category;
@@ -47306,6 +47247,65 @@ function CategoryTemplateCtrl($scope, $stateParams, $state, $q, Category, Templa
 CategoryTemplateCtrl.$inject = ['$scope', '$stateParams', '$state', '$q', 'Category', 'Templates'];
 
 angular.module('controller').controller('CategoryTemplateCtrl', CategoryTemplateCtrl);
+
+CategoryTabsCtrl.$inject = ['$scope', '$rootScope', '$state', 'Category', 'translit'];
+
+function CategoryTabsCtrl($scope, $rootScope, $state, Category, translit) {
+    var urlCanChange = false;
+
+    $scope.$on('state:leave', save);
+
+    Category.selectById({id: $state.params.cid}).then(function (response) {
+        $scope.category = response.data;
+        urlCanChange = !$scope.category.url;
+    });
+
+    $scope.nameToUrl = function (force) {
+        if (urlCanChange || force) {
+            $scope.category.url = translit($scope.category.name);
+            urlCanChange = true;
+        }
+    };
+
+    $scope.save = function () {
+        return save();
+    };
+
+    function save() {
+        urlCanChange = false;
+        return Category.update($scope.category).then(function () {
+            $rootScope.$broadcast('status:success', 'Категория сохранена')
+        }, function (response) {
+            $rootScope.$broadcast('status:error', 'Категория не сохранена<br/>' + response)
+        })
+
+    }
+
+    $scope.aceOptions = {
+        mode: 'html',
+        theme: 'chrome',
+        workerPath: 'js/',
+        //workerPath: 'temp/libs/ace/',
+        useWrapMode: true,
+        showGutter: true,
+        behavioursEnabled: true,
+        displayIndentGuides: true,
+        showPrintMargin: false,
+        onLoad: function (editor) {
+            editor.setHighlightSelectedWord(false);
+            editor.$blockScrolling = Infinity;
+        },
+        require: ['ace/ext/language_tools'],
+        //rquire: ['ace/ext-language_tools.js'],
+        advanced: {
+            enableSnippets: true,
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: false
+        }
+    };
+}
+
+angular.module('controller').controller('CategoryTabsCtrl', CategoryTabsCtrl);
 
 function ContractDeleteCtrl($scope, $stateParams, $state, Contract) {
     var toState = $state.current.data.toState;
@@ -47436,6 +47436,26 @@ ContractMainCtrl.$inject = ['$scope', '$state'];
 
 angular.module('controller').controller('ContractMainCtrl', ContractMainCtrl);
 
+function ContractNewCtrl($scope, $state, Contract) {
+    var toState = $state.current.data.toState;
+
+    $scope.contract = {
+        delivery: 'auto',
+        sendSms: true,
+        status:'placed'
+    };
+
+    $scope.save = function () {
+        Contract.insert($scope.contract).then(function (response) {
+            $state.go(toState.edit, {id: response.data}, {reload: false})
+        });
+    };
+}
+
+ContractNewCtrl.$inject = ['$scope', '$state', 'Contract'];
+
+angular.module('controller').controller('ContractNewCtrl', ContractNewCtrl);
+
 ContractProductsCtrl.$inject = ['$rootScope', '$scope', '$stateParams', '$state', 'Product', 'Contract', 'Filter'];
 function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product, Contract, Filter) {
     var toState = $state.current.data.toState,
@@ -47563,26 +47583,6 @@ function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product,
 
 
 angular.module('controller').controller('ContractProductsCtrl', ContractProductsCtrl);
-
-function ContractNewCtrl($scope, $state, Contract) {
-    var toState = $state.current.data.toState;
-
-    $scope.contract = {
-        delivery: 'auto',
-        sendSms: true,
-        status:'placed'
-    };
-
-    $scope.save = function () {
-        Contract.insert($scope.contract).then(function (response) {
-            $state.go(toState.edit, {id: response.data}, {reload: false})
-        });
-    };
-}
-
-ContractNewCtrl.$inject = ['$scope', '$state', 'Contract'];
-
-angular.module('controller').controller('ContractNewCtrl', ContractNewCtrl);
 
 ContractStatusCtrl.$inject = ['$scope', '$stateParams', '$state', '$timeout', 'Contract', 'Status'];
 
@@ -48332,7 +48332,7 @@ function ProductTabsCtrl($scope, $rootScope, $state, Product, translit) {
     $scope.aceOptions = {
         mode: 'html',
         theme: 'chrome',
-        workerPath: 'js/',
+        workerPath: 'admin/worker/',
         useWrapMode: true,
         showGutter: true,
         behavioursEnabled: true,
@@ -48991,6 +48991,41 @@ function ConvertCtrl($scope) {
 ConvertCtrl.$inject = ['$scope'];
 
 angular.module('controller').controller('СonvertCtrl', ConvertCtrl);
+function ProductFileCtrl($scope, $stateParams, Product, Files, beautify, translit) {
+
+    $scope.remove = function (fileId) {
+        $scope.product.files = $scope.product.files.filter(function (file) {
+            return file.fileId != fileId;
+        });
+        Files.remove($stateParams.cid, fileId).then(function () {
+            Product.update($scope.product);
+        });
+
+    };
+    $scope.convert = function(pid,fid){
+        Files.convert(pid,fid)
+    };
+    $scope.makeUrl = function () {
+        this.file.url = translit(this.file.name);
+    };
+    $scope.onFileSelect = function onFileSelect($files) {
+        var formData = new FormData();
+        for (var i = 0; i < $files.length; i++) {
+            formData.append($scope.product._id, $files[i]);
+        }
+        Files.insert(formData, 'file').then(function (response) {
+            $scope.product.files = $scope.product.files || [];
+            $scope.product.files = $scope.product.files.concat(response.data);
+        })
+    };
+    $scope.btf = function (details) {
+        this.file.details = beautify(details);
+    };
+
+}
+ProductFileCtrl.$inject = ['$scope', '$stateParams', 'Product', 'Files', 'beautify', 'translit'];
+
+angular.module('controller').controller('ProductFileCtrl', ProductFileCtrl);
 function ProductInfoCtrl($scope,  $state, beautify, translit) {
     $scope.utils = $scope.utils || {};
 
@@ -49039,41 +49074,6 @@ ProductInfoCtrl.$inject = ['$scope', '$state', 'beautify', 'translit'];
 
 angular.module('controller').controller('ProductInfoCtrl', ProductInfoCtrl);
 
-function ProductFileCtrl($scope, $stateParams, Product, Files, beautify, translit) {
-
-    $scope.remove = function (fileId) {
-        $scope.product.files = $scope.product.files.filter(function (file) {
-            return file.fileId != fileId;
-        });
-        Files.remove($stateParams.cid, fileId).then(function () {
-            Product.update($scope.product);
-        });
-
-    };
-    $scope.convert = function(pid,fid){
-        Files.convert(pid,fid)
-    };
-    $scope.makeUrl = function () {
-        this.file.url = translit(this.file.name);
-    };
-    $scope.onFileSelect = function onFileSelect($files) {
-        var formData = new FormData();
-        for (var i = 0; i < $files.length; i++) {
-            formData.append($scope.product._id, $files[i]);
-        }
-        Files.insert(formData, 'file').then(function (response) {
-            $scope.product.files = $scope.product.files || [];
-            $scope.product.files = $scope.product.files.concat(response.data);
-        })
-    };
-    $scope.btf = function (details) {
-        this.file.details = beautify(details);
-    };
-
-}
-ProductFileCtrl.$inject = ['$scope', '$stateParams', 'Product', 'Files', 'beautify', 'translit'];
-
-angular.module('controller').controller('ProductFileCtrl', ProductFileCtrl);
 ProductMainCtrl.$inject = ['$scope', '$state', 'beautify', 'config'];
 
 function ProductMainCtrl($scope, $state, beautify, config) {

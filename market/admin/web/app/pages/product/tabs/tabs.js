@@ -12,7 +12,7 @@ function ProductTabsCtrl($scope, $rootScope, $state, Product, translit) {
     $scope.aceOptions = {
         mode: 'html',
         theme: 'chrome',
-        workerPath: 'js/',
+        workerPath: 'admin/worker/',
         useWrapMode: true,
         showGutter: true,
         behavioursEnabled: true,

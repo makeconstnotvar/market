@@ -18,4 +18,6 @@ export class Product {
     code:number;
     parameters:any[];
     stock:any;
+    notFoundUrl:string;
+    redirectUrl:string;
 }

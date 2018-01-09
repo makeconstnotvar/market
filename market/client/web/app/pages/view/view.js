@@ -1,10 +1,11 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ProductProvider, ContractProvider } from "providers/index";
-import { Product } from "models/index";
-import { GlobalService, SeoService, NavbarService, ConfigService } from "services/index";
+import { ContractProvider, ProductProvider } from "../../providers";
+import { Product } from "../../models";
+import { ConfigService, GlobalService, NavbarService, SeoService, ServerResponseService1 } from "../../services";
 export class ViewPage {
-    constructor(productProvider, activatedRoute, contractProvider, navbarService, configService, globalService, router, seoService) {
+    constructor(serverResponseService, productProvider, activatedRoute, contractProvider, navbarService, configService, globalService, router, seoService) {
+        this.serverResponseService = serverResponseService;
         this.productProvider = productProvider;
         this.activatedRoute = activatedRoute;
         this.contractProvider = contractProvider;
@@ -19,14 +20,20 @@ export class ViewPage {
             this.productId = params['productId'];
             this.categoryId = params['categoryId'];
             this.productProvider.view(this.productId).subscribe(response => {
-                this.product = response;
-                this.selectedImage = this.product.images[0];
-                this.seoService.setMeta({
-                    title: this.product.title,
-                    description: `${this.product.description} ${this.product.price} руб.`,
-                    keywords: this.product.keywords,
-                    image: `/photos/${this.product._id}/${this.selectedImage}`,
-                });
+                if (response.notFoundUrl)
+                    this.serverResponseService.setNotFound(response.notFoundUrl);
+                if (response.redirectUrl)
+                    this.serverResponseService.setRedirect(response.redirectUrl);
+                else {
+                    this.product = response;
+                    this.selectedImage = this.product.images[0];
+                    this.seoService.setMeta({
+                        title: this.product.title,
+                        description: `${this.product.description} ${this.product.price} руб.`,
+                        keywords: this.product.keywords,
+                        image: `/photos/${this.product._id}/${this.selectedImage}`,
+                    });
+                }
             });
         });
         this.globalService.existPreviousState.subscribe(state => this.isBack = true);
@@ -54,10 +61,11 @@ export class ViewPage {
 ViewPage.decorators = [
     { type: Component, args: [{
                 selector: 'view-page',
-                templateUrl: 'view.html'
+                templateUrl: 'view.html', providers: [ServerResponseService1]
             },] },
 ];
 ViewPage.ctorParameters = () => [
+    { type: ServerResponseService1, },
     { type: ProductProvider, },
     { type: ActivatedRoute, },
     { type: ContractProvider, },

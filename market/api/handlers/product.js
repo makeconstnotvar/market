@@ -5,6 +5,7 @@ var bll = require('../business'),
     config = require('../../config'),
     utils = require('../utils'),
     waterfall = require("async/waterfall"),
+    urlJoin = require('url-join'),
     series = require("async/series"),
     _ = require('underscore');
 
@@ -18,7 +19,7 @@ module.exports = class extends Base {
     select(req, res, next) {
         var options = req.body;
         this.entity.select(options).populate('category').populate('parameters.parameter').populate('template').exec((err, product) => {
-            if (err)return next(err);
+            if (err) return next(err);
             res.send(product);
         });
     }
@@ -26,31 +27,43 @@ module.exports = class extends Base {
     selectAll(req, res, next) {
         var options = req.body;
         this.entity.selectAll(options).populate('category').exec((err, products) => {
-            if (err)return next(err);
+            if (err) return next(err);
             res.send(products);
         });
     }
 
     update(req, res, next) {
-        var item = req.body;
+        let item = req.body;
         if (item.publish && (!item.name || !item.url)) {
-            var err = new Error('Ошибка заполнения полей продукта');
-            var errName = 'Поле "название" не должно быть пустым ';
-            var errUrl = 'Поле "url" не должно быть пустым';
+            let err = new Error('Ошибка заполнения полей продукта');
+            let errName = 'Поле "название" не должно быть пустым ';
+            let errUrl = 'Поле "url" не должно быть пустым';
             if (item.name)
                 err.userMessage += errName;
             if (item.url)
                 err.userMessage += errUrl;
             return next(err);
         }
-        this.entity.update(item).exec((err, product) => {
-            if (err) {
-                if (err.code == 11000)
-                    err.userMessage = `Url ${item.url} уже существует в базе данных у друго товара`;
-                return next(err);
+
+        this.entity.select({_id: item._id}).exec((err, oldProduct) => {
+            if (oldProduct.url !== item.url) {
+                let oldUrls = Array.from(item.historyUrls);
+                oldUrls.push(oldProduct.url);
+                item.historyUrls = _.uniq(oldUrls);
+                console.log(1)
+
             }
-            res.send('ok');
+            this.entity.update(item).exec((err, product) => {
+                if (err) {
+                    if (err.code === 11000)
+                        err.userMessage = `Url ${item.url} уже существует в базе данных у друго товара`;
+                    return next(err);
+                }
+                res.send('ok');
+            });
         });
+
+
     }
 
     category(req, res, next) {
@@ -64,7 +77,7 @@ module.exports = class extends Base {
                 if (err) return next(err);
                 if (template) {
                     that.entity.changeParameters(product, template.parameters).exec((err, product) => {
-                        if (err)return next(err);
+                        if (err) return next(err);
                         res.send('ok');
                     });
                 }
@@ -197,8 +210,8 @@ module.exports = class extends Base {
             });
         }
 
-        function getVarNameFromObject (nameObject) {
-            for(let varName in nameObject) {
+        function getVarNameFromObject(nameObject) {
+            for (let varName in nameObject) {
                 return varName;
             }
         }
@@ -224,13 +237,16 @@ module.exports = class extends Base {
 
         function getProduct(callback) {
             that.entity.select({
-                query: {url: url, publish: true},
+                query: {$or: [{url: url}, {historyUrls: url}], publish: true},
                 projection: {
                     'name': 1,
                     'code': 1,
                     'details': 1,
                     'article': 1,
                     'title': 1,
+                    'historyUrls': 1,
+                    'url': 1,
+                    'category.url': 1,
                     'description': 1,
                     'information': 1,
                     'keywords': 1,
@@ -239,15 +255,23 @@ module.exports = class extends Base {
                     'price': 1,
                     'photos': 1
                 }
-            }).populate('parameters.parameter').lean().exec((err, product) => {
+            }).populate('category').populate('parameters.parameter').lean().exec((err, product) => {
                 if (err)
                     callback(err);
                 if (!product) {
-                    res.status(404);
-                    return next();
+                    res.send({notFoundUrl:url});
                 }
-                else callback(null, product)
+                else {
+                    if (product.historyUrls.includes(url)) {
+                        let redirectUrl = `/${product.category.url}/${product.url}`;
+                        //res.location(redirectUrl);
+                        res.send({redirectUrl});
+                    }
+                    else {
+                        callback(null, product)
+                    }
 
+                }
             })
         }
 
@@ -259,7 +283,7 @@ module.exports = class extends Base {
         }
 
         function processView(err, results) {
-            if (err)return next(err);
+            if (err) return next(err);
             res.send(getViewFields(results.product, results.contract));
         }
     }
@@ -302,7 +326,7 @@ module.exports = class extends Base {
 
         function processSpecial(err, results) {
             //todo подгрузить сео
-            if (err)return next(err);
+            if (err) return next(err);
             res.send(getSpecialFields(results.products, results.contract));
         }
     }
@@ -416,7 +440,7 @@ function getListFields(products, contract) {
             }
         }
     }
-     return products;
+    return products;
 }
 
 function getValue(paramContainer) {

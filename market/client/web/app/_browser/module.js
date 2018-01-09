@@ -11,7 +11,7 @@ BrowserAppModule.decorators = [
                     BrowserModule.withServerTransition({
                         appId: 'BD484954-6626-4699-86BD-AF9CA21F0DE8'
                     }),
-                    ApplicationModule
+                    ApplicationModule,
                 ]
             },] },
 ];
