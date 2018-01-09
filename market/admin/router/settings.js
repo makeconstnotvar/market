@@ -3,5 +3,6 @@ var router = require('express').Router(),
 
 router.post('/select', handler.select.bind(handler));
 router.post('/upsert', handler.upsert.bind(handler));
+router.post('/config', handler.config.bind(handler));
 
 module.exports = router;

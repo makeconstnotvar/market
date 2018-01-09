@@ -1,6 +1,5 @@
 node_modules/
 .idea/
-data/prerender/
 data/photos/
 market/admin/web/tmp/
 market/admin/web/views/layout.dot

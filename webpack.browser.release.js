@@ -7,7 +7,7 @@ module.exports = {
     },
     output: {
         filename: 'browser.js',
-        path: path.resolve(__dirname, 'build/temp')
+        path: path.resolve(__dirname, 'build/client')
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({

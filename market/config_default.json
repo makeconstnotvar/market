@@ -1,10 +1,8 @@
 {
     "path": {
-        "public": "C:\\Projects\\fastlight\\data\\public",
         "photo": "C:\\Projects\\fastlight\\data\\photos",
         "files": "C:\\Projects\\fastlight\\data\\files",
-        "prerender": "C:\\Projects\\fastlight\\data\\prerender",
-        "jquery": "C:\\Projects\\fastlight\\data\\jquery.js"
+        "serverjs": "C:\\Projects\\market\\build\\temp\\server.js"
     },
     "system": {
         "port": "3001",
@@ -26,11 +24,7 @@
         "pageSize": 5,
         "ymlFileName": "yml.xml",
         "sitemapFileName": "sitemap.xml",
-        "ymlCategorieFileName": "yml-categories.json",
-        "renderListFileName": "render-list.json",
-        "configWebFileName":"config-web.json",
-        "urlsFileNameSource": "request-list-source.json",
-        "urlsFileName": "request-list.json",
+        "ymlCategories": [],
         "siteName": "market.ru",
         "companyName": "market.ru"
     },

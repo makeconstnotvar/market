@@ -12,11 +12,10 @@ let gulp = require('gulp'),
 
 let adminWeb = 'market/admin/web',
     destination = 'build/admin',
-    temp = 'build/temp/admin',
     shared = 'market/admin/shared',
     concatJs = [
         `${shared}/libs/angular.js`,
-        `${shared}/libs/angular.router.js`,
+        `${shared}/libs/angular-router.js`,
         `${shared}/libs/*.js`,
         `${shared}/libs/ace/ace.js`,
         `${shared}/libs/ace/*.js`,
@@ -24,7 +23,7 @@ let adminWeb = 'market/admin/web',
         `${shared}/*.js`,
         `${adminWeb}/app/modules.js`,
         `${adminWeb}/app/index.js`,
-        `${temp}/templates.js`,
+        `${destination}/templates.js`,
         `${adminWeb}/app/**/*.js`
 
     ],
@@ -52,7 +51,7 @@ gulp.task('templates', function () {
             prefix: "admin/"
         }))
         .pipe(concat("templates.js"))
-        .pipe(gulp.dest(temp));
+        .pipe(gulp.dest(destination));
 
 });
 gulp.task('js', function () {
@@ -72,11 +71,12 @@ gulp.task('css', function () {
         .pipe(gulp.dest(destination))
 });
 gulp.task('inject', function () {
-    const cssFiles = gulp.src( `${destination}/styles.css`);
-    const jsFiles = gulp.src( `${destination}/scripts.js`);
+    const cssFiles = gulp.src(`${destination}/styles.css`);
+    const jsFiles = gulp.src(`${destination}/scripts.js`);
     return gulp.src(pugs)
-        .pipe(inject(cssFiles, {ignorePath: destination, addPrefix:'admin/styles'}))
-        .pipe(inject(jsFiles, {ignorePath: destination, addPrefix:'admin/scripts'}))
+        .pipe(inject(cssFiles, {ignorePath: destination, addPrefix: 'admin/styles'}))
+        .pipe(inject(jsFiles, {ignorePath: destination, addPrefix: 'admin/scripts'}))
         .pipe(pug())
         .pipe(gulp.dest(`${adminWeb}/views`));
 });
+gulp.task('default', gulp.series('templates', 'js', 'css', 'inject'));

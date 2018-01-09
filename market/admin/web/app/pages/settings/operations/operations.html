@@ -2,21 +2,14 @@
     <label class="col-sm-2 control-label">Подготовить Sitemap</label>
 
     <div class="col-sm-10">
-        <a ng-click="sitemap()" class="btn btn-primary">Генерировать</a>
+        <a ng-click="sitemap()" class="btn btn-primary">Выполнить</a>
     </div>
 </div>
 <div class="row form-group">
-    <label class="col-sm-2 control-label">Рендерить все</label>
+    <label class="col-sm-2 control-label">Размер картинок</label>
 
     <div class="col-sm-10">
-        <a ng-click="prerender()" class="btn btn-primary">Генерировать</a>
-    </div>
-</div>
-<div class="row form-group">
-    <label class="col-sm-2 control-label">Рендерить служебные</label>
-
-    <div class="col-sm-10">
-        <a ng-click="prerenderSrv()" class="btn btn-primary">Генерировать</a>
+        <a ng-click="resizeAll()" class="btn btn-primary">Оптимизировать</a>
     </div>
 </div>
 <div class="row form-group">
@@ -89,43 +82,11 @@
             <span class="mb-input-help">пример: Курьеру - наличными, самовывоз - наличные и карты</span>
         </div>
         <div class="mb-form-block">
-            <label>Ссылка на YML прайс лист</label> <a target="_blank" href="http://fastlight.debug/yml.xml">yml.xml</a>
+            <label>Ссылка на YML прайс лист</label> <a target="_blank" href="{{host}}/yml.xml">yml.xml</a>
         </div>
         <div class="mb-form-block">
-        <a ng-click="yml()" class="btn btn-primary">Генерировать</a>
+        <a ng-click="yml()" class="btn btn-primary">Выполнить</a>
         </div>
     </div>
 </div>
-<div class="row form-group">
-    <label class="col-sm-2 control-label">Ресайз картинок</label>
 
-    <div class="col-sm-10">
-        <a ng-click="resizeAll()" class="btn btn-primary">Генерировать</a>
-    </div>
-</div>
-<div class="row form-group">
-    <label class="col-sm-2 control-label">Список доступных url</label>
-
-    <div class="col-sm-10">
-        <a ng-click="makeUrls()" class="btn btn-primary">Генерировать</a>
-    </div>
-</div>
-<div class="row form-group">
-    <label class="col-sm-2 control-label">WS тест </label>
-
-    <div class="col-sm-10">
-        <a ng-click="test()" class="btn btn-primary">Выполнить</a>
-    </div>
-</div>
-<div class="row form-group">
-    <div class="col-sm-12">
-        <p>Персонально: <span ng-bind="tweet"></span></p>
-        <p>Для всех: <span ng-bind="broad"></span></p>
-        <p>Остальные: <span ng-bind="other"></span></p>
-    </div>
-</div>
-<div class="row form-group">
-    <div class="col-sm-12">
-        <textarea ng-model="log" class="form-control me-console" rows="10"></textarea>
-    </div>
-</div>

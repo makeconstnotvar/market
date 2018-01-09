@@ -262,7 +262,7 @@ module.exports = class extends Base {
                     res.send({notFoundUrl:url});
                 }
                 else {
-                    if (product.historyUrls.includes(url)) {
+                    if (product.historyUrls && product.historyUrls.includes(url)) {
                         let redirectUrl = `/${product.category.url}/${product.url}`;
                         //res.location(redirectUrl);
                         res.send({redirectUrl});

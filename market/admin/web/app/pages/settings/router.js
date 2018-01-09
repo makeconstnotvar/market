@@ -30,7 +30,6 @@ function SettingsRouter($stateProvider, config, OnExitHandlerProvider) {
             },
             onExit: OnExitHandlerProvider.$get()
         })
-
         .state('root.settings.main', {
             url: '/main',
             views: {

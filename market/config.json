@@ -1,11 +1,8 @@
 {
     "path": {
-        "public": "C:\\Projects\\market\\data\\public",
         "photo": "C:\\Projects\\market\\data\\photos",
         "files": "C:\\Projects\\market\\data\\files",
-        "prerender": "C:\\Projects\\market\\data\\prerender",
-
-        "serverjs":"C:\\Projects\\market\\build\\temp\\server.js"
+        "serverjs": "C:\\Projects\\market\\build\\temp\\server.js"
     },
     "system": {
         "port": "3001",
@@ -33,11 +30,51 @@
         "pageSize": 5,
         "ymlFileName": "yml.xml",
         "sitemapFileName": "sitemap.xml",
-        "ymlCategorieFileName": "yml-categories.json",
-        "renderListFileName": "render-list.json",
-        "configWebFileName": "config-web.json",
-        "urlsFileNameSource": "request-list-source.json",
-        "urlsFileName": "request-list.json",
+        "sitemapUrls": [
+            "/",
+            "/contacts",
+            "/delivery"
+        ],
+        "ymlCategories": [
+            {
+                "id": "1",
+                "name": "Одежда, обувь и аксессуары"
+            },
+            {
+                "id": "10",
+                "parentId": "1",
+                "name": "Сумки и аксессуары"
+            },
+            {
+                "id": "100",
+                "parentId": "10",
+                "name": "Сумки, портфели, чемоданы"
+            },
+            {
+                "id": "1000",
+                "parentId": "100",
+                "name": "Сумки"
+            },
+            {
+                "id": "2",
+                "name": "Детские товары"
+            },
+            {
+                "id": "20",
+                "parentId": "2",
+                "name": "Товары для обучения и детского творчества"
+            },
+            {
+                "id": "200",
+                "parentId": "20",
+                "name": "Товары для школы"
+            },
+            {
+                "id": "2000",
+                "parentId": "200",
+                "name": "Ранцы, рюкзаки, сумки, папки для школы"
+            }
+        ],
         "siteName": "market.ru",
         "companyName": "market.ru"
     },

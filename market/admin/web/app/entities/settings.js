@@ -1,7 +1,10 @@
 function Settings($http, Base) {
     var item = {
-        upsert:function (item) {
+        upsert: function (item) {
             return $http.post('/admin/api/settings/upsert', item);
+        },
+        config: function () {
+            return $http.post('/admin/api/settings/config');
         }
     };
 
@@ -9,6 +12,7 @@ function Settings($http, Base) {
 
     return item;
 }
+
 Settings.$inject = ['$http', 'Base'];
 
 angular.module('entity').factory('Settings', Settings);

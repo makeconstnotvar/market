@@ -19,6 +19,11 @@ function RootRouter($stateProvider, $urlRouterProvider, config) {
         })
         .state('root', {
             url: '',
+            resolve:{
+                clientConfig:  ['Settings',function(Settings){
+                    return Settings.config();
+                }],
+            },
             parent: 'base',
             abstract: true,
             views: {

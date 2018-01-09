@@ -11,13 +11,17 @@ let gulp = require('gulp'),
 
 let favicons = ['market/favicon/**/*',],
     application = [
+        'package.json',
+        'market/admin/*.js',
+        'market/admin/web/fonts/**/*',
+        'market/admin/web/views/*.html',
+        'market/admin/router/**/*',
         'market/api/**/*',
         'market/start.js',
         'market/config.json',
         'market/client/*.js',
         'market/client/router/**/*',
         'market/client/web/fonts/**/*',
-        'market/client/web/ftp/**/*',
         'market/client/web/views/*.html',
     ],
     commonCss = [
@@ -36,14 +40,13 @@ let favicons = ['market/favicon/**/*',],
     ],
     bowserCss = [
         'styles.css',
-
     ],
     loading = [
-        'build/loading.css'
+        'loading.css'
 
     ],
     serverJs = [
-        'build/server.js'
+        'server.js'
     ],
     injectJs = [
         'build/client/web/scripts/ie-*.js',
@@ -52,16 +55,14 @@ let favicons = ['market/favicon/**/*',],
     injectCss = [
         'build/client/web/styles/styles-*.css'
     ],
-    pugs = [
-        'market/client/web/views/browser.pug',
-        'market/client/web/views/server.pug'
-    ],
-    destination = 'build/client/web',
-    temp = 'build/temp';
+    clientDestination = 'build/production/client/web',
+    adminDestination = 'build/production/admin/web',
+    adminSource = 'build/admin',
+    clientSource = 'build/client';
 
 gulp.task('application', function () {
     return gulp.src(application, {base: 'market'})
-        .pipe(gulp.dest(temp));
+        .pipe(gulp.dest(clientSource));
 });
 gulp.task('favicons', function () {
     return gulp.src(favicons, {base: './market'})
@@ -69,10 +70,10 @@ gulp.task('favicons', function () {
 });
 gulp.task('json', function () {
     return gulp.src(json)
-        .pipe(gulp.dest(temp));
+        .pipe(gulp.dest(clientSource));
 });
 gulp.task('scripts', function () {
-    return gulp.src(browserJs.map(js => path.join(temp,js)))
+    return gulp.src(browserJs.map(js => path.join(clientSource,js)))
         .pipe(hash())
         .pipe(gulp.dest(`${destination}/scripts`));
 });
@@ -82,7 +83,7 @@ gulp.task('loading', function () {
         .pipe(gulp.dest(`${destination}/scripts`));
 });
 gulp.task('styles', function () {
-    return gulp.src(bowserCss.map(css => path.join(temp,css)))
+    return gulp.src(bowserCss.map(css => path.join(clientSource,css)))
         .pipe(hash())
         .pipe(gulp.dest(`${destination}/styles`));
 });
@@ -98,8 +99,8 @@ gulp.task('images', function () {
 gulp.task('commonCss', function () {
     return gulp
         .src(commonCss)
-        .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
-        .pipe(concat('styles.css'))
+        //.pipe(sass({importer: tildaResolver}).on('error', sass.logError))
+        //.pipe(concat('styles.css'))
         .pipe(clean())
         .pipe(hash())
         .pipe(gulp.dest(destination + '/styles'))
