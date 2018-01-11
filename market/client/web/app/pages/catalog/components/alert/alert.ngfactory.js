@@ -10,4 +10,3 @@ export function View_ComponentCatalogAlert_0(_l) { return i0.ɵvid(0, [(_l()(), 
 export function View_ComponentCatalogAlert_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "cat-alert", [["class", "alert alert-info"]], null, null, null, View_ComponentCatalogAlert_0, RenderType_ComponentCatalogAlert)), i0.ɵdid(1, 49152, null, 0, i1.ComponentCatalogAlert, [], null, null)], null, null); }
 var ComponentCatalogAlertNgFactory = i0.ɵccf("cat-alert", i1.ComponentCatalogAlert, View_ComponentCatalogAlert_Host_0, {}, { onClearFilter: "onClearFilter" }, []);
 export { ComponentCatalogAlertNgFactory as ComponentCatalogAlertNgFactory };
-//# sourceMappingURL=alert.ngfactory.js.map

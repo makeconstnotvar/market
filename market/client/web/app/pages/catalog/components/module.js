@@ -12,39 +12,42 @@ import { ComponentFilterCheckbox } from "./filter/checkbox/checkbox";
 import { ComponentFilterCheckboxlist } from "./filter/checkboxlist/checkboxlist";
 import { ComponentFilterRadiolist } from "./filter/radiolist/radiolist";
 import { ComponentFilterInputs } from "./filter/inputs/inputs";
-export class ModuleComponentsCatalog {
-}
-ModuleComponentsCatalog.decorators = [
-    { type: NgModule, args: [{
-                declarations: [
-                    ComponentCatalogSorting,
-                    ComponentCatalogFilter,
-                    ComponentCatalogProduct,
-                    ComponentCatalogAlert,
-                    ComponentFilterButtons,
-                    ComponentFilterCheckbox,
-                    ComponentFilterCheckboxlist,
-                    ComponentFilterRadiolist,
-                    ComponentFilterInputs
-                ],
-                imports: [
-                    BrowserModule,
-                    RouterModule,
-                    FormsModule,
-                    ControlsModule
-                ],
-                exports: [
-                    ComponentCatalogSorting,
-                    ComponentCatalogFilter,
-                    ComponentCatalogProduct,
-                    ComponentCatalogAlert,
-                    ComponentFilterButtons,
-                    ComponentFilterCheckbox,
-                    ComponentFilterCheckboxlist,
-                    ComponentFilterRadiolist,
-                    ComponentFilterInputs
-                ]
-            },] },
-];
-ModuleComponentsCatalog.ctorParameters = () => [];
-//# sourceMappingURL=module.js.map
+var ModuleComponentsCatalog = (function () {
+    function ModuleComponentsCatalog() {
+    }
+    ModuleComponentsCatalog.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [
+                        ComponentCatalogSorting,
+                        ComponentCatalogFilter,
+                        ComponentCatalogProduct,
+                        ComponentCatalogAlert,
+                        ComponentFilterButtons,
+                        ComponentFilterCheckbox,
+                        ComponentFilterCheckboxlist,
+                        ComponentFilterRadiolist,
+                        ComponentFilterInputs
+                    ],
+                    imports: [
+                        BrowserModule,
+                        RouterModule,
+                        FormsModule,
+                        ControlsModule
+                    ],
+                    exports: [
+                        ComponentCatalogSorting,
+                        ComponentCatalogFilter,
+                        ComponentCatalogProduct,
+                        ComponentCatalogAlert,
+                        ComponentFilterButtons,
+                        ComponentFilterCheckbox,
+                        ComponentFilterCheckboxlist,
+                        ComponentFilterRadiolist,
+                        ComponentFilterInputs
+                    ]
+                },] },
+    ];
+    ModuleComponentsCatalog.ctorParameters = function () { return []; };
+    return ModuleComponentsCatalog;
+}());
+export { ModuleComponentsCatalog };

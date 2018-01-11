@@ -9,4 +9,3 @@ export function View_JumbotronControl_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵ
 export function View_JumbotronControl_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "jumbotron", [], null, null, null, View_JumbotronControl_0, RenderType_JumbotronControl)), i0.ɵdid(1, 245760, null, 0, i2.JumbotronControl, [i0.PLATFORM_ID], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var JumbotronControlNgFactory = i0.ɵccf("jumbotron", i2.JumbotronControl, View_JumbotronControl_Host_0, {}, {}, []);
 export { JumbotronControlNgFactory as JumbotronControlNgFactory };
-//# sourceMappingURL=jumbotron.ngfactory.js.map

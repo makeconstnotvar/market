@@ -14,4 +14,3 @@ export function View_ComponentCatalogSorting_0(_l) { return i0.ɵvid(0, [(_l()()
 export function View_ComponentCatalogSorting_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "cat-sorting", [], null, null, null, View_ComponentCatalogSorting_0, RenderType_ComponentCatalogSorting)), i0.ɵdid(1, 638976, null, 0, i2.ComponentCatalogSorting, [i3.SortingService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var ComponentCatalogSortingNgFactory = i0.ɵccf("cat-sorting", i2.ComponentCatalogSorting, View_ComponentCatalogSorting_Host_0, { activeSort: "activeSort" }, { onSort: "onSort" }, []);
 export { ComponentCatalogSortingNgFactory as ComponentCatalogSortingNgFactory };
-//# sourceMappingURL=sorting.ngfactory.js.map

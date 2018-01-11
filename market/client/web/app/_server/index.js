@@ -4,13 +4,12 @@ import { ServerAppModuleNgFactory } from './module.ngfactory.js';
 import { ngExpressEngine } from '@nguniversal/express-engine/src/main';
 import { enableProdMode } from "@angular/core";
 enableProdMode();
-let expressEngine = (providers) => {
+var expressEngine = function (providers) {
     return ngExpressEngine({
         bootstrap: ServerAppModuleNgFactory,
         providers: providers
     });
 };
-const ɵ0 = expressEngine;
+var ɵ0 = expressEngine;
 export { expressEngine };
 export { ɵ0 };
-//# sourceMappingURL=index.js.map

@@ -1,32 +1,33 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-export class ContractProvider {
-    constructor(http) {
+var ContractProvider = (function () {
+    function ContractProvider(http) {
         this.http = http;
     }
-    getById(id) {
+    ContractProvider.prototype.getById = function (id) {
         return this.http.post('/api/contract/select', { id: id });
-    }
-    placeContract(item) {
+    };
+    ContractProvider.prototype.placeContract = function (item) {
         return this.http.post('/api/contract/place', item);
-    }
-    postPosition(position) {
+    };
+    ContractProvider.prototype.postPosition = function (position) {
         return this.http.post('/api/contract/position', position);
-    }
-    put(item) {
+    };
+    ContractProvider.prototype.put = function (item) {
         return this.http.post('/api/contract/update', item);
-    }
-    getCartStatus() {
+    };
+    ContractProvider.prototype.getCartStatus = function () {
         return this.http.post('/api/contract/status', {});
-    }
-    getCart() {
+    };
+    ContractProvider.prototype.getCart = function () {
         return this.http.post('/api/contract/cart', {});
-    }
-}
-ContractProvider.decorators = [
-    { type: Injectable },
-];
-ContractProvider.ctorParameters = () => [
-    { type: HttpClient, },
-];
-//# sourceMappingURL=contract.js.map
+    };
+    ContractProvider.decorators = [
+        { type: Injectable },
+    ];
+    ContractProvider.ctorParameters = function () { return [
+        { type: HttpClient, },
+    ]; };
+    return ContractProvider;
+}());
+export { ContractProvider };

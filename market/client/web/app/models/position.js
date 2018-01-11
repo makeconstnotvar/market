@@ -1,3 +1,6 @@
-export class Position {
-}
-//# sourceMappingURL=position.js.map
+var Position = (function () {
+    function Position() {
+    }
+    return Position;
+}());
+export { Position };

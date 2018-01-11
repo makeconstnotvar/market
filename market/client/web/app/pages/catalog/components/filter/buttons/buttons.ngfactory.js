@@ -13,4 +13,3 @@ export function View_ComponentFilterButtons_0(_l) { return i0.ɵvid(0, [(_l()(),
 export function View_ComponentFilterButtons_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "filter-buttons", [["class", "d-flex"]], null, null, null, View_ComponentFilterButtons_0, RenderType_ComponentFilterButtons)), i0.ɵdid(1, 49152, null, 0, i1.ComponentFilterButtons, [], null, null)], null, null); }
 var ComponentFilterButtonsNgFactory = i0.ɵccf("filter-buttons", i1.ComponentFilterButtons, View_ComponentFilterButtons_Host_0, {}, { onApplyFilter: "onApplyFilter", onClearFilter: "onClearFilter" }, []);
 export { ComponentFilterButtonsNgFactory as ComponentFilterButtonsNgFactory };
-//# sourceMappingURL=buttons.ngfactory.js.map

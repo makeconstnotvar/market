@@ -1,31 +1,32 @@
 import { Injectable } from "@angular/core";
 import { ConfigService } from "services/config";
 import { HttpClient } from "@angular/common/http";
-class SettingsProvider {
-    constructor(http, configService) {
+var SettingsProvider = (function () {
+    function SettingsProvider(http, configService) {
         this.http = http;
         this.configService = configService;
     }
-    config() {
+    SettingsProvider.prototype.config = function () {
+        var _this = this;
         return this.http.post('/api/settings/config', {})
-            .map((config) => {
-            this.configService.config = config;
+            .map(function (config) {
+            _this.configService.config = config;
             return config;
         }).toPromise();
-    }
-    meta(state) {
-        return this.http.post('/api/settings/meta', { state });
-    }
-}
-SettingsProvider.decorators = [
-    { type: Injectable },
-];
-SettingsProvider.ctorParameters = () => [
-    { type: HttpClient, },
-    { type: ConfigService, },
-];
+    };
+    SettingsProvider.prototype.meta = function (state) {
+        return this.http.post('/api/settings/meta', { state: state });
+    };
+    SettingsProvider.decorators = [
+        { type: Injectable },
+    ];
+    SettingsProvider.ctorParameters = function () { return [
+        { type: HttpClient, },
+        { type: ConfigService, },
+    ]; };
+    return SettingsProvider;
+}());
 function SettingsFactory(settings) {
-    return () => settings.config();
+    return function () { return settings.config(); };
 }
 export { SettingsProvider, SettingsFactory };
-//# sourceMappingURL=settings.js.map

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-export class FooterControl {
-    constructor() {
+var FooterControl = (function () {
+    function FooterControl() {
         this.socials = [
             { name: 'Вконтакте', link: 'https://vk.com/getyourbag', icon: 'fa-vk' },
             { name: 'Facebook', link: 'https://www.facebook.com/getyourbagru', icon: 'fa-facebook' },
@@ -10,12 +10,13 @@ export class FooterControl {
             { name: 'Pinterest', link: 'https://www.pinterest.com/getyourbag', icon: 'fa-pinterest' }
         ];
     }
-}
-FooterControl.decorators = [
-    { type: Component, args: [{
-                selector: 'market-footer',
-                templateUrl: 'footer.html'
-            },] },
-];
-FooterControl.ctorParameters = () => [];
-//# sourceMappingURL=footer.js.map
+    FooterControl.decorators = [
+        { type: Component, args: [{
+                    selector: 'market-footer',
+                    templateUrl: 'footer.html'
+                },] },
+    ];
+    FooterControl.ctorParameters = function () { return []; };
+    return FooterControl;
+}());
+export { FooterControl };

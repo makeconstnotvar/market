@@ -101,8 +101,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/common/status/status.html',
-    '<div class="me-status-block" ng-class="{\'active\':status.show, \'success\':status.success, \'error\':!status.success}"><span ng-bind="status.text"></span> <i class="fa fa-times m-pointer me-status-close" ng-click="showOff()"></i></div>');
+  $templateCache.put('admin/common/progress/progress.html',
+    '<i ng-class="{visible:isVisible}" class="fa fa-cog spinner"></i>');
 }]);
 })();
 
@@ -113,8 +113,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/common/progress/progress.html',
-    '<i ng-class="{visible:isVisible}" class="fa fa-cog spinner"></i>');
+  $templateCache.put('admin/common/status/status.html',
+    '<div class="me-status-block" ng-class="{\'active\':status.show, \'success\':status.success, \'error\':!status.success}"><span ng-bind="status.text"></span> <i class="fa fa-times m-pointer me-status-close" ng-click="showOff()"></i></div>');
 }]);
 })();
 
@@ -173,6 +173,18 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/category/delete/delete.html',
+    '<div class="row form-group"><div class="col-sm-12">Вы уверены что хотите удалить категорию <b ng-bind="category.name"></b>?</div></div><div class="row form-group"><div class="col-sm-12"><button class="btn btn-success" ng-click="ok(category._id)">Удалить</button> <button class="btn btn-warning" ng-click="cancel()">Отмена</button></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/category/list/list.html',
     '<div class="row form-group" ng-show="categories.length==0"><div class="col-sm-12"><span>Вы не создали ни одной категории</span> <a ng-click="newCatagory()" class="btn btn-primary">Создать</a></div></div><div class="row form-group" ng-show="categories.length>0"><div class="col-sm-12"><ul class="list-unstyled my-cat-list"><li ng-repeat="category in categories" ng-include="\'admin/pages/category/list/tree.html\'"></li></ul></div></div>');
 }]);
@@ -187,30 +199,6 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/category/list/tree.html',
     '<div class="media my-cat-block"><div class="media-left" ng-class="{\'min-w78\':category.children}"><a ng-hide="category.collapse ||(!category.children)" title="Скрыть дочернии категории" ng-click="hideChilds(category)" class="margin-right-10 mt7"><i class="fa fa-minus-square-o"></i></a> <a ng-hide="!category.collapse" title="Показать дочернии категории" ng-click="showChilds(category)" class="margin-right-10 mt7"><i class="fa fa-plus-square-o"></i></a> <button title="Редактировать категорию" ng-click="edit(category._id)" class="btn btn-default"><i class="fa fa-pencil-square-o"></i></button></div><div class="media-body me-cat-body"><span ng-show="category.order" ng-bind="category.order+\'. \'"></span> <span class="me-cat-name"><span class="margin-right-10" ng-bind="category.name"></span> <span class="m-url" ng-bind="category.url"></span></span> <span class="margin-right-10"><img class="img-responsive" ng-repeat="photo in category.photos | filter:getCover" ng-src="{{\'/photos/\'+category._id+\'/s_\'+photo.fileId}}"></span> <button title="Удалить категорию" ng-click="delete(category._id)" class="btn btn-danger pull-right"><i class="fa fa-times"></i></button><div class="form-inline"><div class="form-group"><div class="input-group"><input type="text" class="form-control" placeholder="Дочерняя категория" ng-enter="addChild(category)" ng-model="category.childName"> <a class="input-group-addon btn btn-success" ng-click="addChild(category)"><i class="fa fa-plus"></i></a></div></div></div><ul ng-if="category.children" ng-hide="category.collapse" class="list-unstyled my-cat-list"><li ng-repeat="category in category.children" ng-include="\'admin/pages/category/list/tree.html\'"></li></ul></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/category/delete/delete.html',
-    '<div class="row form-group"><div class="col-sm-12">Вы уверены что хотите удалить категорию <b ng-bind="category.name"></b>?</div></div><div class="row form-group"><div class="col-sm-12"><button class="btn btn-success" ng-click="ok(category._id)">Удалить</button> <button class="btn btn-warning" ng-click="cancel()">Отмена</button></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/category/new/new.html',
-    '<div class="row form-group"><label class="col-sm-2 control-label">Родительская категория</label><div class="col-sm-10"><select class="form-control" ng-options="category.name for category in cats" ng-model="selectedCategory"><option value="">Корневая</option></select></div></div><div class="row form-group"><label class="col-sm-2 control-label text-nowrap">Название <i class="fa fa-asterisk my-red"></i></label><div class="col-sm-10"><input type="text" class="form-control" ng-model="category.name" ng-model-options="{updateOn:\'input\'}" ng-change="nameToUrl()"></div></div><div class="row form-group"><label class="col-sm-2 control-label text-nowrap">Url</label><div class="col-sm-10"><div class="input-group m-input-group"><input id="url" ng-model="category.url" ng-change="hideUrlError()" class="form-control"> <a class="btn btn-default input-group-addon" ng-click="nameToUrl()" title="Создать url из названия"><i class="fa fa-refresh"></i></a></div></div></div><div class="row form-group"><label for="urlText" class="col-sm-2 control-label text-nowrap">Текст Url</label><div class="col-sm-10"><input id="urlText" type="text" class="form-control" ng-model="category.urlText"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Порядок</label><div class="col-sm-10"><input type="text" class="form-control" ng-model="category.order" placeholder="порядковый номер для сортировки 1,2 или 3 и т.д."></div></div><div class="row form-group"><label class="col-sm-2 control-label">Описание</label><div class="col-sm-10 ace-information"><a class="m-pointer" ng-click="btf(\'details\', category.details)">Выровнять</a> <textarea ui-ace="aceOptions" ng-model="category.details"></textarea></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a value="Сохранить" class="btn btn-success" ng-click="save()">Сохранить</a> <a value="Назад" class="btn btn-warning" ng-click="back()">Назад</a> <span ng-show="noNameError" class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span></div></div>');
 }]);
 })();
 
@@ -247,6 +235,18 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/category/tabs/tabs.html',
     '<div ui-view="editor"></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a class="btn btn-success m-rgap" ng-click="save()">Сохранить</a></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/category/new/new.html',
+    '<div class="row form-group"><label class="col-sm-2 control-label">Родительская категория</label><div class="col-sm-10"><select class="form-control" ng-options="category.name for category in cats" ng-model="selectedCategory"><option value="">Корневая</option></select></div></div><div class="row form-group"><label class="col-sm-2 control-label text-nowrap">Название <i class="fa fa-asterisk my-red"></i></label><div class="col-sm-10"><input type="text" class="form-control" ng-model="category.name" ng-model-options="{updateOn:\'input\'}" ng-change="nameToUrl()"></div></div><div class="row form-group"><label class="col-sm-2 control-label text-nowrap">Url</label><div class="col-sm-10"><div class="input-group m-input-group"><input id="url" ng-model="category.url" ng-change="hideUrlError()" class="form-control"> <a class="btn btn-default input-group-addon" ng-click="nameToUrl()" title="Создать url из названия"><i class="fa fa-refresh"></i></a></div></div></div><div class="row form-group"><label for="urlText" class="col-sm-2 control-label text-nowrap">Текст Url</label><div class="col-sm-10"><input id="urlText" type="text" class="form-control" ng-model="category.urlText"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Порядок</label><div class="col-sm-10"><input type="text" class="form-control" ng-model="category.order" placeholder="порядковый номер для сортировки 1,2 или 3 и т.д."></div></div><div class="row form-group"><label class="col-sm-2 control-label">Описание</label><div class="col-sm-10 ace-information"><a class="m-pointer" ng-click="btf(\'details\', category.details)">Выровнять</a> <textarea ui-ace="aceOptions" ng-model="category.details"></textarea></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a value="Сохранить" class="btn btn-success" ng-click="save()">Сохранить</a> <a value="Назад" class="btn btn-warning" ng-click="back()">Назад</a> <span ng-show="noNameError" class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span></div></div>');
 }]);
 })();
 
@@ -413,8 +413,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/filter/filter.html',
-    '<div class="mb-filter"><div class="row"><div class="col-xs-12"><div class="form-group"><div class="input-group"><input ng-model="filter.text" ng-enter="query()" class="form-control" placeholder="название товара"> <a class="input-group-addon btn btn-success" ng-click="query()">Поиск</a></div></div><div class="form-inline"><div class="inline m-rgap"><div>категория</div><select class="form-control" ng-model="filter.category" ng-change="query()" ng-options="category._id as category.name for category in source.categories"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>видимость</div><select class="form-control" ng-model="filter.publish" ng-change="query()" ng-options="publish.value as publish.name for publish in source.publishes"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>наличие</div><select class="form-control" ng-model="filter.count" ng-change="query()" ng-options="count.value as count.name for count in source.counts"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>на главной</div><select class="form-control" ng-model="filter.special" ng-change="query()" ng-options="special.value as special.name for special in source.specials"><option value="">не важно</option></select></div><button class="btn btn-danger form-control" ng-click="clear()">Сбросить</button></div></div></div></div>');
+  $templateCache.put('admin/pages/product/list/list.html',
+    '<form class="product-list"><div class="row" ng-show="products.length==0"><div class="col-sm-12"><span>Вы не создали ни одного продукта</span> <a ng-click="newProduct()" class="btn btn-primary">Создать</a></div></div><div class="row" ng-show="products.length>0"><div class="col-sm-12"><table class="table table-bordered table-hover"><thead><tr><th></th><th></th><th></th><th></th><th>Название</th><th>Категория</th><th>Цена</th><th>Наличие</th><th class="text-center" title="Располагается на главной странице"><i class="fa fa-home"></i></th><th class="text-center" title="Видимость на клиентском сайте"><i class="fa fa-eye"></i></th><th class="text-center" title="Удаление товара"><i class="fa fa-trash-o"></i></th></tr></thead><tbody><tr ng-repeat="product in products"><td title="Основные параметры" class="btn-warning text-center m-pointer button" ng-click="edit(product._id)"><i class="fa fa-pencil-square-o"></i></td><td title="Редактировать описание" class="btn-default text-center m-pointer button" ng-click="toInfo(product._id)"><i class="fa fa-info"></i></td><td title="Копировать продукт" class="btn-default text-center m-pointer button" ng-click="copy(product)"><i class="fa fa-clone"></i></td><td title="Фотографии" class="cover m-pointer" ng-click="toPhoto(product._id)"><img fade-in="" ng-repeat="photo in product.photos | filter:getCover" ng-src="{{\'/photos/\' + product._id + \'/s_\' + photo.fileId}}"></td><td class="name"><div><span ng-bind="product.name"></span><span ng-show="product.extra" ng-bind="\' \' + product.extra"></span></div><div class="url"><span class="m-url-red" title="Товар продается по акции" ng-if="product.stock">A</span> <span class="m-url-purple" title="Количество загруженных картинок" ng-bind="\'i\'+product.imageCount"></span> <span class="m-url-purple" title="Количество загруженных обложек" ng-bind="\'c\'+product.coverCount"></span> <span title="Url продукта" ng-bind="product.url"></span></div></td><td class="category" ng-bind="product.category.name"></td><td class="no-padding price"><input id="price" ng-model="product.price" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding my-count"><div class="input-group"><a class="btn btn-default input-group-addon" ng-click="minus(product)"><i class="fa fa-minus"></i></a> <input ng-disabled="true" id="count" ng-model="product.count" class="form-control text-center"> <a class="btn btn-default input-group-addon" ng-click="plus(product)"><i class="fa fa-plus"></i></a></div></td><td class="m-pointer button m-hover" ng-click="invert(product, \'special\')"><i class="fa" ng-class="product.special?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="m-pointer button m-hover" ng-click="invert(product, \'publish\')"><i class="fa" ng-class="product.publish?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="btn-danger text-center m-pointer button" title="Удалить товар" ng-click="delete(product._id)"><i class="fa fa-times"></i></td></tr></tbody></table></div></div></form>');
 }]);
 })();
 
@@ -425,8 +425,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/list/list.html',
-    '<form class="product-list"><div class="row" ng-show="products.length==0"><div class="col-sm-12"><span>Вы не создали ни одного продукта</span> <a ng-click="newProduct()" class="btn btn-primary">Создать</a></div></div><div class="row" ng-show="products.length>0"><div class="col-sm-12"><table class="table table-bordered table-hover"><thead><tr><th></th><th></th><th></th><th></th><th>Название</th><th>Категория</th><th>Цена</th><th>Наличие</th><th class="text-center" title="Располагается на главной странице"><i class="fa fa-home"></i></th><th class="text-center" title="Видимость на клиентском сайте"><i class="fa fa-eye"></i></th><th class="text-center" title="Удаление товара"><i class="fa fa-trash-o"></i></th></tr></thead><tbody><tr ng-repeat="product in products"><td title="Основные параметры" class="btn-warning text-center m-pointer button" ng-click="edit(product._id)"><i class="fa fa-pencil-square-o"></i></td><td title="Редактировать описание" class="btn-default text-center m-pointer button" ng-click="toInfo(product._id)"><i class="fa fa-info"></i></td><td title="Копировать продукт" class="btn-default text-center m-pointer button" ng-click="copy(product)"><i class="fa fa-clone"></i></td><td title="Фотографии" class="cover m-pointer" ng-click="toPhoto(product._id)"><img fade-in="" ng-repeat="photo in product.photos | filter:getCover" ng-src="{{\'/photos/\' + product._id + \'/s_\' + photo.fileId}}"></td><td class="name"><div><span ng-bind="product.name"></span><span ng-show="product.extra" ng-bind="\' \' + product.extra"></span></div><div class="url"><span class="m-url-red" title="Товар продается по акции" ng-if="product.stock">A</span> <span class="m-url-purple" title="Количество загруженных картинок" ng-bind="\'i\'+product.imageCount"></span> <span class="m-url-purple" title="Количество загруженных обложек" ng-bind="\'c\'+product.coverCount"></span> <span title="Url продукта" ng-bind="product.url"></span></div></td><td class="category" ng-bind="product.category.name"></td><td class="no-padding price"><input id="price" ng-model="product.price" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding my-count"><div class="input-group"><a class="btn btn-default input-group-addon" ng-click="minus(product)"><i class="fa fa-minus"></i></a> <input ng-disabled="true" id="count" ng-model="product.count" class="form-control text-center"> <a class="btn btn-default input-group-addon" ng-click="plus(product)"><i class="fa fa-plus"></i></a></div></td><td class="m-pointer button m-hover" ng-click="invert(product, \'special\')"><i class="fa" ng-class="product.special?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="m-pointer button m-hover" ng-click="invert(product, \'publish\')"><i class="fa" ng-class="product.publish?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="btn-danger text-center m-pointer button" title="Удалить товар" ng-click="delete(product._id)"><i class="fa fa-times"></i></td></tr></tbody></table></div></div></form>');
+  $templateCache.put('admin/pages/product/filter/filter.html',
+    '<div class="mb-filter"><div class="row"><div class="col-xs-12"><div class="form-group"><div class="input-group"><input ng-model="filter.text" ng-enter="query()" class="form-control" placeholder="название товара"> <a class="input-group-addon btn btn-success" ng-click="query()">Поиск</a></div></div><div class="form-inline"><div class="inline m-rgap"><div>категория</div><select class="form-control" ng-model="filter.category" ng-change="query()" ng-options="category._id as category.name for category in source.categories"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>видимость</div><select class="form-control" ng-model="filter.publish" ng-change="query()" ng-options="publish.value as publish.name for publish in source.publishes"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>наличие</div><select class="form-control" ng-model="filter.count" ng-change="query()" ng-options="count.value as count.name for count in source.counts"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>на главной</div><select class="form-control" ng-model="filter.special" ng-change="query()" ng-options="special.value as special.name for special in source.specials"><option value="">не важно</option></select></div><button class="btn btn-danger form-control" ng-click="clear()">Сбросить</button></div></div></div></div>');
 }]);
 })();
 

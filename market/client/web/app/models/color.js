@@ -1,3 +1,6 @@
-export class Color {
-}
-//# sourceMappingURL=color.js.map
+var Color = (function () {
+    function Color() {
+    }
+    return Color;
+}());
+export { Color };

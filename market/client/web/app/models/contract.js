@@ -1,3 +1,6 @@
-export class Contract {
-}
-//# sourceMappingURL=contract.js.map
+var Contract = (function () {
+    function Contract() {
+    }
+    return Contract;
+}());
+export { Contract };

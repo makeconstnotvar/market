@@ -1,23 +1,24 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-export class ComponentViewGallery {
-    constructor() {
+var ComponentViewGallery = (function () {
+    function ComponentViewGallery() {
         this.onImageSelect = new EventEmitter();
     }
-    imageSelect(i) {
+    ComponentViewGallery.prototype.imageSelect = function (i) {
         this.onImageSelect.emit(this.images[i]);
-    }
-}
-ComponentViewGallery.decorators = [
-    { type: Component, args: [{
-                selector: 'v-gallery',
-                host: { 'class': 'me-screens col-xs-12' },
-                templateUrl: 'gallery.html'
-            },] },
-];
-ComponentViewGallery.ctorParameters = () => [];
-ComponentViewGallery.propDecorators = {
-    "images": [{ type: Input },],
-    "productId": [{ type: Input },],
-    "onImageSelect": [{ type: Output },],
-};
-//# sourceMappingURL=gallery.js.map
+    };
+    ComponentViewGallery.decorators = [
+        { type: Component, args: [{
+                    selector: 'v-gallery',
+                    host: { 'class': 'me-screens col-xs-12' },
+                    templateUrl: 'gallery.html'
+                },] },
+    ];
+    ComponentViewGallery.ctorParameters = function () { return []; };
+    ComponentViewGallery.propDecorators = {
+        "images": [{ type: Input },],
+        "productId": [{ type: Input },],
+        "onImageSelect": [{ type: Output },],
+    };
+    return ComponentViewGallery;
+}());
+export { ComponentViewGallery };

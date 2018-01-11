@@ -1,16 +1,16 @@
 import { Injectable } from "@angular/core";
-export class ParametersService {
-    constructor() {
+var ParametersService = (function () {
+    function ParametersService() {
         if (!this.filterData)
             this.filterData = new Map();
     }
-    getFilterData() {
+    ParametersService.prototype.getFilterData = function () {
         return this.getUrlObject();
-    }
-    clearFilterData() {
+    };
+    ParametersService.prototype.clearFilterData = function () {
         this.filterData = new Map();
-    }
-    filterToUrl(parameter) {
+    };
+    ParametersService.prototype.filterToUrl = function (parameter) {
         switch (parameter.behavior) {
             case 'checklist':
             case 'radiolist':
@@ -26,12 +26,12 @@ export class ParametersService {
                 throw Error('Неизвестный тип параметра фильтра');
         }
         return this.getUrlObject();
-    }
-    filterToUrlChecboxlist(parameter) {
-        let valuesSelected = parameter.values.filter(v => v.selected);
+    };
+    ParametersService.prototype.filterToUrlChecboxlist = function (parameter) {
+        var valuesSelected = parameter.values.filter(function (v) { return v.selected; });
         if (valuesSelected.length) {
-            let valuesFiltered = valuesSelected.map(v => v.url);
-            let fake = {};
+            var valuesFiltered = valuesSelected.map(function (v) { return v.url; });
+            var fake = {};
             fake[parameter.url] = valuesFiltered;
             this.filterData.set(parameter._id, fake);
         }
@@ -39,22 +39,22 @@ export class ParametersService {
             this.filterData.delete(parameter._id);
         }
         return this.filterData;
-    }
-    filterToUrlOnecheck(parameter) {
-        let valuesSelected = parameter.values[0].selected;
-        let fake = {};
+    };
+    ParametersService.prototype.filterToUrlOnecheck = function (parameter) {
+        var valuesSelected = parameter.values[0].selected;
+        var fake = {};
         fake[parameter.url] = valuesSelected ? parameter.values[0].url : 'net';
         this.filterData.set(parameter._id, fake);
-    }
-    filterToUrlInput(parameter) {
-        let valuesSelected = !!parameter.from || !!parameter.to;
+    };
+    ParametersService.prototype.filterToUrlInput = function (parameter) {
+        var valuesSelected = !!parameter.from || !!parameter.to;
         if (valuesSelected) {
-            let fake = {};
-            let queryValues = [];
+            var fake = {};
+            var queryValues = [];
             if (parameter.from)
-                queryValues.push(`from_${parameter.from}`);
+                queryValues.push("from_" + parameter.from);
             if (parameter.to)
-                queryValues.push(`to_${parameter.to}`);
+                queryValues.push("to_" + parameter.to);
             if (queryValues.length)
                 fake[parameter.url] = queryValues;
             this.filterData.set(parameter._id, fake);
@@ -62,13 +62,13 @@ export class ParametersService {
         else {
             this.filterData.delete(parameter._id);
         }
-    }
-    getUrlObject() {
-        let values = this.filterData.values();
-        let valuesArray = Array.from(values);
-        return valuesArray.length ? Object.assign({}, ...valuesArray) : {};
-    }
-    urlToParameter(parameter, queryParams) {
+    };
+    ParametersService.prototype.getUrlObject = function () {
+        var values = this.filterData.values();
+        var valuesArray = Array.from(values);
+        return valuesArray.length ? Object.assign.apply(Object, [{}].concat(valuesArray)) : {};
+    };
+    ParametersService.prototype.urlToParameter = function (parameter, queryParams) {
         switch (parameter.behavior) {
             case 'checklist':
             case 'radiolist':
@@ -79,25 +79,29 @@ export class ParametersService {
             default:
                 throw Error('Неизвестный тип параметра фильтра');
         }
-    }
-    urlToFilterChecboxlist(parameter, queryParams) {
-        for (let prop in queryParams) {
+    };
+    ParametersService.prototype.urlToFilterChecboxlist = function (parameter, queryParams) {
+        var _loop_1 = function (prop) {
             if (parameter.url == prop) {
-                parameter.values.forEach(v => {
+                parameter.values.forEach(function (v) {
                     if (Array.isArray(queryParams[prop]))
                         v.selected = queryParams[prop].includes(v.url);
                     else
                         v.selected = queryParams[prop] == v.url;
                 });
-                this.filterToUrl(parameter);
+                this_1.filterToUrl(parameter);
             }
+        };
+        var this_1 = this;
+        for (var prop in queryParams) {
+            _loop_1(prop);
         }
         return parameter;
-    }
-    urlToFilterInput(parameter, queryParams) {
-        for (let prop in queryParams) {
+    };
+    ParametersService.prototype.urlToFilterInput = function (parameter, queryParams) {
+        for (var prop in queryParams) {
             if (parameter.url == prop) {
-                let fromRegexp = new RegExp(/from_(\d+)/), toRegexp = new RegExp(/to_(\d+)/), from = fromRegexp.exec(queryParams[prop]), to = toRegexp.exec(queryParams[prop]);
+                var fromRegexp = new RegExp(/from_(\d+)/), toRegexp = new RegExp(/to_(\d+)/), from = fromRegexp.exec(queryParams[prop]), to = toRegexp.exec(queryParams[prop]);
                 if (from)
                     parameter.from = from[1];
                 if (to)
@@ -106,10 +110,11 @@ export class ParametersService {
             }
         }
         return parameter;
-    }
-}
-ParametersService.decorators = [
-    { type: Injectable },
-];
-ParametersService.ctorParameters = () => [];
-//# sourceMappingURL=parameters.js.map
+    };
+    ParametersService.decorators = [
+        { type: Injectable },
+    ];
+    ParametersService.ctorParameters = function () { return []; };
+    return ParametersService;
+}());
+export { ParametersService };

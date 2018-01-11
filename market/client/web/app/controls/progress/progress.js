@@ -1,11 +1,14 @@
 import { Component } from "@angular/core";
-export class ProgressControl {
-}
-ProgressControl.decorators = [
-    { type: Component, args: [{
-                selector: 'progress',
-                template: `progress`
-            },] },
-];
-ProgressControl.ctorParameters = () => [];
-//# sourceMappingURL=progress.js.map
+var ProgressControl = (function () {
+    function ProgressControl() {
+    }
+    ProgressControl.decorators = [
+        { type: Component, args: [{
+                    selector: 'progress',
+                    template: "progress"
+                },] },
+    ];
+    ProgressControl.ctorParameters = function () { return []; };
+    return ProgressControl;
+}());
+export { ProgressControl };

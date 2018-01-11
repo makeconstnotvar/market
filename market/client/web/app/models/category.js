@@ -1,3 +1,6 @@
-export class Category {
-}
-//# sourceMappingURL=category.js.map
+var Category = (function () {
+    function Category() {
+    }
+    return Category;
+}());
+export { Category };

@@ -3,10 +3,11 @@ let webpack = require('webpack'),
 
 module.exports = {
     entry: {
-        browser: './market/client/web/app/_browser/index.js'
+        browser: './market/client/web/app/_browser/index.js',
+        ie: './market/client/web/app/_browser/ie.js'
     },
     output: {
-        filename: 'browser.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'build/client')
     },
     plugins: [
