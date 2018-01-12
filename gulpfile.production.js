@@ -14,7 +14,6 @@ let gulp = require('gulp'),
 // client path
 let favicons = ['market/favicon/**/*',],
     application = [
-
         'market/admin/*.js',
         'market/admin/web/fonts/**/*',
         'market/admin/router/**/*',
@@ -50,11 +49,11 @@ let favicons = ['market/favicon/**/*',],
         'server.js'
     ],
     injectJs = [
-        'build/client/web/scripts/ie-*.js',
-        'build/client/web/scripts/browser-*.js'
+        'build/production/client/web/scripts/ie-*.js',
+        'build/production/client/web/scripts/browser-*.js'
     ],
     injectCss = [
-        'build/client/web/styles/styles-*.css'
+        'build/production/client/web/styles/styles-*.css'
     ],
     pugs = [
         'market/client/web/views/browser.pug',
@@ -103,6 +102,10 @@ gulp.task('package', function () {
     return gulp.src('package.json')
         .pipe(gulp.dest(production));
 });
+gulp.task('worker', function () {
+    return gulp.src(`${shared}/libs/ace/worker-html.js`)
+        .pipe(gulp.dest(`${adminDestination}/scripts`));
+});
 
 //client tasks
 gulp.task('favicons', function () {
@@ -114,7 +117,7 @@ gulp.task('json', function () {
         .pipe(gulp.dest(clientTemp));
 });
 gulp.task('scripts', function () {
-    return gulp.src(browserJs.map(js => path.join(clientTemp, js)))
+    return gulp.src(browserJs.map(js => path.join(clientTemp, js)),{base:clientTemp})
         .pipe(hash())
         .pipe(gulp.dest(`${clientDestination}/scripts`));
 });
@@ -124,7 +127,7 @@ gulp.task('styles', function () {
         .pipe(gulp.dest(`${clientDestination}/styles`));
 });
 gulp.task('server', function () {
-    return gulp.src(serverJs.map(js => path.join(clientTemp, js)))
+    return gulp.src(serverJs.map(js => path.join(clientTemp, js)),{base:clientTemp})
         .pipe(gulp.dest(`${clientDestination}/scripts`));
 });
 gulp.task('images', function () {
@@ -152,8 +155,8 @@ gulp.task('injectClient', function () {
     const cssFiles = gulp.src(injectCss);
     const jsFiles = gulp.src(injectJs);
     return gulp.src(pugs)
-        .pipe(inject(cssFiles, {ignorePath: 'build/client/web'}))
-        .pipe(inject(jsFiles, {ignorePath: 'build/client/web'}))
+        .pipe(inject(cssFiles, {ignorePath: '/build/production/client/web/'}))
+        .pipe(inject(jsFiles, {ignorePath: '/build/production/client/web/'}))
         .pipe(pug())
         .pipe(gulp.dest(`${clientDestination}/views`));
 });
@@ -193,13 +196,13 @@ gulp.task('injectAdmin', function () {
     const cssFiles = gulp.src(`${adminDestination}/styles/styles-*.css`);
     const jsFiles = gulp.src(`${adminDestination}/scripts/scripts-*.js`);
     return gulp.src(adminPugs)
-        .pipe(inject(cssFiles, {ignorePath: adminDestination, addPrefix: 'admin/'}))
-        .pipe(inject(jsFiles, {ignorePath: adminDestination, addPrefix: 'admin/'}))
+        .pipe(inject(cssFiles, {ignorePath: adminDestination, addPrefix: 'admin'}))
+        .pipe(inject(jsFiles, {ignorePath: adminDestination, addPrefix: 'admin'}))
         .pipe(pug())
         .pipe(gulp.dest(`${adminDestination}/views`));
 });
 //result
-gulp.task('default', gulp.series('commonCss', 'loadingCss', 'package', 'application', 'favicons', 'json', 'scripts', 'server', 'images', 'templates', 'js', 'css', 'injectClient', 'injectAdmin'));
+gulp.task('default', gulp.series('commonCss', 'loadingCss', 'package','worker', 'application', 'favicons', 'json', 'scripts', 'server', 'images', 'templates', 'js', 'css', 'injectClient', 'injectAdmin'));
 
 function tildaResolver(url, prev, done) {
     if (url[0] === '~') {

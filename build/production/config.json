@@ -8,11 +8,11 @@
         "port": "3001",
         "wsPort": "4001",
         "baseName": "bags",
-        "host": "http://market.debug",
-        "domain": "market.debug"
+        "host": "http://market.release",
+        "domain": "market.release"
     },
     "client": {
-        "host": "http://market.debug",
+        "host": "http://market.release",
         "protocol": "http://",
         "phone": "+7(925)477-5001",
         "mail": "support@getyourbag.ru"

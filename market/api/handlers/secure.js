@@ -1,6 +1,6 @@
 'use strict';
 
-var crypto = require('../utils').crypto,
+let crypto = require('../utils').crypto,
     cookies = require('cookies'),
     _ = require('underscore'),
     uuid = require('node-uuid'),
@@ -9,13 +9,13 @@ var crypto = require('../utils').crypto,
 
 module.exports = class {
     login(req, res, next) {
-        var login = req.body.login,
+        let login = req.body.login,
             password = req.body.password,
             remember = req.body.remember;
         if (!login || !password) {
             return res.status(400).send("Нужно ввести логин и пароль");
         }
-        var admin = admins.find((admin)=> {
+        let admin = admins.find((admin) => {
             return admin.login === login
         });
         if (!admin) {
@@ -25,10 +25,11 @@ module.exports = class {
         if (admin.password !== password) {
             return res.status(401).send("Не совпадает логин и пароль");
         }
-        var oneDay = 24 * 60 * 60 * 1000;
-        cookies(req, res).set('fastlight', crypto.encryptObj(admin), {
+        let oneDay = 24 * 60 * 60 * 1000;
+        let oneMonth = oneDay * 31;
+        cookies(req, res).set('admin', crypto.encryptObj(admin), {
             secure: config.secure.https,
-            maxAge: remember ? 31 * oneDay : oneDay,
+            maxAge: remember ? oneMonth : oneDay,
             httpOnly: true,
             signed: false,
             domain: config.system.domain
@@ -37,9 +38,9 @@ module.exports = class {
     }
 
     auth(req, res, next) {
-        var cookieVal = cookies(req, res).get('fastlight');
-        var data = crypto.decryptToObj(cookieVal, next);
-        var exist = admins.find(admin=> {
+        let cookieVal = cookies(req, res).get('fastlight');
+        let data = crypto.decryptToObj(cookieVal, next);
+        let exist = admins.find(admin => {
             return _.isEqual(admin, data);
         });
         if (exist) {
@@ -52,14 +53,14 @@ module.exports = class {
     }
 
     cookies(req, res, next) {
-        var cookie = cookies(req, res);
-        var uid = cookie.get('uid') || {};
-        //var cookieVal = cookie.get('uid');
-        //var data = crypto.decryptToObj(cookieVal, next);
+        let cookie = cookies(req, res);
+        let uid = cookie.get('uid');
+        let cookieVal = cookie.get('uid');
+        let data = crypto.decryptToObj(cookieVal, next);
         if (!uid) {
-            var newUid = uuid.v4();
+            let newUid = uuid.v4();
             req.uid = newUid;
-            cookie.set('uid',  newUid/*crypto.encryptObj({uid: uid})*/, {
+            cookie.set('uid', crypto.encryptObj({uid: uid}), {
                 secure: config.secure.https,
                 maxAge: 365 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
@@ -73,14 +74,12 @@ module.exports = class {
         next();
     }
 
-    cookies1(req, res, next){
-        var cookie = cookies(req, res);
-        var uid = cookie.get('uid');
-        if(!uid)
-            console.log('нет куки');
-        else
+    getuid(req, res, next) {
+        let cookie = cookies(req, res);
+        let uid = cookie.get('uid');
+        if (uid)
             req.uid = uid;
         next();
-}
+    }
 };
 

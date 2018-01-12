@@ -53,7 +53,7 @@ module.exports = class {
 
     cookies(req, res, next) {
         var cookie = cookies(req, res);
-        var uid = cookie.get('uid') || {};
+        var uid = cookie.get('uid');
         //var cookieVal = cookie.get('uid');
         //var data = crypto.decryptToObj(cookieVal, next);
         if (!uid) {
