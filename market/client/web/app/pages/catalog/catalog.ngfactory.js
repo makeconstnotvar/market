@@ -55,3 +55,4 @@ export function View_CatalogPage_0(_l) { return i0.ɵvid(0, [i0.ɵqud(402653184,
 export function View_CatalogPage_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "catalog", [["class", "container d-block"]], null, null, null, View_CatalogPage_0, RenderType_CatalogPage)), i0.ɵdid(1, 114688, null, 0, i13.CatalogPage, [i14.ProductProvider, i15.ParametersService, i16.CategoryProvider, i17.ParameterProvider, i18.ContractProvider, i10.SortingService, i19.NavbarService, i20.ActivatedRoute, i20.Router], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var CatalogPageNgFactory = i0.ɵccf("catalog", i13.CatalogPage, View_CatalogPage_Host_0, {}, {}, []);
 export { CatalogPageNgFactory as CatalogPageNgFactory };
+//# sourceMappingURL=catalog.ngfactory.js.map

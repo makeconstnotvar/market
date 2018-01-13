@@ -13,3 +13,4 @@ export function View_MenuControl_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0
 export function View_MenuControl_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "market-menu", [], null, null, null, View_MenuControl_0, RenderType_MenuControl)), i0.ɵdid(1, 49152, null, 0, i3.MenuControl, [], null, null)], null, null); }
 var MenuControlNgFactory = i0.ɵccf("market-menu", i3.MenuControl, View_MenuControl_Host_0, { categories: "categories" }, {}, []);
 export { MenuControlNgFactory as MenuControlNgFactory };
+//# sourceMappingURL=menu.ngfactory.js.map

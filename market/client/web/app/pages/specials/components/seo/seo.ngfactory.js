@@ -18,3 +18,4 @@ export function View_ComponentSpecialsSeo_0(_l) { return i0.ɵvid(0, [(_l()(), i
 export function View_ComponentSpecialsSeo_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "sp-seo", [], null, null, null, View_ComponentSpecialsSeo_0, RenderType_ComponentSpecialsSeo)), i0.ɵdid(1, 49152, null, 0, i3.ComponentSpecialsSeo, [], null, null)], null, null); }
 var ComponentSpecialsSeoNgFactory = i0.ɵccf("sp-seo", i3.ComponentSpecialsSeo, View_ComponentSpecialsSeo_Host_0, {}, {}, []);
 export { ComponentSpecialsSeoNgFactory as ComponentSpecialsSeoNgFactory };
+//# sourceMappingURL=seo.ngfactory.js.map

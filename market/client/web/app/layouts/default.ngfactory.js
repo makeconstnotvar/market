@@ -19,3 +19,4 @@ export function View_DefaultLayout_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵted
 export function View_DefaultLayout_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "default", [["class", "sticky"]], null, null, null, View_DefaultLayout_0, RenderType_DefaultLayout)), i0.ɵdid(1, 49152, null, 0, i11.DefaultLayout, [i12.CategoryProvider, i13.ContractProvider, i3.NavbarService], null, null)], null, null); }
 var DefaultLayoutNgFactory = i0.ɵccf("default", i11.DefaultLayout, View_DefaultLayout_Host_0, {}, {}, []);
 export { DefaultLayoutNgFactory as DefaultLayoutNgFactory };
+//# sourceMappingURL=default.ngfactory.js.map

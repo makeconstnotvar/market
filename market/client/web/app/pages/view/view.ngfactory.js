@@ -38,3 +38,4 @@ export function View_ViewPage_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0
 export function View_ViewPage_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 2, "view-page", [], null, null, null, View_ViewPage_0, RenderType_ViewPage)), i0.ɵprd(512, null, i12.ServerResponseService1, i12.ServerResponseService1, [[2, i13.RESPONSE]]), i0.ɵdid(2, 49152, null, 0, i14.ViewPage, [i12.ServerResponseService1, i15.ProductProvider, i16.ActivatedRoute, i17.ContractProvider, i18.NavbarService, i19.ConfigService, i20.GlobalService, i16.Router, i21.SeoService], null, null)], null, null); }
 var ViewPageNgFactory = i0.ɵccf("view-page", i14.ViewPage, View_ViewPage_Host_0, {}, {}, []);
 export { ViewPageNgFactory as ViewPageNgFactory };
+//# sourceMappingURL=view.ngfactory.js.map

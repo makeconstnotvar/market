@@ -7,3 +7,4 @@ export function View_ComponentSpecialsPromo_0(_l) { return i0.ɵvid(0, [(_l()(),
 export function View_ComponentSpecialsPromo_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "sp-promo", [], null, null, null, View_ComponentSpecialsPromo_0, RenderType_ComponentSpecialsPromo)), i0.ɵdid(1, 49152, null, 0, i1.ComponentSpecialsPromo, [], null, null)], null, null); }
 var ComponentSpecialsPromoNgFactory = i0.ɵccf("sp-promo", i1.ComponentSpecialsPromo, View_ComponentSpecialsPromo_Host_0, {}, {}, []);
 export { ComponentSpecialsPromoNgFactory as ComponentSpecialsPromoNgFactory };
+//# sourceMappingURL=promo.ngfactory.js.map

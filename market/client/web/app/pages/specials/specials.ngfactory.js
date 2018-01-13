@@ -22,3 +22,4 @@ export function View_SpecialsPage_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(
 export function View_SpecialsPage_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "specials", [], null, null, null, View_SpecialsPage_0, RenderType_SpecialsPage)), i0.ɵdid(1, 114688, null, 0, i7.SpecialsPage, [i8.ProductProvider, i9.ContractProvider, i10.NavbarService, i11.SeoService, i12.SettingsProvider, i13.ConfigService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var SpecialsPageNgFactory = i0.ɵccf("specials", i7.SpecialsPage, View_SpecialsPage_Host_0, {}, {}, []);
 export { SpecialsPageNgFactory as SpecialsPageNgFactory };
+//# sourceMappingURL=specials.ngfactory.js.map

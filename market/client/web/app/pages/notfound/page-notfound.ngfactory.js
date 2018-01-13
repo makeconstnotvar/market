@@ -30,3 +30,4 @@ export function View_NotfoundPage_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(
 export function View_NotfoundPage_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "ng-component", [], null, null, null, View_NotfoundPage_0, RenderType_NotfoundPage)), i0.ɵdid(1, 114688, null, 0, i5.NotfoundPage, [i0.PLATFORM_ID, i6.CategoryProvider, i1.ActivatedRoute, i7.ConfigService], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
 var NotfoundPageNgFactory = i0.ɵccf("ng-component", i5.NotfoundPage, View_NotfoundPage_Host_0, {}, {}, []);
 export { NotfoundPageNgFactory as NotfoundPageNgFactory };
+//# sourceMappingURL=page-notfound.ngfactory.js.map

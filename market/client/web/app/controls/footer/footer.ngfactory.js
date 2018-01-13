@@ -9,3 +9,4 @@ export function View_FooterControl_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld
 export function View_FooterControl_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "market-footer", [], null, null, null, View_FooterControl_0, RenderType_FooterControl)), i0.ɵdid(1, 49152, null, 0, i2.FooterControl, [], null, null)], null, null); }
 var FooterControlNgFactory = i0.ɵccf("market-footer", i2.FooterControl, View_FooterControl_Host_0, {}, {}, []);
 export { FooterControlNgFactory as FooterControlNgFactory };
+//# sourceMappingURL=footer.ngfactory.js.map

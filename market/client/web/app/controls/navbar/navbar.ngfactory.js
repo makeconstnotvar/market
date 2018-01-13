@@ -12,3 +12,4 @@ export function View_NavbarControl_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld
 export function View_NavbarControl_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "market-navbar", [["class", "navbar"]], null, null, null, View_NavbarControl_0, RenderType_NavbarControl)), i0.ɵdid(1, 49152, null, 0, i5.NavbarControl, [i6.NavbarService], null, null)], null, null); }
 var NavbarControlNgFactory = i0.ɵccf("market-navbar", i5.NavbarControl, View_NavbarControl_Host_0, {}, {}, []);
 export { NavbarControlNgFactory as NavbarControlNgFactory };
+//# sourceMappingURL=navbar.ngfactory.js.map

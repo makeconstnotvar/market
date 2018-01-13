@@ -1,39 +1,38 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Parameter } from "models/parameter";
-var ComponentFilterInputs = (function () {
-    function ComponentFilterInputs() {
+export class ComponentFilterInputs {
+    constructor() {
         this.parameter = new Parameter();
         this.onChangeFilter = new EventEmitter();
     }
-    ComponentFilterInputs.prototype.changeFilter = function () {
+    changeFilter() {
         console.log(this.parameter);
         this.onChangeFilter.emit(this.parameter);
-    };
-    ComponentFilterInputs.prototype.clearTo = function () {
+    }
+    clearTo() {
         delete this.parameter.to;
         this.changeFilter();
-    };
-    ComponentFilterInputs.prototype.clearFrom = function () {
+    }
+    clearFrom() {
         delete this.parameter.from;
         this.changeFilter();
-    };
-    ComponentFilterInputs.prototype.focus = function (f) {
+    }
+    focus(f) {
         f = true;
-    };
-    ComponentFilterInputs.prototype.blur = function (f) {
+    }
+    blur(f) {
         f = false;
-    };
-    ComponentFilterInputs.decorators = [
-        { type: Component, args: [{
-                    selector: 'filter-inputs',
-                    templateUrl: 'inputs.html'
-                },] },
-    ];
-    ComponentFilterInputs.ctorParameters = function () { return []; };
-    ComponentFilterInputs.propDecorators = {
-        "parameter": [{ type: Input },],
-        "onChangeFilter": [{ type: Output },],
-    };
-    return ComponentFilterInputs;
-}());
-export { ComponentFilterInputs };
+    }
+}
+ComponentFilterInputs.decorators = [
+    { type: Component, args: [{
+                selector: 'filter-inputs',
+                templateUrl: 'inputs.html'
+            },] },
+];
+ComponentFilterInputs.ctorParameters = () => [];
+ComponentFilterInputs.propDecorators = {
+    "parameter": [{ type: Input },],
+    "onChangeFilter": [{ type: Output },],
+};
+//# sourceMappingURL=inputs.js.map

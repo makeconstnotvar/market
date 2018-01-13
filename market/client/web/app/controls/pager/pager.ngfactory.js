@@ -13,3 +13,4 @@ export function View_PagerControl_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵand(
 export function View_PagerControl_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "pager", [], null, null, null, View_PagerControl_0, RenderType_PagerControl)), i0.ɵdid(1, 49152, null, 0, i2.PagerControl, [], null, null)], null, null); }
 var PagerControlNgFactory = i0.ɵccf("pager", i2.PagerControl, View_PagerControl_Host_0, { category: "category", size: "size", itemsPerPage: "itemsPerPage" }, { onPageChange: "onPageChange" }, []);
 export { PagerControlNgFactory as PagerControlNgFactory };
+//# sourceMappingURL=pager.ngfactory.js.map

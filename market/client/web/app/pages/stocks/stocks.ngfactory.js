@@ -7,3 +7,4 @@ export function View_StocksPage_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0,
 export function View_StocksPage_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "stocks", [], null, null, null, View_StocksPage_0, RenderType_StocksPage)), i0.ɵdid(1, 49152, null, 0, i1.StocksPage, [], null, null)], null, null); }
 var StocksPageNgFactory = i0.ɵccf("stocks", i1.StocksPage, View_StocksPage_Host_0, {}, {}, []);
 export { StocksPageNgFactory as StocksPageNgFactory };
+//# sourceMappingURL=stocks.ngfactory.js.map

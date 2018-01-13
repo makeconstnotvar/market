@@ -58,18 +58,20 @@ export class SortingService {
     }
 
     change(activeSort): Sort[] {
-        if(!activeSort) this.reset();
-        let sort = this.fromUrl(activeSort);
-        this.sorts.forEach(s => {
-            if (s.field == sort.field) {
-                s.active = true;
-                s.mode = +sort.mode;
-            }
-            else {
-                s.active = false;
-            }
-        });
-
+        if (!activeSort)
+            this.reset();
+        else {
+            let sort = this.fromUrl(activeSort);
+            this.sorts.forEach(s => {
+                if (s.field == sort.field) {
+                    s.active = true;
+                    s.mode = +sort.mode;
+                }
+                else {
+                    s.active = false;
+                }
+            });
+        }
         return this.sorts;
     }
 

@@ -47,3 +47,4 @@ export function View_ComponentCatalogFilter_0(_l) { return i0.ɵvid(0, [(_l()(),
 export function View_ComponentCatalogFilter_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "cat-filter", [["class", "product-menu"]], null, null, null, View_ComponentCatalogFilter_0, RenderType_ComponentCatalogFilter)), i0.ɵdid(1, 49152, null, 0, i12.ComponentCatalogFilter, [], null, null)], null, null); }
 var ComponentCatalogFilterNgFactory = i0.ɵccf("cat-filter", i12.ComponentCatalogFilter, View_ComponentCatalogFilter_Host_0, { parameters: "parameters" }, { onFilterChange: "onFilterChange", onFilterApply: "onFilterApply", onFilterClear: "onFilterClear" }, []);
 export { ComponentCatalogFilterNgFactory as ComponentCatalogFilterNgFactory };
+//# sourceMappingURL=filter.ngfactory.js.map

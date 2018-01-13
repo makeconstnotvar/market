@@ -7,33 +7,31 @@ import { ComponentSpecialsProducts } from "./products/products";
 import { ComponentSpecialsWelcome } from "./welcome/welcome";
 import { RouterModule } from "@angular/router";
 import { ControlsModule } from "controls/module";
-var ModuleComponentsSpecials = (function () {
-    function ModuleComponentsSpecials() {
-    }
-    ModuleComponentsSpecials.decorators = [
-        { type: NgModule, args: [{
-                    declarations: [
-                        ComponentSpecialsProduct,
-                        ComponentSpecialsProducts,
-                        ComponentSpecialsPromo,
-                        ComponentSpecialsSeo,
-                        ComponentSpecialsWelcome
-                    ],
-                    imports: [
-                        BrowserModule,
-                        RouterModule,
-                        ControlsModule
-                    ],
-                    exports: [
-                        ComponentSpecialsProduct,
-                        ComponentSpecialsProducts,
-                        ComponentSpecialsPromo,
-                        ComponentSpecialsSeo,
-                        ComponentSpecialsWelcome
-                    ]
-                },] },
-    ];
-    ModuleComponentsSpecials.ctorParameters = function () { return []; };
-    return ModuleComponentsSpecials;
-}());
+class ModuleComponentsSpecials {
+}
+ModuleComponentsSpecials.decorators = [
+    { type: NgModule, args: [{
+                declarations: [
+                    ComponentSpecialsProduct,
+                    ComponentSpecialsProducts,
+                    ComponentSpecialsPromo,
+                    ComponentSpecialsSeo,
+                    ComponentSpecialsWelcome
+                ],
+                imports: [
+                    BrowserModule,
+                    RouterModule,
+                    ControlsModule
+                ],
+                exports: [
+                    ComponentSpecialsProduct,
+                    ComponentSpecialsProducts,
+                    ComponentSpecialsPromo,
+                    ComponentSpecialsSeo,
+                    ComponentSpecialsWelcome
+                ]
+            },] },
+];
+ModuleComponentsSpecials.ctorParameters = () => [];
 export { ModuleComponentsSpecials, ComponentSpecialsProduct, ComponentSpecialsProducts, ComponentSpecialsPromo, ComponentSpecialsSeo, ComponentSpecialsWelcome };
+//# sourceMappingURL=module.js.map

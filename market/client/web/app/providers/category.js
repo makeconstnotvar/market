@@ -1,18 +1,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-var CategoryProvider = (function () {
-    function CategoryProvider(http) {
+export class CategoryProvider {
+    constructor(http) {
         this.http = http;
     }
-    CategoryProvider.prototype.getTree = function () {
+    getTree() {
         return this.http.post('/api/category/list', {});
-    };
-    CategoryProvider.decorators = [
-        { type: Injectable },
-    ];
-    CategoryProvider.ctorParameters = function () { return [
-        { type: HttpClient, },
-    ]; };
-    return CategoryProvider;
-}());
-export { CategoryProvider };
+    }
+}
+CategoryProvider.decorators = [
+    { type: Injectable },
+];
+CategoryProvider.ctorParameters = () => [
+    { type: HttpClient, },
+];
+//# sourceMappingURL=category.js.map

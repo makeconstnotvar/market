@@ -34,21 +34,19 @@ function tildaResolver(url, prev, done) {
 }
 
 gulp.task('commonCss', function () {
-    return gulp
-        .src(commonCss)
+    return gulp.src(commonCss)
         .pipe(sourcemaps.init())
         .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
         .pipe(concat('styles.css'))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(destination))
 });
+
 gulp.task('loadingCss', function () {
-    return gulp
-        .src(loadingCss)
+    return gulp.src(loadingCss)
         .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
         .pipe(gulp.dest(destination))
 });
-
 
 gulp.task('inject', function () {
     const cssFiles = gulp.src(injectCss.map(css => path.join(destination, css)));

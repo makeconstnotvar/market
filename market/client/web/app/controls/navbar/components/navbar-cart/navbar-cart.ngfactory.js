@@ -15,3 +15,4 @@ export function View_NavbarCartComponent_0(_l) { return i0.ɵvid(0, [(_l()(), i0
 export function View_NavbarCartComponent_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "navbar-cart", [], null, null, null, View_NavbarCartComponent_0, RenderType_NavbarCartComponent)), i0.ɵdid(1, 49152, null, 0, i3.NavbarCartComponent, [], null, null)], null, null); }
 var NavbarCartComponentNgFactory = i0.ɵccf("navbar-cart", i3.NavbarCartComponent, View_NavbarCartComponent_Host_0, { data: "data", cartData: "cartData" }, {}, []);
 export { NavbarCartComponentNgFactory as NavbarCartComponentNgFactory };
+//# sourceMappingURL=navbar-cart.ngfactory.js.map
