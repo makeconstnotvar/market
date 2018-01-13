@@ -1,9 +1,10 @@
 var mongoose = require('mongoose'),
     bll = require('../market/api/business'),
-    config = require('../market/config');
+    config = require('../market/config'),
+    baseName = config.system.baseName;
 
 //входит в состав patch-to-mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/' + config.system.baseName);
+mongoose.connect('mongodb://127.0.0.1:27017/' + baseName);
 
 bll.template.selectAll({take: 0}).lean().exec((err, templates)=> {
     var promises = [];

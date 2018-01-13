@@ -1,6 +1,7 @@
 var mongoClient = require('mongodb').MongoClient,
     waterfall = require('async/waterfall'),
-    baseName = 'bags';
+    config = require('../market/config'),
+    baseName = config.system.baseName;
 
 //входит в состав patch-to-mongoose
 mongoClient.connect('mongodb://127.0.0.1:27017/' + baseName, (err, db) => {

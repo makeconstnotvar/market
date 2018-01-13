@@ -1,9 +1,10 @@
 var mongoose = require('mongoose'),
     waterfall = require('async/waterfall'),
     models = require('../market/api/models'),
-    config = require('../market/config');
+    config = require('../market/config'),
+    baseName = config.system.baseName;
 //входит в состав patch-to-mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/' + config.system.baseName);
+mongoose.connect('mongodb://127.0.0.1:27017/' + baseName);
 
 waterfall([
     updateProductFields,

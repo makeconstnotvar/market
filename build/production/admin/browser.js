@@ -11,7 +11,7 @@ router.use(function(req, res, next){
     res.sendFile('index.html', {root: path.join(__dirname, 'web/views')});
 });
 router.use(function(err, req, res, next){
-    if (res.statusCode == 400 || res.statusCode == 401) {
+    if (res.statusCode === 400 || res.statusCode === 401) {
         console.error("сработало 404 в админе " + req.url);
         res.redirect('/admin/login?url=' + req.url);
     }
