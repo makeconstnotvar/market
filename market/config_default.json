@@ -6,27 +6,37 @@
     },
     "system": {
         "port": "3001",
-        "wsPort": "4001",
         "baseName": "market",
         "host": "http://market.debug",
         "domain": "market.debug"
+    },
+    "client": {
+        "host": "http://market.debug",
+        "protocol": "http://",
+        "phone": "+7(123)456-6789",
+        "mail": "support@market.debug"
     },
     "contacts": {
         "sendSms": false,
         "sendMail": false,
         "smsApi": "F3337DC7-705D-4D65-B398-CC302BF215EA",
         "myPhone": "79261234567",
-        "serviceMail": "nuclear_fly@mail.ru",
-        "adminMail": "nuclear_fly@mail.ru",
-        "testMail": "nuclear_fly@mail.ru"
+        "serviceMail": "test@market.debug",
+        "adminMail": "test@market.debug",
+        "testMail": "test@market.debug"
     },
     "settings": {
         "pageSize": 5,
         "ymlFileName": "yml.xml",
         "sitemapFileName": "sitemap.xml",
+        "sitemapUrls": [
+            "/",
+            "/contacts",
+            "/delivery"
+        ],
         "ymlCategories": [],
-        "siteName": "market.ru",
-        "companyName": "market.ru"
+        "siteName": "market.debug",
+        "companyName": "market.debug"
     },
     "secure": {
         "admins": [
@@ -41,6 +51,8 @@
                 "salt": "EC4ADE51-6C2C-45EE-9D53-C8336B0C34DA"
             }
         ],
+        "adminCookieName": "admin",
+        "clientCookieName": "uid",
         "secret": "6B7D254D-ACCD-4BCD-8B8A-0478B2780580",
         "algorithm": "aes-256-ctr",
         "https": false

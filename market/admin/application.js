@@ -1,16 +1,8 @@
 let express = require('express'),
     app = express(),
-    path = require('path'),
-    dot = require('express-dot-engine'),
     webRouter = require('./browser'),
     apiRouter = require('./router');
 
-
-
-app.set('views', path.join(__dirname, 'web/views'));
-app.set('view engine', 'dot');
-app.enable('view cache');
-app.engine('dot', dot.__express);
 app.use('/api', apiRouter);
 app.use('/', webRouter);
 

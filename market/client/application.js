@@ -6,7 +6,7 @@ const express = require('express'),
     browser = require('./browser');
 
 
-app.use('/api', secure.getuid, apiRouter);
+app.use('/api', secure.cookies, apiRouter);
 app.use('/', secure.cookies, function (req, res, next) {
     let ua = req.headers['user-agent'];
     if (/bot|google|yandex|mail\.ru|bing|embedly|guzzlehttp|validator|vk\.com|facebook|slurp|tumblr|undefined|seopult|mailru|mrpc|ok\.ru/i.test(ua))

@@ -1,13 +1,8 @@
-var ObjectId = require('mongodb').ObjectID,
-    bll = require('../business'),
-    fs = require('fs'),
-    path = require('path'),
-    mkdirp = require('mkdirp'),
-    waterfall = require('async/waterfall'),
-    config = require('../../config');
+const fs = require('fs'),
+config = require('../../config');
 
 
-var tools = {
+let tools = {
     deleteFileSync(path) {
         var exist = fs.existsSync(path);
         if (exist)
@@ -45,7 +40,6 @@ var tools = {
             }
         }
     },
-
     sortPhotos (photos) {
         return photos.sort(item=> {
             var rank = {
@@ -63,7 +57,6 @@ var tools = {
         })
 
     },
-
     getTypeByExt(ext) {
 
         var ext = ext.toLowerCase();

@@ -1,16 +1,16 @@
 var router = require('express').Router(),
     path = require('path'),
-    apiHandlers = require('../api/handlers/index');
+    secure = require('../api/handlers/index').secure;
 
-router.get('/login', function (req, res, next){
+router.get('/login', (req, res) => {
     res.sendFile('login.html', {root: path.join(__dirname, 'web/views')})
 });
-router.post('/login', apiHandlers.secure.login);
-router.use(apiHandlers.secure.auth);
-router.use(function(req, res, next){
+router.post('/login', secure.login);
+router.use(secure.auth, (req, res) => {
     res.sendFile('index.html', {root: path.join(__dirname, 'web/views')});
 });
-router.use(function(err, req, res, next){
+
+router.use((err, req, res, next) => {
     if (res.statusCode === 400 || res.statusCode === 401) {
         console.error("сработало 404 в админе " + req.url);
         res.redirect('/admin/login?url=' + req.url);

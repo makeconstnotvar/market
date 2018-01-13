@@ -5,7 +5,9 @@ let crypto = require('../utils').crypto,
     _ = require('underscore'),
     uuid = require('node-uuid'),
     config = require('../../config.json'),
-    admins = config.secure.admins;
+    admins = config.secure.admins,
+    adminCookieName = config.secure.adminCookieName,
+    clientCookieName = config.secure.clientCookieName;
 
 module.exports = class {
     login(req, res, next) {
@@ -15,9 +17,7 @@ module.exports = class {
         if (!login || !password) {
             return res.status(400).send("Нужно ввести логин и пароль");
         }
-        let admin = admins.find((admin) => {
-            return admin.login === login
-        });
+        let admin = admins.find(admin => admin.login === login);
         if (!admin) {
             return res.status(401).send("Не совпадает логин");
         }
@@ -27,7 +27,7 @@ module.exports = class {
         }
         let oneDay = 24 * 60 * 60 * 1000;
         let oneMonth = oneDay * 31;
-        cookies(req, res).set('admin', crypto.encryptObj(admin), {
+        cookies(req, res).set(adminCookieName, crypto.encryptObj(admin), {
             secure: config.secure.https,
             maxAge: remember ? oneMonth : oneDay,
             httpOnly: true,
@@ -38,7 +38,7 @@ module.exports = class {
     }
 
     auth(req, res, next) {
-        let cookieVal = cookies(req, res).get('fastlight');
+        let cookieVal = cookies(req, res).get(adminCookieName);
         let data = crypto.decryptToObj(cookieVal, next);
         let exist = admins.find(admin => {
             return _.isEqual(admin, data);
@@ -54,13 +54,12 @@ module.exports = class {
 
     cookies(req, res, next) {
         let cookie = cookies(req, res);
-        let uid = cookie.get('uid');
-        let cookieVal = cookie.get('uid');
-        let data = crypto.decryptToObj(cookieVal, next);
-        if (!uid) {
-            let newUid = uuid.v4();
-            req.uid = newUid;
-            cookie.set('uid', crypto.encryptObj({uid: uid}), {
+        let cookieVal = cookie.get(clientCookieName);
+        let cookieObj = crypto.decryptToObj(cookieVal, next);
+        if (!cookieObj) {
+            let newUserId = uuid.v4();
+            req.uid = newUserId;
+            cookie.set(clientCookieName, crypto.encryptObj({uid: newUserId}), {
                 secure: config.secure.https,
                 maxAge: 365 * 24 * 60 * 60 * 1000,
                 httpOnly: true,
@@ -68,18 +67,10 @@ module.exports = class {
                 domain: config.system.domain
             });
         } else {
-            req.uid = uid;
+            req.uid = cookieObj.uid;
         }
-        console.log(req.uid);
         next();
     }
 
-    getuid(req, res, next) {
-        let cookie = cookies(req, res);
-        let uid = cookie.get('uid');
-        if (uid)
-            req.uid = uid;
-        next();
-    }
 };
 

@@ -13,14 +13,14 @@ module.exports = {
         return crypted;
     },
     decryptToObj(text) {
-        if (!text)return {};
+        if (!text) return;
         var dec;
         var decipher = crypto.createDecipher(algorithm, secret);
         try {
             dec = decipher.update(text, 'hex', 'utf8');
         }
         catch (e) {
-            return {};
+            return;
         }
         dec += decipher.final('utf8');
         return getJson(dec);
@@ -29,7 +29,7 @@ module.exports = {
 };
 
 function getJson(text) {
-    var obj = {};
+    let obj;
     try {
         obj = JSON.parse(text);
     }

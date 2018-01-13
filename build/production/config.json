@@ -2,7 +2,7 @@
     "path": {
         "photo": "C:\\Projects\\market\\data\\photos",
         "files": "C:\\Projects\\market\\data\\files",
-        "serverjs": "C:\\Projects\\market\\build\\production\\client\\web\\scripts\\server.js"
+        "serverjs": "C:\\Projects\\market\\build\\temp\\server.js"
     },
     "system": {
         "port": "3001",
@@ -91,6 +91,8 @@
                 "salt": "EC4ADE51-6C2C-45EE-9D53-C8336B0C34DA"
             }
         ],
+        "adminCookieName": "admin",
+        "clientCookieName": "uid",
         "secret": "6B7D254D-ACCD-4BCD-8B8A-0478B2780580",
         "algorithm": "aes-256-ctr",
         "https": false
