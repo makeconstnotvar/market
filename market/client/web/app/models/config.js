@@ -1,3 +1,6 @@
-export class Config {
-}
-//# sourceMappingURL=config.js.map
+var Config = (function () {
+    function Config() {
+    }
+    return Config;
+}());
+export { Config };

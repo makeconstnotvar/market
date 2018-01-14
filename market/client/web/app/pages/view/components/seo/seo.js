@@ -1,16 +1,17 @@
 import { Component, Input } from "@angular/core";
-export class ComponentViewSeo {
-}
-ComponentViewSeo.decorators = [
-    { type: Component, args: [{
-                selector: 'v-seo',
-                template: `
-<div [innerHtml]="seo"></div>
-`
-            },] },
-];
-ComponentViewSeo.ctorParameters = () => [];
-ComponentViewSeo.propDecorators = {
-    "seo": [{ type: Input },],
-};
-//# sourceMappingURL=seo.js.map
+var ComponentViewSeo = (function () {
+    function ComponentViewSeo() {
+    }
+    ComponentViewSeo.decorators = [
+        { type: Component, args: [{
+                    selector: 'v-seo',
+                    template: "\n<div [innerHtml]=\"seo\"></div>\n"
+                },] },
+    ];
+    ComponentViewSeo.ctorParameters = function () { return []; };
+    ComponentViewSeo.propDecorators = {
+        "seo": [{ type: Input },],
+    };
+    return ComponentViewSeo;
+}());
+export { ComponentViewSeo };

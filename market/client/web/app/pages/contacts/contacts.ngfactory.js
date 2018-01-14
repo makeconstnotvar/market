@@ -9,4 +9,3 @@ export function View_ContactsPage_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(
 export function View_ContactsPage_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "contacts", [], null, null, null, View_ContactsPage_0, RenderType_ContactsPage)), i0.ɵdid(1, 49152, null, 0, i1.ContactsPage, [i2.SettingsProvider, i3.SeoService], null, null)], null, null); }
 var ContactsPageNgFactory = i0.ɵccf("contacts", i1.ContactsPage, View_ContactsPage_Host_0, {}, {}, []);
 export { ContactsPageNgFactory as ContactsPageNgFactory };
-//# sourceMappingURL=contacts.ngfactory.js.map

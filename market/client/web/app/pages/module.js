@@ -16,7 +16,7 @@ import { ModuleComponentsView } from "./view/components/module";
 import { ModuleComponentsCart } from "./cart/components/module";
 import { ModuleComponentsCatalog } from "./catalog/components/module";
 import { DefaultLayout } from "../layouts/default";
-const appRoutes = [
+var appRoutes = [
     {
         path: '', component: DefaultLayout, children: [
             { path: '', component: SpecialsPage },
@@ -31,43 +31,45 @@ const appRoutes = [
         ]
     }
 ];
-class PagesModule {
-}
-PagesModule.decorators = [
-    { type: NgModule, args: [{
-                declarations: [
-                    CartPage,
-                    HistoryPage,
-                    CatalogPage,
-                    DeliveryPage,
-                    SpecialsPage,
-                    StocksPage,
-                    ViewPage,
-                    NotfoundPage,
-                    ContactsPage
-                ],
-                imports: [
-                    BrowserModule,
-                    ControlsModule,
-                    ModuleComponentsSpecials,
-                    ModuleComponentsView,
-                    ModuleComponentsCart,
-                    ModuleComponentsCatalog,
-                    RouterModule.forRoot(appRoutes)
-                ],
-                exports: [
-                    CartPage,
-                    HistoryPage,
-                    CatalogPage,
-                    DeliveryPage,
-                    SpecialsPage,
-                    StocksPage,
-                    ViewPage,
-                    NotfoundPage,
-                    ContactsPage
-                ]
-            },] },
-];
-PagesModule.ctorParameters = () => [];
+var PagesModule = (function () {
+    function PagesModule() {
+    }
+    PagesModule.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [
+                        CartPage,
+                        HistoryPage,
+                        CatalogPage,
+                        DeliveryPage,
+                        SpecialsPage,
+                        StocksPage,
+                        ViewPage,
+                        NotfoundPage,
+                        ContactsPage
+                    ],
+                    imports: [
+                        BrowserModule,
+                        ControlsModule,
+                        ModuleComponentsSpecials,
+                        ModuleComponentsView,
+                        ModuleComponentsCart,
+                        ModuleComponentsCatalog,
+                        RouterModule.forRoot(appRoutes)
+                    ],
+                    exports: [
+                        CartPage,
+                        HistoryPage,
+                        CatalogPage,
+                        DeliveryPage,
+                        SpecialsPage,
+                        StocksPage,
+                        ViewPage,
+                        NotfoundPage,
+                        ContactsPage
+                    ]
+                },] },
+    ];
+    PagesModule.ctorParameters = function () { return []; };
+    return PagesModule;
+}());
 export { PagesModule, CartPage, HistoryPage, CatalogPage, DeliveryPage, SpecialsPage, StocksPage, ViewPage, NotfoundPage, ContactsPage };
-//# sourceMappingURL=module.js.map

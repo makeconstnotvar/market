@@ -10,4 +10,3 @@ import { ServerResponseService } from "./status";
 import { StateService } from "./state";
 import { PlatformService } from "./platform";
 export { ConfigService, GlobalService, NavbarService, ParametersService, SortingService, SeoService, UniversalInterceptor, RequestInterceptor, ServerResponseService, StateService, PlatformService };
-//# sourceMappingURL=index.js.map

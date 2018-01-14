@@ -22,7 +22,8 @@ let favicons = ['market/favicon/**/*',],
         'market/config.json',
         'market/client/*.js',
         'market/client/router/**/*',
-        'market/client/web/fonts/**/*'
+        'market/client/web/scripts/*',
+        'market/client/web/fonts/*'
     ],
     commonCss = [
         'market/client/web/styles/common.scss',

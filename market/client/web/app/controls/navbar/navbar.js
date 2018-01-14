@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { NavbarService } from "services/index";
-export class NavbarControl {
-    constructor(navbarService) {
+var NavbarControl = (function () {
+    function NavbarControl(navbarService) {
+        var _this = this;
         this.navbarService = navbarService;
         this.settings = {
             brand: {
@@ -36,19 +37,20 @@ export class NavbarControl {
             },
         };
         this.cartData = { sum: 0, count: 0 };
-        navbarService.cartDataSubject.subscribe(cartData => {
-            this.cartData = cartData;
+        navbarService.cartDataSubject.subscribe(function (cartData) {
+            _this.cartData = cartData;
         });
     }
-}
-NavbarControl.decorators = [
-    { type: Component, args: [{
-                selector: 'market-navbar',
-                host: { 'class': 'navbar' },
-                templateUrl: 'navbar.html'
-            },] },
-];
-NavbarControl.ctorParameters = () => [
-    { type: NavbarService, },
-];
-//# sourceMappingURL=navbar.js.map
+    NavbarControl.decorators = [
+        { type: Component, args: [{
+                    selector: 'market-navbar',
+                    host: { 'class': 'navbar' },
+                    templateUrl: 'navbar.html'
+                },] },
+    ];
+    NavbarControl.ctorParameters = function () { return [
+        { type: NavbarService, },
+    ]; };
+    return NavbarControl;
+}());
+export { NavbarControl };

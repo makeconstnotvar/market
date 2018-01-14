@@ -1,11 +1,14 @@
 import { Component } from "@angular/core";
-export class ComponentSpecialsWelcome {
-}
-ComponentSpecialsWelcome.decorators = [
-    { type: Component, args: [{
-                selector: 'sp-welcome',
-                templateUrl: 'welcome.html'
-            },] },
-];
-ComponentSpecialsWelcome.ctorParameters = () => [];
-//# sourceMappingURL=welcome.js.map
+var ComponentSpecialsWelcome = (function () {
+    function ComponentSpecialsWelcome() {
+    }
+    ComponentSpecialsWelcome.decorators = [
+        { type: Component, args: [{
+                    selector: 'sp-welcome',
+                    templateUrl: 'welcome.html'
+                },] },
+    ];
+    ComponentSpecialsWelcome.ctorParameters = function () { return []; };
+    return ComponentSpecialsWelcome;
+}());
+export { ComponentSpecialsWelcome };

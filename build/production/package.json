@@ -12,9 +12,9 @@
         "webpack-browser-release": "webpack --config webpack.browser.release.js",
         "webpack-server": "webpack --config webpack.server.js",
         "ngc-release": "ngc -p tsconfig.release.json",
-        "gulp-production": "gulp --gulpfile gulpfile.production.js",
-        "gulp-clean": "gulp clean --gulpfile gulpfile.production.js",
-        "build": "npm run gulp-clean && npm run ngc-release && npm run webpack-browser-release && npm run webpack-server && npm run gulp-production"
+        "gulp-production":"gulp --gulpfile gulpfile.production.js",
+        "gulp-clean":"gulp clean --gulpfile gulpfile.production.js",
+        "build":"npm run gulp-clean && npm run ngc-release && npm run webpack-browser-release && npm run webpack-server && npm run gulp-production"
     },
     "dependencies": {
         "async": "^2.6.0",
@@ -59,6 +59,7 @@
         "@types/core-js": "^0.9.44",
         "@types/express": "^4.0.39",
         "@types/node": "^8.0.54",
+        "font-awesome": "^4.7.0",
         "bootstrap": "^4.0.0-beta",
         "core-js": "^2.5.1",
         "del": "^3.0.0",
@@ -66,7 +67,6 @@
         "gulp-clean-css": "^3.9.2",
         "gulp-minify-html": "^1.0.6",
         "gulp-sourcemap": "^1.0.1",
-        "font-awesome": "^4.7.0",
         "gulp-concat": "^2.6.1",
         "gulp-hash-filename": "^1.2.0",
         "gulp-imagemin": "^4.1.0",
@@ -76,7 +76,6 @@
         "gulp-sass": "2.3.2",
         "gulp-sourcemaps": "^2.6.3",
         "gulp-uglify": "^3.0.0",
-        "node-sass": "^4.7.2",
         "rxjs": "5.5.2",
         "source-map-loader": "^0.2.3",
         "typescript": "2.4.2",

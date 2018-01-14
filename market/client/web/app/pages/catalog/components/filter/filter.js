@@ -1,32 +1,33 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-export class ComponentCatalogFilter {
-    constructor() {
+var ComponentCatalogFilter = (function () {
+    function ComponentCatalogFilter() {
         this.onFilterChange = new EventEmitter();
         this.onFilterApply = new EventEmitter();
         this.onFilterClear = new EventEmitter();
     }
-    changeFilter(parameter) {
+    ComponentCatalogFilter.prototype.changeFilter = function (parameter) {
         this.onFilterChange.emit(parameter);
-    }
-    clearFilter() {
+    };
+    ComponentCatalogFilter.prototype.clearFilter = function () {
         this.onFilterClear.emit();
-    }
-    applyFilter() {
+    };
+    ComponentCatalogFilter.prototype.applyFilter = function () {
         this.onFilterApply.emit();
-    }
-}
-ComponentCatalogFilter.decorators = [
-    { type: Component, args: [{
-                selector: 'cat-filter',
-                host: { 'class': 'product-menu' },
-                templateUrl: 'filter.html'
-            },] },
-];
-ComponentCatalogFilter.ctorParameters = () => [];
-ComponentCatalogFilter.propDecorators = {
-    "parameters": [{ type: Input },],
-    "onFilterChange": [{ type: Output },],
-    "onFilterApply": [{ type: Output },],
-    "onFilterClear": [{ type: Output },],
-};
-//# sourceMappingURL=filter.js.map
+    };
+    ComponentCatalogFilter.decorators = [
+        { type: Component, args: [{
+                    selector: 'cat-filter',
+                    host: { 'class': 'product-menu' },
+                    templateUrl: 'filter.html'
+                },] },
+    ];
+    ComponentCatalogFilter.ctorParameters = function () { return []; };
+    ComponentCatalogFilter.propDecorators = {
+        "parameters": [{ type: Input },],
+        "onFilterChange": [{ type: Output },],
+        "onFilterApply": [{ type: Output },],
+        "onFilterClear": [{ type: Output },],
+    };
+    return ComponentCatalogFilter;
+}());
+export { ComponentCatalogFilter };

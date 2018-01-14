@@ -7,4 +7,3 @@ export function View_ComponentViewInformation_0(_l) { return i0.ɵvid(0, [(_l()(
 export function View_ComponentViewInformation_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "v-information", [["class", "me-info col-md-12 col-lg-6"]], null, null, null, View_ComponentViewInformation_0, RenderType_ComponentViewInformation)), i0.ɵdid(1, 49152, null, 0, i1.ComponentViewInformation, [], null, null)], null, null); }
 var ComponentViewInformationNgFactory = i0.ɵccf("v-information", i1.ComponentViewInformation, View_ComponentViewInformation_Host_0, { information: "information" }, {}, []);
 export { ComponentViewInformationNgFactory as ComponentViewInformationNgFactory };
-//# sourceMappingURL=information.ngfactory.js.map

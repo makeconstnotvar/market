@@ -15,4 +15,3 @@ export function View_PriceControl_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵted(
 export function View_PriceControl_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "price", [], null, null, null, View_PriceControl_0, RenderType_PriceControl)), i0.ɵdid(1, 49152, null, 0, i2.PriceControl, [], null, null)], null, null); }
 var PriceControlNgFactory = i0.ɵccf("price", i2.PriceControl, View_PriceControl_Host_0, { product: "product" }, { onPostPosition: "onPostPosition" }, []);
 export { PriceControlNgFactory as PriceControlNgFactory };
-//# sourceMappingURL=price.ngfactory.js.map

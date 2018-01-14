@@ -1,3 +1,6 @@
-export class CartData {
-}
-//# sourceMappingURL=cartData.js.map
+var CartData = (function () {
+    function CartData() {
+    }
+    return CartData;
+}());
+export { CartData };

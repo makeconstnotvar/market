@@ -7,4 +7,3 @@ export function View_ComponentViewSocials_0(_l) { return i0.ɵvid(0, [(_l()(), i
 export function View_ComponentViewSocials_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "v-socials", [], null, null, null, View_ComponentViewSocials_0, RenderType_ComponentViewSocials)), i0.ɵdid(1, 49152, null, 0, i1.ComponentViewSocials, [], null, null)], null, null); }
 var ComponentViewSocialsNgFactory = i0.ɵccf("v-socials", i1.ComponentViewSocials, View_ComponentViewSocials_Host_0, { url: "url", description: "description", imagePath: "imagePath" }, {}, []);
 export { ComponentViewSocialsNgFactory as ComponentViewSocialsNgFactory };
-//# sourceMappingURL=socials.ngfactory.js.map

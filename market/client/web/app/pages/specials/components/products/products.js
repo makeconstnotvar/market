@@ -1,21 +1,22 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-export class ComponentSpecialsProducts {
-    constructor() {
+var ComponentSpecialsProducts = (function () {
+    function ComponentSpecialsProducts() {
         this.onPostPosition = new EventEmitter();
     }
-    postPosition(product) {
+    ComponentSpecialsProducts.prototype.postPosition = function (product) {
         this.onPostPosition.emit(product);
-    }
-}
-ComponentSpecialsProducts.decorators = [
-    { type: Component, args: [{
-                selector: 'sp-products',
-                templateUrl: 'products.html'
-            },] },
-];
-ComponentSpecialsProducts.ctorParameters = () => [];
-ComponentSpecialsProducts.propDecorators = {
-    "products": [{ type: Input },],
-    "onPostPosition": [{ type: Output },],
-};
-//# sourceMappingURL=products.js.map
+    };
+    ComponentSpecialsProducts.decorators = [
+        { type: Component, args: [{
+                    selector: 'sp-products',
+                    templateUrl: 'products.html'
+                },] },
+    ];
+    ComponentSpecialsProducts.ctorParameters = function () { return []; };
+    ComponentSpecialsProducts.propDecorators = {
+        "products": [{ type: Input },],
+        "onPostPosition": [{ type: Output },],
+    };
+    return ComponentSpecialsProducts;
+}());
+export { ComponentSpecialsProducts };

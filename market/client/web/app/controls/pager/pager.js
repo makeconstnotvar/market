@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-export class PagerControl {
-    constructor() {
+var PagerControl = (function () {
+    function PagerControl() {
         this.pages = [];
         this.currentPage = 1;
         this.startPage = 1;
@@ -9,17 +9,17 @@ export class PagerControl {
         this.size = 10;
         this.itemsPerPage = 5;
         this.onPageChange = new EventEmitter();
-        for (let i = 1; i <= Math.ceil(this.totalItems / this.itemsPerPage); i++) {
+        for (var i = 1; i <= Math.ceil(this.totalItems / this.itemsPerPage); i++) {
             this.pages.push(i);
         }
     }
-    pageChange($event, page) {
+    PagerControl.prototype.pageChange = function ($event, page) {
         $event.preventDefault();
         this.currentPage = page;
         this.onPageChange.emit(page);
         this.getPages();
-    }
-    getStartPage() {
+    };
+    PagerControl.prototype.getStartPage = function () {
         this.gap = Math.floor(this.size / 2);
         if (this.maxPage > this.size) {
             if (this.maxPage - this.currentPage < this.gap)
@@ -27,40 +27,41 @@ export class PagerControl {
             else if (this.currentPage - this.gap > 0)
                 this.startPage = this.currentPage - this.gap;
         }
-    }
-    getEndPage() {
-        let possible = this.startPage + this.size - 1;
+    };
+    PagerControl.prototype.getEndPage = function () {
+        var possible = this.startPage + this.size - 1;
         this.endPage = (this.maxPage < this.size) ? (this.maxPage) : (possible < this.maxPage ? possible : this.maxPage);
-    }
-    getMaxPage() {
+    };
+    PagerControl.prototype.getMaxPage = function () {
         this.maxPage = Math.ceil(this.totalItems / this.itemsPerPage);
-    }
-    getPages() {
+    };
+    PagerControl.prototype.getPages = function () {
         this.pages = [];
         this.getMaxPage();
         this.getStartPage();
         this.getEndPage();
-        for (let i = this.startPage; i <= this.endPage; i++) {
+        for (var i = this.startPage; i <= this.endPage; i++) {
             this.pages.push(i);
         }
-    }
-    setup(total, currentPage) {
+    };
+    PagerControl.prototype.setup = function (total, currentPage) {
         this.currentPage = currentPage || 1;
         this.totalItems = total || 0;
         this.getPages();
-    }
-}
-PagerControl.decorators = [
-    { type: Component, args: [{
-                selector: 'pager',
-                templateUrl: 'pager.html'
-            },] },
-];
-PagerControl.ctorParameters = () => [];
-PagerControl.propDecorators = {
-    "category": [{ type: Input },],
-    "size": [{ type: Input },],
-    "itemsPerPage": [{ type: Input },],
-    "onPageChange": [{ type: Output },],
-};
-//# sourceMappingURL=pager.js.map
+    };
+    PagerControl.decorators = [
+        { type: Component, args: [{
+                    selector: 'pager',
+                    templateUrl: 'pager.html'
+                },] },
+    ];
+    PagerControl.ctorParameters = function () { return []; };
+    PagerControl.propDecorators = {
+        "category": [{ type: Input },],
+        "size": [{ type: Input },],
+        "itemsPerPage": [{ type: Input },],
+        "onPageChange": [{ type: Output },],
+    };
+    return PagerControl;
+}());
+export { PagerControl };
