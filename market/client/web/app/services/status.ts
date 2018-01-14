@@ -3,7 +3,7 @@ import {Inject, Injectable, Optional} from '@angular/core'
 import {Response} from 'express'
 
 @Injectable()
-export class ServerResponseService1 {
+export class ServerResponseService {
 
     private response: Response;
 

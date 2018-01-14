@@ -3,10 +3,12 @@ import {GlobalService} from "./global";
 import {NavbarService} from "./navbar";
 import {ParametersService} from "./parameters";
 import {SortingService} from "./sort";
-import {SeoService} from "./seo1";
+import {SeoService} from "./seo";
 import {UniversalInterceptor} from "./universal";
 import {RequestInterceptor} from "./interceptor";
-import {ServerResponseService1} from "./status1";
+import {ServerResponseService} from "./status";
+import {StateService} from "./state";
+import {PlatformService} from "./platform";
 
 export {
     ConfigService,
@@ -17,5 +19,7 @@ export {
     SeoService,
     UniversalInterceptor,
     RequestInterceptor,
-    ServerResponseService1
+    ServerResponseService,
+    StateService,
+    PlatformService
 }

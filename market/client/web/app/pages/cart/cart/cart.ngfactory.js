@@ -10,7 +10,7 @@ import * as i8 from "../../../providers/contract";
 import * as i9 from "../../../services/navbar";
 import * as i10 from "../../../services/global";
 import * as i11 from "../../../providers/settings";
-import * as i12 from "../../../services/seo1";
+import * as i12 from "../../../services/seo";
 var styles_CartPage = [];
 var RenderType_CartPage = i0.ɵcrt({ encapsulation: 2, styles: styles_CartPage, data: {} });
 export { RenderType_CartPage as RenderType_CartPage };

@@ -1,13 +1,12 @@
 import "rxjs/Rx";
 import {APP_INITIALIZER, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {NavigationEnd, Router} from "@angular/router";
+import {NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {PagesModule} from "pages/module";
 import {LayoutsModule, RootLayout} from "layouts/module";
 import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider, SettingsFactory, SettingsProvider} from "./providers";
-import {ConfigService, GlobalService, NavbarService, ParametersService, RequestInterceptor, SeoService, ServerResponseService1, SortingService} from "./services";
+import {ConfigService, GlobalService, NavbarService, ParametersService, PlatformService, RequestInterceptor, SeoService, ServerResponseService, SortingService, StateService} from "./services";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-
 
 @NgModule({
     imports: [
@@ -17,7 +16,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
         LayoutsModule
     ],
     providers: [
-
         SettingsProvider,
         {
             provide: APP_INITIALIZER,
@@ -40,21 +38,30 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
         ParametersService,
         SortingService,
         SeoService,
-        ServerResponseService1,
+        ServerResponseService,
+        StateService,
+        PlatformService
     ],
     exports: [
         RootLayout
     ]
 })
 export class ApplicationModule {
-    constructor(private router: Router,
-                private globalService: GlobalService) {
+    constructor(router: Router,
+                globalService: GlobalService,
+                stateService: StateService,
+                platformService: PlatformService) {
 
-        this.router.events
+        router.events
             .filter(e => e instanceof NavigationEnd)
             .pairwise()
             .subscribe(states => globalService.updateState(states));
 
+        router.events
+            .filter(e => (e instanceof NavigationStart || e instanceof NavigationEnd))
+            .subscribe(state => {
+                stateService.save(state.constructor.name, state)
+            });
 
     }
 }

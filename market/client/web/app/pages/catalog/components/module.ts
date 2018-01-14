@@ -43,6 +43,19 @@ import {ComponentFilterInputs} from "./filter/inputs/inputs";
         ComponentFilterInputs
     ]
 })
-export class ModuleComponentsCatalog {
+class ModuleComponentsCatalog {
 
+}
+
+export {
+    ModuleComponentsCatalog,
+    ComponentCatalogSorting,
+    ComponentCatalogFilter,
+    ComponentCatalogProduct,
+    ComponentCatalogAlert,
+    ComponentFilterButtons,
+    ComponentFilterCheckbox,
+    ComponentFilterCheckboxlist,
+    ComponentFilterRadiolist,
+    ComponentFilterInputs
 }

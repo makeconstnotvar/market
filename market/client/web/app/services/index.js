@@ -3,9 +3,11 @@ import { GlobalService } from "./global";
 import { NavbarService } from "./navbar";
 import { ParametersService } from "./parameters";
 import { SortingService } from "./sort";
-import { SeoService } from "./seo1";
+import { SeoService } from "./seo";
 import { UniversalInterceptor } from "./universal";
 import { RequestInterceptor } from "./interceptor";
-import { ServerResponseService1 } from "./status1";
-export { ConfigService, GlobalService, NavbarService, ParametersService, SortingService, SeoService, UniversalInterceptor, RequestInterceptor, ServerResponseService1 };
+import { ServerResponseService } from "./status";
+import { StateService } from "./state";
+import { PlatformService } from "./platform";
+export { ConfigService, GlobalService, NavbarService, ParametersService, SortingService, SeoService, UniversalInterceptor, RequestInterceptor, ServerResponseService, StateService, PlatformService };
 //# sourceMappingURL=index.js.map

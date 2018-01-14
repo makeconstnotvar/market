@@ -1,12 +1,12 @@
 import { Component, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { CategoryProvider, ContractProvider, ParameterProvider, ProductProvider } from "providers/index";
-import { NavbarService, ParametersService, SortingService } from "services/index";
-import { PagerControl } from "controls/pager/pager";
-import { ComponentCatalogFilter } from "./components/filter/filter";
-import { Category } from "../../models/category";
+import { CategoryProvider, ContractProvider, ParameterProvider, ProductProvider } from "../../providers";
+import { Category } from "../../models";
+import { GlobalService, NavbarService, ParametersService, SortingService } from "../../services";
+import { PagerControl } from "../../controls/module";
+import { ComponentCatalogFilter } from "./components/module";
 export class CatalogPage {
-    constructor(productProvider, parametersService, categoryProvider, parameterProvider, contractProvider, sortingService, navbarService, route, router) {
+    constructor(productProvider, parametersService, categoryProvider, parameterProvider, contractProvider, sortingService, navbarService, route, router, globalService) {
         this.productProvider = productProvider;
         this.parametersService = parametersService;
         this.categoryProvider = categoryProvider;
@@ -16,10 +16,14 @@ export class CatalogPage {
         this.navbarService = navbarService;
         this.route = route;
         this.router = router;
+        this.globalService = globalService;
         this.products = [];
         this.parameters = [];
         this.category = new Category();
         this.xs = false;
+    }
+    scrollToMenu() {
+        this.globalService.onScrollToEl.emit();
     }
     xsChange() {
         this.xs = !this.xs;
@@ -53,6 +57,7 @@ export class CatalogPage {
         this.page = page;
         this.navigate();
         this.fetchProducts();
+        this.scrollToMenu();
     }
     ngOnInit() {
         this.route.paramMap.switchMap((pm) => {
@@ -169,6 +174,7 @@ CatalogPage.ctorParameters = () => [
     { type: NavbarService, },
     { type: ActivatedRoute, },
     { type: Router, },
+    { type: GlobalService, },
 ];
 CatalogPage.propDecorators = {
     "pagerComponent": [{ type: ViewChild, args: [PagerControl,] },],

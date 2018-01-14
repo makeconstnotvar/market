@@ -3,12 +3,12 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 
 import {ContractProvider, ProductProvider} from "../../providers";
 import {Config, Position, Product} from "../../models";
-import {ConfigService, GlobalService, NavbarService, SeoService, ServerResponseService1} from "../../services";
+import {ConfigService, GlobalService, NavbarService, SeoService, ServerResponseService} from "../../services";
 
 
 @Component({
     selector: 'view-page',
-    templateUrl: 'view.html', providers: [ServerResponseService1]
+    templateUrl: 'view.html', providers: [ServerResponseService]
 })
 export class ViewPage {
     product: Product = new Product;
@@ -42,7 +42,7 @@ export class ViewPage {
     }
 
 
-    constructor(private serverResponseService: ServerResponseService1,
+    constructor(private serverResponseService: ServerResponseService,
                 private productProvider: ProductProvider,
                 private activatedRoute: ActivatedRoute,
                 private contractProvider: ContractProvider,

@@ -14,11 +14,4 @@ export class ConfigService {
         return Object.assign({}, this._config)
     };
 
-    /* private configObserver = new Subject<Config>();
-
-     public observable = this.configObserver.asObservable();
-
-     public update(config: Config) {
-     this.configObserver.next(config);
-     }*/
 }

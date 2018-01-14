@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Rx";
-import {Config} from "models/config";
-import {ConfigService} from "services/config";
 import {HttpClient} from "@angular/common/http";
+import {Config} from "../models";
+import {ConfigService} from "../services";
 
 
 @Injectable()

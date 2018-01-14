@@ -1,21 +1,24 @@
 import "rxjs/Rx";
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { NavigationEnd, Router } from "@angular/router";
+import { NavigationEnd, NavigationStart, Router } from "@angular/router";
 import { PagesModule } from "pages/module";
 import { LayoutsModule, RootLayout } from "layouts/module";
 import { CategoryProvider, ContractProvider, ParameterProvider, ProductProvider, SettingsFactory, SettingsProvider } from "./providers";
-import { ConfigService, GlobalService, NavbarService, ParametersService, RequestInterceptor, SeoService, ServerResponseService1, SortingService } from "./services";
+import { ConfigService, GlobalService, NavbarService, ParametersService, PlatformService, RequestInterceptor, SeoService, ServerResponseService, SortingService, StateService } from "./services";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 const ɵ0 = SettingsFactory;
 export class ApplicationModule {
-    constructor(router, globalService) {
-        this.router = router;
-        this.globalService = globalService;
-        this.router.events
+    constructor(router, globalService, stateService, platformService) {
+        router.events
             .filter(e => e instanceof NavigationEnd)
             .pairwise()
             .subscribe(states => globalService.updateState(states));
+        router.events
+            .filter(e => (e instanceof NavigationStart || e instanceof NavigationEnd))
+            .subscribe(state => {
+            stateService.save(state.constructor.name, state);
+        });
     }
 }
 ApplicationModule.decorators = [
@@ -49,7 +52,9 @@ ApplicationModule.decorators = [
                     ParametersService,
                     SortingService,
                     SeoService,
-                    ServerResponseService1,
+                    ServerResponseService,
+                    StateService,
+                    PlatformService
                 ],
                 exports: [
                     RootLayout
@@ -59,6 +64,8 @@ ApplicationModule.decorators = [
 ApplicationModule.ctorParameters = () => [
     { type: Router, },
     { type: GlobalService, },
+    { type: StateService, },
+    { type: PlatformService, },
 ];
 export { ɵ0 };
 //# sourceMappingURL=module.js.map

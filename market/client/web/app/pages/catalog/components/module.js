@@ -12,7 +12,7 @@ import { ComponentFilterCheckbox } from "./filter/checkbox/checkbox";
 import { ComponentFilterCheckboxlist } from "./filter/checkboxlist/checkboxlist";
 import { ComponentFilterRadiolist } from "./filter/radiolist/radiolist";
 import { ComponentFilterInputs } from "./filter/inputs/inputs";
-export class ModuleComponentsCatalog {
+class ModuleComponentsCatalog {
 }
 ModuleComponentsCatalog.decorators = [
     { type: NgModule, args: [{
@@ -47,4 +47,5 @@ ModuleComponentsCatalog.decorators = [
             },] },
 ];
 ModuleComponentsCatalog.ctorParameters = () => [];
+export { ModuleComponentsCatalog, ComponentCatalogSorting, ComponentCatalogFilter, ComponentCatalogProduct, ComponentCatalogAlert, ComponentFilterButtons, ComponentFilterCheckbox, ComponentFilterCheckboxlist, ComponentFilterRadiolist, ComponentFilterInputs };
 //# sourceMappingURL=module.js.map

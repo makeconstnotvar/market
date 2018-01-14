@@ -4,7 +4,7 @@ import * as i2 from "../../controls/maps/maps";
 import * as i3 from "@angular/common";
 import * as i4 from "./delivery";
 import * as i5 from "../../providers/settings";
-import * as i6 from "../../services/seo1";
+import * as i6 from "../../services/seo";
 var styles_DeliveryPage = [];
 var RenderType_DeliveryPage = i0.ɵcrt({ encapsulation: 2, styles: styles_DeliveryPage, data: {} });
 export { RenderType_DeliveryPage as RenderType_DeliveryPage };

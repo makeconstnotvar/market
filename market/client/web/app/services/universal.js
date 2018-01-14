@@ -9,8 +9,6 @@ export class UniversalInterceptor {
         const serverReq = !this.serverUrl ? req : req.clone({
             url: `${this.serverUrl}${req.url}`,
         });
-        serverReq.headers['uid'] = this.request['uid'];
-        serverReq.headers['test'] = 111;
         return next.handle(serverReq);
     }
 }

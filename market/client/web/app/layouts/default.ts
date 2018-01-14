@@ -1,8 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, ElementRef} from "@angular/core";
 import {CategoryProvider} from "providers/index";
 import {Category} from "models/index";
 import {ContractProvider} from "../providers";
 import {NavbarService} from "../services";
+import {GlobalService} from "../services/global";
 
 
 @Component({
@@ -23,8 +24,15 @@ export class DefaultLayout {
 
     constructor(categoryProvider: CategoryProvider,
                 contractProvider: ContractProvider,
-                navbarService: NavbarService) {
+                navbarService: NavbarService,
+                globalService: GlobalService,
+                elementRef: ElementRef) {
         categoryProvider.getTree().subscribe(response => this.categories = response);
         contractProvider.getCartStatus().subscribe(response => navbarService.updateCartData(response))
+
+
+        globalService.onScrollToEl.subscribe(() => {
+            elementRef.nativeElement.querySelector('market-menu').scrollIntoView();
+        })
     }
 }

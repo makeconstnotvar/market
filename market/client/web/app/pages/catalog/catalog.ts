@@ -1,14 +1,10 @@
 import {Component, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Product} from "models/index";
-import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider} from "providers/index";
-
-import {Parameter, Position} from "models/index";
-import {NavbarService, ParametersService, SortingService} from "services/index";
-import {PagerControl} from "controls/pager/pager";
-import {ComponentCatalogFilter} from "./components/filter/filter";
-import {switchMap}from 'rxjs/operators'
-import {Category} from "../../models/category";
+import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider} from "../../providers";
+import {Category, Parameter, Position, Product} from "../../models";
+import {GlobalService, NavbarService, ParametersService, SortingService} from "../../services";
+import {PagerControl} from "../../controls/module";
+import {ComponentCatalogFilter} from "./components/module";
 
 @Component({
     selector: 'catalog',
@@ -22,7 +18,7 @@ export class CatalogPage {
 
     products: Product[] = [];
     parameters: Parameter[] = [];
-    category:Category = new Category();
+    category: Category = new Category();
     categoryId: string;
     categoryName: string;
     params: any;
@@ -39,7 +35,12 @@ export class CatalogPage {
                 private sortingService: SortingService,
                 private navbarService: NavbarService,
                 private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                private globalService: GlobalService) {
+    }
+
+    scrollToMenu() {
+        this.globalService.onScrollToEl.emit();
     }
 
     xsChange() {
@@ -80,6 +81,7 @@ export class CatalogPage {
         this.page = page;
         this.navigate();
         this.fetchProducts();
+        this.scrollToMenu();
     }
 
     ngOnInit() {
@@ -89,7 +91,7 @@ export class CatalogPage {
             this.categoryName = pm.params.categoryName;
 
             return this.parameterProvider.getList(pm.params.categoryName)
-        }).subscribe((response:any )=> {
+        }).subscribe((response: any) => {
             //console.log('получены параметры');
             this.categoryId = response.catid;
             this.parameters = response.parameters;
@@ -125,7 +127,7 @@ export class CatalogPage {
     }
 
     private excludeParams(params) {
-        let p:any = Object.assign({}, params);
+        let p: any = Object.assign({}, params);
         delete p.page;
         delete p.sort;
         delete p.categoryName;
@@ -136,8 +138,8 @@ export class CatalogPage {
         this.parameters.map(parameter => this.parametersService.urlToParameter(parameter, this.params));
     }
 
-    private selectCategory(){
-        this.categoryProvider.getTree().subscribe((response:Category[] )=> this.category = response.find(cat=>cat.url==this.categoryName));
+    private selectCategory() {
+        this.categoryProvider.getTree().subscribe((response: Category[]) => this.category = response.find(cat => cat.url == this.categoryName));
     }
 
     private setActiveParameters(activeParameters) {
@@ -175,7 +177,7 @@ export class CatalogPage {
     }
 
     private fetchParameters() {
-        this.parameterProvider.getList(this.categoryName).subscribe((response:any) => {
+        this.parameterProvider.getList(this.categoryName).subscribe((response: any) => {
             //console.log('получены параметры');
             this.categoryId = response.catid;
             this.parameters = response.parameters;

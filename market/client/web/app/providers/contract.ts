@@ -1,8 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-import {CartData, Contract, Position} from "models/index";
 import {HttpClient} from "@angular/common/http";
-
+import {CartData, Contract, Position} from "../models";
 
 @Injectable()
 export class ContractProvider {

@@ -1,9 +1,11 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { Subject } from "rxjs/Subject";
 export class GlobalService {
     constructor() {
         this.previousStateSubject = new Subject();
         this.existPreviousState = this.previousStateSubject.asObservable();
+        this.scroller = new Subject();
+        this.onScrollToEl = new EventEmitter();
     }
     updateState(states) {
         if (states && states.length > 1) {

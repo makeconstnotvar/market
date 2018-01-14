@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ContractProvider, ProductProvider } from "../../providers";
 import { Product } from "../../models";
-import { ConfigService, GlobalService, NavbarService, SeoService, ServerResponseService1 } from "../../services";
+import { ConfigService, GlobalService, NavbarService, SeoService, ServerResponseService } from "../../services";
 export class ViewPage {
     constructor(serverResponseService, productProvider, activatedRoute, contractProvider, navbarService, configService, globalService, router, seoService) {
         this.serverResponseService = serverResponseService;
@@ -61,11 +61,11 @@ export class ViewPage {
 ViewPage.decorators = [
     { type: Component, args: [{
                 selector: 'view-page',
-                templateUrl: 'view.html', providers: [ServerResponseService1]
+                templateUrl: 'view.html', providers: [ServerResponseService]
             },] },
 ];
 ViewPage.ctorParameters = () => [
-    { type: ServerResponseService1, },
+    { type: ServerResponseService, },
     { type: ProductProvider, },
     { type: ActivatedRoute, },
     { type: ContractProvider, },

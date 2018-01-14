@@ -9,5 +9,6 @@ import { Position } from "./position";
 import { Product } from "./product";
 import { NavbarItem, Settings } from "./settings";
 import { Sort } from "./sort";
-export { CartData, Category, Color, Config, Contract, DeliveryMode, Parameter, Position, Product, Settings, Sort, NavbarItem };
+import { MetaInfo } from "./metaInfo";
+export { CartData, Category, Color, Config, Contract, DeliveryMode, Parameter, Position, Product, Settings, Sort, NavbarItem, MetaInfo };
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { ConfigService } from "services/config";
 import { HttpClient } from "@angular/common/http";
+import { ConfigService } from "../services";
 class SettingsProvider {
     constructor(http, configService) {
         this.http = http;

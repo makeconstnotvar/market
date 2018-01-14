@@ -9,7 +9,7 @@ import * as i7 from "./specials";
 import * as i8 from "../../providers/product";
 import * as i9 from "../../providers/contract";
 import * as i10 from "../../services/navbar";
-import * as i11 from "../../services/seo1";
+import * as i11 from "../../services/seo";
 import * as i12 from "../../providers/settings";
 import * as i13 from "../../services/config";
 var styles_SpecialsPage = [];

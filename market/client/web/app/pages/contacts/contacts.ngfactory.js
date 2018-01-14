@@ -1,7 +1,7 @@
 import * as i0 from "@angular/core";
 import * as i1 from "./contacts";
 import * as i2 from "../../providers/settings";
-import * as i3 from "../../services/seo1";
+import * as i3 from "../../services/seo";
 var styles_ContactsPage = [];
 var RenderType_ContactsPage = i0.ɵcrt({ encapsulation: 2, styles: styles_ContactsPage, data: {} });
 export { RenderType_ContactsPage as RenderType_ContactsPage };

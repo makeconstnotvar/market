@@ -9,6 +9,7 @@ import {Position} from "./position";
 import {Product} from "./product";
 import {NavbarItem, Settings} from "./settings";
 import {Sort} from "./sort";
+import {MetaInfo} from "./metaInfo";
 
 export {
     CartData,
@@ -22,5 +23,6 @@ export {
     Product,
     Settings,
     Sort,
-    NavbarItem
+    NavbarItem,
+    MetaInfo
 }
