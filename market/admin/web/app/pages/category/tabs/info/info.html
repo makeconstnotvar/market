@@ -8,21 +8,25 @@
                 <img ng-src="{{'/photos/'+category._id+ '/srv_'+ photo.fileId}}">
             </a>
         </div>
-        <label class="col-sm-2 control-label my-pointer" for="title">Title</label>
+        <div class="col-sm-2">
+            <label class="control-label my-pointer" for="title">Title</label>
+            <div class="minihelper">знаков: <span class="label label-default" ng-bind="category.title.length"></span></div>
+            <div class="minihelper">max 70</div>
+        </div>
 
         <div class="col-sm-7">
             <textarea id="title" rows="3" ng-model="category.title" class="form-control noresize"></textarea>
         </div>
-        <label class="col-sm-2 control-label my-pointer" for="description">Description</label>
+        <div class="col-sm-2">
+            <label class="control-label my-pointer" for="description">Description</label>
+            <div class="minihelper">знаков: <span class="label label-default " ng-bind="category.description.length"></span></div>
+            <div class="minihelper">max 300</div>
+        </div>
 
         <div class="col-sm-7">
-            <textarea id="description" rows="3" ng-model="category.description" class="form-control noresize"></textarea>
+            <textarea id="description" rows="5" ng-model="category.description" class="form-control noresize"></textarea>
         </div>
-        <label class="col-sm-2 control-label my-pointer" for="keywords">Keywords</label>
 
-        <div class="col-sm-7">
-            <textarea id="keywords" rows="3" ng-model="category.keywords" class="form-control noresize"></textarea>
-        </div>
     </div>
     <div class="row  form-group">
         <label class="col-sm-2 control-label">Краткое описание</label>

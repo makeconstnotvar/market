@@ -63,3 +63,4 @@ export function View_ComponentFilterInputs_0(_l) { return i0.ɵvid(0, [(_l()(), 
 export function View_ComponentFilterInputs_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "filter-inputs", [], null, null, null, View_ComponentFilterInputs_0, RenderType_ComponentFilterInputs)), i0.ɵdid(1, 49152, null, 0, i3.ComponentFilterInputs, [], null, null)], null, null); }
 var ComponentFilterInputsNgFactory = i0.ɵccf("filter-inputs", i3.ComponentFilterInputs, View_ComponentFilterInputs_Host_0, { parameter: "parameter" }, { onChangeFilter: "onChangeFilter" }, []);
 export { ComponentFilterInputsNgFactory as ComponentFilterInputsNgFactory };
+//# sourceMappingURL=inputs.ngfactory.js.map

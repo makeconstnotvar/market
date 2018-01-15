@@ -1,22 +1,21 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-var ComponentCatalogAlert = (function () {
-    function ComponentCatalogAlert() {
+export class ComponentCatalogAlert {
+    constructor() {
         this.onClearFilter = new EventEmitter();
     }
-    ComponentCatalogAlert.prototype.clearFilter = function () {
+    clearFilter() {
         this.onClearFilter.emit();
-    };
-    ComponentCatalogAlert.decorators = [
-        { type: Component, args: [{
-                    selector: 'cat-alert',
-                    host: { 'class': 'alert alert-info' },
-                    templateUrl: 'alert.html'
-                },] },
-    ];
-    ComponentCatalogAlert.ctorParameters = function () { return []; };
-    ComponentCatalogAlert.propDecorators = {
-        "onClearFilter": [{ type: Output },],
-    };
-    return ComponentCatalogAlert;
-}());
-export { ComponentCatalogAlert };
+    }
+}
+ComponentCatalogAlert.decorators = [
+    { type: Component, args: [{
+                selector: 'cat-alert',
+                host: { 'class': 'alert alert-info' },
+                templateUrl: 'alert.html'
+            },] },
+];
+ComponentCatalogAlert.ctorParameters = () => [];
+ComponentCatalogAlert.propDecorators = {
+    "onClearFilter": [{ type: Output },],
+};
+//# sourceMappingURL=alert.js.map

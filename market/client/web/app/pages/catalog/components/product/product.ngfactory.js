@@ -21,3 +21,4 @@ export function View_ComponentCatalogProduct_0(_l) { return i0.ɵvid(0, [(_l()()
 export function View_ComponentCatalogProduct_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "cat-product", [], null, null, null, View_ComponentCatalogProduct_0, RenderType_ComponentCatalogProduct)), i0.ɵdid(1, 49152, null, 0, i5.ComponentCatalogProduct, [], null, null)], null, null); }
 var ComponentCatalogProductNgFactory = i0.ɵccf("cat-product", i5.ComponentCatalogProduct, View_ComponentCatalogProduct_Host_0, { product: "product", categoryName: "categoryName" }, { onPostPosition: "onPostPosition" }, []);
 export { ComponentCatalogProductNgFactory as ComponentCatalogProductNgFactory };
+//# sourceMappingURL=product.ngfactory.js.map

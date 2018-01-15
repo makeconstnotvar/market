@@ -1,6 +1,6 @@
 import { Sort, SortingMode } from "../models/sort";
-var SortingService = (function () {
-    function SortingService() {
+export class SortingService {
+    constructor() {
         this.sorts = [
             {
                 name: 'по умолчанию',
@@ -22,43 +22,43 @@ var SortingService = (function () {
             }
         ];
     }
-    SortingService.prototype.getSorts = function () {
+    getSorts() {
         return this.sorts;
-    };
-    SortingService.prototype.getActive = function () {
-        var actives = this.sorts.filter(function (s) { return s.active; });
+    }
+    getActive() {
+        let actives = this.sorts.filter(s => s.active);
         if (actives && actives.length)
             return actives[0];
         else {
             this.reset();
             return this.getActive();
         }
-    };
-    SortingService.prototype.filterDefault = function (sort) {
+    }
+    filterDefault(sort) {
         if (sort.field != 'default')
             return sort;
-    };
-    SortingService.prototype.getUrl = function () {
+    }
+    getUrl() {
         return this.toUrl(this.filterDefault(this.getActive()));
-    };
-    SortingService.prototype.getSearch = function () {
-        var s = this.filterDefault(this.getActive());
+    }
+    getSearch() {
+        let s = this.filterDefault(this.getActive());
         if (s) {
-            var fake = {};
+            let fake = {};
             fake[s.field] = s.mode;
             return fake;
         }
         return {};
-    };
-    SortingService.prototype.change = function (activeSort) {
+    }
+    change(activeSort) {
         if (!activeSort)
             this.reset();
         else {
-            var sort_1 = this.fromUrl(activeSort);
-            this.sorts.forEach(function (s) {
-                if (s.field == sort_1.field) {
+            let sort = this.fromUrl(activeSort);
+            this.sorts.forEach(s => {
+                if (s.field == sort.field) {
                     s.active = true;
-                    s.mode = +sort_1.mode;
+                    s.mode = +sort.mode;
                 }
                 else {
                     s.active = false;
@@ -66,9 +66,9 @@ var SortingService = (function () {
             });
         }
         return this.sorts;
-    };
-    SortingService.prototype.doSort = function (sort, mode) {
-        this.sorts.forEach(function (s) {
+    }
+    doSort(sort, mode) {
+        this.sorts.forEach(s => {
             if (s.field == sort.field) {
                 s.active = true;
                 s.mode = mode;
@@ -77,23 +77,22 @@ var SortingService = (function () {
                 s.active = false;
         });
         return this.sorts;
-    };
-    SortingService.prototype.reset = function () {
-        this.sorts.forEach(function (s) { return s.active = s.field == 'default'; });
-    };
-    SortingService.prototype.toUrl = function (sort) {
+    }
+    reset() {
+        this.sorts.forEach(s => s.active = s.field == 'default');
+    }
+    toUrl(sort) {
         if (sort)
-            return { sort: sort.field + "_" + sort.mode };
-    };
-    SortingService.prototype.fromUrl = function (queryParam) {
-        var sort = new Sort();
-        var regexp = new RegExp(/(\w+)_(-?\d+)/), match = regexp.exec(queryParam);
+            return { sort: `${sort.field}_${sort.mode}` };
+    }
+    fromUrl(queryParam) {
+        let sort = new Sort();
+        let regexp = new RegExp(/(\w+)_(-?\d+)/), match = regexp.exec(queryParam);
         if (match) {
             sort.field = match[1];
             sort.mode = +match[2];
         }
         return sort;
-    };
-    return SortingService;
-}());
-export { SortingService };
+    }
+}
+//# sourceMappingURL=sort.js.map

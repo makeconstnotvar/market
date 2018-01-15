@@ -2,7 +2,7 @@ import {Component, ViewChild} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider} from "../../providers";
 import {Category, Parameter, Position, Product} from "../../models";
-import {GlobalService, NavbarService, ParametersService, SortingService} from "../../services";
+import {GlobalService, NavbarService, ParametersService, SeoService, SortingService} from "../../services";
 import {PagerControl} from "../../controls/module";
 import {ComponentCatalogFilter} from "./components/module";
 
@@ -36,11 +36,12 @@ export class CatalogPage {
                 private navbarService: NavbarService,
                 private route: ActivatedRoute,
                 private router: Router,
-                private globalService: GlobalService) {
+                private globalService: GlobalService,
+                private seoService: SeoService) {
     }
 
     scrollToMenu() {
-        this.globalService.onScrollToEl.emit();
+        this.globalService.onScrollToEl.emit('market-menu');
     }
 
     xsChange() {
@@ -139,7 +140,14 @@ export class CatalogPage {
     }
 
     private selectCategory() {
-        this.categoryProvider.getTree().subscribe((response: Category[]) => this.category = response.find(cat => cat.url == this.categoryName));
+        this.categoryProvider.getTree().subscribe((response: Category[]) => {
+            this.category = response.find(cat => cat.url == this.categoryName);
+            this.seoService.setMeta({
+                title: this.category.title,
+                description: `${this.category.description}`,
+                image: `/photos/${this.category._id}/${this.category.cover}`,
+            })
+        });
     }
 
     private setActiveParameters(activeParameters) {

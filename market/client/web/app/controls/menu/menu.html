@@ -1,5 +1,5 @@
 <div class="container">
     <div class="d-flex  align-items-center  justify-content-around menu-container">
-        <a class="menu-item" routerLink="/{{cat.url}}/"  routerLinkActive="active" *ngFor="let cat of categories;let last = last;">{{cat.name}}</a>
+        <a class="menu-item" routerLink="/{{cat.url}}/" title="{{cat.urlText}}" routerLinkActive="active" *ngFor="let cat of categories;let last = last;">{{cat.name}}</a>
     </div>
 </div>

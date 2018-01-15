@@ -12,3 +12,4 @@ export function View_ComponentViewGallery_0(_l) { return i0.ɵvid(0, [(_l()(), i
 export function View_ComponentViewGallery_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "v-gallery", [["class", "me-screens col-xs-12"]], null, null, null, View_ComponentViewGallery_0, RenderType_ComponentViewGallery)), i0.ɵdid(1, 49152, null, 0, i2.ComponentViewGallery, [], null, null)], null, null); }
 var ComponentViewGalleryNgFactory = i0.ɵccf("v-gallery", i2.ComponentViewGallery, View_ComponentViewGallery_Host_0, { images: "images", productId: "productId" }, { onImageSelect: "onImageSelect" }, []);
 export { ComponentViewGalleryNgFactory as ComponentViewGalleryNgFactory };
+//# sourceMappingURL=gallery.ngfactory.js.map

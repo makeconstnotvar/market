@@ -11,20 +11,21 @@
                 <img ng-src="{{'/photos/'+product._id+ '/srv_'+ photo.fileId}}">
             </a>
         </div>
-        <label class="col-sm-2 control-label my-pointer" for="title">Title</label>
-
+        <div class="col-sm-2">
+            <label class="control-label my-pointer" for="title">Title</label>
+            <div class="minihelper">знаков: <span class="label label-default" ng-bind="product.title.length"></span></div>
+            <div class="minihelper">max 70</div>
+        </div>
         <div class="col-sm-7">
             <textarea id="title" rows="3" ng-model="product.title" class="form-control noresize"></textarea>
         </div>
-        <label class="col-sm-2 control-label my-pointer" for="description">Description</label>
-
-        <div class="col-sm-7">
-            <textarea id="description" rows="3" ng-model="product.description" class="form-control noresize"></textarea>
+        <div class="col-sm-2">
+            <label class="control-label my-pointer" for="description">Description</label>
+            <div class="minihelper">знаков: <span class="label label-default " ng-bind="product.description.length"></span></div>
+            <div class="minihelper">max 300</div>
         </div>
-        <label class="col-sm-2 control-label my-pointer" for="keywords">Keywords</label>
-
         <div class="col-sm-7">
-            <textarea id="keywords" rows="3" ng-model="product.keywords" class="form-control noresize"></textarea>
+            <textarea id="description" rows="5" ng-model="product.description" class="form-control noresize"></textarea>
         </div>
     </div>
     <div class="row  form-group">

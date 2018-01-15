@@ -61,6 +61,15 @@ a.undecorate {
 a.unstyled {
     color: $body-color;
 }
+.cloak{
+    opacity: 0;
+    &.visible{
+        opacity: 1;
+        transition: opacity 300ms;
+    }
+
+}
+
 /*
 @include media-breakpoint-up(xs) {
     body {

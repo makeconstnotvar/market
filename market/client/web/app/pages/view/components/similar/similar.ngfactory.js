@@ -9,3 +9,4 @@ export function View_ComponentViewSimilar_0(_l) { return i0.ɵvid(0, [(_l()(), i
 export function View_ComponentViewSimilar_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "v-similar", [], null, null, null, View_ComponentViewSimilar_0, RenderType_ComponentViewSimilar)), i0.ɵdid(1, 49152, null, 0, i2.ComponentViewSimilar, [], null, null)], null, null); }
 var ComponentViewSimilarNgFactory = i0.ɵccf("v-similar", i2.ComponentViewSimilar, View_ComponentViewSimilar_Host_0, { similar: "similar" }, {}, []);
 export { ComponentViewSimilarNgFactory as ComponentViewSimilarNgFactory };
+//# sourceMappingURL=similar.ngfactory.js.map

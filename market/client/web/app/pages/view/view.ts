@@ -11,6 +11,7 @@ import {ConfigService, GlobalService, NavbarService, SeoService, ServerResponseS
     templateUrl: 'view.html', providers: [ServerResponseService]
 })
 export class ViewPage {
+    ready:boolean = false;
     product: Product = new Product;
     isBack: boolean;
     selectedImage: string;
@@ -51,6 +52,7 @@ export class ViewPage {
                 private globalService: GlobalService,
                 private router: Router,
                 private seoService: SeoService) {
+
         this.activatedRoute.params.subscribe((params: Params) => {
             this.productId = params['productId'];
             this.categoryId = params['categoryId'];
@@ -65,14 +67,17 @@ export class ViewPage {
                     this.seoService.setMeta({
                         title: this.product.title,
                         description: `${this.product.description} ${this.product.price} руб.`,
-                        keywords: this.product.keywords,
                         image: `/photos/${this.product._id}/${this.selectedImage}`,
-                    })
+                    });
+                    this.ready = true;
+
                 }
+
             })
         });
-
+        this.globalService.onScrollToEl.emit();
         this.globalService.existPreviousState.subscribe(state => this.isBack = true);
         this.config = this.configService.config;
     }
+
 }

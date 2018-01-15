@@ -5,6 +5,7 @@ import { platformBrowser } from "@angular/platform-browser";
 import { BrowserAppModuleNgFactory } from "./module.ngfactory.js";
 enableProdMode();
 function start() {
-    platformBrowser().bootstrapModuleFactory(BrowserAppModuleNgFactory).catch(function (err) { return console.log(err); });
+    platformBrowser().bootstrapModuleFactory(BrowserAppModuleNgFactory).catch(err => console.log(err));
 }
 document.addEventListener('DOMContentLoaded', start, false);
+//# sourceMappingURL=index.js.map

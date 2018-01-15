@@ -177,3 +177,6 @@ label.regular {
 .form-group {
     margin-bottom: 10px;
 }
+.label{
+    padding: .2em .6em .2em;
+}

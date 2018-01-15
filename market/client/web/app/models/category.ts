@@ -1,12 +1,14 @@
 export class Category {
     active: boolean;
     url: string;
+    urlText: string;
     name: string;
     details: string;
     longDescription: string;
     _id: string;
     description: string;
-    keywords: string;
+    cover: string;
+
     level: number;
     order: number;
     photos: Object[];

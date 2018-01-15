@@ -3,7 +3,7 @@ export class Product {
     stockText: string;
     url: string;
     title: string;
-    keywords: string;
+
     _id: string;
     cover: string;
     name: string;

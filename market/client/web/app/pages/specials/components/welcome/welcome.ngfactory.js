@@ -7,3 +7,4 @@ export function View_ComponentSpecialsWelcome_0(_l) { return i0.ɵvid(0, [(_l()(
 export function View_ComponentSpecialsWelcome_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "sp-welcome", [], null, null, null, View_ComponentSpecialsWelcome_0, RenderType_ComponentSpecialsWelcome)), i0.ɵdid(1, 49152, null, 0, i1.ComponentSpecialsWelcome, [], null, null)], null, null); }
 var ComponentSpecialsWelcomeNgFactory = i0.ɵccf("sp-welcome", i1.ComponentSpecialsWelcome, View_ComponentSpecialsWelcome_Host_0, {}, {}, []);
 export { ComponentSpecialsWelcomeNgFactory as ComponentSpecialsWelcomeNgFactory };
+//# sourceMappingURL=welcome.ngfactory.js.map

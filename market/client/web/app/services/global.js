@@ -1,22 +1,21 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Subject } from "rxjs/Subject";
-var GlobalService = (function () {
-    function GlobalService() {
+export class GlobalService {
+    constructor() {
         this.previousStateSubject = new Subject();
         this.existPreviousState = this.previousStateSubject.asObservable();
         this.scroller = new Subject();
         this.onScrollToEl = new EventEmitter();
     }
-    GlobalService.prototype.updateState = function (states) {
+    updateState(states) {
         if (states && states.length > 1) {
             this.previousState = states[0];
             this.previousStateSubject.next(states[0]);
         }
-    };
-    GlobalService.decorators = [
-        { type: Injectable },
-    ];
-    GlobalService.ctorParameters = function () { return []; };
-    return GlobalService;
-}());
-export { GlobalService };
+    }
+}
+GlobalService.decorators = [
+    { type: Injectable },
+];
+GlobalService.ctorParameters = () => [];
+//# sourceMappingURL=global.js.map

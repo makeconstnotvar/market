@@ -20,3 +20,4 @@ export function View_HistoryPage_0(_l) { return i0.ɵvid(0, [i0.ɵpid(0, i2.Date
 export function View_HistoryPage_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "cart-history", [], null, null, null, View_HistoryPage_0, RenderType_HistoryPage)), i0.ɵdid(1, 49152, null, 0, i3.HistoryPage, [i4.ContractProvider, i1.ActivatedRoute], null, null)], null, null); }
 var HistoryPageNgFactory = i0.ɵccf("cart-history", i3.HistoryPage, View_HistoryPage_Host_0, {}, {}, []);
 export { HistoryPageNgFactory as HistoryPageNgFactory };
+//# sourceMappingURL=history.ngfactory.js.map

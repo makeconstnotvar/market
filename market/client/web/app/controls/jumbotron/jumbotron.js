@@ -1,35 +1,33 @@
 import { Component, Inject, PLATFORM_ID } from "@angular/core";
 import { isPlatformBrowser } from "@angular/common";
-var JumbotronControl = (function () {
-    function JumbotronControl(platformId) {
+export class JumbotronControl {
+    constructor(platformId) {
         this.platformId = platformId;
         this.jumbos = jumbos;
     }
-    JumbotronControl.prototype.ngOnInit = function () {
+    ngOnInit() {
         if (isPlatformBrowser(this.platformId)) {
-            this.intervalId = setInterval(function () {
+            this.intervalId = setInterval(() => {
                 showNextJumbo();
             }, 5000);
         }
-    };
-    JumbotronControl.prototype.ngOnDestroy = function () {
+    }
+    ngOnDestroy() {
         if (this.intervalId) {
             clearInterval(this.intervalId);
         }
-    };
-    JumbotronControl.decorators = [
-        { type: Component, args: [{
-                    selector: 'jumbotron',
-                    templateUrl: 'jumbotron.html'
-                },] },
-    ];
-    JumbotronControl.ctorParameters = function () { return [
-        { type: Object, decorators: [{ type: Inject, args: [PLATFORM_ID,] },] },
-    ]; };
-    return JumbotronControl;
-}());
-export { JumbotronControl };
-var jumbos = [
+    }
+}
+JumbotronControl.decorators = [
+    { type: Component, args: [{
+                selector: 'jumbotron',
+                templateUrl: 'jumbotron.html'
+            },] },
+];
+JumbotronControl.ctorParameters = () => [
+    { type: Object, decorators: [{ type: Inject, args: [PLATFORM_ID,] },] },
+];
+let jumbos = [
     {
         title: 'Мы стараемся сделать процесс покупки приятным',
         text: 'У нас быстрый сайт, вежливые курьеры и оператор с красивым голосом. Попробуйте позвонить ей',
@@ -52,7 +50,7 @@ var jumbos = [
         show: false
     }
 ];
-var activeJumbo = 0;
+let activeJumbo = 0;
 function showNextJumbo() {
     if (activeJumbo < jumbos.length - 1) {
         activeJumbo += 1;
@@ -60,13 +58,11 @@ function showNextJumbo() {
     else {
         activeJumbo = 0;
     }
-    jumbos.forEach(function (jumbo, idx) {
+    jumbos.forEach((jumbo, idx) => {
         jumbo.show = activeJumbo == idx;
     });
     return jumbos;
 }
-var Jumbo = (function () {
-    function Jumbo() {
-    }
-    return Jumbo;
-}());
+class Jumbo {
+}
+//# sourceMappingURL=jumbotron.js.map

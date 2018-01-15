@@ -1,16 +1,16 @@
 import { Injectable } from "@angular/core";
-var ParametersService = (function () {
-    function ParametersService() {
+export class ParametersService {
+    constructor() {
         if (!this.filterData)
             this.filterData = new Map();
     }
-    ParametersService.prototype.getFilterData = function () {
+    getFilterData() {
         return this.getUrlObject();
-    };
-    ParametersService.prototype.clearFilterData = function () {
+    }
+    clearFilterData() {
         this.filterData = new Map();
-    };
-    ParametersService.prototype.filterToUrl = function (parameter) {
+    }
+    filterToUrl(parameter) {
         switch (parameter.behavior) {
             case 'checklist':
             case 'radiolist':
@@ -26,12 +26,12 @@ var ParametersService = (function () {
                 throw Error('Неизвестный тип параметра фильтра');
         }
         return this.getUrlObject();
-    };
-    ParametersService.prototype.filterToUrlChecboxlist = function (parameter) {
-        var valuesSelected = parameter.values.filter(function (v) { return v.selected; });
+    }
+    filterToUrlChecboxlist(parameter) {
+        let valuesSelected = parameter.values.filter(v => v.selected);
         if (valuesSelected.length) {
-            var valuesFiltered = valuesSelected.map(function (v) { return v.url; });
-            var fake = {};
+            let valuesFiltered = valuesSelected.map(v => v.url);
+            let fake = {};
             fake[parameter.url] = valuesFiltered;
             this.filterData.set(parameter._id, fake);
         }
@@ -39,22 +39,22 @@ var ParametersService = (function () {
             this.filterData.delete(parameter._id);
         }
         return this.filterData;
-    };
-    ParametersService.prototype.filterToUrlOnecheck = function (parameter) {
-        var valuesSelected = parameter.values[0].selected;
-        var fake = {};
+    }
+    filterToUrlOnecheck(parameter) {
+        let valuesSelected = parameter.values[0].selected;
+        let fake = {};
         fake[parameter.url] = valuesSelected ? parameter.values[0].url : 'net';
         this.filterData.set(parameter._id, fake);
-    };
-    ParametersService.prototype.filterToUrlInput = function (parameter) {
-        var valuesSelected = !!parameter.from || !!parameter.to;
+    }
+    filterToUrlInput(parameter) {
+        let valuesSelected = !!parameter.from || !!parameter.to;
         if (valuesSelected) {
-            var fake = {};
-            var queryValues = [];
+            let fake = {};
+            let queryValues = [];
             if (parameter.from)
-                queryValues.push("from_" + parameter.from);
+                queryValues.push(`from_${parameter.from}`);
             if (parameter.to)
-                queryValues.push("to_" + parameter.to);
+                queryValues.push(`to_${parameter.to}`);
             if (queryValues.length)
                 fake[parameter.url] = queryValues;
             this.filterData.set(parameter._id, fake);
@@ -62,13 +62,13 @@ var ParametersService = (function () {
         else {
             this.filterData.delete(parameter._id);
         }
-    };
-    ParametersService.prototype.getUrlObject = function () {
-        var values = this.filterData.values();
-        var valuesArray = Array.from(values);
-        return valuesArray.length ? Object.assign.apply(Object, [{}].concat(valuesArray)) : {};
-    };
-    ParametersService.prototype.urlToParameter = function (parameter, queryParams) {
+    }
+    getUrlObject() {
+        let values = this.filterData.values();
+        let valuesArray = Array.from(values);
+        return valuesArray.length ? Object.assign({}, ...valuesArray) : {};
+    }
+    urlToParameter(parameter, queryParams) {
         switch (parameter.behavior) {
             case 'checklist':
             case 'radiolist':
@@ -79,29 +79,25 @@ var ParametersService = (function () {
             default:
                 throw Error('Неизвестный тип параметра фильтра');
         }
-    };
-    ParametersService.prototype.urlToFilterChecboxlist = function (parameter, queryParams) {
-        var _loop_1 = function (prop) {
+    }
+    urlToFilterChecboxlist(parameter, queryParams) {
+        for (let prop in queryParams) {
             if (parameter.url == prop) {
-                parameter.values.forEach(function (v) {
+                parameter.values.forEach(v => {
                     if (Array.isArray(queryParams[prop]))
                         v.selected = queryParams[prop].includes(v.url);
                     else
                         v.selected = queryParams[prop] == v.url;
                 });
-                this_1.filterToUrl(parameter);
+                this.filterToUrl(parameter);
             }
-        };
-        var this_1 = this;
-        for (var prop in queryParams) {
-            _loop_1(prop);
         }
         return parameter;
-    };
-    ParametersService.prototype.urlToFilterInput = function (parameter, queryParams) {
-        for (var prop in queryParams) {
+    }
+    urlToFilterInput(parameter, queryParams) {
+        for (let prop in queryParams) {
             if (parameter.url == prop) {
-                var fromRegexp = new RegExp(/from_(\d+)/), toRegexp = new RegExp(/to_(\d+)/), from = fromRegexp.exec(queryParams[prop]), to = toRegexp.exec(queryParams[prop]);
+                let fromRegexp = new RegExp(/from_(\d+)/), toRegexp = new RegExp(/to_(\d+)/), from = fromRegexp.exec(queryParams[prop]), to = toRegexp.exec(queryParams[prop]);
                 if (from)
                     parameter.from = from[1];
                 if (to)
@@ -110,11 +106,10 @@ var ParametersService = (function () {
             }
         }
         return parameter;
-    };
-    ParametersService.decorators = [
-        { type: Injectable },
-    ];
-    ParametersService.ctorParameters = function () { return []; };
-    return ParametersService;
-}());
-export { ParametersService };
+    }
+}
+ParametersService.decorators = [
+    { type: Injectable },
+];
+ParametersService.ctorParameters = () => [];
+//# sourceMappingURL=parameters.js.map

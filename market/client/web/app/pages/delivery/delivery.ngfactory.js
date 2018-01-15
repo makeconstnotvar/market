@@ -15,3 +15,4 @@ export function View_DeliveryPage_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(
 export function View_DeliveryPage_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "delivery", [], null, null, null, View_DeliveryPage_0, RenderType_DeliveryPage)), i0.ɵdid(1, 49152, null, 0, i4.DeliveryPage, [i0.PLATFORM_ID, i5.SettingsProvider, i6.SeoService], null, null)], null, null); }
 var DeliveryPageNgFactory = i0.ɵccf("delivery", i4.DeliveryPage, View_DeliveryPage_Host_0, {}, {}, []);
 export { DeliveryPageNgFactory as DeliveryPageNgFactory };
+//# sourceMappingURL=delivery.ngfactory.js.map

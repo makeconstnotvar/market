@@ -1,16 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs/Subject";
-var NavbarService = (function () {
-    function NavbarService() {
+export class NavbarService {
+    constructor() {
         this.cartDataSubject = new Subject();
     }
-    NavbarService.prototype.updateCartData = function (cartData) {
+    updateCartData(cartData) {
         this.cartDataSubject.next(cartData);
-    };
-    NavbarService.decorators = [
-        { type: Injectable },
-    ];
-    NavbarService.ctorParameters = function () { return []; };
-    return NavbarService;
-}());
-export { NavbarService };
+    }
+}
+NavbarService.decorators = [
+    { type: Injectable },
+];
+NavbarService.ctorParameters = () => [];
+//# sourceMappingURL=navbar.js.map

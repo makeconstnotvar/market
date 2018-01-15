@@ -29,7 +29,7 @@ export class SeoService {
             "title": meta.title,
             "tags": [
                 {"name": "description", "content": meta.description},
-                {"name": "keywords", "content": meta.keywords},
+
                 {"name": "image", "content": meta.image},
 
                 {"itemprop": "name", "content": meta.title},

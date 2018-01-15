@@ -6,9 +6,8 @@ import { GlobalService, NavbarService } from "services/index";
 import { CartMode } from "../components/mode";
 import { SettingsProvider } from "../../../providers";
 import { SeoService } from "../../../services";
-var CartPage = (function () {
-    function CartPage(contractProvider, navbarService, globalService, router, settingsProvider, seoService) {
-        var _this = this;
+export class CartPage {
+    constructor(contractProvider, navbarService, globalService, router, settingsProvider, seoService) {
         this.contractProvider = contractProvider;
         this.navbarService = navbarService;
         this.globalService = globalService;
@@ -20,87 +19,82 @@ var CartPage = (function () {
         this.pageMode = CartMode.Empty;
         this.showHistory = false;
         this.showError = false;
-        this.globalService.existPreviousState.subscribe(function (state) { return _this.isBack = true; });
-        this.contractProvider.getCart().subscribe(function (response) {
-            _this.contract = response.current;
-            _this.history = response.history;
-            _this.showHistory = _this.history.length > 0;
-            _this.contract.final = _this.getFinal(_this.contract.positions);
-            if (_this.contract.positions && _this.contract.positions.length > 0)
-                _this.pageMode = CartMode.Form;
+        this.globalService.existPreviousState.subscribe(state => this.isBack = true);
+        this.contractProvider.getCart().subscribe(response => {
+            this.contract = response.current;
+            this.history = response.history;
+            this.showHistory = this.history.length > 0;
+            this.contract.final = this.getFinal(this.contract.positions);
+            if (this.contract.positions && this.contract.positions.length > 0)
+                this.pageMode = CartMode.Form;
         });
-        settingsProvider.meta('cart').subscribe(function (resp) {
+        settingsProvider.meta('cart').subscribe(resp => {
             seoService.setMeta(resp);
         });
     }
-    CartPage.prototype.submit = function (contract) {
-        var _this = this;
+    submit(contract) {
         this.contract = Object.assign(this.contract, contract);
-        this.contractProvider.placeContract(this.contract).subscribe(function (response) {
-            _this.pageMode = CartMode.Success;
-            _this.history.unshift(response);
-            _this.navbarService.updateCartData({ sum: 0, count: 0 });
+        this.contractProvider.placeContract(this.contract).subscribe(response => {
+            this.pageMode = CartMode.Success;
+            this.history.unshift(response);
+            this.navbarService.updateCartData({ sum: 0, count: 0 });
         });
-    };
-    CartPage.prototype.back = function () {
+    }
+    back() {
         this.router.navigateByUrl(this.globalService.previousState.url);
-    };
-    CartPage.prototype.del = function (idx) {
-        var _this = this;
+    }
+    del(idx) {
         this.contract.positions.splice(idx, 1);
         if (this.contract.positions.length == 0) {
             this.pageMode = CartMode.Empty;
         }
         this.contract.final = this.getFinal(this.contract.positions);
-        this.contractProvider.put(this.contract).subscribe(function (response) {
-            _this.navbarService.updateCartData(response);
+        this.contractProvider.put(this.contract).subscribe(response => {
+            this.navbarService.updateCartData(response);
         });
-    };
-    CartPage.prototype.minus = function (idx) {
-        var _this = this;
+    }
+    minus(idx) {
         if (this.contract.positions[idx].count > 1) {
             this.contract.positions[idx].count--;
-            var product = this.contract.positions[idx].product;
+            let product = this.contract.positions[idx].product;
             this.contract.positions[idx].sum = product.price * this.contract.positions[idx].count;
             this.contract.final = this.getFinal(this.contract.positions);
-            this.contractProvider.put(this.contract).subscribe(function (response) {
-                _this.navbarService.updateCartData(response);
+            this.contractProvider.put(this.contract).subscribe(response => {
+                this.navbarService.updateCartData(response);
             });
         }
-    };
-    CartPage.prototype.plus = function (idx) {
-        var _this = this;
+    }
+    plus(idx) {
         this.contract.positions[idx].count++;
-        var product = this.contract.positions[idx].product;
+        let product = this.contract.positions[idx].product;
         this.contract.positions[idx].sum = product.price * this.contract.positions[idx].count;
         this.contract.final = this.getFinal(this.contract.positions);
-        this.contractProvider.put(this.contract).subscribe(function (response) {
-            _this.navbarService.updateCartData(response);
+        this.contractProvider.put(this.contract).subscribe(response => {
+            this.navbarService.updateCartData(response);
         });
-    };
-    CartPage.prototype.getFinal = function (positions) {
-        var sum = 0;
+    }
+    getFinal(positions) {
+        let sum = 0;
         if (positions)
-            positions.forEach(function (position) {
+            positions.forEach(position => {
                 sum += position.sum;
             });
         return sum;
-    };
-    CartPage.decorators = [
-        { type: Component, args: [{
-                    selector: 'cart',
-                    host: { 'class': 'container d-block' },
-                    templateUrl: 'cart.html',
-                },] },
-    ];
-    CartPage.ctorParameters = function () { return [
-        { type: ContractProvider, },
-        { type: NavbarService, },
-        { type: GlobalService, },
-        { type: Router, },
-        { type: SettingsProvider, },
-        { type: SeoService, },
-    ]; };
-    return CartPage;
-}());
-export { CartPage };
+    }
+}
+CartPage.decorators = [
+    { type: Component, args: [{
+                selector: 'cart',
+                host: { 'class': 'container d-block' },
+                templateUrl: 'cart.html',
+            },] },
+];
+CartPage.ctorParameters = () => [
+    { type: ContractProvider, },
+    { type: NavbarService, },
+    { type: GlobalService, },
+    { type: Router, },
+    { type: SettingsProvider, },
+    { type: SeoService, },
+];
+//# sourceMappingURL=cart.js.map
