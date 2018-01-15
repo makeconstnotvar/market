@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { ContractProvider, ProductProvider, SettingsProvider } from "providers/index";
 import { ConfigService, NavbarService, SeoService } from "services/index";
-export class SpecialsPage {
-    constructor(productProvider, contractProvider, navbarService, seoService, settingsProvider, configService) {
+var SpecialsPage = (function () {
+    function SpecialsPage(productProvider, contractProvider, navbarService, seoService, settingsProvider, configService) {
         this.productProvider = productProvider;
         this.contractProvider = contractProvider;
         this.navbarService = navbarService;
@@ -11,42 +11,45 @@ export class SpecialsPage {
         this.configService = configService;
         console.log(1);
     }
-    ngOnInit() {
+    SpecialsPage.prototype.ngOnInit = function () {
+        var _this = this;
         console.log(2);
-        let config = this.configService.config;
-        this.productProvider.special().subscribe(response => {
-            this.products = response;
+        var config = this.configService.config;
+        this.productProvider.special().subscribe(function (response) {
+            _this.products = response;
         });
-        this.settingsProvider.meta('specials').subscribe(meta => {
+        this.settingsProvider.meta('specials').subscribe(function (meta) {
             meta.image = '/img/logo.jpg';
-            this.seoService.setMeta(meta);
+            _this.seoService.setMeta(meta);
         });
-    }
-    postPosition(product) {
-        let position = {
+    };
+    SpecialsPage.prototype.postPosition = function (product) {
+        var _this = this;
+        var position = {
             product: product._id,
             count: 1,
             price: product.price,
             sum: product.price,
         };
-        this.contractProvider.postPosition(position).subscribe(response => {
+        this.contractProvider.postPosition(position).subscribe(function (response) {
             console.log(response);
-            this.navbarService.updateCartData(response);
+            _this.navbarService.updateCartData(response);
         });
-    }
-}
-SpecialsPage.decorators = [
-    { type: Component, args: [{
-                selector: 'specials',
-                templateUrl: 'specials.html'
-            },] },
-];
-SpecialsPage.ctorParameters = () => [
-    { type: ProductProvider, },
-    { type: ContractProvider, },
-    { type: NavbarService, },
-    { type: SeoService, },
-    { type: SettingsProvider, },
-    { type: ConfigService, },
-];
-//# sourceMappingURL=specials.js.map
+    };
+    SpecialsPage.decorators = [
+        { type: Component, args: [{
+                    selector: 'specials',
+                    templateUrl: 'specials.html'
+                },] },
+    ];
+    SpecialsPage.ctorParameters = function () { return [
+        { type: ProductProvider, },
+        { type: ContractProvider, },
+        { type: NavbarService, },
+        { type: SeoService, },
+        { type: SettingsProvider, },
+        { type: ConfigService, },
+    ]; };
+    return SpecialsPage;
+}());
+export { SpecialsPage };

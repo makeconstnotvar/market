@@ -12,4 +12,3 @@ export function View_ComponentViewTitle_0(_l) { return i0.ɵvid(0, [(_l()(), i0.
 export function View_ComponentViewTitle_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "v-title", [["class", "me-info col-xs-12"]], null, null, null, View_ComponentViewTitle_0, RenderType_ComponentViewTitle)), i0.ɵdid(1, 49152, null, 0, i2.ComponentViewTitle, [], null, null)], null, null); }
 var ComponentViewTitleNgFactory = i0.ɵccf("v-title", i2.ComponentViewTitle, View_ComponentViewTitle_Host_0, { name: "name", details: "details", isBack: "isBack" }, { onBack: "onBack" }, []);
 export { ComponentViewTitleNgFactory as ComponentViewTitleNgFactory };
-//# sourceMappingURL=title.ngfactory.js.map

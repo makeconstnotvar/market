@@ -20,4 +20,3 @@ export function View_ComponentSpecialsProduct_0(_l) { return i0.ɵvid(0, [(_l()(
 export function View_ComponentSpecialsProduct_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "sp-product", [["class", "product"]], null, null, null, View_ComponentSpecialsProduct_0, RenderType_ComponentSpecialsProduct)), i0.ɵdid(1, 49152, null, 0, i5.ComponentSpecialsProduct, [], null, null)], null, null); }
 var ComponentSpecialsProductNgFactory = i0.ɵccf("sp-product", i5.ComponentSpecialsProduct, View_ComponentSpecialsProduct_Host_0, { product: "product" }, { onPostPosition: "onPostPosition" }, []);
 export { ComponentSpecialsProductNgFactory as ComponentSpecialsProductNgFactory };
-//# sourceMappingURL=product.ngfactory.js.map

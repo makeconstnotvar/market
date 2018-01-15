@@ -25,4 +25,3 @@ export function View_ComponentCartPositions_0(_l) { return i0.ɵvid(0, [(_l()(),
 export function View_ComponentCartPositions_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "cart-positions", [], null, null, null, View_ComponentCartPositions_0, RenderType_ComponentCartPositions)), i0.ɵdid(1, 49152, null, 0, i3.ComponentCartPositions, [], null, null)], null, null); }
 var ComponentCartPositionsNgFactory = i0.ɵccf("cart-positions", i3.ComponentCartPositions, View_ComponentCartPositions_Host_0, { contract: "contract" }, { onMinus: "onMinus", onPlus: "onPlus", onDelete: "onDelete" }, []);
 export { ComponentCartPositionsNgFactory as ComponentCartPositionsNgFactory };
-//# sourceMappingURL=positions.ngfactory.js.map

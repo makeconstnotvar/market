@@ -9,4 +9,3 @@ export function View_ComponentViewPhoto_0(_l) { return i0.ɵvid(0, [(_l()(), i0.
 export function View_ComponentViewPhoto_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "v-photo", [], null, null, null, View_ComponentViewPhoto_0, RenderType_ComponentViewPhoto)), i0.ɵdid(1, 49152, null, 0, i2.ComponentViewPhoto, [], null, null)], null, null); }
 var ComponentViewPhotoNgFactory = i0.ɵccf("v-photo", i2.ComponentViewPhoto, View_ComponentViewPhoto_Host_0, { productId: "productId", image: "image" }, {}, []);
 export { ComponentViewPhotoNgFactory as ComponentViewPhotoNgFactory };
-//# sourceMappingURL=photo.ngfactory.js.map

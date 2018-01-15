@@ -1,26 +1,27 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-export class ComponentFilterButtons {
-    constructor() {
+var ComponentFilterButtons = (function () {
+    function ComponentFilterButtons() {
         this.onApplyFilter = new EventEmitter();
         this.onClearFilter = new EventEmitter();
     }
-    applyFilter() {
+    ComponentFilterButtons.prototype.applyFilter = function () {
         this.onApplyFilter.emit();
-    }
-    clearFilter() {
+    };
+    ComponentFilterButtons.prototype.clearFilter = function () {
         this.onClearFilter.emit();
-    }
-}
-ComponentFilterButtons.decorators = [
-    { type: Component, args: [{
-                selector: 'filter-buttons',
-                host: { 'class': 'd-flex' },
-                templateUrl: 'buttons.html'
-            },] },
-];
-ComponentFilterButtons.ctorParameters = () => [];
-ComponentFilterButtons.propDecorators = {
-    "onApplyFilter": [{ type: Output },],
-    "onClearFilter": [{ type: Output },],
-};
-//# sourceMappingURL=buttons.js.map
+    };
+    ComponentFilterButtons.decorators = [
+        { type: Component, args: [{
+                    selector: 'filter-buttons',
+                    host: { 'class': 'd-flex' },
+                    templateUrl: 'buttons.html'
+                },] },
+    ];
+    ComponentFilterButtons.ctorParameters = function () { return []; };
+    ComponentFilterButtons.propDecorators = {
+        "onApplyFilter": [{ type: Output },],
+        "onClearFilter": [{ type: Output },],
+    };
+    return ComponentFilterButtons;
+}());
+export { ComponentFilterButtons };

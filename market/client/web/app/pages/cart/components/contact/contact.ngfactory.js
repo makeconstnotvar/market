@@ -131,4 +131,3 @@ export function View_ComponentCartContact_0(_l) { return i0.ɵvid(0, [(_l()(), i
 export function View_ComponentCartContact_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "cart-contact", [["class", "form-horizontal"]], null, null, null, View_ComponentCartContact_0, RenderType_ComponentCartContact)), i0.ɵdid(1, 49152, null, 0, i4.ComponentCartContact, [], null, null)], null, null); }
 var ComponentCartContactNgFactory = i0.ɵccf("cart-contact", i4.ComponentCartContact, View_ComponentCartContact_Host_0, {}, { onSubmit: "onSubmit" }, []);
 export { ComponentCartContactNgFactory as ComponentCartContactNgFactory };
-//# sourceMappingURL=contact.ngfactory.js.map

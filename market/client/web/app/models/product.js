@@ -1,3 +1,6 @@
-export class Product {
-}
-//# sourceMappingURL=product.js.map
+var Product = (function () {
+    function Product() {
+    }
+    return Product;
+}());
+export { Product };

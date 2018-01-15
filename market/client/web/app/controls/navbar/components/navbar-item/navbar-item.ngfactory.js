@@ -12,4 +12,3 @@ export function View_NavbarItemComponent_0(_l) { return i0.ɵvid(0, [(_l()(), i0
 export function View_NavbarItemComponent_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "navbar-item", [], null, null, null, View_NavbarItemComponent_0, RenderType_NavbarItemComponent)), i0.ɵdid(1, 49152, null, 0, i3.NavbarItemComponent, [], null, null)], null, null); }
 var NavbarItemComponentNgFactory = i0.ɵccf("navbar-item", i3.NavbarItemComponent, View_NavbarItemComponent_Host_0, { data: "data" }, {}, []);
 export { NavbarItemComponentNgFactory as NavbarItemComponentNgFactory };
-//# sourceMappingURL=navbar-item.ngfactory.js.map

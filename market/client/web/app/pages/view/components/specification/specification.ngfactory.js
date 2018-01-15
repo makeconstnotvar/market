@@ -11,4 +11,3 @@ export function View_ComponentViewSpecification_0(_l) { return i0.ɵvid(0, [(_l(
 export function View_ComponentViewSpecification_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "v-specification", [["class", "me-info col-md-12 col-lg-6"]], null, null, null, View_ComponentViewSpecification_0, RenderType_ComponentViewSpecification)), i0.ɵdid(1, 49152, null, 0, i2.ComponentViewSpecification, [], null, null)], null, null); }
 var ComponentViewSpecificationNgFactory = i0.ɵccf("v-specification", i2.ComponentViewSpecification, View_ComponentViewSpecification_Host_0, { parameters: "parameters" }, {}, []);
 export { ComponentViewSpecificationNgFactory as ComponentViewSpecificationNgFactory };
-//# sourceMappingURL=specification.ngfactory.js.map

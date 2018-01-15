@@ -1,16 +1,23 @@
 import { Injectable } from "@angular/core";
-export class ConfigService {
-    set config(newConfig) {
-        this._config = newConfig;
+var ConfigService = (function () {
+    function ConfigService() {
     }
+    Object.defineProperty(ConfigService.prototype, "config", {
+        get: function () {
+            return Object.assign({}, this._config);
+        },
+        set: function (newConfig) {
+            this._config = newConfig;
+        },
+        enumerable: true,
+        configurable: true
+    });
     ;
-    get config() {
-        return Object.assign({}, this._config);
-    }
     ;
-}
-ConfigService.decorators = [
-    { type: Injectable },
-];
-ConfigService.ctorParameters = () => [];
-//# sourceMappingURL=config.js.map
+    ConfigService.decorators = [
+        { type: Injectable },
+    ];
+    ConfigService.ctorParameters = function () { return []; };
+    return ConfigService;
+}());
+export { ConfigService };

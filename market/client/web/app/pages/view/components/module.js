@@ -9,34 +9,36 @@ import { ComponentViewSocials } from "./socials/socials";
 import { ComponentViewSpecification } from "./specification/specification";
 import { ComponentViewTitle } from "./title/title";
 import { ComponentViewSeo } from "./seo/seo";
-class ModuleComponentsView {
-}
-ModuleComponentsView.decorators = [
-    { type: NgModule, args: [{
-                declarations: [
-                    ComponentViewInformation,
-                    ComponentViewGallery,
-                    ComponentViewPhoto,
-                    ComponentViewSimilar,
-                    ComponentViewSocials,
-                    ComponentViewSpecification,
-                    ComponentViewTitle,
-                    ComponentViewSeo
-                ],
-                imports: [BrowserModule, RouterModule],
-                providers: [],
-                exports: [
-                    ComponentViewInformation,
-                    ComponentViewGallery,
-                    ComponentViewPhoto,
-                    ComponentViewSimilar,
-                    ComponentViewSocials,
-                    ComponentViewSpecification,
-                    ComponentViewTitle,
-                    ComponentViewSeo
-                ]
-            },] },
-];
-ModuleComponentsView.ctorParameters = () => [];
+var ModuleComponentsView = (function () {
+    function ModuleComponentsView() {
+    }
+    ModuleComponentsView.decorators = [
+        { type: NgModule, args: [{
+                    declarations: [
+                        ComponentViewInformation,
+                        ComponentViewGallery,
+                        ComponentViewPhoto,
+                        ComponentViewSimilar,
+                        ComponentViewSocials,
+                        ComponentViewSpecification,
+                        ComponentViewTitle,
+                        ComponentViewSeo
+                    ],
+                    imports: [BrowserModule, RouterModule],
+                    providers: [],
+                    exports: [
+                        ComponentViewInformation,
+                        ComponentViewGallery,
+                        ComponentViewPhoto,
+                        ComponentViewSimilar,
+                        ComponentViewSocials,
+                        ComponentViewSpecification,
+                        ComponentViewTitle,
+                        ComponentViewSeo
+                    ]
+                },] },
+    ];
+    ModuleComponentsView.ctorParameters = function () { return []; };
+    return ModuleComponentsView;
+}());
 export { ModuleComponentsView, ComponentViewInformation, ComponentViewGallery, ComponentViewPhoto, ComponentViewSimilar, ComponentViewSocials, ComponentViewSpecification, ComponentViewTitle, ComponentViewSeo };
-//# sourceMappingURL=module.js.map

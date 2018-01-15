@@ -42,4 +42,3 @@ export function View_CartPage_0(_l) { return i0.ɵvid(0, [i0.ɵpid(0, i6.DatePip
 export function View_CartPage_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "cart", [["class", "container d-block"]], null, null, null, View_CartPage_0, RenderType_CartPage)), i0.ɵdid(1, 49152, null, 0, i7.CartPage, [i8.ContractProvider, i9.NavbarService, i10.GlobalService, i5.Router, i11.SettingsProvider, i12.SeoService], null, null)], null, null); }
 var CartPageNgFactory = i0.ɵccf("cart", i7.CartPage, View_CartPage_Host_0, {}, {}, []);
 export { CartPageNgFactory as CartPageNgFactory };
-//# sourceMappingURL=cart.ngfactory.js.map

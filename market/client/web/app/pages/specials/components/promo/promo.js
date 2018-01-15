@@ -1,11 +1,14 @@
 import { Component } from "@angular/core";
-export class ComponentSpecialsPromo {
-}
-ComponentSpecialsPromo.decorators = [
-    { type: Component, args: [{
-                selector: 'sp-promo',
-                templateUrl: 'promo.html'
-            },] },
-];
-ComponentSpecialsPromo.ctorParameters = () => [];
-//# sourceMappingURL=promo.js.map
+var ComponentSpecialsPromo = (function () {
+    function ComponentSpecialsPromo() {
+    }
+    ComponentSpecialsPromo.decorators = [
+        { type: Component, args: [{
+                    selector: 'sp-promo',
+                    templateUrl: 'promo.html'
+                },] },
+    ];
+    ComponentSpecialsPromo.ctorParameters = function () { return []; };
+    return ComponentSpecialsPromo;
+}());
+export { ComponentSpecialsPromo };

@@ -1,23 +1,24 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-export class ProductProvider {
-    constructor(http) {
+var ProductProvider = (function () {
+    function ProductProvider(http) {
         this.http = http;
     }
-    list(query) {
+    ProductProvider.prototype.list = function (query) {
         return this.http.post('/api/product/list', query);
-    }
-    view(id) {
+    };
+    ProductProvider.prototype.view = function (id) {
         return this.http.post('/api/product/view', { id: id });
-    }
-    special() {
+    };
+    ProductProvider.prototype.special = function () {
         return this.http.post('/api/product/special', {});
-    }
-}
-ProductProvider.decorators = [
-    { type: Injectable },
-];
-ProductProvider.ctorParameters = () => [
-    { type: HttpClient, },
-];
-//# sourceMappingURL=product.js.map
+    };
+    ProductProvider.decorators = [
+        { type: Injectable },
+    ];
+    ProductProvider.ctorParameters = function () { return [
+        { type: HttpClient, },
+    ]; };
+    return ProductProvider;
+}());
+export { ProductProvider };

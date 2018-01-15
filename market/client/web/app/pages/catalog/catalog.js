@@ -5,8 +5,8 @@ import { Category } from "../../models";
 import { GlobalService, NavbarService, ParametersService, SeoService, SortingService } from "../../services";
 import { PagerControl } from "../../controls/module";
 import { ComponentCatalogFilter } from "./components/module";
-export class CatalogPage {
-    constructor(productProvider, parametersService, categoryProvider, parameterProvider, contractProvider, sortingService, navbarService, route, router, globalService, seoService) {
+var CatalogPage = (function () {
+    function CatalogPage(productProvider, parametersService, categoryProvider, parameterProvider, contractProvider, sortingService, navbarService, route, router, globalService, seoService) {
         this.productProvider = productProvider;
         this.parametersService = parametersService;
         this.categoryProvider = categoryProvider;
@@ -23,170 +23,178 @@ export class CatalogPage {
         this.category = new Category();
         this.xs = false;
     }
-    scrollToMenu() {
+    CatalogPage.prototype.scrollToMenu = function () {
         this.globalService.onScrollToEl.emit('market-menu');
-    }
-    xsChange() {
+    };
+    CatalogPage.prototype.xsChange = function () {
         this.xs = !this.xs;
-    }
-    changeFilter(parameter) {
+    };
+    CatalogPage.prototype.changeFilter = function (parameter) {
         delete this.page;
         this.parametersService.filterToUrl(parameter);
         this.navigate();
         this.fetchProducts();
         this.fetchActive();
-    }
-    clearFilter() {
+    };
+    CatalogPage.prototype.clearFilter = function () {
         this.xs = false;
         delete this.page;
         this.parametersService.clearFilterData();
         this.navigate();
         this.fetchParameters();
         this.fetchActive();
-    }
-    applyFilter() {
+    };
+    CatalogPage.prototype.applyFilter = function () {
         this.xs = false;
         this.navigate();
         this.fetchProducts();
         this.fetchActive();
-    }
-    changeSort(e) {
+    };
+    CatalogPage.prototype.changeSort = function (e) {
         this.navigate();
         this.fetchProducts();
-    }
-    changePage(page) {
+    };
+    CatalogPage.prototype.changePage = function (page) {
         this.page = page;
         this.navigate();
         this.fetchProducts();
         this.scrollToMenu();
-    }
-    ngOnInit() {
-        this.route.paramMap.switchMap((pm) => {
-            this.categoryName = pm.params.categoryName;
-            return this.parameterProvider.getList(pm.params.categoryName);
-        }).subscribe((response) => {
-            this.categoryId = response.catid;
-            this.parameters = response.parameters;
-            this.selectCategory();
-            this.selectParameters();
-            this.fetchProducts();
-            this.fetchActive();
+    };
+    CatalogPage.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.paramMap.switchMap(function (pm) {
+            _this.categoryName = pm.params.categoryName;
+            return _this.parameterProvider.getList(pm.params.categoryName);
+        }).subscribe(function (response) {
+            _this.categoryId = response.catid;
+            _this.parameters = response.parameters;
+            _this.selectCategory();
+            _this.selectParameters();
+            _this.fetchProducts();
+            _this.fetchActive();
         });
-        this.route.queryParamMap.subscribe((qpm) => {
-            this.activeSort = qpm.params.sort;
-            this.page = qpm.params.page;
-            this.params = this.excludeParams(qpm.params);
-            this.sortingService.change(this.activeSort);
+        this.route.queryParamMap.subscribe(function (qpm) {
+            _this.activeSort = qpm.params.sort;
+            _this.page = qpm.params.page;
+            _this.params = _this.excludeParams(qpm.params);
+            _this.sortingService.change(_this.activeSort);
         });
-    }
-    postPosition(product) {
-        let position = {
+    };
+    CatalogPage.prototype.postPosition = function (product) {
+        var _this = this;
+        var position = {
             product: product._id,
             count: 1,
             price: product.price,
             sum: product.price,
         };
-        this.contractProvider.postPosition(position).subscribe(response => {
-            this.navbarService.updateCartData(response);
+        this.contractProvider.postPosition(position).subscribe(function (response) {
+            _this.navbarService.updateCartData(response);
         });
-    }
-    excludeParams(params) {
-        let p = Object.assign({}, params);
+    };
+    CatalogPage.prototype.excludeParams = function (params) {
+        var p = Object.assign({}, params);
         delete p.page;
         delete p.sort;
         delete p.categoryName;
         return p;
-    }
-    selectParameters() {
-        this.parameters.map(parameter => this.parametersService.urlToParameter(parameter, this.params));
-    }
-    selectCategory() {
-        this.categoryProvider.getTree().subscribe((response) => {
-            this.category = response.find(cat => cat.url == this.categoryName);
-            this.seoService.setMeta({
-                title: this.category.title,
-                description: `${this.category.description}`,
-                image: `/photos/${this.category._id}/${this.category.cover}`,
+    };
+    CatalogPage.prototype.selectParameters = function () {
+        var _this = this;
+        this.parameters.map(function (parameter) { return _this.parametersService.urlToParameter(parameter, _this.params); });
+    };
+    CatalogPage.prototype.selectCategory = function () {
+        var _this = this;
+        this.categoryProvider.getTree().subscribe(function (response) {
+            _this.category = response.find(function (cat) { return cat.url == _this.categoryName; });
+            _this.seoService.setMeta({
+                title: _this.category.title,
+                description: "" + _this.category.description,
+                image: "/photos/" + _this.category._id + "/" + _this.category.cover,
             });
         });
-    }
-    setActiveParameters(activeParameters) {
-        this.parameters.forEach(parameter => {
-            parameter.values.forEach(v => {
+    };
+    CatalogPage.prototype.setActiveParameters = function (activeParameters) {
+        this.parameters.forEach(function (parameter) {
+            parameter.values.forEach(function (v) {
                 v.active = activeParameters.includes(v._id);
             });
         });
-    }
-    getSelectedParameters() {
-        let params = this.parameters.map(x => Object.assign({}, x)).filter((p) => {
-            let selected = p.values.find(v => v.selected);
+    };
+    CatalogPage.prototype.getSelectedParameters = function () {
+        var params = this.parameters.map(function (x) { return Object.assign({}, x); }).filter(function (p) {
+            var selected = p.values.find(function (v) { return v.selected; });
             return p.to || p.from || !!selected;
         });
-        params.forEach((p, i, array) => {
+        params.forEach(function (p, i, array) {
             if (p.values)
-                p.values = p.values.filter(v => v.selected && v.nomatter != true);
+                p.values = p.values.filter(function (v) { return v.selected && v.nomatter != true; });
             if (p.behavior != 'input' && p.values.length == 0)
                 array.splice(i, 1);
         });
         return params;
-    }
-    fetchActive() {
-        let query = {
+    };
+    CatalogPage.prototype.fetchActive = function () {
+        var _this = this;
+        var query = {
             parameters: this.getSelectedParameters(),
             categoryId: this.categoryId
         };
-        this.parameterProvider.getActive(query).subscribe(resp => {
-            this.setActiveParameters(resp);
+        this.parameterProvider.getActive(query).subscribe(function (resp) {
+            _this.setActiveParameters(resp);
         });
-    }
-    fetchParameters() {
-        this.parameterProvider.getList(this.categoryName).subscribe((response) => {
-            this.categoryId = response.catid;
-            this.parameters = response.parameters;
-            this.selectParameters();
-            this.fetchProducts();
-            this.fetchActive();
+    };
+    CatalogPage.prototype.fetchParameters = function () {
+        var _this = this;
+        this.parameterProvider.getList(this.categoryName).subscribe(function (response) {
+            _this.categoryId = response.catid;
+            _this.parameters = response.parameters;
+            _this.selectParameters();
+            _this.fetchProducts();
+            _this.fetchActive();
         });
-    }
-    fetchProducts() {
-        let query = {
+    };
+    CatalogPage.prototype.fetchProducts = function () {
+        var _this = this;
+        var query = {
             parameters: this.getSelectedParameters(),
             sort: this.sortingService.getSearch(),
             categoryId: this.categoryId,
             page: this.page
         };
-        this.productProvider.list(query).subscribe(resp => {
-            this.products = resp.products;
-            this.pagerComponent.setup(resp.count, this.page);
+        this.productProvider.list(query).subscribe(function (resp) {
+            _this.products = resp.products;
+            _this.pagerComponent.setup(resp.count, _this.page);
         });
-    }
-    navigate() {
-        let queryParams = Object.assign({}, { page: this.page }, this.sortingService.getUrl(), this.parametersService.getFilterData());
-        this.router.navigate([this.categoryName], { queryParams });
-    }
-}
-CatalogPage.decorators = [
-    { type: Component, args: [{
-                selector: 'catalog',
-                host: { 'class': 'container d-block' },
-                templateUrl: 'catalog.html'
-            },] },
-];
-CatalogPage.ctorParameters = () => [
-    { type: ProductProvider, },
-    { type: ParametersService, },
-    { type: CategoryProvider, },
-    { type: ParameterProvider, },
-    { type: ContractProvider, },
-    { type: SortingService, },
-    { type: NavbarService, },
-    { type: ActivatedRoute, },
-    { type: Router, },
-    { type: GlobalService, },
-    { type: SeoService, },
-];
-CatalogPage.propDecorators = {
-    "pagerComponent": [{ type: ViewChild, args: [PagerControl,] },],
-    "catalogFilter": [{ type: ViewChild, args: [ComponentCatalogFilter,] },],
-};
-//# sourceMappingURL=catalog.js.map
+    };
+    CatalogPage.prototype.navigate = function () {
+        var queryParams = Object.assign({}, { page: this.page }, this.sortingService.getUrl(), this.parametersService.getFilterData());
+        this.router.navigate([this.categoryName], { queryParams: queryParams });
+    };
+    CatalogPage.decorators = [
+        { type: Component, args: [{
+                    selector: 'catalog',
+                    host: { 'class': 'container d-block' },
+                    templateUrl: 'catalog.html'
+                },] },
+    ];
+    CatalogPage.ctorParameters = function () { return [
+        { type: ProductProvider, },
+        { type: ParametersService, },
+        { type: CategoryProvider, },
+        { type: ParameterProvider, },
+        { type: ContractProvider, },
+        { type: SortingService, },
+        { type: NavbarService, },
+        { type: ActivatedRoute, },
+        { type: Router, },
+        { type: GlobalService, },
+        { type: SeoService, },
+    ]; };
+    CatalogPage.propDecorators = {
+        "pagerComponent": [{ type: ViewChild, args: [PagerControl,] },],
+        "catalogFilter": [{ type: ViewChild, args: [ComponentCatalogFilter,] },],
+    };
+    return CatalogPage;
+}());
+export { CatalogPage };

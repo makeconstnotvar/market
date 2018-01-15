@@ -1,11 +1,14 @@
 import { Component } from "@angular/core";
-export class StocksPage {
-}
-StocksPage.decorators = [
-    { type: Component, args: [{
-                selector: 'stocks',
-                templateUrl: 'stocks.html'
-            },] },
-];
-StocksPage.ctorParameters = () => [];
-//# sourceMappingURL=stocks.js.map
+var StocksPage = (function () {
+    function StocksPage() {
+    }
+    StocksPage.decorators = [
+        { type: Component, args: [{
+                    selector: 'stocks',
+                    templateUrl: 'stocks.html'
+                },] },
+    ];
+    StocksPage.ctorParameters = function () { return []; };
+    return StocksPage;
+}());
+export { StocksPage };

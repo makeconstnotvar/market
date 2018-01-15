@@ -1,24 +1,25 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-export class ComponentViewTitle {
-    constructor() {
+var ComponentViewTitle = (function () {
+    function ComponentViewTitle() {
         this.onBack = new EventEmitter();
     }
-    back() {
+    ComponentViewTitle.prototype.back = function () {
         this.onBack.emit();
-    }
-}
-ComponentViewTitle.decorators = [
-    { type: Component, args: [{
-                selector: 'v-title',
-                host: { 'class': 'me-info col-xs-12' },
-                templateUrl: 'title.html'
-            },] },
-];
-ComponentViewTitle.ctorParameters = () => [];
-ComponentViewTitle.propDecorators = {
-    "name": [{ type: Input },],
-    "details": [{ type: Input },],
-    "isBack": [{ type: Input },],
-    "onBack": [{ type: Output },],
-};
-//# sourceMappingURL=title.js.map
+    };
+    ComponentViewTitle.decorators = [
+        { type: Component, args: [{
+                    selector: 'v-title',
+                    host: { 'class': 'me-info col-xs-12' },
+                    templateUrl: 'title.html'
+                },] },
+    ];
+    ComponentViewTitle.ctorParameters = function () { return []; };
+    ComponentViewTitle.propDecorators = {
+        "name": [{ type: Input },],
+        "details": [{ type: Input },],
+        "isBack": [{ type: Input },],
+        "onBack": [{ type: Output },],
+    };
+    return ComponentViewTitle;
+}());
+export { ComponentViewTitle };

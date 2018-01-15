@@ -12,4 +12,3 @@ export function View_NavbarBrandComponent_0(_l) { return i0.ɵvid(0, [(_l()(), i
 export function View_NavbarBrandComponent_Host_0(_l) { return i0.ɵvid(0, [(_l()(), i0.ɵeld(0, 0, null, null, 1, "navbar-brand", [], null, null, null, View_NavbarBrandComponent_0, RenderType_NavbarBrandComponent)), i0.ɵdid(1, 49152, null, 0, i3.NavbarBrandComponent, [], null, null)], null, null); }
 var NavbarBrandComponentNgFactory = i0.ɵccf("navbar-brand", i3.NavbarBrandComponent, View_NavbarBrandComponent_Host_0, { data: "data" }, {}, []);
 export { NavbarBrandComponentNgFactory as NavbarBrandComponentNgFactory };
-//# sourceMappingURL=navbar-brand.ngfactory.js.map

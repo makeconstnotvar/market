@@ -11,4 +11,3 @@ import { NavbarItem, Settings } from "./settings";
 import { Sort } from "./sort";
 import { MetaInfo } from "./metaInfo";
 export { CartData, Category, Color, Config, Contract, DeliveryMode, Parameter, Position, Product, Settings, Sort, NavbarItem, MetaInfo };
-//# sourceMappingURL=index.js.map
