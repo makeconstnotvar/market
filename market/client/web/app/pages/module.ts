@@ -26,8 +26,11 @@ const appRoutes: Routes = [
             {path: 'cart', component: CartPage},
             {path: 'cart/:contract', component: HistoryPage},
             {path: 'stocks', component: StocksPage},
+            {path: 'catalog/:categoryName', component: CatalogPage, data: { catalogMode: true }},
             {path: ':categoryName/:productId', component: ViewPage},
             {path: ':categoryName', component: CatalogPage},
+
+
             {path: '**', component: NotfoundPage}
     ]
     }

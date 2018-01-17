@@ -21,6 +21,8 @@ export class CatalogPage {
     category: Category = new Category();
     categoryId: string;
     categoryName: string;
+    catalogMode: boolean;
+    noresults: boolean;
     params: any;
     page: number;
     sort: any;
@@ -87,7 +89,9 @@ export class CatalogPage {
 
     ngOnInit() {
         //console.log('инит каталога');
-
+        this.route.data.subscribe((data: any) => {
+            this.catalogMode = data['catalogMode'] || false;
+        });
         this.route.paramMap.switchMap((pm: any) => {
             this.categoryName = pm.params.categoryName;
 
@@ -106,6 +110,7 @@ export class CatalogPage {
             //console.log('qpm');
             this.activeSort = qpm.params.sort;
             this.page = qpm.params.page;
+
             this.params = this.excludeParams(qpm.params);
             this.sortingService.change(this.activeSort);
         });
@@ -199,13 +204,16 @@ export class CatalogPage {
         let query = {
             parameters: this.getSelectedParameters(),
             sort: this.sortingService.getSearch(),
+            catalogMode:this.catalogMode,
             categoryId: this.categoryId,
             page: this.page
         };
         this.productProvider.list(query).subscribe(resp => {
             //console.log('получены продукты');
             this.products = resp.products;
-            this.pagerComponent.setup(resp.count, this.page);
+            this.noresults = resp.products.length==0;
+            if (!this.catalogMode)
+                this.pagerComponent.setup(resp.count, this.page);
         })
     }
 

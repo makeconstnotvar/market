@@ -63,4 +63,4 @@ gulp.task('watch', gulp.parallel('commonCss'), gulp.watch([
         'market/client/web/app/**/*.scss'])
 );
 
-gulp.task('default', gulp.series('commonCss', 'loadingCss', 'inject'));
+gulp.task('default1', gulp.series('commonCss', 'loadingCss', 'inject'));

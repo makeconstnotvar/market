@@ -16,6 +16,7 @@ import { ModuleComponentsView } from "./view/components/module";
 import { ModuleComponentsCart } from "./cart/components/module";
 import { ModuleComponentsCatalog } from "./catalog/components/module";
 import { DefaultLayout } from "../layouts/default";
+var ɵ0 = { catalogMode: true };
 var appRoutes = [
     {
         path: '', component: DefaultLayout, children: [
@@ -25,6 +26,7 @@ var appRoutes = [
             { path: 'cart', component: CartPage },
             { path: 'cart/:contract', component: HistoryPage },
             { path: 'stocks', component: StocksPage },
+            { path: 'catalog/:categoryName', component: CatalogPage, data: ɵ0 },
             { path: ':categoryName/:productId', component: ViewPage },
             { path: ':categoryName', component: CatalogPage },
             { path: '**', component: NotfoundPage }
@@ -73,3 +75,4 @@ var PagesModule = (function () {
     return PagesModule;
 }());
 export { PagesModule, CartPage, HistoryPage, CatalogPage, DeliveryPage, SpecialsPage, StocksPage, ViewPage, NotfoundPage, ContactsPage };
+export { ɵ0 };

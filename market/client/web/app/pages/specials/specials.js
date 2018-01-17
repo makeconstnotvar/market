@@ -9,11 +9,9 @@ var SpecialsPage = (function () {
         this.seoService = seoService;
         this.settingsProvider = settingsProvider;
         this.configService = configService;
-        console.log(1);
     }
     SpecialsPage.prototype.ngOnInit = function () {
         var _this = this;
-        console.log(2);
         var config = this.configService.config;
         this.productProvider.special().subscribe(function (response) {
             _this.products = response;
@@ -32,7 +30,6 @@ var SpecialsPage = (function () {
             sum: product.price,
         };
         this.contractProvider.postPosition(position).subscribe(function (response) {
-            console.log(response);
             _this.navbarService.updateCartData(response);
         });
     };

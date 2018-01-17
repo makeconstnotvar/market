@@ -62,6 +62,9 @@ var CatalogPage = (function () {
     };
     CatalogPage.prototype.ngOnInit = function () {
         var _this = this;
+        this.route.data.subscribe(function (data) {
+            _this.catalogMode = data['catalogMode'] || false;
+        });
         this.route.paramMap.switchMap(function (pm) {
             _this.categoryName = pm.params.categoryName;
             return _this.parameterProvider.getList(pm.params.categoryName);
@@ -159,12 +162,15 @@ var CatalogPage = (function () {
         var query = {
             parameters: this.getSelectedParameters(),
             sort: this.sortingService.getSearch(),
+            catalogMode: this.catalogMode,
             categoryId: this.categoryId,
             page: this.page
         };
         this.productProvider.list(query).subscribe(function (resp) {
             _this.products = resp.products;
-            _this.pagerComponent.setup(resp.count, _this.page);
+            _this.noresults = resp.products.length == 0;
+            if (!_this.catalogMode)
+                _this.pagerComponent.setup(resp.count, _this.page);
         });
     };
     CatalogPage.prototype.navigate = function () {

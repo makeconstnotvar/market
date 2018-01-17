@@ -17,11 +17,11 @@ export class SpecialsPage implements OnInit{
                 private seoService: SeoService,
                 private settingsProvider: SettingsProvider,
                 private configService: ConfigService) {
-        console.log(1)
+        //console.log(1)
     }
 
     ngOnInit() {
-        console.log(2);
+        //console.log(2);
         let config = this.configService.config;
         this.productProvider.special().subscribe(
             response => {
@@ -44,7 +44,7 @@ export class SpecialsPage implements OnInit{
         };
         this.contractProvider.postPosition(position).subscribe(
             response => {
-                console.log(response);
+                //console.log(response);
                 this.navbarService.updateCartData(response)
             });
 

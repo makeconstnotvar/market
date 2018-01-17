@@ -19,24 +19,35 @@ module.exports = class {
             cacheTime: 600000
         };
 
-        let urls = config.settings.sitemapUrls.map(url => {
-            return {url: url, changefreq: 'monthly', priority: url == '/' ? 1.0 : 0.9, lastmod: new Date()}
+        let staticUrls = config.settings.sitemapUrls.map(url => {
+            return {url: url, changefreq: 'monthly', priority: url == '/' ? 1.0 : 0.7, lastmod: new Date()}
         });
 
-        bll.product.selectAll({take: 0}).populate('category').exec(function (err, products) {
+        bll.product.selectAll({take: 0}).populate('category').populate('parameters.parameter').exec(function (err, products) {
             if (err) return next(err);
+            let categoriesSet = new Set();
+            let productUrls = [];
             products.forEach(product => {
                 if (product.category && product.category.url && product.url) {
+                    let brand = product.parameters.filter(p => p.parameter.url == 'brand').map(p => {
+                        let selectedValue = p.parameter.values.find(v => v._id.equals(p.selected));
+                        return selectedValue ? selectedValue.url : undefined;
+                    }).join('');
+                    if (brand)
+                        categoriesSet.add(`/catalog/${product.category.url}?brand=${brand}`);
                     let url = {
                         url: '/' + product.category.url + '/' + product.url,
-                        changefreq: 'monthly',
+                        changefreq: 'daily',
                         priority: 0.8
                     };
-                    url.lastmod = product.modifyDate ? product.modifyDate : new Date();
-                    urls.push(url);
+                    url.lastmod = product.modifyDate || new Date();
+                    productUrls.push(url);
                 }
             });
-            options.urls = urls;
+            let categories = ([...categoriesSet]).map(url => {
+                return {url: url, changefreq: 'weekly', priority: 0.9, lastmod: new Date()}
+            });
+            options.urls = [...staticUrls, ...categories, ...productUrls];
             let sitemap = sm.createSitemap(options);
             let xml = sitemap.toXML();
             fs.writeFile(path.join(config.path.files, config.settings.sitemapFileName), xml, function (err) {

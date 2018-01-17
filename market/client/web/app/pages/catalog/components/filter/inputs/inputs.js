@@ -6,7 +6,6 @@ var ComponentFilterInputs = (function () {
         this.onChangeFilter = new EventEmitter();
     }
     ComponentFilterInputs.prototype.changeFilter = function () {
-        console.log(this.parameter);
         this.onChangeFilter.emit(this.parameter);
     };
     ComponentFilterInputs.prototype.clearTo = function () {

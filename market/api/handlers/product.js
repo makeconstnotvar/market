@@ -112,7 +112,8 @@ module.exports = class extends Base {
             categoryId = filter.categoryId,
             order = filter.sort,
             parameters = filter.parameters,
-            take = config.settings.pageSize,
+            catalogMode = filter.catalogMode,
+            take = catalogMode ? 0 : config.settings.pageSize,
             page = filter.page || 1,
             skip = (page - 1) * take,
             and = [{publish: true}, {category: categoryId}],
@@ -259,7 +260,7 @@ module.exports = class extends Base {
                 if (err)
                     callback(err);
                 if (!product) {
-                    res.send({notFoundUrl:url});
+                    res.send({notFoundUrl: url});
                 }
                 else {
                     if (product.historyUrls && product.historyUrls.includes(url)) {

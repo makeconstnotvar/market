@@ -15,7 +15,7 @@ export class ComponentFilterInputs {
     onChangeFilter = new EventEmitter<Parameter>();
 
     changeFilter() {
-        console.log(this.parameter);
+        //console.log(this.parameter);
         this.onChangeFilter.emit(this.parameter)
     }
 
