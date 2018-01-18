@@ -2,11 +2,12 @@ import { Component, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CategoryProvider, ContractProvider, ParameterProvider, ProductProvider } from "../../providers";
 import { Category } from "../../models";
-import { GlobalService, NavbarService, ParametersService, SeoService, SortingService } from "../../services";
+import { GlobalService, NavbarService, ParametersService, SeoService, ServerResponseService, SortingService } from "../../services";
 import { PagerControl } from "../../controls/module";
 import { ComponentCatalogFilter } from "./components/module";
 var CatalogPage = (function () {
-    function CatalogPage(productProvider, parametersService, categoryProvider, parameterProvider, contractProvider, sortingService, navbarService, route, router, globalService, seoService) {
+    function CatalogPage(serverResponseService, productProvider, parametersService, categoryProvider, parameterProvider, contractProvider, sortingService, navbarService, route, router, globalService, seoService) {
+        this.serverResponseService = serverResponseService;
         this.productProvider = productProvider;
         this.parametersService = parametersService;
         this.categoryProvider = categoryProvider;
@@ -104,38 +105,45 @@ var CatalogPage = (function () {
     };
     CatalogPage.prototype.selectParameters = function () {
         var _this = this;
-        this.parameters.map(function (parameter) { return _this.parametersService.urlToParameter(parameter, _this.params); });
+        if (this.parameters)
+            this.parameters.map(function (parameter) { return _this.parametersService.urlToParameter(parameter, _this.params); });
     };
     CatalogPage.prototype.selectCategory = function () {
         var _this = this;
         this.categoryProvider.getTree().subscribe(function (response) {
             _this.category = response.find(function (cat) { return cat.url == _this.categoryName; });
-            _this.seoService.setMeta({
-                title: _this.category.title,
-                description: "" + _this.category.description,
-                image: "/photos/" + _this.category._id + "/" + _this.category.cover,
-            });
+            if (!_this.category)
+                _this.serverResponseService.setNotFound();
+            else
+                _this.seoService.setMeta({
+                    title: _this.category.title,
+                    description: "" + _this.category.description,
+                    image: "/photos/" + _this.category._id + "/" + _this.category.cover,
+                });
         });
     };
     CatalogPage.prototype.setActiveParameters = function (activeParameters) {
-        this.parameters.forEach(function (parameter) {
-            parameter.values.forEach(function (v) {
-                v.active = activeParameters.includes(v._id);
+        if (this.parameters)
+            this.parameters.forEach(function (parameter) {
+                parameter.values.forEach(function (v) {
+                    v.active = activeParameters.includes(v._id);
+                });
             });
-        });
     };
     CatalogPage.prototype.getSelectedParameters = function () {
-        var params = this.parameters.map(function (x) { return Object.assign({}, x); }).filter(function (p) {
-            var selected = p.values.find(function (v) { return v.selected; });
-            return p.to || p.from || !!selected;
-        });
-        params.forEach(function (p, i, array) {
-            if (p.values)
-                p.values = p.values.filter(function (v) { return v.selected && v.nomatter != true; });
-            if (p.behavior != 'input' && p.values.length == 0)
-                array.splice(i, 1);
-        });
-        return params;
+        if (this.parameters) {
+            var params = this.parameters.map(function (x) { return Object.assign({}, x); }).filter(function (p) {
+                var selected = p.values.find(function (v) { return v.selected; });
+                return p.to || p.from || !!selected;
+            });
+            params.forEach(function (p, i, array) {
+                if (p.values)
+                    p.values = p.values.filter(function (v) { return v.selected && v.nomatter != true; });
+                if (p.behavior != 'input' && p.values.length == 0)
+                    array.splice(i, 1);
+            });
+            return params;
+        }
     };
     CatalogPage.prototype.fetchActive = function () {
         var _this = this;
@@ -144,17 +152,24 @@ var CatalogPage = (function () {
             categoryId: this.categoryId
         };
         this.parameterProvider.getActive(query).subscribe(function (resp) {
-            _this.setActiveParameters(resp);
+            if (resp.notFoundUrl)
+                _this.serverResponseService.setNotFound();
+            else
+                _this.setActiveParameters(resp);
         });
     };
     CatalogPage.prototype.fetchParameters = function () {
         var _this = this;
         this.parameterProvider.getList(this.categoryName).subscribe(function (response) {
-            _this.categoryId = response.catid;
-            _this.parameters = response.parameters;
-            _this.selectParameters();
-            _this.fetchProducts();
-            _this.fetchActive();
+            if (response.notFoundUrl)
+                _this.serverResponseService.setNotFound();
+            else {
+                _this.categoryId = response.catid;
+                _this.parameters = response.parameters;
+                _this.selectParameters();
+                _this.fetchProducts();
+                _this.fetchActive();
+            }
         });
     };
     CatalogPage.prototype.fetchProducts = function () {
@@ -167,10 +182,15 @@ var CatalogPage = (function () {
             page: this.page
         };
         this.productProvider.list(query).subscribe(function (resp) {
-            _this.products = resp.products;
-            _this.noresults = resp.products.length == 0;
-            if (!_this.catalogMode)
-                _this.pagerComponent.setup(resp.count, _this.page);
+            if (resp.notFoundUrl) {
+                _this.serverResponseService.setNotFound();
+            }
+            else {
+                _this.products = resp.products;
+                _this.noresults = resp.products.length == 0;
+                if (!_this.catalogMode)
+                    _this.pagerComponent.setup(resp.count, _this.page);
+            }
         });
     };
     CatalogPage.prototype.navigate = function () {
@@ -185,6 +205,7 @@ var CatalogPage = (function () {
                 },] },
     ];
     CatalogPage.ctorParameters = function () { return [
+        { type: ServerResponseService, },
         { type: ProductProvider, },
         { type: ParametersService, },
         { type: CategoryProvider, },

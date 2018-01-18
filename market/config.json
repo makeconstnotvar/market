@@ -2,7 +2,7 @@
     "path": {
         "photo": "C:\\Projects\\market\\data\\photos",
         "files": "C:\\Projects\\market\\data\\files",
-        "serverjs": "C:\\Projects\\market\\build\\temp\\server.js"
+        "serverjs": "C:\\Projects\\market\\build\\client\\server.js"
     },
     "system": {
         "port": "3001",

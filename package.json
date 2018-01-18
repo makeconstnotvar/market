@@ -15,7 +15,8 @@
         "ngc-release": "ngc -p tsconfig.release.json",
         "gulp-production":"gulp --gulpfile gulpfile.production.js",
         "gulp-clean":"gulp clean --gulpfile gulpfile.production.js",
-        "build":"npm run gulp-clean && npm run ngc-release && npm run webpack-browser-release && npm run webpack-server && npm run gulp-production"
+        "build":"npm run gulp-clean && npm run ngc-release && npm run webpack-browser-release && npm run webpack-server && npm run gulp-production",
+        "build-test":"npm run gulp-clean && npm run ngc-release && npm run webpack-browser-release && npm run webpack-server && npm run gulp-production"
     },
     "dependencies": {
         "async": "^2.6.0",

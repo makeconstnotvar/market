@@ -1,13 +1,14 @@
 import {RESPONSE} from '@nguniversal/express-engine/tokens'
 import {Inject, Injectable, Optional} from '@angular/core'
 import {Response} from 'express'
+import {Router} from "@angular/router";
 
 @Injectable()
 export class ServerResponseService {
 
     private response: Response;
 
-     constructor(@Optional() @Inject(RESPONSE) response: any) {
+     constructor(@Optional() @Inject(RESPONSE) response: any,private router:Router) {
         this.response = response
     }
 
@@ -23,7 +24,7 @@ export class ServerResponseService {
     setNotFound(message = 'not found') {
         if (this.response) {
             this.response.statusCode = 404;
-            this.response.statusMessage = message
+            this.response.statusMessage = message;
         }
 
     }

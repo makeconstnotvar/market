@@ -58,9 +58,10 @@ gulp.task('inject', function () {
         .pipe(gulp.dest('market/client/web/views'));
 });
 
-gulp.task('watch', gulp.parallel('commonCss'), gulp.watch([
+gulp.task('watch', gulp.series('commonCss', function watch() {
+    return gulp.watch([
         'market/client/web/styles/**/*.scss',
-        'market/client/web/app/**/*.scss'])
-);
+        'market/client/web/app/**/*.scss'], gulp.series('commonCss'))
+}));
 
 gulp.task('default1', gulp.series('commonCss', 'loadingCss', 'inject'));

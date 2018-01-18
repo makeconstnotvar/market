@@ -101,18 +101,6 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/common/tabs/tabs.html',
-    '<ul class="nav nav-tabs"><li ng-class="{active:tab.active}" ng-repeat="tab in tabs"><a class="my-pointer" title="{{tab.title}}" ng-click="toState(tab.state)">{{tab.name}}</a></li></ul>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/common/progress/progress.html',
     '<i ng-class="{visible:isVisible}" class="fa fa-cog spinner"></i>');
 }]);
@@ -127,6 +115,18 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/common/status/status.html',
     '<div class="me-status-block" ng-class="{\'active\':status.show, \'success\':status.success, \'error\':!status.success}"><span ng-bind="status.text"></span> <i class="fa fa-times m-pointer me-status-close" ng-click="showOff()"></i></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/common/tabs/tabs.html',
+    '<ul class="nav nav-tabs"><li ng-class="{active:tab.active}" ng-repeat="tab in tabs"><a class="my-pointer" title="{{tab.title}}" ng-click="toState(tab.state)">{{tab.name}}</a></li></ul>');
 }]);
 })();
 

@@ -24,7 +24,7 @@ var ViewPage = (function () {
             _this.productProvider.view(_this.productId).subscribe(function (response) {
                 if (response.notFoundUrl)
                     _this.serverResponseService.setNotFound(response.notFoundUrl);
-                if (response.redirectUrl)
+                else if (response.redirectUrl)
                     _this.serverResponseService.setRedirect(response.redirectUrl);
                 else {
                     _this.product = response;
@@ -38,7 +38,6 @@ var ViewPage = (function () {
                 }
             });
         });
-        this.globalService.onScrollToEl.emit();
         this.globalService.existPreviousState.subscribe(function (state) { return _this.isBack = true; });
         this.config = this.configService.config;
     }

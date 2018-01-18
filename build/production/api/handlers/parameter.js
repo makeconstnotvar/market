@@ -16,11 +16,11 @@ module.exports = class extends Base {
     remove(req, res, next) {
         var id = req.body.id;
 
-        bll.product.removeParameter(id).exec(err=> {
+        bll.product.removeParameter(id).exec(err => {
             if (err) next(err);
-            bll.template.removeParameter(id).exec(err=> {
+            bll.template.removeParameter(id).exec(err => {
                 if (err) return next(err);
-                bll.parameter.remove(id).exec(err=> {
+                bll.parameter.remove(id).exec(err => {
                     if (err) return next(err);
                     res.send('ok');
                 })
@@ -34,16 +34,18 @@ module.exports = class extends Base {
 
     list(req, res, next) {
         let categoryUrl = req.body.catUrl;
-        bll.category.select({query: {url: categoryUrl}}).deepPopulate('template.parameters.parameter').lean().exec((err, category)=> {
+        bll.category.select({query: {url: categoryUrl}}).deepPopulate('template.parameters.parameter').lean().exec((err, category) => {
             if (err) return next(err);
-            if (!category) {
-                res.status(404);
-                return next();
-            }
-            res.send({
-                catid: category._id,
-                parameters: getParametersView(category)
-            });
+            if (!category)
+                res.send({notFoundUrl: categoryUrl});
+
+            else
+                res.send({
+                    catid: category._id,
+                    parameters: getParametersView(category)
+                });
+
+
         })
     }
 
@@ -62,14 +64,14 @@ module.exports = class extends Base {
 
         bll.product.selectAll({
             query: query,
-            take:0,
+            take: 0,
             projection: {'parameters': 1}
-        }).populate('parameters.parameter').lean().exec((err, products)=> {
+        }).populate('parameters.parameter').lean().exec((err, products) => {
             if (err) return next(err);
             if (products)
-                products.forEach(product=>{
+                products.forEach(product => {
                     if (product.parameters)
-                        product.parameters.forEach(productParameter=> {
+                        product.parameters.forEach(productParameter => {
                             if (productParameter.selected)
                                 activeValues.add(productParameter.selected.toString());
 
@@ -86,9 +88,9 @@ module.exports = class extends Base {
 function getParametersView(category) {
     if (category && category.template && category.template.parameters) {
         return category.template.parameters
-            .sort((a, b)=> {
+            .sort((a, b) => {
                 return (a.order || Infinity) - (b.order || Infinity);
-            }).map(p=> {
+            }).map(p => {
                 return p.parameter
             });
 

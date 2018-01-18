@@ -13,4 +13,4 @@
         <pager [category]="categoryId" (onPageChange)="changePage($event)" *ngIf="!catalogMode"></pager>
     </div>
 </div>
-<div  class="d-flex flex-column" [innerHtml]="category.longDescription"></div>
+<div  class="d-flex flex-column" *ngIf="category" [innerHtml]="category.longDescription"></div>

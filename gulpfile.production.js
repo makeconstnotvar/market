@@ -24,6 +24,19 @@ let favicons = ['market/favicon/**/*',],
         'market/client/router/**/*',
         'market/client/web/scripts/*',
         'market/client/web/fonts/*'
+    ],application1 = [
+        'market/admin/*.js',
+        'market/admin/web/fonts/**/*',
+        'market/admin/router/**/*',
+        'market/api/**/*',
+        'market/start.js',
+        'market/client/*.js',
+        'market/client/router/**/*',
+        'market/client/web/scripts/*',
+        'market/client/web/fonts/*'
+    ],
+    fuck=[
+        'data/config.json'
     ],
     commonCss = [
         'market/client/web/styles/common.scss',
@@ -97,6 +110,14 @@ let adminWeb = 'market/admin/web',
 //copy files
 gulp.task('application', function () {
     return gulp.src(application, {base: 'market'})
+        .pipe(gulp.dest(production));
+});
+gulp.task('application1', function () {
+    return gulp.src(application1, {base: 'market'})
+        .pipe(gulp.dest(production));
+});
+gulp.task('fuck', function () {
+    return gulp.src(fuck, {base: 'data'})
         .pipe(gulp.dest(production));
 });
 gulp.task('package', function () {
@@ -204,6 +225,7 @@ gulp.task('injectAdmin', function () {
 });
 //result
 gulp.task('default', gulp.series('commonCss', 'loadingCss', 'package','worker', 'application', 'favicons', 'json', 'scripts', 'server', 'images', 'templates', 'js', 'css', 'injectClient', 'injectAdmin'));
+gulp.task('test', gulp.series('commonCss', 'loadingCss', 'package','worker', 'application1', 'fuck', 'favicons', 'json', 'scripts', 'server', 'images', 'templates', 'js', 'css', 'injectClient', 'injectAdmin'));
 
 function tildaResolver(url, prev, done) {
     if (url[0] === '~') {

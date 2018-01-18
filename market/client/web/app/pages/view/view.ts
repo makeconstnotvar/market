@@ -59,7 +59,7 @@ export class ViewPage {
             this.productProvider.view(this.productId).subscribe(response => {
                 if (response.notFoundUrl)
                     this.serverResponseService.setNotFound(response.notFoundUrl);
-                if (response.redirectUrl)
+                else if (response.redirectUrl)
                     this.serverResponseService.setRedirect(response.redirectUrl);
                 else {
                     this.product = response;
@@ -75,7 +75,7 @@ export class ViewPage {
 
             })
         });
-        this.globalService.onScrollToEl.emit();
+        //this.globalService.onScrollToEl.emit();
         this.globalService.existPreviousState.subscribe(state => this.isBack = true);
         this.config = this.configService.config;
     }

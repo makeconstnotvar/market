@@ -118,7 +118,8 @@ module.exports = class extends Base {
             skip = (page - 1) * take,
             and = [{publish: true}, {category: categoryId}],
             query;
-
+        if (!categoryId)
+            return res.send({notFoundUrl: '/category'});
         let or = utils.query.getParametersQuery(parameters);
         if (or)
             and = and.concat(or);
@@ -126,11 +127,21 @@ module.exports = class extends Base {
         query = {$and: and};
 
         series({
+            categories: getCategories,
             products: getProducts,
             count: getProductsCount,
             contract: getContract
         }, processList);
 
+        function getCategories(callback) {
+            bll.category.select({query: {_id: categoryId}}).exec((err, category) => {
+                if (err) callback(err);
+                else if (!category)
+                    res.send({notFoundUrl: categoryId});
+                else
+                    callback(null);
+            })
+        }
 
         function getProducts(callback) {
             that.entity.selectAll({

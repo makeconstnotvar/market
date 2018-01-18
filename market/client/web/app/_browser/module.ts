@@ -3,6 +3,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {ApplicationModule} from '../module';
 import {RootLayout} from "layouts/module";
 import {TransferHttpCacheModule} from '@nguniversal/common'
+import {RequestInterceptor} from "../services";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 @NgModule({
     bootstrap: [RootLayout],
     imports: [
@@ -12,6 +14,13 @@ import {TransferHttpCacheModule} from '@nguniversal/common'
 
         ApplicationModule,
 
+    ],
+    providers:[
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: RequestInterceptor,
+            multi: true,
+        }
     ]
 })
 export class BrowserAppModule {

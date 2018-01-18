@@ -23,11 +23,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
             deps: [SettingsProvider],
             multi: true
         },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: RequestInterceptor,
-            multi: true,
-        },
+
         CategoryProvider,
         ContractProvider,
         ParameterProvider,

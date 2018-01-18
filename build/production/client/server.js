@@ -21,10 +21,12 @@ if (serverjs) {
     app.set('views', path.join(__dirname, 'web/views'));
     app.use(minifyHTML({
         override: true,
-        removeAttributeQuotes: false,
-        collapseBooleanAttributes: false,
-        //minifyJS: false,
-        removeEmptyAttributes: false
+        htmlMinifier: {
+            removeAttributeQuotes: false,
+            collapseBooleanAttributes: false,
+            //minifyJS: false,
+            removeEmptyAttributes: false
+        }
     }));
 
     app.use('/', function (req, res) {

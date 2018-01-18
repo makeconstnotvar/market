@@ -10,7 +10,7 @@ import { ControlsModule } from "controls/module";
 import { RouterModule } from "@angular/router";
 import { ModuleComponentsSpecials } from "./specials/components/module";
 import { BrowserModule } from "@angular/platform-browser";
-import { NotfoundPage } from "./notfound/page-notfound";
+import { NotfoundPage } from "./notfound/notfound";
 import { ContactsPage } from "./contacts/contacts";
 import { ModuleComponentsView } from "./view/components/module";
 import { ModuleComponentsCart } from "./cart/components/module";
@@ -18,8 +18,8 @@ import { ModuleComponentsCatalog } from "./catalog/components/module";
 import { DefaultLayout } from "../layouts/default";
 var ɵ0 = { catalogMode: true };
 var appRoutes = [
-    {
-        path: '', component: DefaultLayout, children: [
+    { path: 'notfound', component: NotfoundPage },
+    { path: '', component: DefaultLayout, children: [
             { path: '', component: SpecialsPage },
             { path: 'delivery', component: DeliveryPage },
             { path: 'contacts', component: ContactsPage },
@@ -29,9 +29,8 @@ var appRoutes = [
             { path: 'catalog/:categoryName', component: CatalogPage, data: ɵ0 },
             { path: ':categoryName/:productId', component: ViewPage },
             { path: ':categoryName', component: CatalogPage },
-            { path: '**', component: NotfoundPage }
-        ]
-    }
+            { path: '**', redirectTo: 'notfound' }
+        ] }
 ];
 var PagesModule = (function () {
     function PagesModule() {
