@@ -16,7 +16,7 @@ module.exports = class extends Base {
     // серверные методы
     select(req, res, next) {
         var query = req.body;
-        bll.contract.select(query).populate('positions.product').exec((err, contract)=> {
+        bll.contract.select(query).populate('positions.product').exec((err, contract) => {
             if (err) return next(err);
             res.send(contract);
         });
@@ -24,7 +24,7 @@ module.exports = class extends Base {
 
     selectById(req, res, next) {
         var id = req.body;
-        bll.contract.selectById(id).populate('positions.product').exec((err, contract)=> {
+        bll.contract.selectById(id).populate('positions.product').exec((err, contract) => {
             if (err) return next(err);
             res.send(contract);
         });
@@ -32,7 +32,7 @@ module.exports = class extends Base {
 
     selectAll(req, res, next) {
         var options = req.body;
-        bll.contract.selectAll(options).populate('positions.product').exec((err, contracts)=> {
+        bll.contract.selectAll(options).populate('positions.product').exec((err, contracts) => {
             if (err) return next(err);
             res.send(contracts);
         });
@@ -41,7 +41,7 @@ module.exports = class extends Base {
     update(req, res, next) {
         var item = req.body;
         sendSms(item)
-            .then(sms=> {
+            .then(sms => {
                     item.alreadySent = true;
                     item.messages.push({
                         code: sms.code,
@@ -52,12 +52,12 @@ module.exports = class extends Base {
                     });
                     return;
                 },
-                error=> {
+                error => {
                     return;
                 })
 
-            .then(()=> {
-                bll.contract.update(item).exec((err, contract)=> {
+            .then(() => {
+                bll.contract.update(item).exec((err, contract) => {
                     if (err) return next(err);
                     res.send('ok');
                 });
@@ -68,7 +68,7 @@ module.exports = class extends Base {
 
     // клиентские методы
     cartStatus(req, res, next) {
-        bll.contract.select({query: {uid: req.uid, status: 'temp'}}).exec((err, contract)=> {
+        bll.contract.select({query: {uid: req.uid, status: 'temp'}}).exec((err, contract) => {
             if (err) return next(err);
             res.send(getCartStatus(contract));
         });
@@ -80,16 +80,16 @@ module.exports = class extends Base {
         bll.contract.selectAll({query: {uid: uid}})
             .deepPopulate('positions.product.category')
             .lean()
-            .exec((err, contracts)=> {
+            .exec((err, contracts) => {
                 if (err) return next(err);
 
-                var current = contracts.filter(contract=> {
+                var current = contracts.filter(contract => {
                     return contract.status == 'temp';
                 });
 
                 contractsCovers(current);
 
-                var history = contracts.filter(contract=> {
+                var history = contracts.filter(contract => {
                     return contract.status == 'placed' || contract.status == 'progress' || contract.status == 'done';
                 });
 
@@ -108,7 +108,7 @@ module.exports = class extends Base {
 
         bll.contract.select({query: {uid: uid, _id: id}})
             .deepPopulate('positions.product.category')
-            .lean().exec((err, contract)=> {
+            .lean().exec((err, contract) => {
             if (err) return next(err);
             contract.statusName = getStatusName(contract.status);
             contractsCovers(contract);
@@ -122,17 +122,17 @@ module.exports = class extends Base {
         var newPosition = req.body,
             uid = req.uid;
 
-        bll.contract.select({query: {'uid': uid, status: 'temp'}}).lean().exec((err, contract)=> {
+        bll.contract.select({query: {'uid': uid, status: 'temp'}}).lean().exec((err, contract) => {
             if (err) return next(err);
             if (contract && contract.positions) {
                 updateContract(contract, newPosition)
-                    .then(contract=>res.send(getCartStatus(contract)))
-                    .catch(err=>next(err));
+                    .then(contract => res.send(getCartStatus(contract)))
+                    .catch(err => next(err));
             }
             else {
                 insertContract(uid, newPosition)
-                    .then(contract=>res.send(getCartStatus(contract)))
-                    .catch(err=>next(err));
+                    .then(contract => res.send(getCartStatus(contract)))
+                    .catch(err => next(err));
             }
         })
 
@@ -147,24 +147,13 @@ module.exports = class extends Base {
             status: contract.status,
             date: contract.date
         }];
-        bll.contract.update(contract).exec((err, contract)=> {
+        bll.contract.update(contract).exec((err, contract) => {
             if (err) return next(err);
-            if (config.sendSms) {
-                const sms = new Sms(config.smsApi);
-                sms.sms_send({
-                    to: config.myPhone,
-                    text: 'Новый заказ #' + contract.number,
-                    time: new Date() / 1000 + 60,
-                    translit: false,
-                    test: false
-                }, function (e) {
-                    console.log(e.description);
-                });
-            }
+            sendMySms(contract);
             res.send({
                 _id: contract._id,
                 date: contract.date,
-                number:contract.number,
+                number: contract.number,
                 status: getStatusName(contract.status)
             });
         });
@@ -177,7 +166,7 @@ module.exports = class extends Base {
             status: contract.status,
             date: new Date()
         }];
-        bll.contract.update(contract).exec((err, contract)=> {
+        bll.contract.update(contract).exec((err, contract) => {
             if (err) return next(err);
 
             res.send(getCartStatus(contract));
@@ -203,14 +192,14 @@ function contractsCovers(contracts) {
 
     if (contracts) {
         if (Array.isArray(contracts)) {
-            _.each(contracts, contract=> {
-                _.each(contract.positions, position=> {
+            _.each(contracts, contract => {
+                _.each(contract.positions, position => {
                     setProductCover(position.product);
                 })
             })
         }
         else {
-            _.each(contracts.positions, position=> {
+            _.each(contracts.positions, position => {
                 setProductCover(position.product);
             })
         }
@@ -221,7 +210,7 @@ function contractsCovers(contracts) {
 
 function setProductCover(product) {
     if (product && product.photos) {
-        var cover = product.photos.find(photo=> {
+        var cover = product.photos.find(photo => {
             return photo.fileType == 'cover';
         });
         if (cover) {
@@ -234,7 +223,7 @@ function setProductCover(product) {
 function getCartStatus(contract) {
     let sum = 0, count = 0;
     if (contract && contract.positions)
-        contract.positions.forEach(position=> {
+        contract.positions.forEach(position => {
             sum += position.sum;
             count += position.count;
         });
@@ -244,13 +233,38 @@ function getCartStatus(contract) {
     }
 }
 
+function sendMySms(contract) {
+    return new Promise((resolve, reject) => {
+        if (config.sendSms) {
+            const sms = new Sms(config.smsApi);
+            sms.sms_send({
+                to: config.myPhone,
+                text: 'Новый заказ ' + contract.number,
+                time: new Date() / 1000 + 60,
+                translit: false,
+                test: false
+            }, function (e) {
+                if (e.code == '100') {
+                    resolve(e);
+                    //balance,code,description,ids
+                }
+                else {
+                    reject(e);
+                }
+            });
+        }
+        else
+            resolve()
+
+    });
+}
+
 function sendSms(contract) {
-    return new Promise((resolve, reject)=> {
-        throw new Error("тестовая ошибка");
+    return new Promise((resolve, reject) => {
         if (contract.notifyClient && contract.sendSms && !contract.alreadySent && config.sendSms) {
             const sms = new Sms(config.smsApi);
             sms.sms_send({
-                to: contract.correctPhone,
+                to: contract.phone,
                 text: contract.smsText,
                 translit: false,
                 test: false
@@ -260,7 +274,7 @@ function sendSms(contract) {
                     //balance,code,description,ids
                 }
                 else {
-                    reject(new Error({custom: e}));
+                    reject(e);
                 }
             });
         }
@@ -282,13 +296,13 @@ function getStatusName(statusCode) {
 }
 
 function insertContract(uid, newPosition) {
-    return new Promise((resolve, reject)=> {
+    return new Promise((resolve, reject) => {
         var contract = {
             positions: [newPosition],
             uid: uid,
             status: 'temp'
         };
-        bll.contract.insert(contract, (err, contract)=> {
+        bll.contract.insert(contract, (err, contract) => {
             if (err) reject(err);
             resolve(contract.toObject());
         })
@@ -296,8 +310,8 @@ function insertContract(uid, newPosition) {
 }
 
 function updateContract(contract, newPosition) {
-    return new Promise((resolve, reject)=> {
-        var positionsWithProduct = contract.positions.filter(position=> {
+    return new Promise((resolve, reject) => {
+        var positionsWithProduct = contract.positions.filter(position => {
             return position.product.toString() == newPosition.product
         });
         if (!positionsWithProduct.length) {
@@ -305,7 +319,7 @@ function updateContract(contract, newPosition) {
         }
         else {
             if (newPosition.color) {
-                var positionsWithColor = positionsWithProduct.find(position=> {
+                var positionsWithColor = positionsWithProduct.find(position => {
                     return (position.color && newPosition.color) ? position.color._id == newPosition.color._id : false;
                 });
 
@@ -316,7 +330,7 @@ function updateContract(contract, newPosition) {
                 else contract.positions.push(newPosition);
             }
             else {
-                var positionWithoutColor = positionsWithProduct.find(position=> {
+                var positionWithoutColor = positionsWithProduct.find(position => {
                     return !position.color
                 });
                 if (positionWithoutColor) {
@@ -327,7 +341,7 @@ function updateContract(contract, newPosition) {
             }
         }
 
-        bll.contract.update(contract).lean().exec((err, c)=> {
+        bll.contract.update(contract).lean().exec((err, c) => {
             if (err) reject(err);
             resolve(c);
         })

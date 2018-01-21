@@ -40,10 +40,7 @@ function ContractStatusCtrl($scope, $stateParams, $state, $timeout, Contract, St
     };
 
     $scope.ok = function () {
-        if (!$scope.contract.correctPhone) {
-            $scope.showPhoneError = true;
-        }
-        else if ($scope.contract.sendSms && !$scope.contract.smsText && $scope.contract.notifyClient) {
+        if ($scope.contract.sendSms && !$scope.contract.smsText && $scope.contract.notifyClient) {
             $scope.showSmsError = true;
         }
         else {

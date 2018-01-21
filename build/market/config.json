@@ -2,27 +2,27 @@
     "path": {
         "photo": "C:\\Projects\\market\\data\\photos",
         "files": "C:\\Projects\\market\\data\\files",
-        "serverjs": "C:\\Projects\\market\\build\\production\\client\\web\\scripts\\server.js"
+        "serverjs": "C:\\Projects\\market\\build\\client\\server.js"
     },
     "system": {
         "port": "3001",
         "wsPort": "4001",
         "baseName": "bags",
-        "host": "http://market.release",
-        "domain": "market.release"
+        "host": "http://market.debug",
+        "domain": "market.debug"
     },
     "client": {
-        "host": "http://market.release",
+        "host": "http://market.debug",
         "protocol": "http://",
         "phone": "+7(925)477-5001",
         "mail": "support@getyourbag.ru",
         "logo":"img/logo.jpg"
     },
     "contacts": {
-        "sendSms": true,
+        "sendSms": false,
         "sendMail": false,
-        "smsApi": "908454c3-218e-8b24-9900-02a6806a4ca5",
-        "myPhone": "89254775001",
+        "smsApi": "F3337DC7-705D-4D65-B398-CC302BF215EA",
+        "myPhone": "79261234567",
         "serviceMail": "nuclear_fly@mail.ru",
         "adminMail": "nuclear_fly@mail.ru",
         "testMail": "nuclear_fly@mail.ru"

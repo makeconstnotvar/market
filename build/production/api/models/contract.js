@@ -23,7 +23,7 @@ var contractSchema = new mongoose.Schema({
     }],
     notifyClient: Boolean,
     smsText: String,
-    correctPhone: String,
+    //correctPhone: String,
     alreadySent: Boolean,
     messages: [{
         ids: String,

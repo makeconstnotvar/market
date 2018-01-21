@@ -57,13 +57,8 @@
             <table>
                 <tbody>
                 <tr>
-                    <td>Телефон клиента</td>
-                    <td ng-bind="contract.phone"></td>
-                </tr>
-                <tr>
-                    <td><i style="color: red" class="fa fa-asterisk m-icon-gap"></i><span>Исправленный телефон</span>
-                    </td>
-                    <td><input type="text" class="form-control" ng-model="contract.correctPhone"></td>
+                    <td><i style="color: red" class="fa fa-asterisk m-icon-gap"></i><label for="phone">Телефон клиента</label></td>
+                    <td><input id="phone" type="text" class="form-control" ng-model="contract.phone"/></td>
                 </tr>
                 </tbody>
             </table>
@@ -115,5 +110,6 @@
     <div class="col-sm-offset-3 col-sm-9">
         <button class="btn btn-primary m-rgap" ng-click="ok()">Подтвердить</button>
         <button class="btn btn-warning" ng-click="cancel()">Отмена</button>
+        <div class="alert alert-danger" ng-if="showSmsError">Ошибка</div>
     </div>
 </div>
