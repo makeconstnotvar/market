@@ -2,6 +2,7 @@ node_modules/
 .idea/
 data/photos/
 data/config.json
+market/config.json
 market/admin/web/tmp/
 market/admin/web/views/layout.dot
 market/client/web/tmp
@@ -10,4 +11,4 @@ market/client/web/app/**/*.js,
 market/client/web/app/**/*.map,
 market/client/web/app/**/*.json
 market/client/web/views/layout.dot
-market/config.json
+
