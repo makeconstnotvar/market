@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Product} from "models/index";
 
 @Component({
@@ -6,9 +6,11 @@ import {Product} from "models/index";
     templateUrl: 'price.html'
 })
 export class PriceControl {
+    @Input()
+    img: string;
 
     @Input()
-    product:Product;
+    product: Product;
 
     @Output()
     onPostPosition = new EventEmitter<Product>();

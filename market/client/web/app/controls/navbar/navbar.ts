@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {Settings,CartData} from "models/index";
+import {CartData, Settings} from "models/index";
 import {NavbarService} from "services/index";
 
 @Component({
@@ -8,12 +8,13 @@ import {NavbarService} from "services/index";
     templateUrl: 'navbar.html'
 })
 export class NavbarControl {
-     settings: Settings = {
+    settings: Settings = {
         brand: {
             icon: 'fa-shopping-bag',
             name: 'GetYourBag.ru',
             label: 'Москва',
-            link: '/'
+            link: '/',
+            itemprop: "name"
         },
         delivery: {
             icon: 'fa-truck',
@@ -37,14 +38,15 @@ export class NavbarControl {
             icon: 'fa-phone-square',
             name: '+7(925)477-5001',
             label: '09:00-21:00',
-            link: '/contacts'
+            link: '/contacts',
+            itemprop: "telephone"
         },
     };
 
-     cartData: CartData;
+    cartData: CartData;
 
     constructor(private navbarService: NavbarService) {
-        this.cartData = {sum:0,count:0};
+        this.cartData = {sum: 0, count: 0};
         navbarService.cartDataSubject.subscribe(cartData => {
             this.cartData = cartData;
         })

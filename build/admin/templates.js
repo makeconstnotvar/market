@@ -29,18 +29,6 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/common/base/base.html',
-    '<div class="adm-header"><div ui-view="progress" class="my-progress"></div><div ui-view="header"></div><div ui-view="tabs"></div></div><div ui-view="filter"></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/common/error/error.html',
     '<div class="container"><div class="alert">ошибка</div></div>');
 }]);
@@ -127,6 +115,18 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/common/tabs/tabs.html',
     '<ul class="nav nav-tabs"><li ng-class="{active:tab.active}" ng-repeat="tab in tabs"><a class="my-pointer" title="{{tab.title}}" ng-click="toState(tab.state)">{{tab.name}}</a></li></ul>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/common/base/base.html',
+    '<div class="adm-header"><div ui-view="progress" class="my-progress"></div><div ui-view="header"></div><div ui-view="tabs"></div></div><div ui-view="filter"></div>');
 }]);
 })();
 
@@ -329,54 +329,6 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/parameter/delete/delete.html',
-    '<div class="row form-group"><div class="col-sm-12">Вы уверены что хотите удалить параметр <b ng-bind="parameter.name"></b>?</div></div><div class="row form-group"><div class="col-sm-12"><button class="btn btn-success" ng-click="ok(parameter._id)">Удалить</button> <button class="btn btn-warning" ng-click="cancel()">Отмена</button></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/parameter/edit/edit.html',
-    '<div class="row form-group"><label class="col-sm-2 control-label">Название</label><div class="col-sm-10"><div class="input-group m-input-group m-input-group-w100"><input type="text" ng-model="parameter.name" ng-model-options="{updateOn:\'input\'}" ng-change="nameToUrl()" class="form-control m-input-addon-50" placeholder="название"> <input type="text" ng-model="parameter.url" class="input-group-addon form-control m-input-addon-50" placeholder="url"> <a class="btn btn-default input-group-addon" ng-click="nameToUrl(true)" title="Создать url из названия"><i class="fa fa-refresh"></i></a></div></div></div><div class="row form-group"><label class="col-sm-2 control-label">Описание</label><div class="col-sm-10"><input ng-model="parameter.details" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Единица измерения</label><div class="col-sm-10"><input ng-model="parameter.unit" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Yml *</label><div class="col-sm-10"><input ng-model="parameter.ymlName" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Field *</label><div class="col-sm-10"><input ng-model="parameter.field" class="form-control"></div></div><div class="row form-group"><label for="behaviors" class="col-sm-2 control-label">Тип</label><div class="col-sm-10"><select id="behaviors" class="form-control" ng-model="parameter.behavior" ng-options="b.behavior as b.name for b in behaviors" ng-change="behaviorChange(parameter.behavior)"></select></div></div><div class="row form-group" ng-show="parameter.behavior !=\'onecheck\'"><label class="col-sm-2 control-label"><span ng-bind="!editable?\'Добавить значение\':\'Изменить значение\'"></span></label><div class="col-sm-10"><div class="input-group m-input-group m-input-group-w100"><input type="text" class="input-group-addon form-control m-input-addon-50" ng-enter="modify()" ng-model="selected.val" placeholder="значение" ng-model-options="{updateOn:\'input\'}" ng-change="valToUrl()"> <input type="text" class="form-control m-input-addon-50" ng-enter="modify()" ng-model="selected.url" placeholder="url"> <a class="btn btn-default input-group-addon" ng-click="valToUrl(true)" title="Создать url из названия"><i class="fa fa-refresh"></i></a> <a class="input-group-addon btn btn-success" ng-click="modify()"><span ng-bind="!editable?\'Добавить\':\'Изменить\'"></span></a></div></div></div><div class="row form-group" ng-if="parameter.values.length"><label class="col-sm-2 control-label">Значения параметра</label><div class="col-sm-10"><table class="table table-bordered table-hover"><tr ng-repeat="v in parameter.values track by v.value"><td width="39px" class="btn-warning text-center my-pointer" title="Редактировать значение" ng-click="edit(v, $index)"><i class="fa fa-pencil-square-o"></i></td><td><span ng-bind="v.value"></span><div class="param-url" ng-bind="v.url"></div></td><td width="20%" ng-show="parameter.behavior ==\'onecheck\'||parameter.behavior ==\'radiolist\'"><label for="selected" class="my-pointer regular"><input type="checkbox" id="selected" ng-model="v.selected"> <span ng-if="v.selected">Выбрано</span><span ng-if="!v.selected">Не выбрано</span></label></td><td width="20%" ng-show="parameter.behavior ==\'radiolist\'"><label for="nomatter_{{v._id}}" class="my-pointer regular"><input type="checkbox" id="nomatter_{{v._id}}" ng-model="v.nomatter"> <span>Игнорируемый</span></label></td><td width="39px" class="btn-danger text-center my-pointer" title="Удалить значение" ng-click="remove($index)"><i class="fa fa-times"></i></td></tr></table></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a ng-click="save()" class="btn btn-success">Сохранить</a> <a ng-click="back()" ng-if="isBack" class="btn btn-warning">Назад</a> <span ng-if="noNameError" class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span></div></div><div class="row"><div class="col-sm-offset-2 col-sm-10"><b>*</b> <span>Значения в этих полях указывается, только если пользователь понимает, что он делает</span></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/parameter/filter/filter.html',
-    '<div class="mb-filter"><div class="row"><div class="col-xs-12"><div class="form-group"><button class="pull-right btn btn-danger mm-margin10" ng-click="clear()">Сбросить</button><div class="input-group"><input ng-model="filter.text" ng-enter="query()" class="form-control" placeholder="название параметра"> <a class="input-group-addon btn btn-success" ng-click="query()">Поиск</a></div></div></div></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/parameter/list/list.html',
-    '<div class="row form-group" ng-if="parameters.length==0"><div class="col-sm-12"><span>Вы не создали ни одного параметра</span> <a ng-click="toNew()" class="btn btn-primary">Создать</a></div></div><div class="row form-group" ng-if="parameters.length>0"><div class="col-sm-12"><table class="table table-bordered table-hover"><thead><tr><th></th><th>Название</th><th>Описание</th><th>Тип</th><th>Возможные значения</th><th></th></tr></thead><tbody><tr ng-repeat="parameter in parameters"><td width="39px" title="Редактировать параметр" class="btn-warning text-center my-pointer" ng-click="toEdit(parameter._id)"><i class="fa fa-pencil-square-o"></i></td><td><span ng-bind="parameter.name"></span><span ng-if="parameter.unit" ng-bind="\', \'+parameter.unit"></span><div class="param-url" ng-bind="parameter.url"></div></td><td><span ng-if="parameter.details" ng-bind="parameter.details"></span></td><td ng-bind="parameter.behavior"></td><td><ul ng-if="parameter.values" class="list-inline no-margin"><li class="li-params" ng-repeat="v in parameter.values"><span ng-bind="v.value"></span><div class="param-url" ng-bind="v.url"></div></li></ul></td><td width="39px" title="Удалить параметр" class="btn-danger text-center my-pointer" ng-click="toRemove(parameter._id)"><i class="fa fa-times"></i></td></tr></tbody></table></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/product/category/category.html',
     '<div class="row form-group" ng-if="product"><label class="col-sm-2 control-label">Выбранный продукт</label><div class="col-sm-10"><span ng-bind="product.name + \' \' + product.extra"></span></div></div><div class="row form-group"><label class="col-sm-2 control-label">Категории</label><div class="col-sm-10"><ul class="list-unstyled"><li class="checkbox" ng-repeat="category in categories" ng-include="\'admin/pages/product/category/tree.html\'"></li></ul></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a ng-click="save()" class="btn btn-success">Сохранить</a></div></div>');
 }]);
@@ -401,8 +353,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/delete/delete.html',
-    '<div class="row form-group"><div class="col-sm-12">Вы уверены что хотите удалить продукт <b ng-bind="product.name"></b><b ng-bind="\' \' + product.extra"></b>?</div></div><div class="row form-group"><div class="col-sm-12"><button class="btn btn-success" ng-click="ok(product._id)">Удалить</button> <button class="btn btn-warning" ng-click="cancel()">Отмена</button></div></div>');
+  $templateCache.put('admin/pages/product/filter/filter.html',
+    '<div class="mb-filter"><div class="row"><div class="col-xs-12"><div class="form-group"><div class="input-group"><input ng-model="filter.text" ng-enter="query()" class="form-control" placeholder="название товара"> <a class="input-group-addon btn btn-success" ng-click="query()">Поиск</a></div></div><div class="form-inline"><div class="inline m-rgap"><div>категория</div><select class="form-control" ng-model="filter.category" ng-change="query()" ng-options="category._id as category.name for category in source.categories"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>видимость</div><select class="form-control" ng-model="filter.publish" ng-change="query()" ng-options="publish.value as publish.name for publish in source.publishes"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>наличие</div><select class="form-control" ng-model="filter.count" ng-change="query()" ng-options="count.value as count.name for count in source.counts"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>на главной</div><select class="form-control" ng-model="filter.special" ng-change="query()" ng-options="special.value as special.name for special in source.specials"><option value="">не важно</option></select></div><button class="btn btn-danger form-control" ng-click="clear()">Сбросить</button></div></div></div></div>');
 }]);
 })();
 
@@ -413,8 +365,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/filter/filter.html',
-    '<div class="mb-filter"><div class="row"><div class="col-xs-12"><div class="form-group"><div class="input-group"><input ng-model="filter.text" ng-enter="query()" class="form-control" placeholder="название товара"> <a class="input-group-addon btn btn-success" ng-click="query()">Поиск</a></div></div><div class="form-inline"><div class="inline m-rgap"><div>категория</div><select class="form-control" ng-model="filter.category" ng-change="query()" ng-options="category._id as category.name for category in source.categories"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>видимость</div><select class="form-control" ng-model="filter.publish" ng-change="query()" ng-options="publish.value as publish.name for publish in source.publishes"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>наличие</div><select class="form-control" ng-model="filter.count" ng-change="query()" ng-options="count.value as count.name for count in source.counts"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>на главной</div><select class="form-control" ng-model="filter.special" ng-change="query()" ng-options="special.value as special.name for special in source.specials"><option value="">не важно</option></select></div><button class="btn btn-danger form-control" ng-click="clear()">Сбросить</button></div></div></div></div>');
+  $templateCache.put('admin/pages/product/delete/delete.html',
+    '<div class="row form-group"><div class="col-sm-12">Вы уверены что хотите удалить продукт <b ng-bind="product.name"></b><b ng-bind="\' \' + product.extra"></b>?</div></div><div class="row form-group"><div class="col-sm-12"><button class="btn btn-success" ng-click="ok(product._id)">Удалить</button> <button class="btn btn-warning" ng-click="cancel()">Отмена</button></div></div>');
 }]);
 })();
 
@@ -451,6 +403,42 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/product/tabs/tabs.html',
     '<div ui-view="editor"></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a class="btn btn-success m-rgap" ng-click="save()">Сохранить</a></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/parameter/delete/delete.html',
+    '<div class="row form-group"><div class="col-sm-12">Вы уверены что хотите удалить параметр <b ng-bind="parameter.name"></b>?</div></div><div class="row form-group"><div class="col-sm-12"><button class="btn btn-success" ng-click="ok(parameter._id)">Удалить</button> <button class="btn btn-warning" ng-click="cancel()">Отмена</button></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/parameter/filter/filter.html',
+    '<div class="mb-filter"><div class="row"><div class="col-xs-12"><div class="form-group"><button class="pull-right btn btn-danger mm-margin10" ng-click="clear()">Сбросить</button><div class="input-group"><input ng-model="filter.text" ng-enter="query()" class="form-control" placeholder="название параметра"> <a class="input-group-addon btn btn-success" ng-click="query()">Поиск</a></div></div></div></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/parameter/edit/edit.html',
+    '<div class="row form-group"><label class="col-sm-2 control-label">Название</label><div class="col-sm-10"><div class="input-group m-input-group m-input-group-w100"><input type="text" ng-model="parameter.name" ng-model-options="{updateOn:\'input\'}" ng-change="nameToUrl()" class="form-control m-input-addon-50" placeholder="название"> <input type="text" ng-model="parameter.url" class="input-group-addon form-control m-input-addon-50" placeholder="url"> <a class="btn btn-default input-group-addon" ng-click="nameToUrl(true)" title="Создать url из названия"><i class="fa fa-refresh"></i></a></div></div></div><div class="row form-group"><label class="col-sm-2 control-label">Описание</label><div class="col-sm-10"><input ng-model="parameter.details" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Единица измерения</label><div class="col-sm-10"><input ng-model="parameter.unit" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Yml *</label><div class="col-sm-10"><input ng-model="parameter.ymlName" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Field *</label><div class="col-sm-10"><input ng-model="parameter.field" class="form-control"></div></div><div class="row form-group"><label for="behaviors" class="col-sm-2 control-label">Тип</label><div class="col-sm-10"><select id="behaviors" class="form-control" ng-model="parameter.behavior" ng-options="b.behavior as b.name for b in behaviors" ng-change="behaviorChange(parameter.behavior)"></select></div></div><div class="row form-group" ng-show="parameter.behavior !=\'onecheck\'"><label class="col-sm-2 control-label"><span ng-bind="!editable?\'Добавить значение\':\'Изменить значение\'"></span></label><div class="col-sm-10"><div class="input-group m-input-group m-input-group-w100"><input type="text" class="input-group-addon form-control m-input-addon-50" ng-enter="modify()" ng-model="selected.val" placeholder="значение" ng-model-options="{updateOn:\'input\'}" ng-change="valToUrl()"> <input type="text" class="form-control m-input-addon-50" ng-enter="modify()" ng-model="selected.url" placeholder="url"> <a class="btn btn-default input-group-addon" ng-click="valToUrl(true)" title="Создать url из названия"><i class="fa fa-refresh"></i></a> <a class="input-group-addon btn btn-success" ng-click="modify()"><span ng-bind="!editable?\'Добавить\':\'Изменить\'"></span></a></div></div></div><div class="row form-group" ng-if="parameter.values.length"><label class="col-sm-2 control-label">Значения параметра</label><div class="col-sm-10"><table class="table table-bordered table-hover"><tr ng-repeat="v in parameter.values track by v.value"><td width="39px" class="btn-warning text-center my-pointer" title="Редактировать значение" ng-click="edit(v, $index)"><i class="fa fa-pencil-square-o"></i></td><td><span ng-bind="v.value"></span><div class="param-url" ng-bind="v.url"></div></td><td width="20%" ng-show="parameter.behavior ==\'onecheck\'||parameter.behavior ==\'radiolist\'"><label for="selected" class="my-pointer regular"><input type="checkbox" id="selected" ng-model="v.selected"> <span ng-if="v.selected">Выбрано</span><span ng-if="!v.selected">Не выбрано</span></label></td><td width="20%" ng-show="parameter.behavior ==\'radiolist\'"><label for="nomatter_{{v._id}}" class="my-pointer regular"><input type="checkbox" id="nomatter_{{v._id}}" ng-model="v.nomatter"> <span>Игнорируемый</span></label></td><td width="39px" class="btn-danger text-center my-pointer" title="Удалить значение" ng-click="remove($index)"><i class="fa fa-times"></i></td></tr></table></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a ng-click="save()" class="btn btn-success">Сохранить</a> <a ng-click="back()" ng-if="isBack" class="btn btn-warning">Назад</a> <span ng-if="noNameError" class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span></div></div><div class="row"><div class="col-sm-offset-2 col-sm-10"><b>*</b> <span>Значения в этих полях указывается, только если пользователь понимает, что он делает</span></div></div>');
 }]);
 })();
 
@@ -511,6 +499,18 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/template/edit/edit.html',
     '<div class="mb-template"><div class="row form-group"><label class="col-sm-2 control-label">Название</label><div class="col-sm-10"><input ng-model="template.name" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Фильтровать</label><div class="col-sm-10"><label for="order" class="my-pointer regular"><input type="checkbox" id="order" ng-model="order" ng-change="filter()"> <span>Только выбранные</span></label> <a href="#" class="m-pointer" ng-click="sorting()">Сортировать</a></div></div><div class="row form-group" ng-show="parameters.length>0"><label class="col-sm-2 control-label">Все параметры</label><div class="col-sm-10"><table class="table table-bordered table-hover"><tbody><tr ng-repeat="parameter in parameters"><td class="me-order"><div class="input-group" ng-show="parameter.selected"><a class="btn btn-default input-group-addon" ng-click="minus(parameter)"><i class="fa fa-minus"></i></a> <input class="form-control text-center" ng-model="parameter.order" type="text" ng-change="changeOrder(parameter)"> <a class="btn btn-default input-group-addon" ng-click="plus(parameter)"><i class="fa fa-plus"></i></a></div></td><td ng-if="parameter.selected" width="39px" title="Параметр в списке" class="btn-default text-center my-pointer success" ng-click="dismiss(parameter)"><i class="fa fa-check"></i></td><td ng-if="!parameter.selected" width="39px" title="Добавить параметр" class="btn-default text-center my-pointer" ng-click="append(parameter)"><i class="fa fa-minus"></i></td><td><span ng-bind="parameter.name"></span> <span ng-if="parameter.details" ng-bind="\'(\'+parameter.details+\')\'"></span><ul class="list-inline no-margin"><li class="li-params" ng-repeat="v in parameter.values" ng-bind="v.value"></li></ul></td><td width="39px" title="Редактировать параметр" class="btn-warning text-center my-pointer" ng-click="toEdit(parameter._id)"><i class="fa fa-pencil-square-o"></i></td></tr></tbody></table></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a ng-click="save()" class="btn btn-success">Сохранить</a> <span ng-show="noNameError" class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span></div></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/parameter/list/list.html',
+    '<div class="row form-group" ng-if="parameters.length==0"><div class="col-sm-12"><span>Вы не создали ни одного параметра</span> <a ng-click="toNew()" class="btn btn-primary">Создать</a></div></div><div class="row form-group" ng-if="parameters.length>0"><div class="col-sm-12"><table class="table table-bordered table-hover"><thead><tr><th></th><th>Название</th><th>Описание</th><th>Тип</th><th>Возможные значения</th><th></th></tr></thead><tbody><tr ng-repeat="parameter in parameters"><td width="39px" title="Редактировать параметр" class="btn-warning text-center my-pointer" ng-click="toEdit(parameter._id)"><i class="fa fa-pencil-square-o"></i></td><td><span ng-bind="parameter.name"></span><span ng-if="parameter.unit" ng-bind="\', \'+parameter.unit"></span><div class="param-url" ng-bind="parameter.url"></div></td><td><span ng-if="parameter.details" ng-bind="parameter.details"></span></td><td ng-bind="parameter.behavior"></td><td><ul ng-if="parameter.values" class="list-inline no-margin"><li class="li-params" ng-repeat="v in parameter.values"><span ng-bind="v.value"></span><div class="param-url" ng-bind="v.url"></div></li></ul></td><td width="39px" title="Удалить параметр" class="btn-danger text-center my-pointer" ng-click="toRemove(parameter._id)"><i class="fa fa-times"></i></td></tr></tbody></table></div></div>');
 }]);
 })();
 

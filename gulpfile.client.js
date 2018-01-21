@@ -6,26 +6,6 @@ let gulp = require('gulp'),
     sass = require('gulp-sass'),
     pug = require('gulp-pug');
 
-let commonCss = [
-        'market/client/web/styles/common.scss',
-    ],
-    loadingCss = [
-        'market/client/web/styles/loading.scss',
-    ],
-    injectJs = [
-        'common.js',
-        'libs.js',
-        'browser.js'
-    ],
-    injectCss = [
-        'styles.css'
-    ],
-    pugs = [
-        'market/client/web/views/browser.pug',
-        'market/client/web/views/server.pug'
-    ],
-    destination = 'build/client';
-
 function tildaResolver(url, prev, done) {
     if (url[0] === '~') {
         url = path.resolve('node_modules', url.substr(1));
@@ -33,35 +13,35 @@ function tildaResolver(url, prev, done) {
     return {file: url};
 }
 
-gulp.task('commonCss', function () {
-    return gulp.src(commonCss)
+let clientTemp = 'build/client';
+
+gulp.task('css', function () {
+    return gulp.src('market/client/web/styles/common.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
         .pipe(concat('styles.css'))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(destination))
+        .pipe(gulp.dest(clientTemp))
 });
-
-gulp.task('loadingCss', function () {
-    return gulp.src(loadingCss)
+gulp.task('loading', function () {
+    return gulp.src('market/client/web/styles/loading.scss')
         .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
-        .pipe(gulp.dest(destination))
+        .pipe(gulp.dest(clientTemp))
 });
-
 gulp.task('inject', function () {
-    const cssFiles = gulp.src(injectCss.map(css => path.join(destination, css)));
-    const jsFiles = gulp.src(injectJs.map(js => path.join(destination, js)));
-    return gulp.src(pugs)
-        .pipe(inject(cssFiles, {ignorePath: destination, addPrefix: 'styles'}))
-        .pipe(inject(jsFiles, {ignorePath: destination, addPrefix: 'scripts'}))
+    const cssFiles = gulp.src(`${clientTemp}/browser.js`);
+    const jsFiles = gulp.src(`${clientTemp}/styles.css`);
+    return gulp.src(['market/client/web/views/browser.pug', 'market/client/web/views/server.pug'])
+        .pipe(inject(cssFiles, {ignorePath: clientTemp, addPrefix: 'styles'}))
+        .pipe(inject(jsFiles, {ignorePath: clientTemp, addPrefix: 'scripts'}))
         .pipe(pug())
         .pipe(gulp.dest('market/client/web/views'));
 });
 
-gulp.task('watch', gulp.series('commonCss', function watch() {
+gulp.task('watch', gulp.series('css', function watch() {
     return gulp.watch([
         'market/client/web/styles/**/*.scss',
-        'market/client/web/app/**/*.scss'], gulp.series('commonCss'))
+        'market/client/web/app/**/*.scss'], gulp.series('css'))
 }));
 
-gulp.task('default1', gulp.series('commonCss', 'loadingCss', 'inject'));
+gulp.task('default', gulp.series('css', 'loading', 'inject'));

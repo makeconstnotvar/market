@@ -2,13 +2,13 @@ import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 
 import {enableProdMode} from "@angular/core";
-import {platformBrowser} from "@angular/platform-browser";
-import {BrowserAppModuleNgFactory} from "./module.ngfactory.js";
+import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
+import {BrowserAppModule} from "./module";
 
 enableProdMode();
 
 function start() {
-    platformBrowser().bootstrapModuleFactory(BrowserAppModuleNgFactory).catch(err => console.log(err));
+    platformBrowserDynamic().bootstrapModule(BrowserAppModule);
 }
 
 document.addEventListener('DOMContentLoaded', start, false);

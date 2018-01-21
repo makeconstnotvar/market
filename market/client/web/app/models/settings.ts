@@ -11,5 +11,6 @@ export class NavbarItem {
     name: string;
     label: string;
     link: string;
+    itemprop?:string;
 
 }

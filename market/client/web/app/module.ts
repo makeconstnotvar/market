@@ -1,5 +1,5 @@
 import "rxjs/Rx";
-import {APP_INITIALIZER, NgModule} from "@angular/core";
+import {APP_INITIALIZER, NgModule, Pipe, Sanitizer, SecurityContext} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {NavigationEnd, NavigationStart, Router} from "@angular/router";
 import {PagesModule} from "pages/module";
@@ -61,3 +61,4 @@ export class ApplicationModule {
 
     }
 }
+

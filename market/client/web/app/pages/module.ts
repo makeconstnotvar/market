@@ -16,6 +16,7 @@ import {ModuleComponentsView} from "./view/components/module";
 import {ModuleComponentsCart} from "./cart/components/module";
 import {ModuleComponentsCatalog} from "./catalog/components/module";
 import {DefaultLayout} from "../layouts/default";
+import {Safe} from "../pipes/safe";
 
 const appRoutes: Routes = [
     {path: 'notfound', component: NotfoundPage},
@@ -47,7 +48,8 @@ const appRoutes: Routes = [
         StocksPage,
         ViewPage,
         NotfoundPage,
-        ContactsPage
+        ContactsPage,
+        Safe
     ],
     imports: [
         BrowserModule,

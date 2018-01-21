@@ -1,13 +1,24 @@
-
-<div class="price__status">
-    <div class="price__status-incart" *ngIf="product.inCart" >
-        <span><i class="fa fa-check-circle rgap"></i>В корзине</span>
-    </div>
-
-    <div class="price__status-available" *ngIf="!product.inCart">
-        <span class="yes" *ngIf="product.available"><i class="fa fa-check-square-o rgap"></i>В наличии</span>
-        <span class="no" *ngIf="!product.available" [ngClass]="{'m-blink':product.blink}"><i class="fa fa-ban rgap"></i>Отсутствует</span>
-    </div>
+<div itemscope itemtype="http://schema.org/Product">
+    <meta itemprop="name" content="{{product.title}}">
+    <meta itemprop="description" content="{{product.description}}">
+    <meta itemprop="image" content="{{img}}">
 </div>
-<div class="price__value">{{product.price}} руб.</div>
-<a class="price__purchase" (click)="postPosition(product)"><i class="fa fa-shopping-cart rgap"></i>в корзину</a>
+<div itemscope itemtype="http://schema.org/ImageObject">
+    <meta itemprop="contentUrl" content="{{img}}">
+</div>
+<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+    <div class="price__status">
+        <div class="price__status-incart" *ngIf="product.inCart">
+            <span><i class="fa fa-check-circle rgap"></i>В корзине</span>
+        </div>
+
+        <div class="price__status-available" *ngIf="!product.inCart">
+            <span itemprop="availability" href="http://schema.org/InStock" class="yes" *ngIf="product.available"><i class="fa fa-check-square-o rgap"></i>В наличии</span>
+            <span class="no" *ngIf="!product.available" [ngClass]="{'m-blink':product.blink}"><i class="fa fa-ban rgap"></i>Отсутствует</span>
+        </div>
+    </div>
+    <div class="price__value"><span itemprop="price">{{product.price}}</span> руб.</div>
+    <meta itemprop="priceCurrency" content="RUB">
+    <a class="price__purchase" (click)="postPosition(product)"><i class="fa fa-shopping-cart rgap"></i>в корзину</a>
+</div>

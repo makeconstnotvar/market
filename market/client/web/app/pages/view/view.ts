@@ -19,7 +19,7 @@ export class ViewPage {
     productId: string;
     categoryId: string;
     config: Config;
-
+    url:string = this.configService.config.host+this.router.url;
     imageSelect(idx) {
         this.selectedIdx = idx;
         this.selectedImage = this.product.images[idx];

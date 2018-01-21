@@ -18,4 +18,19 @@ view-page {
     .price__value{
         font-size: 24px;
     }
+    .photo {
+        border: 1px solid #e8e8e8;
+    }
+}
+.btn-red {
+    color: #fff;
+    margin-top: 0.3rem;
+    margin-left: 20px;
+    background-color: #f75163;
+    border-color: #d44756;
+}
+.btn-red.active, .btn-red.focus, .btn-red:active, .btn-red:focus, .btn-red:hover, .open>.dropdown-toggle.btn-red {
+    color: #fff;
+    background-color: #d03546;
+    border-color: #ba2a38;
 }
