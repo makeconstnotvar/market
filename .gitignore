@@ -1,6 +1,7 @@
 node_modules/
 .idea/
 data/photos/
+data/config.json
 market/admin/web/tmp/
 market/admin/web/views/layout.dot
 market/client/web/tmp
