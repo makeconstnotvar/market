@@ -12,9 +12,8 @@
         "gulp-watch": "gulp watch --gulpfile gulpfile.client.js",
         "gulp-build-prod": "gulp build:prod --gulpfile gulpfile.prod.js",
         "gulp-build-test": "gulp build:test --gulpfile gulpfile.prod.js",
-        "gulp-clean": "gulp clean --gulpfile gulpfile.prod.js",
-        "build-prod": "npm run gulp-clean && npm run webpack-browser-release && npm run webpack-server && npm run gulp-build-prod",
-        "build-test": "npm run gulp-clean && npm run webpack-browser-release && npm run webpack-server && npm run gulp-build-test"
+        "build-prod": "gulp clean:prod --gulpfile gulpfile.prod.js && npm run webpack-browser-release && npm run webpack-server && npm run gulp-build-prod",
+        "build-test": "gulp clean:prod --gulpfile gulpfile.prod.js && npm run webpack-browser-release && npm run webpack-server && npm run gulp-build-test"
     },
     "dependencies": {
         "@ngtools/webpack": "^1.9.5",

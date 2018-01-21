@@ -29,7 +29,7 @@ gulp.task('loading', function () {
         .pipe(gulp.dest(clientTemp))
 });
 gulp.task('inject', function () {
-    const cssFiles = gulp.src(`${clientTemp}/browser.js`);
+    const cssFiles = gulp.src([`${clientTemp}/common.js`, `${clientTemp}/libs.js`, `${clientTemp}/browser.js`]);
     const jsFiles = gulp.src(`${clientTemp}/styles.css`);
     return gulp.src(['market/client/web/views/browser.pug', 'market/client/web/views/server.pug'])
         .pipe(inject(cssFiles, {ignorePath: clientTemp, addPrefix: 'styles'}))

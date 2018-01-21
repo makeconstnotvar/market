@@ -17,11 +17,13 @@ export class SeoService {
     setMeta(meta) {
         let config = this.configService.config;
         meta.url = Location.joinWithSlash(config.host, this.router.url);
-        meta.image = Location.joinWithSlash(config.host, meta.image);
+        meta.image = Location.joinWithSlash(config.host, meta.image || config.logo);
         this.metaService.getTags('data-meta').forEach(tag => this.metaService.removeTagElement(tag));
         let metaInfo = this.makeMetaInfo(meta);
         this.titleService.setTitle(metaInfo.title);
         this.metaService.addTags(metaInfo.tags);
+
+
     }
 
     private makeMetaInfo(meta: MetaInfo) {

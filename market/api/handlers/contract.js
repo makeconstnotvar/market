@@ -153,7 +153,7 @@ module.exports = class extends Base {
                 const sms = new Sms(config.smsApi);
                 sms.sms_send({
                     to: config.myPhone,
-                    text: 'Поступил новый заказ #' + contract.number,
+                    text: 'Новый заказ #' + contract.number,
                     time: new Date() / 1000 + 60,
                     translit: false,
                     test: false

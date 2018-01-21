@@ -1,0 +1,16 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+html,
+body,
+application,
+.loading {
+  height: 100%; }
+
+body {
+  background-color: #efefef; }
+
+application {
+  display: block; }

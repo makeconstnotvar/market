@@ -6,6 +6,7 @@ export class Safe {
     constructor(private sanitizer:DomSanitizer){}
 
     transform(html) {
+        let a = 1;
         return this.sanitizer.bypassSecurityTrustHtml(html);
     }
 }

@@ -2,7 +2,7 @@ module.exports = {
     getContractNumber () {
         var min = 0;
         var max = 300;
-        return getRandom(4) + '-' + getRandom(4);
+        return getRandom(3) + '-' + getRandom(3);
     },
     getArticle () {
         return getRandom(6);
