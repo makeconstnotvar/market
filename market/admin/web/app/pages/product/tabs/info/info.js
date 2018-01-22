@@ -1,3 +1,5 @@
+ProductInfoCtrl.$inject = ['$scope', '$state', 'beautify', 'translit'];
+
 function ProductInfoCtrl($scope,  $state, beautify, translit) {
     $scope.utils = $scope.utils || {};
 
@@ -42,6 +44,6 @@ function ProductInfoCtrl($scope,  $state, beautify, translit) {
 
 }
 
-ProductInfoCtrl.$inject = ['$scope', '$state', 'beautify', 'translit'];
+
 
 angular.module('controller').controller('ProductInfoCtrl', ProductInfoCtrl);

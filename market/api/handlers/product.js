@@ -45,13 +45,11 @@ module.exports = class extends Base {
             return next(err);
         }
 
-        this.entity.select({_id: item._id}).exec((err, oldProduct) => {
+        this.entity.select({query:{_id: item._id}}).exec((err, oldProduct) => {
             if (oldProduct.url !== item.url) {
                 let oldUrls = Array.from(item.historyUrls);
                 oldUrls.push(oldProduct.url);
                 item.historyUrls = _.uniq(oldUrls);
-                console.log(1)
-
             }
             this.entity.update(item).exec((err, product) => {
                 if (err) {

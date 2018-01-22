@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
     tools = require('./tools');
 
 const productSchema = mongoose.Schema({
-    name: String,
+    name: {type: String, required: true},
     code: String,
     article: {type: String, default: tools.getArticle(8)},
     count: {type: Number, default: 0},
@@ -15,7 +15,7 @@ const productSchema = mongoose.Schema({
     details: String,
     publish: {type: Boolean, default: false},
     fileTemplate: String,
-    url: String,
+    url: {type: String, unique: true, required: true},
     historyUrls: [String],
     title: String,
     description: String,

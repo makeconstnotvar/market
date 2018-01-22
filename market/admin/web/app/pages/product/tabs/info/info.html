@@ -29,19 +29,18 @@
         </div>
     </div>
     <div class="row  form-group">
-        <label class="col-sm-2 control-label">Краткое описание</label>
+        <label class="col-sm-2 control-label" for="details">Краткое описание</label>
 
         <div class="col-sm-10 ace-details">
-            <a class="m-pointer" ng-click="btf('details', product.details)">Выровнять</a>
-            <div ui-ace="aceOptions" ng-model="product.details"></div>
+            <textarea id="details"  rows="5" ng-model="product.details" class="form-control noresize"></textarea>
         </div>
     </div>
     <div class="row  form-group">
-        <label class="col-sm-2 control-label">Полное описание</label>
+        <label class="col-sm-2 control-label" >Полное описание</label>
 
         <div class="col-sm-10 ace-information">
-            <a class="m-pointer" ng-click="btf('description', product.description)">Выровнять</a>
-            <div ui-ace="aceOptions" ng-model="product.description"></div>
+            <a class="m-pointer" ng-click="btf('information', product.information)">Выровнять</a>
+            <div ui-ace="aceOptions" ng-model="product.information"></div>
         </div>
     </div>
 </div>

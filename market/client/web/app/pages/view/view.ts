@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, ElementRef, ViewChild} from "@angular/core";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 
 import {ContractProvider, ProductProvider} from "../../providers";
@@ -11,6 +11,7 @@ import {ConfigService, GlobalService, NavbarService, SeoService, ServerResponseS
     templateUrl: 'view.html', providers: [ServerResponseService]
 })
 export class ViewPage {
+    @ViewChild('dataContainer') dataContainer: ElementRef;
     ready:boolean = false;
     product: Product = new Product;
     isBack: boolean;
@@ -63,6 +64,7 @@ export class ViewPage {
                     this.serverResponseService.setRedirect(response.redirectUrl);
                 else {
                     this.product = response;
+                    this.dataContainer.nativeElement.innerHTML = response.information;
                     this.selectedImage = this.product.images[0];
                     this.seoService.setMeta({
                         title: this.product.title,

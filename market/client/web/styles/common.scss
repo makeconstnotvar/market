@@ -69,7 +69,9 @@ a.unstyled {
     }
 
 }
-
+textarea{
+    overflow-x: hidden
+}
 /*
 @include media-breakpoint-up(xs) {
     body {

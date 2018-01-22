@@ -3,7 +3,7 @@
         <i class="fa fa-chevron-left rgap"></i>Назад
     </button>
     <h1 class="me-name">{{product.name}}</h1>
-    <div>{{product.details}}</div>
+    <div >{{product.details}}</div>
     <div class="row">
         <div class="col-12 text-center photo">
             <img itemprop="image" *ngIf="selectedImage" class="img-fluid" src="{{'/photos/'+product._id+ '/l_'+ selectedImage}}" alt="{{product.name}}">
@@ -20,7 +20,7 @@
     <div class="row">
         <div class="me-info col-md-12 col-lg-6">
             <h2>Описание</h2>
-            {{product.information}}
+            <div #dataContainer></div>
         </div>
         <div class="me-info col-md-12 col-lg-6">
             <h2>Характеристики</h2>

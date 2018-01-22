@@ -10,24 +10,28 @@ function ProductTabsCtrl($scope, $rootScope, $state, Product, translit) {
     });
 
     $scope.aceOptions = {
-        mode: 'html',
-        theme: 'chrome',
+        //mode: 'html',
+        //theme: 'chrome',
         workerPath: 'admin/worker/',
         useWrapMode: true,
         showGutter: true,
         behavioursEnabled: true,
         displayIndentGuides: true,
         showPrintMargin: false,
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true,
         onLoad: function (editor) {
             editor.setHighlightSelectedWord(false);
             editor.$blockScrolling = Infinity;
+            editor.setTheme("ace/theme/chrome");
+            editor.getSession().setMode("ace/mode/html");
         },
-        require: ['ace/ext/language_tools'],
-        advanced: {
+        //require: ['ace/ext/language_tools'],
+        /*advanced: {
             enableSnippets: true,
-            enableBasicAutocompletion: true,
-            enableLiveAutocompletion: false
-        }
+
+
+        }*/
     };
 
     $scope.$on('state:leave', save);

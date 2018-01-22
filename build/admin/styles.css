@@ -11439,11 +11439,11 @@ a.my-link:focus {
     color: #D9534F;
 }
 
-.ace-details .ace_editor{
-    height: 100px;
-}
+
 .ace-information .ace_editor{
-    height: 200px;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 .m-strong{
     font-weight: bold;
@@ -11487,6 +11487,9 @@ a.my-link:focus {
     left: 0;
     right: 0;
 }
+textarea{
+     overflow-x: hidden
+ }
 #mb-status {
     position: fixed;
     top: 30px;

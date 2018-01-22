@@ -11,3 +11,6 @@
     left: 0;
     right: 0;
 }
+textarea{
+     overflow-x: hidden
+ }
