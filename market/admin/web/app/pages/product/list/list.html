@@ -13,9 +13,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th></th>
                     <th>Название</th>
-                    <th>Категория</th>
                     <th>Цена</th>
                     <th>Наличие</th>
                     <th class="text-center" title="Располагается на главной странице"><i class="fa fa-home"></i></th>
@@ -25,14 +23,11 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="product in products">
-                    <td title="Основные параметры" class="btn-warning text-center m-pointer button" ng-click="edit(product._id)">
+                    <td title="Основные параметры" class="btn-default text-center m-pointer button" ng-click="edit(product._id)">
                         <i class="fa fa-pencil-square-o"></i>
                     </td>
                     <td title="Редактировать описание" class="btn-default text-center m-pointer button" ng-click="toInfo(product._id)">
                         <i class="fa fa-info"></i>
-                    </td>
-                    <td title="Копировать продукт" class="btn-default text-center m-pointer button" ng-click="copy(product)">
-                        <i class="fa fa-clone"></i>
                     </td>
                     <td title="Фотографии" class="cover m-pointer " ng-click="toPhoto(product._id)">
                         <img fade-in ng-repeat="photo in product.photos | filter:getCover" ng-src="{{'/photos/' + product._id + '/s_' + photo.fileId}}">
@@ -41,12 +36,11 @@
                         <div><span ng-bind="product.name"></span><span ng-show="product.extra" ng-bind="' ' + product.extra"></span></div>
                         <div class="url">
                             <span class="m-url-red" title="Товар продается по акции" ng-if="product.stock">A</span>
-                            <span class="m-url-purple" title="Количество загруженных картинок" ng-bind="'i'+product.imageCount"></span>
-                            <span class="m-url-purple" title="Количество загруженных обложек" ng-bind="'c'+product.coverCount"></span>
+                            <span class="m-url-purple" title="Количество загруженных картинок" ng-bind="'к:'+product.imageCount"></span>
+                            <span class="m-url-purple" title="Количество загруженных обложек" ng-bind="'о:'+product.coverCount"></span>
                             <span title="Url продукта" ng-bind="product.url"></span>
                         </div>
                     </td>
-                    <td class="category" ng-bind="product.category.name"></td>
                     <td class="no-padding price">
                         <input id="price" ng-model="product.price" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:'input'}" ng-change="save(product)">
                     </td>
@@ -62,10 +56,10 @@
                         </div>
                     </td>
                     <td class="m-pointer  button m-hover" ng-click="invert(product, 'special')">
-                        <i class="fa" ng-class="product.special?'fa-check-square-o':'fa-square-o'"></i>
+                        <i class="fa center-correct" ng-class="product.special?'fa-check-square-o':'fa-square-o'"></i>
                     </td>
                     <td class="m-pointer  button m-hover" ng-click="invert(product, 'publish')">
-                        <i class="fa" ng-class="product.publish?'fa-check-square-o':'fa-square-o'"></i>
+                        <i class="fa center-correct" ng-class="product.publish?'fa-check-square-o':'fa-square-o'"></i>
                     </td>
                     <td class="btn-danger text-center m-pointer button" title="Удалить товар" ng-click="delete(product._id)">
                         <i class="fa fa-times"></i>

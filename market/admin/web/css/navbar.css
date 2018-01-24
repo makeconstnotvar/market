@@ -1,6 +1,7 @@
 #mb-navbar {
     -webkit-user-select: none;
     background-color: #222222;
+    overflow: auto;
 }
 #mb-navbar .me-link {
     color: #fff;

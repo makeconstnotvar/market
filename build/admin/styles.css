@@ -10955,6 +10955,7 @@ label.regular {
 #mb-navbar {
     -webkit-user-select: none;
     background-color: #222222;
+    overflow: auto;
 }
 #mb-navbar .me-link {
     color: #fff;
@@ -11158,9 +11159,7 @@ textarea.form-control {
 
 .adm-header {
     background: #FFF;
-    border-bottom: 3px solid #000;
     margin-bottom: 10px;
-    overflow: hidden;
 }
 
 .adm-form-white {
@@ -11474,22 +11473,46 @@ a.my-link:focus {
 .mm-margin10{
     margin-bottom: 10px;
 }
-.mb-template .me-order{
+.mb-template .me-order {
     width: 120px;
     padding: 0;
     position: relative;
 }
-.mb-template .me-order > input{
+
+.mb-template .me-order > input {
     width: 39px;
     position: absolute;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
 }
-textarea{
-     overflow-x: hidden
- }
+
+textarea {
+    overflow-x: hidden
+}
+
+.view-container {
+    padding: 0 15px;
+}
+
+@media (min-width: 1200px) {
+
+    .view-container {
+        max-width: 1200px;
+        margin: auto;
+    }
+}
+
+[ui-view="menu"] {
+    overflow: auto;
+}
+
+[ui-view="header"] h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 #mb-status {
     position: fixed;
     top: 30px;
@@ -11556,8 +11579,12 @@ textarea{
 
 .product-list td.button i {
     min-width: 16px;
+
+}
+.product-list i.center-correct{
     margin-left: 5px;
 }
+
 
 .product-list .cover {
     padding: 0;

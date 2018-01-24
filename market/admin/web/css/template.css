@@ -1,16 +1,39 @@
-.mb-template .me-order{
+.mb-template .me-order {
     width: 120px;
     padding: 0;
     position: relative;
 }
-.mb-template .me-order > input{
+
+.mb-template .me-order > input {
     width: 39px;
     position: absolute;
-    top:0;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
 }
-textarea{
-     overflow-x: hidden
- }
+
+textarea {
+    overflow-x: hidden
+}
+
+.view-container {
+    padding: 0 15px;
+}
+
+@media (min-width: 1200px) {
+
+    .view-container {
+        max-width: 1200px;
+        margin: auto;
+    }
+}
+
+[ui-view="menu"] {
+    overflow: auto;
+}
+
+[ui-view="header"] h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

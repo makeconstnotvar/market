@@ -46123,8 +46123,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/common/base/base.html',
-    '<div class="adm-header"><div ui-view="progress" class="my-progress"></div><div ui-view="header"></div><div ui-view="tabs"></div></div><div ui-view="filter"></div>');
+  $templateCache.put('admin/common/error/error.html',
+    '<div class="container"><div class="alert">ошибка</div></div>');
 }]);
 })();
 
@@ -46135,8 +46135,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/common/error/error.html',
-    '<div class="container"><div class="alert">ошибка</div></div>');
+  $templateCache.put('admin/common/base/base.html',
+    '<div class="adm-header view-container"><div ui-view="progress" class="my-progress"></div><div ui-view="header"></div><div ui-view="tabs"></div></div><div class="view-container" ui-view="filter"></div>');
 }]);
 })();
 
@@ -46160,7 +46160,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/common/navbar/navbar.html',
-    '<div class="container"><div class="row"><div class="me-header"><a class="me-brand" href="https://getyourbag.ru/">getyourbag.ru</a></div><ul class="mb-navbar"><li class="me-nav" ng-repeat="nav in navs" ng-class="{\'active\':nav.active}"><a class="me-link m-pointer" ng-click="toState(nav.state)" ng-bind="nav.name"></a></li></ul></div></div>');
+    '<div class="me-header"><a class="me-brand" href="https://getyourbag.ru/">getyourbag.ru</a></div><ul class="mb-navbar"><li class="me-nav" ng-repeat="nav in navs" ng-class="{\'active\':nav.active}"><a class="me-link m-pointer" ng-click="toState(nav.state)" ng-bind="nav.name"></a></li></ul>');
 }]);
 })();
 
@@ -46520,7 +46520,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/product/list/list.html',
-    '<form class="product-list"><div class="row" ng-show="products.length==0"><div class="col-sm-12"><span>Вы не создали ни одного продукта</span> <a ng-click="newProduct()" class="btn btn-primary">Создать</a></div></div><div class="row" ng-show="products.length>0"><div class="col-sm-12"><table class="table table-bordered table-hover"><thead><tr><th></th><th></th><th></th><th></th><th>Название</th><th>Категория</th><th>Цена</th><th>Наличие</th><th class="text-center" title="Располагается на главной странице"><i class="fa fa-home"></i></th><th class="text-center" title="Видимость на клиентском сайте"><i class="fa fa-eye"></i></th><th class="text-center" title="Удаление товара"><i class="fa fa-trash-o"></i></th></tr></thead><tbody><tr ng-repeat="product in products"><td title="Основные параметры" class="btn-warning text-center m-pointer button" ng-click="edit(product._id)"><i class="fa fa-pencil-square-o"></i></td><td title="Редактировать описание" class="btn-default text-center m-pointer button" ng-click="toInfo(product._id)"><i class="fa fa-info"></i></td><td title="Копировать продукт" class="btn-default text-center m-pointer button" ng-click="copy(product)"><i class="fa fa-clone"></i></td><td title="Фотографии" class="cover m-pointer" ng-click="toPhoto(product._id)"><img fade-in="" ng-repeat="photo in product.photos | filter:getCover" ng-src="{{\'/photos/\' + product._id + \'/s_\' + photo.fileId}}"></td><td class="name"><div><span ng-bind="product.name"></span><span ng-show="product.extra" ng-bind="\' \' + product.extra"></span></div><div class="url"><span class="m-url-red" title="Товар продается по акции" ng-if="product.stock">A</span> <span class="m-url-purple" title="Количество загруженных картинок" ng-bind="\'i\'+product.imageCount"></span> <span class="m-url-purple" title="Количество загруженных обложек" ng-bind="\'c\'+product.coverCount"></span> <span title="Url продукта" ng-bind="product.url"></span></div></td><td class="category" ng-bind="product.category.name"></td><td class="no-padding price"><input id="price" ng-model="product.price" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding my-count"><div class="input-group"><a class="btn btn-default input-group-addon" ng-click="minus(product)"><i class="fa fa-minus"></i></a> <input ng-disabled="true" id="count" ng-model="product.count" class="form-control text-center"> <a class="btn btn-default input-group-addon" ng-click="plus(product)"><i class="fa fa-plus"></i></a></div></td><td class="m-pointer button m-hover" ng-click="invert(product, \'special\')"><i class="fa" ng-class="product.special?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="m-pointer button m-hover" ng-click="invert(product, \'publish\')"><i class="fa" ng-class="product.publish?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="btn-danger text-center m-pointer button" title="Удалить товар" ng-click="delete(product._id)"><i class="fa fa-times"></i></td></tr></tbody></table></div></div></form>');
+    '<form class="product-list"><div class="row" ng-show="products.length==0"><div class="col-sm-12"><span>Вы не создали ни одного продукта</span> <a ng-click="newProduct()" class="btn btn-primary">Создать</a></div></div><div class="row" ng-show="products.length>0"><div class="col-sm-12"><table class="table table-bordered table-hover"><thead><tr><th></th><th></th><th></th><th>Название</th><th>Цена</th><th>Наличие</th><th class="text-center" title="Располагается на главной странице"><i class="fa fa-home"></i></th><th class="text-center" title="Видимость на клиентском сайте"><i class="fa fa-eye"></i></th><th class="text-center" title="Удаление товара"><i class="fa fa-trash-o"></i></th></tr></thead><tbody><tr ng-repeat="product in products"><td title="Основные параметры" class="btn-default text-center m-pointer button" ng-click="edit(product._id)"><i class="fa fa-pencil-square-o"></i></td><td title="Редактировать описание" class="btn-default text-center m-pointer button" ng-click="toInfo(product._id)"><i class="fa fa-info"></i></td><td title="Фотографии" class="cover m-pointer" ng-click="toPhoto(product._id)"><img fade-in="" ng-repeat="photo in product.photos | filter:getCover" ng-src="{{\'/photos/\' + product._id + \'/s_\' + photo.fileId}}"></td><td class="name"><div><span ng-bind="product.name"></span><span ng-show="product.extra" ng-bind="\' \' + product.extra"></span></div><div class="url"><span class="m-url-red" title="Товар продается по акции" ng-if="product.stock">A</span> <span class="m-url-purple" title="Количество загруженных картинок" ng-bind="\'к:\'+product.imageCount"></span> <span class="m-url-purple" title="Количество загруженных обложек" ng-bind="\'о:\'+product.coverCount"></span> <span title="Url продукта" ng-bind="product.url"></span></div></td><td class="no-padding price"><input id="price" ng-model="product.price" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding my-count"><div class="input-group"><a class="btn btn-default input-group-addon" ng-click="minus(product)"><i class="fa fa-minus"></i></a> <input ng-disabled="true" id="count" ng-model="product.count" class="form-control text-center"> <a class="btn btn-default input-group-addon" ng-click="plus(product)"><i class="fa fa-plus"></i></a></div></td><td class="m-pointer button m-hover" ng-click="invert(product, \'special\')"><i class="fa center-correct" ng-class="product.special?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="m-pointer button m-hover" ng-click="invert(product, \'publish\')"><i class="fa center-correct" ng-class="product.publish?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="btn-danger text-center m-pointer button" title="Удалить товар" ng-click="delete(product._id)"><i class="fa fa-times"></i></td></tr></tbody></table></div></div></form>');
 }]);
 })();
 
@@ -46687,18 +46687,6 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/tabs/info/info.html',
-    '<div class="product-edit"><div class="row form-group"><label class="col-sm-offset-2 col-sm-10 control-label" ng-bind="product.name"></label></div><div class="row"><div class="pull-right col-sm-3 cover-wrap"><a class="cover" target="_blank" ng-href="{{\'https://getyourbag.ru/\'+product.category.url+\'/\'+product.url}}" ng-repeat="photo in product.photos | filter:getCover" ng-if="photo.fileId"><img ng-src="{{\'/photos/\'+product._id+ \'/srv_\'+ photo.fileId}}"></a></div><div class="col-sm-2"><label class="control-label my-pointer" for="title">Title</label><div class="minihelper">знаков: <span class="label label-default" ng-bind="product.title.length"></span></div><div class="minihelper">max 70</div></div><div class="col-sm-7"><textarea id="title" rows="3" ng-model="product.title" class="form-control noresize"></textarea></div><div class="col-sm-2"><label class="control-label my-pointer" for="description">Description</label><div class="minihelper">знаков: <span class="label label-default" ng-bind="product.description.length"></span></div><div class="minihelper">max 300</div></div><div class="col-sm-7"><textarea id="description" rows="5" ng-model="product.description" class="form-control noresize"></textarea></div></div><div class="row form-group"><label class="col-sm-2 control-label" for="details">Краткое описание</label><div class="col-sm-10 ace-details"><textarea id="details" rows="5" ng-model="product.details" class="form-control noresize"></textarea></div></div><div class="row form-group"><label class="col-sm-2 control-label">Полное описание</label><div class="col-sm-10 ace-information"><a class="m-pointer" ng-click="btf(\'information\', product.information)">Выровнять</a><div ui-ace="aceOptions" ng-model="product.information"></div></div></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/product/tabs/file/file.html',
     '<div class="row form-group"><label class="col-sm-2 control-label">Добавить файл</label><div class="file-input-wrapper col-sm-10"><label for="upload" class="btn btn-primary">Выбрать</label> <input id="upload" type="file" ng-file-select="onFileSelect($files)" multiple=""></div></div><div class="row" ng-if="!product.files || product.files.length==0"><div class="col-sm-10 col-sm-offset-2"><div class="alert alert-info">Вы не загрузили ни одного файла</div></div></div><div ng-if="product.files.length>0" class="row form-group my-border-row" ng-repeat="file in product.files"><div class="col-sm-3"><i ng-class="\'fa \'+ file.type"></i> <a target="_blank" ng-href="{{\'/files/\' + product._id + \'/\' + file.fileId}}" ng-bind="file.fileId"></a> <a title="Конвертировать Docx в Html страницу" ng-click="convert(product._id, file._id)" class="btn btn-primary">Конвертировать</a></div><div class="col-sm-8 form-horizontal"><div class="form-group"><label class="col-sm-2 control-label">Название</label><div class="col-sm-10"><input type="text" class="form-control" ng-model="file.name"></div></div><div class="form-group"><label class="col-sm-2 control-label">Url</label><div class="col-sm-10"><div class="input-group mm-margin10"><input id="url" ng-model="file.url" ng-change="hideUrlError()" class="form-control"> <a class="btn btn-default input-group-addon" ng-click="makeUrl()"><i class="fa fa-exclamation"></i></a></div></div></div><div class="form-group"><label class="col-sm-2 control-label">Описание</label><div class="col-sm-10 ace-details"><a class="m-pointer" ng-click="btf(file.details)">Выровнять</a> <textarea ui-ace="aceOptions" ng-model="file.details"></textarea></div></div></div><div class="col-sm-1"><a title="Удалить фотографию" ng-click="remove(file.fileId)" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></div></div>');
 }]);
@@ -46711,8 +46699,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/tabs/main/main.html',
-    '<div class="product-edit"><div class="row form-group"><label class="col-sm-2 control-label">Категория</label><div class="col-sm-10 form-inline"><a title="Выбрать категорию продукта" ng-click="showCategories()" class="bl btn btn-primary margin-right-10">Выбрать</a> <span class="my-cat-selected bg-info" ng-bind="product.category.name" ng-if="product.category.name"></span></div></div><div class="row"><div class="pull-right col-sm-3 cover-wrap"><a class="cover" target="_blank" ng-href="{{\'https://getyourbag.ru/\'+product.category.url+\'/\'+product.url}}" ng-repeat="photo in product.photos | filter:getCover" ng-if="photo.fileId"><img ng-src="{{\'/photos/\'+product._id+ \'/srv_\'+ photo.fileId}}"></a></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="name">Название <i class="fa fa-asterisk my-red"></i></label><div class="col-sm-7"><input id="name" ng-model="product.name" class="form-control" ng-model-options="{updateOn:\'input\'}" ng-change="nameToUrl()"></div></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="url">Url</label><div class="col-sm-7"><div class="input-group mm-margin10"><input id="url" ng-model="product.url" ng-change="hideUrlError()" class="form-control"> <a class="btn btn-default input-group-addon" ng-click="nameToUrl(true)" title="Создать url из названия"><i class="fa fa-refresh"></i></a></div></div></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="code">Модель</label><div class="col-sm-7"><input id="code" ng-model="product.code" class="form-control"></div></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="article">Артикул</label><div class="col-sm-7"><input id="article" ng-model="product.article" class="form-control"></div></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="storeNumber">Номер на складе</label><div class="col-sm-7"><input id="storeNumber" ng-model="product.storeNumber" class="form-control"></div></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="price">Цена</label><div class="col-sm-10"><input id="price" ng-model="product.price" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="price">Акция</label><div class="col-sm-10"><label for="stock" class="my-pointer regular margin-right-10"><input type="checkbox" id="stock" ng-model="product.stock" ng-change="addStockText()"> <span ng-if="product.stock">Акция включена</span> <span ng-if="!product.stock">Не попадает под акцию</span></label> <a href="#" ng-click="addStockText(true)">Добавить стандартный текст</a> <input id="stockText" ng-model="product.stockText" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="publish">Опубликовано</label><div class="col-sm-10"><label for="publish" class="my-pointer regular"><input type="checkbox" id="publish" ng-model="product.publish"> <span ng-if="product.publish">Пользователи видят это товар</span> <span ng-if="!product.publish">Не показывается на сайте</span></label></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="count">Наличие</label><div class="col-sm-10"><div class="input-group my-count"><a class="btn btn-default input-group-addon" ng-click="minus()"><i class="fa fa-minus"></i></a> <input id="count" ng-model="product.count" class="form-control text-center"> <a class="btn btn-default input-group-addon" ng-click="plus()"><i class="fa fa-plus"></i></a></div></div></div><div class="row"><label class="col-sm-2 control-label my-pointer" for="special">Лучший товар</label><div class="col-sm-10 checkbox"><label><input type="checkbox" id="special" ng-model="product.special"></label></div></div><div class="row form-group"><label class="col-sm-2 control-label">Параметры</label><div class="col-sm-10"><label ng-bind="product.template.name">шаблон не выбран</label><table class="table table-bordered my-params"><thead><tr><th width="1%">название</th><th>значение</th><th width="1%">ед.изм</th></tr></thead><tbody><tr ng-repeat="p in product.parameters" ng-if="!p.parameter.field"><td><span class="text-nowrap" ng-bind="p.parameter.name"></span></td><td><select class="form-control" ng-model="p.selected" ng-options="v._id as v.value for v in p.parameter.values"><option value="">выбрать</option></select></td><td width="1%"><span ng-bind="p.parameter.unit"></span></td></tr></tbody></table></div></div></div>');
+  $templateCache.put('admin/pages/product/tabs/info/info.html',
+    '<div class="product-edit"><div class="row form-group"><label class="col-sm-offset-2 col-sm-10 control-label" ng-bind="product.name"></label></div><div class="row"><div class="pull-right col-sm-3 cover-wrap"><a class="cover" target="_blank" ng-href="{{\'https://getyourbag.ru/\'+product.category.url+\'/\'+product.url}}" ng-repeat="photo in product.photos | filter:getCover" ng-if="photo.fileId"><img ng-src="{{\'/photos/\'+product._id+ \'/srv_\'+ photo.fileId}}"></a></div><div class="col-sm-2"><label class="control-label my-pointer" for="title">Title</label><div class="minihelper">знаков: <span class="label label-default" ng-bind="product.title.length"></span></div><div class="minihelper">max 70</div></div><div class="col-sm-7"><textarea id="title" rows="3" ng-model="product.title" class="form-control noresize"></textarea></div><div class="col-sm-2"><label class="control-label my-pointer" for="description">Description</label><div class="minihelper">знаков: <span class="label label-default" ng-bind="product.description.length"></span></div><div class="minihelper">max 300</div></div><div class="col-sm-7"><textarea id="description" rows="5" ng-model="product.description" class="form-control noresize"></textarea></div></div><div class="row form-group"><label class="col-sm-2 control-label" for="details">Краткое описание</label><div class="col-sm-10 ace-details"><textarea id="details" rows="5" ng-model="product.details" class="form-control noresize"></textarea></div></div><div class="row form-group"><label class="col-sm-2 control-label">Полное описание</label><div class="col-sm-10 ace-information"><a class="m-pointer" ng-click="btf(\'information\', product.information)">Выровнять</a><div ui-ace="aceOptions" ng-model="product.information"></div></div></div></div>');
 }]);
 })();
 
@@ -46725,6 +46713,18 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/product/tabs/photo/photo.html',
     '<form class="product-photos"><div class="row form-group"><label class="col-sm-offset-2 col-sm-10 control-label" ng-bind="product.name"></label></div><div class="row form-group"><label class="col-sm-2 control-label">Добавить фото</label><div class="file-input-wrapper col-sm-9"><label for="upload" class="btn btn-primary"><i class="fa fa-picture-o m-icon-gap"></i> Выбрать</label> <input id="upload" type="file" ng-file-select="onFileSelect($files)" multiple=""></div></div><div class="row form-group"><label class="col-sm-2 control-label">Обновить размеры</label><div class="col-sm-10"><a class="btn btn-success" ng-click="refresh()"><i class="fa fa-refresh"></i></a></div></div><ul class="list-unstyled"><li ng-repeat="photo in product.photos"><table class="table" ng-class="getClass(photo.fileType)"><tr><td width="40px" ng-bind="$index+1"></td><td class="no-padding" width="151px"><img class="img-responsive my-thumbs" ng-src="{{\'/photos/\'+product._id+ \'/srv_\'+photo.fileId}}"></td><td width="135px"><label class="control-label">Тип</label><ul class="list-unstyled"><li class="radio"><label><input type="radio" ng-model="photo.fileType" value="cover" ng-change="resize(photo.fileType)">обложка</label></li><li class="radio"><label><input type="radio" ng-model="photo.fileType" value="list" ng-change="resize(photo.fileType)">список</label></li><li class="radio"><label><input type="radio" ng-model="photo.fileType" value="image" ng-change="resize(photo.fileType)">картинка</label></li></ul><div class="input-group me-order" ng-if="photo.fileType==\'image\'"><a class="btn btn-default input-group-addon" ng-click="down(photo)"><i class="fa fa-chevron-down"></i></a> <input id="count" ng-model="photo.order" class="form-control text-center"> <a class="btn btn-default input-group-addon" ng-click="up(photo)"><i class="fa fa-chevron-up"></i></a></div></td><td><label for="name" class="control-label">Название</label> <input id="name" type="text" class="form-control" ng-model="photo.name"> <label for="alt" class="control-label">Alt</label> <input id="alt" type="text" class="form-control" ng-model="photo.alt"> <label for="details" class="control-label">Описание</label> <textarea id="details" rows="3" class="form-control" ng-model="photo.details"></textarea></td><td width="39px" title="Удалить фотографию" ng-click="remove(photo.fileId)" class="btn-danger text-center my-pointer"><i class="fa fa-trash-o"></i></td></tr></table></li></ul></form>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/product/tabs/main/main.html',
+    '<div class="product-edit"><div class="row form-group"><label class="col-sm-2 control-label">Категория</label><div class="col-sm-10 form-inline"><a title="Выбрать категорию продукта" ng-click="showCategories()" class="bl btn btn-primary margin-right-10">Выбрать</a> <span class="my-cat-selected bg-info" ng-bind="product.category.name" ng-if="product.category.name"></span></div></div><div class="row"><div class="pull-right col-sm-3 cover-wrap"><a class="cover" target="_blank" ng-href="{{\'https://getyourbag.ru/\'+product.category.url+\'/\'+product.url}}" ng-repeat="photo in product.photos | filter:getCover" ng-if="photo.fileId"><img ng-src="{{\'/photos/\'+product._id+ \'/srv_\'+ photo.fileId}}"></a></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="name">Название <i class="fa fa-asterisk my-red"></i></label><div class="col-sm-7"><input id="name" ng-model="product.name" class="form-control" ng-model-options="{updateOn:\'input\'}" ng-change="nameToUrl()"></div></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="url">Url</label><div class="col-sm-7"><div class="input-group mm-margin10"><input id="url" ng-model="product.url" ng-change="hideUrlError()" class="form-control"> <a class="btn btn-default input-group-addon" ng-click="nameToUrl(true)" title="Создать url из названия"><i class="fa fa-refresh"></i></a></div></div></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="code">Модель</label><div class="col-sm-7"><input id="code" ng-model="product.code" class="form-control"></div></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="article">Артикул</label><div class="col-sm-7"><input id="article" ng-model="product.article" class="form-control"></div></div><div class="form-group"><label class="col-sm-2 control-label my-pointer" for="storeNumber">Номер на складе</label><div class="col-sm-7"><input id="storeNumber" ng-model="product.storeNumber" class="form-control"></div></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="price">Цена</label><div class="col-sm-10"><input id="price" ng-model="product.price" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="price">Акция</label><div class="col-sm-10"><label for="stock" class="my-pointer regular margin-right-10"><input type="checkbox" id="stock" ng-model="product.stock" ng-change="addStockText()"> <span ng-if="product.stock">Акция включена</span> <span ng-if="!product.stock">Не попадает под акцию</span></label> <a href="#" ng-click="addStockText(true)">Добавить стандартный текст</a> <input id="stockText" ng-model="product.stockText" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="publish">Опубликовано</label><div class="col-sm-10"><label for="publish" class="my-pointer regular"><input type="checkbox" id="publish" ng-model="product.publish"> <span ng-if="product.publish">Пользователи видят это товар</span> <span ng-if="!product.publish">Не показывается на сайте</span></label></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="count">Наличие</label><div class="col-sm-10"><div class="input-group my-count"><a class="btn btn-default input-group-addon" ng-click="minus()"><i class="fa fa-minus"></i></a> <input id="count" ng-model="product.count" class="form-control text-center"> <a class="btn btn-default input-group-addon" ng-click="plus()"><i class="fa fa-plus"></i></a></div></div></div><div class="row"><label class="col-sm-2 control-label my-pointer" for="special">Лучший товар</label><div class="col-sm-10 checkbox"><label><input type="checkbox" id="special" ng-model="product.special"></label></div></div><div class="row form-group"><label class="col-sm-2 control-label">Параметры</label><div class="col-sm-10"><label ng-bind="product.template.name">шаблон не выбран</label><table class="table table-bordered my-params"><thead><tr><th width="1%">название</th><th>значение</th><th width="1%">ед.изм</th></tr></thead><tbody><tr ng-repeat="p in product.parameters" ng-if="!p.parameter.field"><td><span class="text-nowrap" ng-bind="p.parameter.name"></span></td><td><select class="form-control" ng-model="p.selected" ng-options="v._id as v.value for v in p.parameter.values"><option value="">выбрать</option></select></td><td width="1%"><span ng-bind="p.parameter.unit"></span></td></tr></tbody></table></div></div></div>');
 }]);
 })();
 
@@ -47322,6 +47322,29 @@ ErrorCtrl.$inject = ['$scope', '$state'];
 angular.module('controller').controller('ErrorCtrl', ErrorCtrl);
 
 
+function MenuCtrl($scope, $state) {
+    $scope.menus = $state.current.data.menus;
+
+    $scope.toSubnav = function (state) {
+        $state.go(state, $state.params);
+    };
+
+    setActive($state.current);
+
+    $scope.$on('updateActivate', function (e, args) {
+        setActive(args.state);
+    });
+
+    function setActive(state) {
+        for (var i = 0; i < $scope.menus.length; i++) {
+            $scope.menus[i].active = $scope.menus[i].state == state.name;
+        }
+    }
+}
+
+MenuCtrl.$inject = ['$scope', '$state'];
+
+angular.module('controller').controller('MenuCtrl', MenuCtrl);
 function AddurlCtrl($scope, $stateParams, Product, _, list, item, modalName) {
     if ($stateParams.id && $stateParams.id != 0) {
         Product.getById($stateParams.id).then(function (response) {
@@ -47379,29 +47402,6 @@ AddurlCtrl.$inject = ['$scope', '$stateParams', 'Product', '_', 'list', 'item','
 
 angular.module('controller').controller('AddurlCtrl', AddurlCtrl);
 
-function MenuCtrl($scope, $state) {
-    $scope.menus = $state.current.data.menus;
-
-    $scope.toSubnav = function (state) {
-        $state.go(state, $state.params);
-    };
-
-    setActive($state.current);
-
-    $scope.$on('updateActivate', function (e, args) {
-        setActive(args.state);
-    });
-
-    function setActive(state) {
-        for (var i = 0; i < $scope.menus.length; i++) {
-            $scope.menus[i].active = $scope.menus[i].state == state.name;
-        }
-    }
-}
-
-MenuCtrl.$inject = ['$scope', '$state'];
-
-angular.module('controller').controller('MenuCtrl', MenuCtrl);
 function NavbarCtrl($scope, $state) {
     $scope.navs = $state.current.data.navs;
 
@@ -47519,30 +47519,6 @@ function ProductAddListCtrl($rootScope, $scope) {
 
 angular.module('controller').controller('ProductAddListCtrl', ProductAddListCtrl);
 
-function ProgressCtrl($rootScope, $scope, $timeout) {
-    var needProgress = false;
-    $rootScope.$on('loading:progress', function () {
-        needProgress = true;
-        $timeout(function () {
-            if (needProgress)
-                $scope.isVisible = true;
-        }, 50);
-    });
-
-    $rootScope.$on('loading:finish', function () {
-        if (needProgress)
-            $timeout(function () {
-                $scope.isVisible = false;
-            }, 100);
-        needProgress = false;
-    });
-}
-
-ProgressCtrl.$inject = ['$rootScope', '$scope', '$timeout'];
-
-angular.module('controller').controller('ProgressCtrl', ProgressCtrl);
-
-
 function StatusCtrl($scope, $timeout) {
     var gap = 5000; //ms
     $scope.status = {
@@ -47583,6 +47559,30 @@ StatusCtrl.$inject = ['$scope', '$timeout'];
 
 angular.module('controller').controller('StatusCtrl', StatusCtrl);
 
+function ProgressCtrl($rootScope, $scope, $timeout) {
+    var needProgress = false;
+    $rootScope.$on('loading:progress', function () {
+        needProgress = true;
+        $timeout(function () {
+            if (needProgress)
+                $scope.isVisible = true;
+        }, 50);
+    });
+
+    $rootScope.$on('loading:finish', function () {
+        if (needProgress)
+            $timeout(function () {
+                $scope.isVisible = false;
+            }, 100);
+        needProgress = false;
+    });
+}
+
+ProgressCtrl.$inject = ['$rootScope', '$scope', '$timeout'];
+
+angular.module('controller').controller('ProgressCtrl', ProgressCtrl);
+
+
 
 TabsCtrl.$inject = ['$scope', '$state','$stateParams'];
 
@@ -47603,30 +47603,6 @@ function TabsCtrl($scope, $state, $stateParams) {
 
 angular.module('controller').controller('TabsCtrl', TabsCtrl);
 
-
-
-function CartCountFilter() {
-    return function (price) {
-        return price + ' шт.';
-    };
-}
-
-angular.module('entity').filter('CartCountFilter', CartCountFilter);
-
-function CartPriceFilter() {
-    return function (price) {
-        return price + ' <i class="fa fa-rub"></i>';
-    };
-}
-
-angular.module('entity').filter('CartPriceFilter', CartPriceFilter);
-function PriceFilter() {
-    return function (price) {
-        return 'Купить за ' + price + ' <i class="fa fa-rub"></i>';
-    };
-}
-
-angular.module('entity').filter('PriceFilter', PriceFilter);
 angular.module('router').directive('ngEnter', function () {
     //todo Надо переименовать ngEnter с префиксом
     return function (scope, element, attrs) {
@@ -47655,6 +47631,30 @@ angular.module('router').directive('fadeIn', function () {
 
     }
 });
+
+
+function CartCountFilter() {
+    return function (price) {
+        return price + ' шт.';
+    };
+}
+
+angular.module('entity').filter('CartCountFilter', CartCountFilter);
+
+function CartPriceFilter() {
+    return function (price) {
+        return price + ' <i class="fa fa-rub"></i>';
+    };
+}
+
+angular.module('entity').filter('CartPriceFilter', CartPriceFilter);
+function PriceFilter() {
+    return function (price) {
+        return 'Купить за ' + price + ' <i class="fa fa-rub"></i>';
+    };
+}
+
+angular.module('entity').filter('PriceFilter', PriceFilter);
 CategoryRouter.$inject = ['$stateProvider', 'config','OnExitHandlerProvider'];
 
 function CategoryRouter($stateProvider, config,OnExitHandlerProvider) {
@@ -48367,6 +48367,80 @@ function ProductsRouter($stateProvider, config, OnExitHandlerProvider) {
 
 
 angular.module('router').config(ProductsRouter);
+SettingsRouter.$inject = ['$stateProvider', 'config', 'OnExitHandlerProvider'];
+
+function SettingsRouter($stateProvider, config, OnExitHandlerProvider) {
+    var baseCommon = config.path + 'common/',
+        basePages = config.path + 'pages/settings/';
+    $stateProvider
+        .state('root.settings', {
+            abstract: true,
+            url: '/settings',
+            views: {
+                'tabs@base': {
+                    templateUrl: baseCommon + 'tabs/tabs.html',
+                    controller: 'TabsCtrl'
+                },
+                'header@base': {
+                    template: '<h2>Настройки</h2>'
+                }
+            },
+            data: {
+                toState: {
+                    main: 'root.settings.main',
+                    seo: 'root.settings.seo',
+                    operations: 'root.settings.operations'
+                },
+                tabs: [
+                    {state: 'root.settings.main', name: 'Основные'},
+                    {state: 'root.settings.seo', name: 'Поисковые'},
+                    {state: 'root.settings.operations', name: 'Служебные'}
+                ]
+            },
+            onExit: OnExitHandlerProvider.$get()
+        })
+        .state('root.settings.main', {
+            url: '/main',
+            views: {
+                'content@': {
+                    templateUrl: basePages + 'main/main.html',
+                    controller: 'SettingsMainCtrl'
+                },
+                'header@base': {
+                    template: '<h2>Основные настройки</h2>'
+                }
+
+            }
+        })
+        .state('root.settings.seo', {
+            url: '/seo',
+            views: {
+                'content@': {
+                    templateUrl: basePages + 'seo/seo.html',
+                    controller: 'SettingsSeoCtrl'
+                },
+                'header@base': {
+                    template: '<h2>Поисковые настройки</h2>'
+                }
+
+            }
+        })
+        .state('root.settings.operations', {
+            url: '/operations',
+            views: {
+                'content@': {
+                    templateUrl: basePages + 'operations/operations.html',
+                    controller: 'OperationsCtrl'
+                },
+                'header@base': {
+                    template: '<h2>Служебные настройки</h2>'
+                }
+
+            }
+        })
+}
+
+angular.module('router').config(SettingsRouter);
 TemplatesRouter.$inject = ['$stateProvider', 'config','OnExitHandlerProvider'];
 
 function TemplatesRouter($stateProvider, config,OnExitHandlerProvider) {
@@ -48458,80 +48532,27 @@ function TemplatesRouter($stateProvider, config,OnExitHandlerProvider) {
 
 
 angular.module('router').config(TemplatesRouter);
-SettingsRouter.$inject = ['$stateProvider', 'config', 'OnExitHandlerProvider'];
+function CategoryDeleteCtrl($scope, $stateParams, $state, Category) {
+    var toState = $state.current.data.toState;
+    Category.select({query:{_id:$stateParams.cid}}).then(function (response) {
+        $scope.category = response.data;
+    });
 
-function SettingsRouter($stateProvider, config, OnExitHandlerProvider) {
-    var baseCommon = config.path + 'common/',
-        basePages = config.path + 'pages/settings/';
-    $stateProvider
-        .state('root.settings', {
-            abstract: true,
-            url: '/settings',
-            views: {
-                'tabs@base': {
-                    templateUrl: baseCommon + 'tabs/tabs.html',
-                    controller: 'TabsCtrl'
-                },
-                'header@base': {
-                    template: '<h2>Настройки</h2>'
-                }
-            },
-            data: {
-                toState: {
-                    main: 'root.settings.main',
-                    seo: 'root.settings.seo',
-                    operations: 'root.settings.operations'
-                },
-                tabs: [
-                    {state: 'root.settings.main', name: 'Основные'},
-                    {state: 'root.settings.seo', name: 'Поисковые'},
-                    {state: 'root.settings.operations', name: 'Служебные'}
-                ]
-            },
-            onExit: OnExitHandlerProvider.$get()
-        })
-        .state('root.settings.main', {
-            url: '/main',
-            views: {
-                'content@': {
-                    templateUrl: basePages + 'main/main.html',
-                    controller: 'SettingsMainCtrl'
-                },
-                'header@base': {
-                    template: '<h2>Основные настройки</h2>'
-                }
+    $scope.ok = function (id) {
+        Category.remove(id).then(function () {
+            $state.go(toState.list);
+        });
+    };
 
-            }
-        })
-        .state('root.settings.seo', {
-            url: '/seo',
-            views: {
-                'content@': {
-                    templateUrl: basePages + 'seo/seo.html',
-                    controller: 'SettingsSeoCtrl'
-                },
-                'header@base': {
-                    template: '<h2>Поисковые настройки</h2>'
-                }
-
-            }
-        })
-        .state('root.settings.operations', {
-            url: '/operations',
-            views: {
-                'content@': {
-                    templateUrl: basePages + 'operations/operations.html',
-                    controller: 'OperationsCtrl'
-                },
-                'header@base': {
-                    template: '<h2>Служебные настройки</h2>'
-                }
-
-            }
-        })
+    $scope.cancel = function () {
+        $state.go(toState.list);
+    };
 }
 
-angular.module('router').config(SettingsRouter);
+CategoryDeleteCtrl.$inject = ['$scope', '$stateParams', '$state', 'Category'];
+
+angular.module('controller').controller('CategoryDeleteCtrl', CategoryDeleteCtrl);
+
 function CategoryListCtrl($scope, $state, $cacheFactory, Category) {
     var toState = $state.current.data.toState;
     var cache = $cacheFactory.get('cats') || $cacheFactory('cats');
@@ -48608,27 +48629,6 @@ function CategoryListCtrl($scope, $state, $cacheFactory, Category) {
 CategoryListCtrl.$inject = ['$scope', '$state', '$cacheFactory', 'Category'];
 
 angular.module('controller').controller('CategoryListCtrl', CategoryListCtrl);
-
-function CategoryDeleteCtrl($scope, $stateParams, $state, Category) {
-    var toState = $state.current.data.toState;
-    Category.select({query:{_id:$stateParams.cid}}).then(function (response) {
-        $scope.category = response.data;
-    });
-
-    $scope.ok = function (id) {
-        Category.remove(id).then(function () {
-            $state.go(toState.list);
-        });
-    };
-
-    $scope.cancel = function () {
-        $state.go(toState.list);
-    };
-}
-
-CategoryDeleteCtrl.$inject = ['$scope', '$stateParams', '$state', 'Category'];
-
-angular.module('controller').controller('CategoryDeleteCtrl', CategoryDeleteCtrl);
 
 function CategoryNewCtrl($scope, $stateParams, $state, Category, beautify, translit) {
     var toState = $state.current.data.toState;
@@ -49209,27 +49209,6 @@ function ContractTabsCtrl($scope, $state) {
 ContractTabsCtrl.$inject = ['$scope', '$state'];
 
 angular.module('controller').controller('ContractTabsCtrl', ContractTabsCtrl);
-function ParameterDeleteCtrl($scope, $stateParams, $state, Parameter) {
-    var toState = $state.current.data.toState;
-    Parameter.select({query:{_id: $stateParams.id}}).then(function (response) {
-        $scope.parameter = response.data;
-    });
-
-    $scope.ok = function (id) {
-        Parameter.remove(id).then(function () {
-            $state.go(toState.list);
-        });
-    };
-
-    $scope.cancel = function () {
-        $state.go(toState.list);
-    };
-}
-
-ParameterDeleteCtrl.$inject = ['$scope', '$stateParams', '$state', 'Parameter'];
-
-angular.module('controller').controller('ParameterDeleteCtrl', ParameterDeleteCtrl);
-
 ParameterBaseEditCtrl.$inject = ['$scope', '$state', '$window', 'translit'];
 
 function ParameterBaseEditCtrl($scope, $state, $window, translit) {
@@ -49421,6 +49400,27 @@ function ParameterNewCtrl($scope, $state, $controller, Parameter, translit) {
 }
 
 angular.module('controller').controller('ParameterNewCtrl', ParameterNewCtrl);
+function ParameterDeleteCtrl($scope, $stateParams, $state, Parameter) {
+    var toState = $state.current.data.toState;
+    Parameter.select({query:{_id: $stateParams.id}}).then(function (response) {
+        $scope.parameter = response.data;
+    });
+
+    $scope.ok = function (id) {
+        Parameter.remove(id).then(function () {
+            $state.go(toState.list);
+        });
+    };
+
+    $scope.cancel = function () {
+        $state.go(toState.list);
+    };
+}
+
+ParameterDeleteCtrl.$inject = ['$scope', '$stateParams', '$state', 'Parameter'];
+
+angular.module('controller').controller('ParameterDeleteCtrl', ParameterDeleteCtrl);
+
 ParameterFilterCtrl.$inject = ['$rootScope', '$scope', '$state', 'Filter'];
 
 function ParameterFilterCtrl($rootScope, $scope, $state, Filter) {
@@ -49565,27 +49565,6 @@ ProductCategoryCtrl.$inject = ['$scope', '$stateParams', '$state', 'Product', 'C
 
 angular.module('controller').controller('ProductCategoryCtrl', ProductCategoryCtrl);
 
-function ProductDeleteCtrl($scope, $stateParams, $state, Product, _) {
-    var toState = $state.current.data.toState;
-    Product.select({query:{_id:$stateParams.pid}}).then(function (response) {
-        $scope.product = response.data;
-    });
-
-    $scope.ok = function (id) {
-        Product.remove(id).then(function () {
-            $state.go(toState.list);
-        });
-    };
-
-    $scope.cancel = function () {
-        $state.go(toState.list);
-    };
-}
-
-ProductDeleteCtrl.$inject = ['$scope', '$stateParams', '$state', 'Product', '_'];
-
-angular.module('controller').controller('ProductDeleteCtrl', ProductDeleteCtrl);
-
 ProductFilterCtrl.$inject = ['$rootScope', '$scope', '$state', 'Category', 'Filter'];
 
 function ProductFilterCtrl($rootScope, $scope, $state, Category, Filter) {
@@ -49685,6 +49664,27 @@ function ProductFilterCtrl($rootScope, $scope, $state, Category, Filter) {
 angular.module('controller').controller('ProductFilterCtrl', ProductFilterCtrl);
 
 
+function ProductDeleteCtrl($scope, $stateParams, $state, Product, _) {
+    var toState = $state.current.data.toState;
+    Product.select({query:{_id:$stateParams.pid}}).then(function (response) {
+        $scope.product = response.data;
+    });
+
+    $scope.ok = function (id) {
+        Product.remove(id).then(function () {
+            $state.go(toState.list);
+        });
+    };
+
+    $scope.cancel = function () {
+        $state.go(toState.list);
+    };
+}
+
+ProductDeleteCtrl.$inject = ['$scope', '$stateParams', '$state', 'Product', '_'];
+
+angular.module('controller').controller('ProductDeleteCtrl', ProductDeleteCtrl);
+
 ProductListCtrl.$inject = ['$rootScope', '$scope', '$state', 'Product', 'Filter'];
 
 function ProductListCtrl($rootScope, $scope, $state, Product, Filter) {
@@ -49781,7 +49781,7 @@ function ProductListCtrl($rootScope, $scope, $state, Product, Filter) {
 
         Product.selectAll({order: query.order, skip: skip, take: take, query: query}).then(function (response) {
             $scope.products = response.data;
-            $state.go(toState.list, {page:page});
+            $state.go(toState.list, {page:page},{notify:false});
             $scope.products.forEach(function (product) {
                 if (product.photos) {
                     var images = product.photos.filter(function (photo) {
@@ -49937,6 +49937,120 @@ function ProductTabsCtrl($scope, $rootScope, $state, Product, translit) {
 
 angular.module('controller').controller('ProductTabsCtrl', ProductTabsCtrl);
 
+SettingsMainCtrl.$inject = ['$scope','$rootScope', '$state', '$stateParams', '$timeout', 'Settings'];
+
+function SettingsMainCtrl($scope,$rootScope, $state, $stateParams, $timeout, Settings) {
+    var toState = $state.current.data.toState;
+
+
+    Settings.select({projection:{'mainParams':1}}).then(function (response) {
+        $scope.settings = response.data;
+    });
+
+
+    $scope.save = function () {
+        Settings.upsert($scope.settings).then(function () {
+            $rootScope.$broadcast('status:success', 'Настройки сохранены')
+        },function (response) {
+                $rootScope.$broadcast('status:error', 'Настройки не сохранены<br/>' + response)
+            })
+    };
+
+
+}
+
+angular.module('controller').controller('SettingsMainCtrl', SettingsMainCtrl);
+OperationsCtrl.$inject = ['$scope', '$rootScope', '$state', 'Operation', 'Settings', 'clientConfig'];
+
+function OperationsCtrl($scope, $rootScope, $state, Operation, Settings, clientConfig) {
+
+    $scope.host = clientConfig.data.host;
+
+    Settings.select({projection: {'ymlParams': 1}}).then(function (response) {
+        $scope.ymlParams = response.data.ymlParams;
+    });
+
+    $scope.sitemap = function () {
+        Operation.sitemap().then(function (response) {
+            $rootScope.$broadcast('status:success', 'Sitemap.xml создан');
+            logTxt(response.data.xml);
+        }, function (response) {
+            $rootScope.$broadcast('status:error', 'Ошибка создания sitemap.xml');
+            logTxt(response.data);
+        })
+    };
+
+    $scope.yml = function () {
+        Settings.upsert({ymlParams: $scope.ymlParams})
+            .then(function () {
+                $rootScope.$broadcast('status:success', 'Настройки сохранены');
+                Operation.yml($scope.ymlParams)
+                    .then(function (response) {
+                        $rootScope.$broadcast('status:success', 'Прайс лист YML создан');
+                        logTxt(response.data);
+                    }, function (response) {
+                        $rootScope.$broadcast('status:error', 'Ошибка создания прайс листа YML');
+                        logTxt(response.data);
+                    })
+            }, function (response) {
+                $rootScope.$broadcast('status:error', 'Настройки не сохранены');
+                logTxt(response.data);
+            })
+    };
+
+    $scope.resizeAll = function () {
+        Operation.resizeAll() //socket log
+            .then(function (response) {
+                logJson(response.data);
+            }, function (response) {
+                logTxt(response.data);
+            })
+    };
+
+    function logTxt(txt) {
+        $scope.log = txt;
+    }
+
+    function logJson(json) {
+        $scope.log = JSON.stringify(json, null, '\t');
+    }
+}
+
+angular.module('controller').controller('OperationsCtrl', OperationsCtrl);
+
+SettingsSeoCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'Settings', 'States'];
+
+function SettingsSeoCtrl($scope, $rootScope, $state, $stateParams, $timeout, Settings, States) {
+
+    Settings.select({projection: {'seoParams': 1}}).then(function (response) {
+        $scope.settings = response.data;
+    });
+
+    States.selectAll().then(function (response) {
+        $scope.states = response.data;
+    });
+
+    $scope.add = function () {
+        $scope.settings.seoParams = $scope.settings.seoParams || [];
+        $scope.settings.seoParams.push({state: null})
+    };
+
+    $scope.remove = function (idx) {
+        $scope.settings.seoParams.splice(idx, 1);
+        $scope.save();
+    };
+
+    $scope.save = function () {
+        return Settings.upsert($scope.settings).then(function () {
+            $rootScope.$broadcast('status:success', 'Настройки сохранены')
+        },function (response) {
+                $rootScope.$broadcast('status:error', 'Настройки не сохранены<br/>' + response)
+            })
+    };
+
+}
+
+angular.module('controller').controller('SettingsSeoCtrl', SettingsSeoCtrl);
 function TemplatesDeleteCtrl($scope, $stateParams, $state, Templates) {
     var toState = $state.current.data.toState,
         state = $state.previousState.name || toState.list;
@@ -50211,120 +50325,6 @@ function TemplatesListCtrl($scope, $state, Templates, Filter) {
 
 angular.module('controller').controller('TemplatesListCtrl', TemplatesListCtrl);
 
-SettingsMainCtrl.$inject = ['$scope','$rootScope', '$state', '$stateParams', '$timeout', 'Settings'];
-
-function SettingsMainCtrl($scope,$rootScope, $state, $stateParams, $timeout, Settings) {
-    var toState = $state.current.data.toState;
-
-
-    Settings.select({projection:{'mainParams':1}}).then(function (response) {
-        $scope.settings = response.data;
-    });
-
-
-    $scope.save = function () {
-        Settings.upsert($scope.settings).then(function () {
-            $rootScope.$broadcast('status:success', 'Настройки сохранены')
-        },function (response) {
-                $rootScope.$broadcast('status:error', 'Настройки не сохранены<br/>' + response)
-            })
-    };
-
-
-}
-
-angular.module('controller').controller('SettingsMainCtrl', SettingsMainCtrl);
-OperationsCtrl.$inject = ['$scope', '$rootScope', '$state', 'Operation', 'Settings', 'clientConfig'];
-
-function OperationsCtrl($scope, $rootScope, $state, Operation, Settings, clientConfig) {
-
-    $scope.host = clientConfig.data.host;
-
-    Settings.select({projection: {'ymlParams': 1}}).then(function (response) {
-        $scope.ymlParams = response.data.ymlParams;
-    });
-
-    $scope.sitemap = function () {
-        Operation.sitemap().then(function (response) {
-            $rootScope.$broadcast('status:success', 'Sitemap.xml создан');
-            logTxt(response.data.xml);
-        }, function (response) {
-            $rootScope.$broadcast('status:error', 'Ошибка создания sitemap.xml');
-            logTxt(response.data);
-        })
-    };
-
-    $scope.yml = function () {
-        Settings.upsert({ymlParams: $scope.ymlParams})
-            .then(function () {
-                $rootScope.$broadcast('status:success', 'Настройки сохранены');
-                Operation.yml($scope.ymlParams)
-                    .then(function (response) {
-                        $rootScope.$broadcast('status:success', 'Прайс лист YML создан');
-                        logTxt(response.data);
-                    }, function (response) {
-                        $rootScope.$broadcast('status:error', 'Ошибка создания прайс листа YML');
-                        logTxt(response.data);
-                    })
-            }, function (response) {
-                $rootScope.$broadcast('status:error', 'Настройки не сохранены');
-                logTxt(response.data);
-            })
-    };
-
-    $scope.resizeAll = function () {
-        Operation.resizeAll() //socket log
-            .then(function (response) {
-                logJson(response.data);
-            }, function (response) {
-                logTxt(response.data);
-            })
-    };
-
-    function logTxt(txt) {
-        $scope.log = txt;
-    }
-
-    function logJson(json) {
-        $scope.log = JSON.stringify(json, null, '\t');
-    }
-}
-
-angular.module('controller').controller('OperationsCtrl', OperationsCtrl);
-
-SettingsSeoCtrl.$inject = ['$scope', '$rootScope', '$state', '$stateParams', '$timeout', 'Settings', 'States'];
-
-function SettingsSeoCtrl($scope, $rootScope, $state, $stateParams, $timeout, Settings, States) {
-
-    Settings.select({projection: {'seoParams': 1}}).then(function (response) {
-        $scope.settings = response.data;
-    });
-
-    States.selectAll().then(function (response) {
-        $scope.states = response.data;
-    });
-
-    $scope.add = function () {
-        $scope.settings.seoParams = $scope.settings.seoParams || [];
-        $scope.settings.seoParams.push({state: null})
-    };
-
-    $scope.remove = function (idx) {
-        $scope.settings.seoParams.splice(idx, 1);
-        $scope.save();
-    };
-
-    $scope.save = function () {
-        return Settings.upsert($scope.settings).then(function () {
-            $rootScope.$broadcast('status:success', 'Настройки сохранены')
-        },function (response) {
-                $rootScope.$broadcast('status:error', 'Настройки не сохранены<br/>' + response)
-            })
-    };
-
-}
-
-angular.module('controller').controller('SettingsSeoCtrl', SettingsSeoCtrl);
 function CategoryFileCtrl($scope, $stateParams, Category, Files, beautify, translit) {
 
     $scope.remove = function (fileId) {
@@ -50467,6 +50467,12 @@ CategoryPhotoCtrl.$inject = ['$scope', '$stateParams', 'Category', 'Files'];
 
 angular.module('controller').controller('CategoryPhotoCtrl', CategoryPhotoCtrl);
 
+function ConvertCtrl($scope) {
+
+}
+ConvertCtrl.$inject = ['$scope'];
+
+angular.module('controller').controller('СonvertCtrl', ConvertCtrl);
 function ProductFileCtrl($scope, $stateParams, Product, Files, beautify, translit) {
 
     $scope.remove = function (fileId) {
@@ -50502,12 +50508,6 @@ function ProductFileCtrl($scope, $stateParams, Product, Files, beautify, transli
 ProductFileCtrl.$inject = ['$scope', '$stateParams', 'Product', 'Files', 'beautify', 'translit'];
 
 angular.module('controller').controller('ProductFileCtrl', ProductFileCtrl);
-function ConvertCtrl($scope) {
-
-}
-ConvertCtrl.$inject = ['$scope'];
-
-angular.module('controller').controller('СonvertCtrl', ConvertCtrl);
 ProductInfoCtrl.$inject = ['$scope', '$state', 'beautify', 'translit'];
 
 function ProductInfoCtrl($scope,  $state, beautify, translit) {

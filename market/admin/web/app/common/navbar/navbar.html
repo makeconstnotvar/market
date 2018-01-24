@@ -1,13 +1,8 @@
-<div class="container">
-    <div class="row">
-        <div class="me-header">
-            <a class="me-brand" href="https://getyourbag.ru/">getyourbag.ru</a>
-        </div>
-        <ul class="mb-navbar">
-                <li class="me-nav" ng-repeat="nav in navs" ng-class="{'active':nav.active}">
-                    <a class="me-link m-pointer" ng-click="toState(nav.state)" ng-bind="nav.name"></a>
-                </li>
-            </ul>
-
-    </div>
+<div class="me-header">
+    <a class="me-brand" href="https://getyourbag.ru/">getyourbag.ru</a>
 </div>
+<ul class="mb-navbar">
+    <li class="me-nav" ng-repeat="nav in navs" ng-class="{'active':nav.active}">
+        <a class="me-link m-pointer" ng-click="toState(nav.state)" ng-bind="nav.name"></a>
+    </li>
+</ul>

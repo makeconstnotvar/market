@@ -19,8 +19,12 @@
 
 .product-list td.button i {
     min-width: 16px;
+
+}
+.product-list i.center-correct{
     margin-left: 5px;
 }
+
 
 .product-list .cover {
     padding: 0;

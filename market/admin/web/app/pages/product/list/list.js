@@ -94,7 +94,7 @@ function ProductListCtrl($rootScope, $scope, $state, Product, Filter) {
 
         Product.selectAll({order: query.order, skip: skip, take: take, query: query}).then(function (response) {
             $scope.products = response.data;
-            $state.go(toState.list, {page:page});
+            $state.go(toState.list, {page:page},{notify:false});
             $scope.products.forEach(function (product) {
                 if (product.photos) {
                     var images = product.photos.filter(function (photo) {
