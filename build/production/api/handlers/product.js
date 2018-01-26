@@ -44,8 +44,8 @@ module.exports = class extends Base {
                 err.userMessage += errUrl;
             return next(err);
         }
-
-        this.entity.select({query:{_id: item._id}}).exec((err, oldProduct) => {
+        item.modifyDate = Date.now();
+        this.entity.select({query: {_id: item._id}}).exec((err, oldProduct) => {
             if (oldProduct.url !== item.url) {
                 let oldUrls = Array.from(item.historyUrls);
                 oldUrls.push(oldProduct.url);

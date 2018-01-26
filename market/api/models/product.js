@@ -10,6 +10,7 @@ const productSchema = mongoose.Schema({
     article: {type: String, default: tools.getArticle(8)},
     count: {type: Number, default: 0},
     price: {type: Number, default: 0},
+    purchase: {type: Number, default: 0},
     special: {type: Boolean, default: false},
     storeNumber: String,
     details: String,

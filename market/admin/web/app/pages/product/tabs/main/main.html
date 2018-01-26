@@ -7,20 +7,20 @@
             <span class="my-cat-selected bg-info" ng-bind="product.category.name" ng-if="product.category.name"></span>
         </div>
     </div>
-    <div class="row ">
+    <div class="row">
         <div class="pull-right col-sm-3 cover-wrap">
             <a class="cover" target="_blank" ng-href="{{'https://getyourbag.ru/'+product.category.url+'/'+product.url}}" ng-repeat="photo in product.photos | filter:getCover" ng-if="photo.fileId">
                 <img ng-src="{{'/photos/'+product._id+ '/srv_'+ photo.fileId}}">
             </a>
         </div>
-        <div class=" form-group">
+        <div class="form-group">
             <label class="col-sm-2 control-label my-pointer" for="name">Название <i class="fa fa-asterisk my-red"></i></label>
 
             <div class="col-sm-7">
                 <input id="name" ng-model="product.name" class="form-control" ng-model-options="{updateOn:'input'}" ng-change="nameToUrl()">
             </div>
         </div>
-        <div class=" form-group">
+        <div class="form-group">
             <label class="col-sm-2 control-label my-pointer" for="url">Url</label>
 
             <div class="col-sm-7">
@@ -32,39 +32,40 @@
                 </div>
             </div>
         </div>
-        <div class=" form-group">
+        <div class="form-group">
             <label class="col-sm-2 control-label my-pointer" for="code">Модель</label>
-
             <div class="col-sm-7">
                 <input id="code" ng-model="product.code" class="form-control">
             </div>
         </div>
-        <div class=" form-group">
+        <div class="form-group">
             <label class="col-sm-2 control-label my-pointer" for="article">Артикул</label>
-
             <div class="col-sm-7">
                 <input id="article" ng-model="product.article" class="form-control">
             </div>
         </div>
-        <div class=" form-group">
+        <div class="form-group">
             <label class="col-sm-2 control-label my-pointer" for="storeNumber">Номер на складе</label>
-
             <div class="col-sm-7">
                 <input id="storeNumber" ng-model="product.storeNumber" class="form-control">
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label my-pointer" for="purchase">Закупочная цена</label>
+            <div class="col-sm-7">
+                <input id="purchase" ng-model="product.purchase" class="form-control">
+            </div>
+        </div>
 
     </div>
-    <div class="row form-group">
+    <div class="row">
         <label class="col-sm-2 control-label my-pointer" for="price">Цена</label>
-
         <div class="col-sm-10">
             <input id="price" ng-model="product.price" class="form-control">
         </div>
     </div>
-    <div class="row form-group">
+    <div class="row">
         <label class="col-sm-2 control-label my-pointer" for="price">Акция</label>
-
         <div class="col-sm-10">
             <label for="stock" class="my-pointer regular margin-right-10">
                 <input type="checkbox" id="stock" ng-model="product.stock" ng-change="addStockText()">
@@ -77,18 +78,16 @@
     </div>
     <div class="row form-group">
         <label class="col-sm-2 control-label my-pointer" for="publish">Опубликовано</label>
-
         <div class="col-sm-10 ">
             <label for="publish" class="my-pointer regular">
                 <input type="checkbox" id="publish" ng-model="product.publish">
-                <span ng-if="product.publish">Пользователи видят это товар</span>
-                <span ng-if="!product.publish">Не показывается на сайте</span>
+                <span ng-if="product.publish">(Пользователи видят это товар)</span>
+                <span ng-if="!product.publish">(Не показывается на сайте)</span>
             </label>
         </div>
     </div>
-    <div class="row form-group">
+    <div class="row">
         <label class="col-sm-2 control-label my-pointer" for="count">Наличие</label>
-
         <div class="col-sm-10">
             <div class="input-group my-count">
                 <a class="btn btn-default input-group-addon" ng-click="minus()">
@@ -103,10 +102,11 @@
     </div>
     <div class="row">
         <label class="col-sm-2 control-label my-pointer" for="special">Лучший товар</label>
-
         <div class="col-sm-10 checkbox">
             <label>
                 <input type="checkbox" id="special" ng-model="product.special">
+                <span ng-if="product.special">(Показывается на главной странице)</span>
+                <span ng-if="!product.special">(Отсутствует на главной странице)</span>
             </label>
         </div>
     </div>
@@ -115,7 +115,6 @@
 
         <div class="col-sm-10">
             <label ng-bind="product.template.name">шаблон не выбран</label>
-
             <table class="table table-bordered my-params">
                 <thead>
                 <tr>
