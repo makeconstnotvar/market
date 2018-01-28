@@ -66,3 +66,7 @@ gulp.task('inject', function () {
         .pipe(gulp.dest(`${adminWeb}/views`));
 });
 gulp.task('default', gulp.series('templates', 'js', 'css', 'inject'));
+
+gulp.task('watch', gulp.series('templates', 'js', 'css', function watch() {
+    return gulp.watch(['market/client/web/app/**/*'], gulp.series('templates', 'js', 'css'))
+}));

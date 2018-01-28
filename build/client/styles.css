@@ -7533,6 +7533,9 @@ a.unstyled {
     opacity: 1;
     transition: opacity 300ms; }
 
+textarea {
+  overflow-x: hidden; }
+
 /*
 @include media-breakpoint-up(xs) {
     body {

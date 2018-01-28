@@ -1,4 +1,3 @@
-'use strict';
 
 const sm = require('sitemap'),
     fs = require('fs'),
@@ -58,7 +57,7 @@ module.exports = class {
     }
 
     yml(req, res, next) {
-        var options = req.body;
+        let options = req.body;
         operations.getYmlText(options).then(function (yml) {
             fs.writeFile(path.join(config.path.files, 'yml.xml'), yml, function (err) {
                 if (err) return next(err);
@@ -69,14 +68,14 @@ module.exports = class {
     }
 
     resizeAll(req, res, next) {
-        var resizeFunctions = [];
+        let resizeFunctions = [];
         bll.product.selectAll({take: 0, projection: {'_id': 1, 'photos': 1}}).exec((err, products) => {
             products.forEach(product => {
-                var folder = path.join(config.path.photo, product._id.toString());
+                let folder = path.join(config.path.photo, product._id.toString());
 
                 product.photos.forEach(photo => {
-                    var resizeFunction = function (callback) {
-                        var file = path.join(folder, photo.fileId),
+                    let resizeFunction = function (callback) {
+                        let file = path.join(folder, photo.fileId),
                             stream = fs.createReadStream(file);
                         tools.deleteFileSync(path.join(folder, 'l_' + photo.fileId));
                         tools.deleteFileSync(path.join(folder, 'srv_' + photo.fileId));
