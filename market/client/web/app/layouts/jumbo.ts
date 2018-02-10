@@ -27,7 +27,7 @@ export class DefaultLayout {
                 navbarService: NavbarService,
                 globalService: GlobalService,
                 elementRef: ElementRef) {
-        categoryProvider.getTree().subscribe(response => this.categories = response);
+        categoryProvider.list().subscribe(response => this.categories = response);
         contractProvider.getCartStatus().subscribe(response => navbarService.updateCartData(response))
 
 

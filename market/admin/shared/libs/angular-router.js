@@ -2930,7 +2930,7 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                  *
                  * @param {Object} event Event object.
                  * @param {Object} unfoundState Unfound State information. Contains: `to, toParams, options` properties.
-                 * @param {State} fromState Current state object.
+                 * @param {CategoryState} fromState Current state object.
                  * @param {Object} fromParams Current state params.
                  *
                  * @example
@@ -3264,9 +3264,9 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                      * rejected with a `'transition prevented'` value.
                      *
                      * @param {Object} event Event object.
-                     * @param {State} toState The state being transitioned to.
+                     * @param {CategoryState} toState The state being transitioned to.
                      * @param {Object} toParams The params supplied to the `toState`.
-                     * @param {State} fromState The current state, pre-transition.
+                     * @param {CategoryState} fromState The current state, pre-transition.
                      * @param {Object} fromParams The params supplied to the `fromState`.
                      *
                      * @example
@@ -3361,9 +3361,9 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                          * Fired once the state transition is **complete**.
                          *
                          * @param {Object} event Event object.
-                         * @param {State} toState The state being transitioned to.
+                         * @param {CategoryState} toState The state being transitioned to.
                          * @param {Object} toParams The params supplied to the `toState`.
-                         * @param {State} fromState The current state, pre-transition.
+                         * @param {CategoryState} fromState The current state, pre-transition.
                          * @param {Object} fromParams The params supplied to the `fromState`.
                          */
                         $rootScope.$broadcast('$stateChangeSuccess', to.self, toParams, from.self, fromParams);
@@ -3394,9 +3394,9 @@ if (typeof module !== "undefined" && typeof exports !== "undefined" && module.ex
                      * catch **ALL** errors.
                      *
                      * @param {Object} event Event object.
-                     * @param {State} toState The state being transitioned to.
+                     * @param {CategoryState} toState The state being transitioned to.
                      * @param {Object} toParams The params supplied to the `toState`.
-                     * @param {State} fromState The current state, pre-transition.
+                     * @param {CategoryState} fromState The current state, pre-transition.
                      * @param {Object} fromParams The params supplied to the `fromState`.
                      * @param {Error} error The resolve error object.
                      */

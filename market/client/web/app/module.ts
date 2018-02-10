@@ -1,12 +1,12 @@
-import "rxjs/Rx";
-import {APP_INITIALIZER, NgModule, Pipe, Sanitizer, SecurityContext} from "@angular/core";
+import {APP_INITIALIZER, NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {NavigationEnd, NavigationStart, Router} from "@angular/router";
-import {PagesModule} from "pages/module";
-import {LayoutsModule, RootLayout} from "layouts/module";
+import {HttpClientModule} from "@angular/common/http";
+import {PagesModule} from "./pages/module";
+import {LayoutsModule, RootLayout} from "./layouts/module";
 import {CategoryProvider, ContractProvider, ParameterProvider, ProductProvider, SettingsFactory, SettingsProvider} from "./providers";
-import {ConfigService, GlobalService, NavbarService, ParametersService, PlatformService, RequestInterceptor, SeoService, ServerResponseService, SortingService, StateService} from "./services";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {ConfigService, GlobalService, NavbarService, ParametersService, PlatformService, SeoService, ServerResponseService, SortingService, StateService} from "./services";
+import "rxjs/Rx";
 
 @NgModule({
     imports: [
@@ -14,6 +14,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
         HttpClientModule,
         PagesModule,
         LayoutsModule
+
     ],
     providers: [
         SettingsProvider,

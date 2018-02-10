@@ -1,6 +1,6 @@
 'use strict';
 
-var bll = require('../business'),
+let bll = require('../business'),
     Base = require('./base'),
     config = require('../../config'),
     utils = require('../utils'),
@@ -17,7 +17,7 @@ module.exports = class extends Base {
 
     // серверные методы
     select(req, res, next) {
-        var options = req.body;
+        let options = req.body;
         this.entity.select(options).populate('category').populate('parameters.parameter').populate('template').exec((err, product) => {
             if (err) return next(err);
             res.send(product);
@@ -25,7 +25,8 @@ module.exports = class extends Base {
     }
 
     selectAll(req, res, next) {
-        var options = req.body;
+        let options = req.body;
+        options.order = options.order || {_id:-1};
         this.entity.selectAll(options).populate('category').exec((err, products) => {
             if (err) return next(err);
             res.send(products);
@@ -66,7 +67,7 @@ module.exports = class extends Base {
 
     category(req, res, next) {
         //при обновлении категории должен быть продукт и у него указана категория в виде объекта
-        var product = req.body,
+        let product = req.body,
             that = this;
 
         if (product.category && product.category.template) {
@@ -84,7 +85,7 @@ module.exports = class extends Base {
     }
 
     copy(req, res, next) {
-        var newProduct = req.body,
+        let newProduct = req.body,
             oldFolder = newProduct._id;
         delete newProduct._id;
 
@@ -236,7 +237,7 @@ module.exports = class extends Base {
     }
 
     view(req, res, next) {
-        var that = this,
+        let that = this,
             url = req.body.id,
             uid = req.uid;
 
@@ -299,7 +300,7 @@ module.exports = class extends Base {
     }
 
     special(req, res, next) {
-        var that = this;
+        let that = this;
 
         series({
             products: getProducts,
@@ -345,7 +346,7 @@ module.exports = class extends Base {
 
 function getSpecialFields(products, contract) {
     if (products)
-        for (var i = 0; i < products.length; i++) {
+        for (let i = 0; i < products.length; i++) {
             products[i].available = products[i].count > 0;
             delete products[i].count;
 
@@ -359,7 +360,7 @@ function getSpecialFields(products, contract) {
                 delete products[i].photos;
             }
             if (contract && contract.positions) {
-                var inCart = _.find(contract.positions, function (position) {
+                let inCart = _.find(contract.positions, function (position) {
                     if (position.product)
                         return products[i]._id.equals(position.product._id)
                 });
@@ -375,7 +376,7 @@ function getViewFields(product, contract) {
     product.available = product.count > 0;
     delete product.count;
 
-    var images = _.filter(product.photos, function (photo) {
+    let images = _.filter(product.photos, function (photo) {
         return photo.fileType == 'image'
     });
 
@@ -393,7 +394,7 @@ function getViewFields(product, contract) {
 
     if (contract && contract.positions) {
 
-        var inCart = _.find(contract.positions, function (position) {
+        let inCart = _.find(contract.positions, function (position) {
             if (position.product)
                 return product._id.equals(position.product)
         });
@@ -403,10 +404,10 @@ function getViewFields(product, contract) {
         }
     }
     if (product.parameters) {
-        var combinedParameters = [];
-        for (var i = 0; i < product.parameters.length; i++) {
+        let combinedParameters = [];
+        for (let i = 0; i < product.parameters.length; i++) {
             if (product.parameters[i].parameter && !product.parameters[i].parameter.field) {
-                var parameter = {
+                let parameter = {
                     name: product.parameters[i].parameter.name,
                     unit: product.parameters[i].parameter.unit,
                     value: getValue(product.parameters[i])
@@ -421,17 +422,17 @@ function getViewFields(product, contract) {
 }
 
 function getListFields(products, contract) {
-    for (var i = 0; i < products.length; i++) {
+    for (let i = 0; i < products.length; i++) {
         products[i].available = products[i].count > 0;
         delete products[i].count;
 
-        var cover = _.find(products[i].photos, function (photo) {
+        let cover = _.find(products[i].photos, function (photo) {
             return photo.fileType == 'cover'
         });
         if (cover)
             products[i].cover = cover.fileId;
 
-        var list = _.filter(products[i].photos, function (photo) {
+        let list = _.filter(products[i].photos, function (photo) {
             return photo.fileType == 'list'
         });
         if (list)
@@ -441,8 +442,8 @@ function getListFields(products, contract) {
     }
 
     if (contract && contract.positions) {
-        for (var i = 0; i < products.length; i++) {
-            var inCart = _.find(contract.positions, function (pos) {
+        for (let i = 0; i < products.length; i++) {
+            let inCart = _.find(contract.positions, function (pos) {
                 return products[i]._id.equals(pos.product)
             });
             if (inCart) {
@@ -454,8 +455,8 @@ function getListFields(products, contract) {
 }
 
 function getValue(paramContainer) {
-    var foundValue = '';
-    var exist = _.find(paramContainer.parameter.values, val => {
+    let foundValue = '';
+    let exist = _.find(paramContainer.parameter.values, val => {
         return val._id.equals(paramContainer.selected)
     });
     if (exist)
@@ -466,7 +467,7 @@ function getValue(paramContainer) {
 
 function sortPhotos(photos) {
     return _.sortBy(photos, function (item) {
-        var rank = {
+        let rank = {
             "cover": 10,
             "list": 20,
             "image": 30

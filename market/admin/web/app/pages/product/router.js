@@ -107,10 +107,9 @@ function ProductsRouter($stateProvider, config, OnExitHandlerProvider) {
                 tabs: [
                     {state: 'root.products.tabs.main', name: 'Основные'},
                     {state: 'root.products.tabs.info', name: 'Описание'},
-                    {state: 'root.products.tabs.photo', name: 'Фотографии'},
-                    {state: 'root.products.tabs.video', name: 'Видео'},
-                    {state: 'root.products.tabs.file', name: 'Файлы'},
-                    {state: 'root.products.tabs.convert', name: 'Текст из файла'}
+                    {state: 'root.products.tabs.photo', name: 'Фото'},
+                    {state: 'root.products.tabs.video', name: 'Видео'}
+
                 ]
             },
             onExit: OnExitHandlerProvider.$get()

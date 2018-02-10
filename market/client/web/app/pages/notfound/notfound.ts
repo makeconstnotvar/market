@@ -29,7 +29,7 @@ export class NotfoundPage {
 
     ngOnInit(): void {
         this.serverResponseService.setNotFound();
-        this.categoryProvider.getTree().subscribe(
+        this.categoryProvider.list().subscribe(
             response => {
                 this.categories = response
             });

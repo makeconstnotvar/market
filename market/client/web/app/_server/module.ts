@@ -1,4 +1,4 @@
-import {ServerModule} from '@angular/platform-server';
+import {ServerModule, ServerTransferStateModule} from '@angular/platform-server';
 import {NgModule} from '@angular/core';
 import {ApplicationModule} from '../module';
 import {BrowserModule} from '@angular/platform-browser';
@@ -15,7 +15,8 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
             appId: 'BD484954-6626-4699-86BD-AF9CA21F0DE8'
         }),
         ApplicationModule,
-        ServerModule
+        ServerModule,
+        ServerTransferStateModule
     ],
     providers: [
         {

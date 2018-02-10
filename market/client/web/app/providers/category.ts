@@ -9,7 +9,7 @@ export class CategoryProvider {
 
     }
 
-    getTree(): Observable<Category[]> {
+    list(): Observable<Category[]> {
         return this.http.post<Category[]>('/api/category/list', {});
     }
 }

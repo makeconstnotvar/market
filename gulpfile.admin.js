@@ -68,5 +68,5 @@ gulp.task('inject', function () {
 gulp.task('default', gulp.series('templates', 'js', 'css', 'inject'));
 
 gulp.task('watch', gulp.series('templates', 'js', 'css', function watch() {
-    return gulp.watch(['market/client/web/app/**/*'], gulp.series('templates', 'js', 'css'))
+    return gulp.watch(['market/client/web/app/**/*.(js|html|css)'], gulp.series('templates', 'js', 'css'))
 }));

@@ -12,15 +12,15 @@ module.exports = class extends Base {
 
     selectById(req, res, next) {
         var options = req.body;
-        this.entity.selectById(options.id).populate('parent').populate('template').exec((err, product)=> {
-            if (err)return next(err);
+        this.entity.selectById(options.id).populate('parent').populate('template').exec((err, product) => {
+            if (err) return next(err);
             res.send(product);
         });
     }
 
     selectAll(req, res, next) {
         var options = req.body;
-        this.entity.selectAll(options).exec((err, categories)=> {
+        this.entity.selectAll(options).exec((err, categories) => {
             if (err) return next(err);
             var cats = createTree(categories);
             res.send(cats);
@@ -31,21 +31,21 @@ module.exports = class extends Base {
         //нужно проапдейтить продукты этой категории
         var item = req.body;
         var promises = [];
-        bll.template.selectById(item.template).populate('parameters').lean().exec((err, template)=> {
+        bll.template.selectById(item.template).populate('parameters').lean().exec((err, template) => {
             if (err) return next(err);
-            bll.product.selectAll({query: {category: item._id}}).populate('parameters.parameter').lean().exec((err, products)=> {
+            bll.product.selectAll({query: {category: item._id}}).populate('parameters.parameter').lean().exec((err, products) => {
                 if (err) return next(err);
                 if (products)
-                    products.forEach(product=> {
-                        var promise = bll.product.changeParameters(product, template.parameters).exec((err, product)=> {
+                    products.forEach(product => {
+                        var promise = bll.product.changeParameters(product, template.parameters).exec((err, product) => {
                             if (err) return next(err);
                             promise.resolve();
                         });
                         promises.push(promise);
                     });
 
-                Promise.all(promises).then(()=> {
-                    bll.category.update(item).exec((err, category)=> {
+                Promise.all(promises).then(() => {
+                    bll.category.update(item).exec((err, category) => {
                         if (err) return next(err);
                         res.send('ok');
                     });
@@ -70,9 +70,9 @@ module.exports = class extends Base {
             'photos': {$elemMatch: {fileType: 'image'}},
             'photos.fileId': 1
         };*/
-        bll.category.selectAll(options).lean().exec((err, categories)=> {
+        bll.category.selectAll(options).lean().exec((err, categories) => {
             if (err) return next(err);
-            var cats = createTree(categories);
+            let cats = createTree(categories);
             res.send(getSpecialFields(cats));
         });
     }
@@ -134,12 +134,12 @@ function createTree(datas) {
 }
 
 function findParent(items, child) {
-    for (var i = 0; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
         if (items[i]._id.equals(child.parent))
             return items[i];
         else {
             if (items[i].children) {
-                var parent = findParent(items[i].children, child);
+                let parent = findParent(items[i].children, child);
                 if (parent)
                     return parent;
             }
@@ -158,15 +158,12 @@ function sortByAsc(a, b) {
 }
 
 function getSpecialFields(categories) {
-    if (categories)
-        for (var i = 0; i < categories.length; i++) {
-            var category = categories[i];
-
-            if (categories[i].photos && categories[i].photos.length) {
-                categories[i].cover = categories[i].photos[0].fileId;
-                delete categories[i].photos;
-            }
-
+    return categories.map(category => {
+        if (category.photos && category.photos.length) {
+            category.cover = category.photos.find(p => p.fileType === 'cover');
+            category.jumbos = category.photos.filter(p => p.fileType === 'jumbo');
+            delete category.photos;
         }
-    return categories;
+        return category;
+    });
 }

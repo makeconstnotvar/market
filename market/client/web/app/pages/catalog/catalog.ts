@@ -146,7 +146,7 @@ export class CatalogPage {
     }
 
     private selectCategory() {
-        this.categoryProvider.getTree().subscribe((response: Category[]) => {
+        this.categoryProvider.list().subscribe((response: Category[]) => {
             this.category = response.find(cat => cat.url == this.categoryName);
             if (!this.category)
                 this.serverResponseService.setNotFound();

@@ -1,9 +1,8 @@
 import {Component, ElementRef} from "@angular/core";
-import {CategoryProvider} from "providers/index";
-import {Category} from "models/index";
-import {ContractProvider} from "../providers";
-import {NavbarService} from "../services";
-import {GlobalService} from "../services/global";
+import {CategoryProvider, ContractProvider} from "../providers";
+import {Category} from "../models";
+import {GlobalService, NavbarService} from "../services";
+
 
 
 @Component({
@@ -27,8 +26,10 @@ export class DefaultLayout {
                 navbarService: NavbarService,
                 globalService: GlobalService,
                 elementRef: ElementRef) {
-        categoryProvider.getTree().subscribe(response => this.categories = response);
-        contractProvider.getCartStatus().subscribe(response => navbarService.updateCartData(response))
+
+
+        categoryProvider.list().subscribe(response => this.categories = response);
+        contractProvider.getCartStatus().subscribe(response => navbarService.updateCartData(response));
 
 
         globalService.onScrollToEl.subscribe((selector: string = 'market-navbar') => {

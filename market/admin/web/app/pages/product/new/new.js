@@ -1,6 +1,6 @@
-ProductsNewCtrl.$inject = ['$scope', '$state', 'Product', 'translit'];
+ProductsNewCtrl.$inject = ['$rootScope','$scope', '$state', 'Product', 'translit'];
 
-function ProductsNewCtrl($scope, $state, Product, translit) {
+function ProductsNewCtrl($rootScope,$scope, $state, Product, translit) {
     var toState = $state.current.data.toState;
 
     $scope.product = {};
@@ -14,6 +14,7 @@ function ProductsNewCtrl($scope, $state, Product, translit) {
             $rootScope.$broadcast('status:error', 'Требуется название продукта');
         }
         else {
+
             Product.insert($scope.product)
                 .then(function (response) {
                     $rootScope.$broadcast('status:success', 'Продукт создан');

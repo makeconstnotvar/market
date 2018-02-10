@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import {ApplicationModule} from '../module';
 import {RootLayout} from "layouts/module";
 import {TransferHttpCacheModule} from '@nguniversal/common'
@@ -13,7 +13,7 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
         }),
 
         ApplicationModule,
-
+        BrowserTransferStateModule
     ],
     providers:[
         {

@@ -54,7 +54,7 @@ export class SortingService {
             return fake;
         }
 
-        return {}
+
     }
 
     change(activeSort): Sort[] {
