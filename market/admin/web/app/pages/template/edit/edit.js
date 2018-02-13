@@ -2,7 +2,7 @@ TemplatesEditCtrl.$inject = ['$rootScope', '$scope', '$stateParams', '$state', '
 
 function TemplatesEditCtrl($rootScope, $scope, $stateParams, $state, Templates, Parameter, Filter, $q, _) {
 
-    console.log('Эдит')
+    //console.log('Эдит')
     var toState = $state.current.data.toState,
         filterName = $state.current.data.filterName,
         filter = Filter(filterName);

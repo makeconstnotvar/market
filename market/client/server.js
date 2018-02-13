@@ -2,13 +2,12 @@ let app = require('express')(),
     path = require('path'),
     config = require('../config.json'),
     minifyHTML = require('express-minify-html'),
-    serverjs, engine,
-    xhr2 = require('xhr2');
+    serverjs, engine;
 
-xhr2.prototype._restrictedHeaders = {};
 
 try {
     serverjs = require(config.path.serverjs);
+
 }
 catch (err) {
     console.error(`Не найден файл server.js по адресу "${config.path.serverjs}.js"`);

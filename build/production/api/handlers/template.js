@@ -15,7 +15,7 @@ module.exports = class extends Base {
         bll.template.update(item).populate('parameters').exec((err, item)=> {
             let promises = [];
             if (err) return next(err);
-            bll.product.selectAll({query: {template: item._id}}).populate('parameters.parameter').exec((err, products)=> {
+            bll.product.selectAll({query: {template: item._id},take:0}).populate('parameters.parameter').exec((err, products)=> {
                 products.forEach((product)=> {
                     let p = new Promise((resolve,reject)=>{
                         bll.product.changeParameters(product.toObject(), item.toObject().parameters).exec((err)=> {

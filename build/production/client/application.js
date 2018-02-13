@@ -8,11 +8,11 @@ const express = require('express'),
 
 app.use('/api', secure.cookies, apiRouter);
 app.use('/', secure.cookies, function (req, res, next) {
-    //let ua = req.headers['user-agent'];
-    //if (/bot|google|yandex|mail\.ru|bing|embedly|guzzlehttp|validator|vk\.com|facebook|slurp|tumblr|undefined|seopult|mailru|mrpc|ok\.ru/i.test(ua))
+    let ua = req.headers['user-agent'];
+    if (/bot|google|yandex|mail\.ru|bing|embedly|guzzlehttp|validator|vk\.com|facebook|slurp|tumblr|undefined|seopult|mailru|mrpc|ok\.ru/i.test(ua))
         server(req, res, next);
-   // else
-    //    browser(req, res, next);
+    else
+        browser(req, res, next);
 });
 
 app.use(function (req, res, next) {

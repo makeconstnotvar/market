@@ -72,7 +72,7 @@ module.exports = class {
     }
 
     resize(req, res) {
-        var params = req.body,
+        let params = req.body,
             folder = path.join(config.path.photo, params.folderId),
             file = path.join(folder, params.fileId),
             stream = fs.createReadStream(file);

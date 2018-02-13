@@ -30,7 +30,7 @@ module.exports = {
         {
             type: 'small',
             prefix: 's_',
-            height: '40'
+            height: '50'
         }],
     list: [
         {
@@ -78,12 +78,12 @@ module.exports = {
             height: '60'
         }],
     icon: [
-{
-        type: 'medium',
-        prefix: 'm_',
-        width: '240',
-        height: '240'
-    },
+        {
+            type: 'medium',
+            prefix: 'm_',
+            width: '240',
+            height: '240'
+        },
         {
             type: 'small',
             prefix: 's_',

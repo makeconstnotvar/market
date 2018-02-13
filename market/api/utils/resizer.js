@@ -5,7 +5,7 @@ var sizes = require('./sizes'),
 
 module.exports = function (type, stream, folder, fileName) {
 
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject)=> {
         var test = sizes[type];
         if (!test) // почему-то нештатные типы есть
             resolve(type);
