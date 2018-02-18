@@ -1,13 +1,51 @@
-ProductTabsCtrl.$inject = ['$scope', '$rootScope', '$state', 'Product', 'translit'];
+ProductTabsCtrl.$inject = ['$scope', '$rootScope', '$state', 'Product', 'Filter', 'translit'];
 
-function ProductTabsCtrl($scope, $rootScope, $state, Product, translit) {
-    var urlCanChange = false;
+function ProductTabsCtrl($scope, $rootScope, $state, Product, Filter, translit) {
+    var urlCanChange = false,
+        filterName = $state.current.data.filterName,
+        filter = Filter(filterName);
 
-    Product.select({query: {_id: $state.params.pid}}).then(function (response) {
-        $scope.product = response.data;
-        urlCanChange = !$scope.product.url;
-        $scope.product.photos = sortPhotos($scope.product.photos)
-    });
+
+    getProduct($state.params.pid);
+
+    getProducts();
+
+    function getProduct(pid) {
+        Product.select({query: {_id: pid}}).then(function (response) {
+            $scope.product = response.data;
+            urlCanChange = !$scope.product.url;
+            $scope.product.photos = sortPhotos($scope.product.photos)
+        });
+    }
+
+    function getProducts() {
+        var query = filter.query(),
+            data = filter.data(),
+            page = data.page,
+            take = data.take,
+            skip = (page - 1) * take;
+
+        Product.selectAll({order: query.order, skip: skip, take: take, query: query}).then(function (response) {
+
+            $scope.products = response.data.map(function (p) {
+                var product = {
+                    _id: p._id,
+                    tooltip: p.name,
+                    url: $state.current.url
+
+                };
+                if (p.photos) {
+                    var cover = p.photos.find(function (photo) {
+                        if (photo.fileType === 'cover')
+                            return photo.fileId;
+                    });
+                    if (cover)
+                        product.cover = cover.fileId;
+                }
+                return product;
+            })
+        });
+    }
 
     $scope.aceOptions = {
         //mode: 'html',
@@ -34,12 +72,19 @@ function ProductTabsCtrl($scope, $rootScope, $state, Product, translit) {
         }*/
     };
 
+    $scope.toState = function (pid) {
+        save().then(function () {
+            $state.go($state.current.name, {pid: pid});
+            getProduct(pid)
+        });
+    };
+
     $scope.$on('state:leave', save);
 
     $scope.save = function () {
         return save();
     };
-        
+
     $scope.nameToUrl = function (force) {
         if (urlCanChange || force) {
             $scope.product.url = translit($scope.product.name);
@@ -59,7 +104,7 @@ function ProductTabsCtrl($scope, $rootScope, $state, Product, translit) {
             return Product.update($scope.product)
                 .then(function () {
                     $rootScope.$broadcast('status:success', 'Продукт сохранен')
-                },function (response) {
+                }, function (response) {
                     $rootScope.$broadcast('status:error', 'Продукт не сохранен<br/>' + response)
                 })
 

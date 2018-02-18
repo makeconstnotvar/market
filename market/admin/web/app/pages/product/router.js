@@ -108,9 +108,10 @@ function ProductsRouter($stateProvider, config, OnExitHandlerProvider) {
                     {state: 'root.products.tabs.main', name: 'Основные'},
                     {state: 'root.products.tabs.info', name: 'Описание'},
                     {state: 'root.products.tabs.photo', name: 'Фото'},
-                    {state: 'root.products.tabs.video', name: 'Видео'}
+                    //{state: 'root.products.tabs.video', name: 'Видео'}
 
-                ]
+                ],
+                filterName: 'ProductsList'
             },
             onExit: OnExitHandlerProvider.$get()
         })

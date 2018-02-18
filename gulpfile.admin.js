@@ -67,6 +67,14 @@ gulp.task('inject', function () {
 });
 gulp.task('default', gulp.series('templates', 'js', 'css', 'inject'));
 
-gulp.task('watch', gulp.series('templates', 'js', 'css', function watch() {
-    return gulp.watch(['market/client/web/app/**/*.(js|html|css)'], gulp.series('templates', 'js', 'css'))
-}));
+gulp.task('watch-js', function () {
+    return gulp.watch([
+        `${adminWeb}/app/**/*.html`,
+        `${adminWeb}/app/**/*.js`
+    ], gulp.series('templates', 'js'));//, 'css'
+});
+gulp.task('watch-css', function () {
+    return gulp.watch([
+        `${adminWeb}/css/*.css`
+    ], gulp.series('css'));//, 'css'
+});

@@ -5,7 +5,7 @@ function Filter($cacheFactory, $stateParams) {
         filterName = filterName || 'default';
         var cache = $cacheFactory.get('filter') || $cacheFactory('filter'),
             initData = {
-                take: 15,
+                take: 12,
                 order: {name: 1},
                 page: $stateParams.page || 1
             };

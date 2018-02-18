@@ -31,8 +31,8 @@ export class DefaultLayout {
         contractProvider.getCartStatus().subscribe(response => navbarService.updateCartData(response))
 
 
-        globalService.onScrollToEl.subscribe((selector: string = 'market-navbar') => {
-            elementRef.nativeElement.querySelector(selector).scrollIntoView();
-        })
+        //globalService.onScrollToEl.subscribe((selector: string = 'market-navbar') => {
+            //elementRef.nativeElement.querySelector(selector).scrollIntoView();
+        //})
     }
 }

@@ -7162,7 +7162,8 @@ delivery .separ {
     font-weight: bold; } }
 
 catalog {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  min-height: 800px; }
   catalog .c-buttons {
     margin-top: 10px;
     height: 40px;
@@ -7446,25 +7447,25 @@ notfound .slider {
 notfound .slide-404 {
   background-image: url("/img/notfound.jpg"); }
 
-view-page .me-link {
-  cursor: pointer;
-  border: solid 1px #fff;
-  display: inline-block;
-  transition: border-color 300ms; }
-  view-page .me-link.active {
-    border: solid 1px #f75163; }
-  view-page .me-link:hover {
-    border: solid 1px #f75163;
+view-page {
+  min-height: 800px;
+  display: block; }
+  view-page .me-link {
+    cursor: pointer;
+    border: solid 1px #fff;
+    display: inline-block;
     transition: border-color 300ms; }
-
-view-page .price__purchase {
-  width: 240px; }
-
-view-page .price__value {
-  font-size: 24px; }
-
-view-page .photo {
-  border: 1px solid #e8e8e8; }
+    view-page .me-link.active {
+      border: solid 1px #f75163; }
+    view-page .me-link:hover {
+      border: solid 1px #f75163;
+      transition: border-color 300ms; }
+  view-page .price__purchase {
+    width: 240px; }
+  view-page .price__value {
+    font-size: 24px; }
+  view-page .photo {
+    border: 1px solid #e8e8e8; }
 
 .btn-red {
   color: #fff;

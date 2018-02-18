@@ -1,9 +1,9 @@
 <form class="product-photos">
     <div class="row form-group">
-        <label class="col-sm-offset-2 col-sm-10 control-label" ng-bind="product.name"></label>
+        <label class="col-sm-2 control-label">Название</label>
+        <div class=" col-sm-10 control-label" ng-bind="product.name"></div>
     </div>
     <div class="row form-group">
-
         <label class="col-sm-2 control-label">Добавить фото</label>
 
         <div class="file-input-wrapper col-sm-9">
@@ -17,22 +17,32 @@
             <a class="btn btn-success" ng-click="refresh()"><i class="fa fa-refresh"></i></a>
         </div>
     </div>
-    <ul class="list-unstyled">
-        <li ng-repeat="photo in product.photos">
-            <table class="table" ng-class="getClass(photo.fileType)">
-                <tr>
-                    <td width="40px" ng-bind="$index+1"></td>
-                    <td class="no-padding" width="151px"><img class="img-responsive my-thumbs" ng-src="{{'/photos/'+product._id+ '/srv_'+photo.fileId}}"></td>
-                    <td width="135px">
-                        <label class="control-label">Тип</label>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="photo in product.photos">
+            <div class="image-item">
+                <div class="image-row">
+                    <div style="flex-basis: 40px; text-align: center">
+                        <span ng-bind="$index+1"></span>
+                    </div>
+                    <div style="flex-grow:1;text-align: center;">
+                        <img  ng-src="{{'/photos/'+product._id+ '/srv_'+photo.fileId}}">
+                    </div>
+                    <div>
+                        <a title="Удалить фотографию" ng-click="remove(photo.fileId)" class="btn btn-danger text-center my-pointer"><i class="fa fa-trash-o"></i></a>
+                    </div>
+                </div>
+                <div class="image-row">
+                    <div style="padding: 0 15px; flex-basis: 50%">
+                        <label style="display: block">Тип</label>
                         <ul class="list-unstyled">
                             <li class="radio"><label><input type="radio" ng-model="photo.fileType" value="cover" ng-change="resize(photo.fileType)">обложка</label></li>
-                            <li class="radio"><label><input type="radio" ng-model="photo.fileType" value="list" ng-change="resize(photo.fileType)">список</label></li>
                             <li class="radio"><label><input type="radio" ng-model="photo.fileType" value="image" ng-change="resize(photo.fileType)">картинка</label></li>
-                            <!--<li class="radio"><label><input type="radio" ng-model="photo.fileType" value="dimension" ng-change="resize(photo.fileType)">размеры</label></li>-->
-                            <!--<li class="radio"><label><input type="radio" ng-model="photo.fileType" value="review" ng-change="resize(photo.fileType)">обзор</label></li>-->
+                            <li class="radio"><label><input type="radio" ng-model="photo.fileType" value="list" ng-change="resize(photo.fileType)">скрыть</label></li>
                         </ul>
-                        <div class="input-group me-order" ng-if="photo.fileType=='image'">
+                    </div>
+                    <div style="padding: 0 15px;  flex-basis: 50%" ng-if="photo.fileType=='image'">
+                        <label>Порядок</label>
+                        <div class="input-group">
                             <a class="btn btn-default input-group-addon" ng-click="down(photo)">
                                 <i class="fa fa-chevron-down"></i>
                             </a>
@@ -41,19 +51,11 @@
                                 <i class="fa fa-chevron-up"></i>
                             </a>
                         </div>
-                    </td>
-                    <td>
-                        <label for="name" class="control-label">Название</label>
-                        <input id="name" type="text" class="form-control" ng-model="photo.name">
-                        <label for="alt" class="control-label">Alt</label>
-                        <input id="alt" type="text" class="form-control" ng-model="photo.alt">
-                        <label for="details" class="control-label">Описание</label>
-                        <textarea id="details" rows="3" class="form-control" ng-model="photo.details"></textarea>
-                    </td>
-                    <td width="39px" title="Удалить фотографию" ng-click="remove(photo.fileId)" class="btn-danger text-center my-pointer"><i class="fa fa-trash-o"></i></td>
-                </tr>
-            </table>
+                    </div>
 
-        </li>
-    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </form>

@@ -23,6 +23,7 @@ export class CatalogPage {
     categoryName: string;
     catalogMode: boolean;
     noresults: boolean;
+    ready: boolean = false;
     params: any;
     page: number;
     sort: any;
@@ -43,9 +44,7 @@ export class CatalogPage {
                 private seoService: SeoService) {
     }
 
-    scrollToMenu() {
-        this.globalService.onScrollToEl.emit('market-menu');
-    }
+
 
     xsChange() {
         this.xs = !this.xs;
@@ -85,7 +84,7 @@ export class CatalogPage {
         this.page = page;
         this.navigate();
         this.fetchProducts();
-        this.scrollToMenu();
+
     }
 
     ngOnInit() {
@@ -215,6 +214,7 @@ export class CatalogPage {
     }
 
     private fetchProducts() {
+        this.ready = false;
         let query = {
             parameters: this.getSelectedParameters(),
             sort: this.sortingService.getSearch(),
@@ -232,6 +232,10 @@ export class CatalogPage {
                 this.noresults = resp.products.length == 0;
                 if (!this.catalogMode)
                     this.pagerComponent.setup(resp.count, this.page);
+                this.ready = true;
+                setTimeout(() => {
+                    this.globalService.onScrollToEl.emit('market-menu')
+                }, 50)
             }
 
         })

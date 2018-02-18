@@ -3,7 +3,8 @@
 
 <div class="product-edit">
     <div class="row form-group">
-        <label class="col-sm-offset-2 col-sm-10 control-label" ng-bind="product.name"></label>
+        <label class="col-sm-2 control-label">Название</label>
+        <div class=" col-sm-10 control-label" ng-bind="product.name"></div>
     </div>
     <div class="row">
         <div class="pull-right col-sm-3 cover-wrap">
@@ -12,7 +13,7 @@
             </a>
         </div>
         <div class="col-sm-2">
-            <label class="control-label my-pointer" for="title">Title</label>
+            <label class="control-label my-pointer" for="title">Заголовок</label>
             <div class="minihelper">знаков: <span class="label label-default" ng-bind="product.title.length"></span></div>
             <div class="minihelper">max 70</div>
         </div>
@@ -20,7 +21,7 @@
             <textarea id="title" rows="3" ng-model="product.title" class="form-control noresize"></textarea>
         </div>
         <div class="col-sm-2">
-            <label class="control-label my-pointer" for="description">Description</label>
+            <label class="control-label my-pointer" for="description">Краткое описание</label>
             <div class="minihelper">знаков: <span class="label label-default " ng-bind="product.description.length"></span></div>
             <div class="minihelper">max 300</div>
         </div>
@@ -29,8 +30,10 @@
         </div>
     </div>
     <div class="row  form-group">
-        <label class="col-sm-2 control-label" for="details">Краткое описание</label>
-
+        <div class="col-sm-2">
+            <label class="control-label control-label" for="details">Краткое описание</label>
+            <div class="minihelper">(лишнее)</div>
+        </div>
         <div class="col-sm-10 ace-details">
             <textarea id="details"  rows="5" ng-model="product.details" class="form-control noresize"></textarea>
         </div>

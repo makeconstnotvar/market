@@ -4,7 +4,7 @@
         <a class="c-button pointer text-nowrap" (click)="clearFilter()"><i class="fa fa-times rgap"></i>Сбросить</a>
     </div>
 </div>
-<div class="d-flex flex-nowrap">
+<div class="d-flex flex-nowrap cloak" [ngClass]="{'visible': ready}">
     <cat-filter [ngClass]="{'hidden-sm-down':!xs}" (onFilterChange)="changeFilter($event)" (onFilterApply)="applyFilter()" (onFilterClear)="clearFilter()" [parameters]="parameters"></cat-filter>
     <div class="product-list" [ngClass]="{'hidden-sm-down':xs}">
         <cat-sorting (onSort)="changeSort($event)" [activeSort]="activeSort"></cat-sorting>

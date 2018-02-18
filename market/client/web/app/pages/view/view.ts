@@ -12,7 +12,7 @@ import {ConfigService, GlobalService, NavbarService, SeoService, ServerResponseS
 })
 export class ViewPage {
     @ViewChild('dataContainer') dataContainer: ElementRef;
-    ready:boolean = false;
+    ready: boolean = false;
     product: Product = new Product;
     isBack: boolean;
     selectedImage: string;
@@ -20,7 +20,9 @@ export class ViewPage {
     productId: string;
     categoryId: string;
     config: Config;
-    url:string = this.configService.config.host+this.router.url;
+
+    url: string = this.configService.config.host + this.router.url;
+
     imageSelect(idx) {
         this.selectedIdx = idx;
         this.selectedImage = this.product.images[idx];
@@ -72,12 +74,16 @@ export class ViewPage {
                         image: `/photos/${this.product._id}/${this.selectedImage}`,
                     });
                     this.ready = true;
+                    setTimeout(() => {
+                        this.globalService.onScrollToEl.emit('market-menu')
+                    }, 50)
+
 
                 }
 
             })
         });
-        //this.globalService.onScrollToEl.emit();
+
         this.globalService.existPreviousState.subscribe(state => this.isBack = true);
         this.config = this.configService.config;
     }

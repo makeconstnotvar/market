@@ -1,5 +1,6 @@
 catalog {
     margin-bottom: 20px;
+    min-height: 1200px;
     .c-buttons {
         margin-top: 10px;
         height: 40px;
@@ -26,13 +27,12 @@ catalog {
         margin-right: 10px;
     }
     @include media-breakpoint-down(sm) {
-        .product-menu{
+        .product-menu {
             display: block;
             width: 100%;
-            min-width:100%;
+            min-width: 100%;
         }
     }
-
 
     .product-list {
         flex-grow: 1

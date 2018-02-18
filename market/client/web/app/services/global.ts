@@ -17,7 +17,5 @@ export class GlobalService {
         }
     }
 
-    private scroller = new Subject<Object>();
-
     public onScrollToEl = new EventEmitter();
 }

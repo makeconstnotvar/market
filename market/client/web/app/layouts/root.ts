@@ -10,10 +10,10 @@ export class RootLayout {
 
     constructor(stateService: StateService,
                 platformService: PlatformService) {
-        stateService.onEndStateChange.subscribe(event => {
+        /*stateService.onEndStateChange.subscribe(event => {
             if (platformService.isBrowser) {
                 window.scrollTo(0, 0);
             }
-        });
+        });*/
     }
 }

@@ -1,4 +1,11 @@
-<div ui-view="editor"></div>
+<div class="photolist">
+    <div class="photolist-item">
+        <a ng-click="toState(p._id)" class="product-link" ng-class="{'active':product._id == p._id}" ng-repeat="p in products">
+            <img ng-if="p.cover" fade-in ng-src="{{'/photos/' + p._id + '/s_' + p.cover}}">
+        </a>
+    </div>
+    <div class="product-box" ui-view="editor"></div>
+</div>
 <div class="row form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <a class="btn btn-success m-rgap" ng-click="save()">Сохранить</a>
