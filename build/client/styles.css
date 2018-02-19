@@ -7163,7 +7163,7 @@ delivery .separ {
 
 catalog {
   margin-bottom: 20px;
-  min-height: 800px; }
+  min-height: 1200px; }
   catalog .c-buttons {
     margin-top: 10px;
     height: 40px;
@@ -7448,7 +7448,7 @@ notfound .slide-404 {
   background-image: url("/img/notfound.jpg"); }
 
 view-page {
-  min-height: 800px;
+  min-height: 1200px;
   display: block; }
   view-page .me-link {
     cursor: pointer;
@@ -7478,6 +7478,13 @@ view-page {
   color: #fff;
   background-color: #d03546;
   border-color: #ba2a38; }
+
+.photos {
+  display: flex;
+  flex-wrap: nowrap; }
+  .photos img {
+    width: 100%;
+    height: auto; }
 
 .me-soc-msg {
   margin-top: 6px; }

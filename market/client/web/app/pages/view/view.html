@@ -7,9 +7,9 @@
     <div class="col-12 text-center photo">
         <img itemprop="image" *ngIf="selectedImage" class="img-fluid" src="{{'/photos/'+product._id+ '/l_'+ selectedImage}}" alt="{{product.name}}">
     </div>
-    <div class="row no-gutters">
-        <a class="me-link col-3 text-center" (click)="imageSelect(i)" [ngClass]="{'active':selectedIdx==i}" *ngFor="let image of product.images; let i=index;">
-            <img class="img-fluid" src="{{'/photos/'+product._id+ '/m_'+  image}}">
+    <div class="photos">
+        <a class="me-link text-center" (click)="imageSelect(i)" [ngClass]="{'active':selectedIdx==i}" *ngFor="let image of product.images; let i=index;">
+            <img  src="{{'/photos/'+product._id+ '/m_'+  image}}">
         </a>
     </div>
     <div class="row">

@@ -1,14 +1,15 @@
-import {Component, Inject, PLATFORM_ID} from "@angular/core";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {Component, Inject} from "@angular/core";
+import {DOCUMENT} from "@angular/common";
+import {PlatformService} from "../../services/platform";
 
 @Component({
     selector: 'maps-yandex',
     templateUrl: 'maps.html'
 })
 export class MapsControl {
-    constructor(@Inject(PLATFORM_ID) private platformId: Object,
-                @Inject(DOCUMENT) private document: any) {
-        if (isPlatformBrowser(this.platformId)) {
+    constructor(@Inject(DOCUMENT) private document: any,
+                private platformService: PlatformService) {
+        if (this.platformService.isBrowser) {
             this._window = window;
         }
     }
@@ -20,7 +21,7 @@ export class MapsControl {
     myPlacemark: any;
 
     ngOnInit() {
-        if (isPlatformBrowser(this.platformId)) {
+        if (this.platformService.isBrowser) {
             if (!this.isReady())
                 this.load().then(this.show);
             else this.show()
@@ -30,7 +31,7 @@ export class MapsControl {
     }
 
     ngOnDestroy() {
-        if (isPlatformBrowser(this.platformId)) {
+        if (this.platformService.isBrowser) {
             this.close();
         }
     }

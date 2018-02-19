@@ -46,8 +46,7 @@ import "rxjs/Rx";
 export class ApplicationModule {
     constructor(router: Router,
                 globalService: GlobalService,
-                stateService: StateService,
-                platformService: PlatformService) {
+                stateService: StateService) {
 
         router.events
             .filter(e => e instanceof NavigationEnd)

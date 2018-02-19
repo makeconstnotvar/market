@@ -24,15 +24,11 @@ export class DefaultLayout {
 
     constructor(categoryProvider: CategoryProvider,
                 contractProvider: ContractProvider,
-                navbarService: NavbarService,
-                globalService: GlobalService,
-                elementRef: ElementRef) {
+                navbarService: NavbarService) {
         categoryProvider.list().subscribe(response => this.categories = response);
         contractProvider.getCartStatus().subscribe(response => navbarService.updateCartData(response))
 
 
-        //globalService.onScrollToEl.subscribe((selector: string = 'market-navbar') => {
-            //elementRef.nativeElement.querySelector(selector).scrollIntoView();
-        //})
+
     }
 }

@@ -4,6 +4,7 @@ import {Meta, Title} from '@angular/platform-browser';
 import {ConfigService} from "./config";
 import {MetaInfo} from "../models";
 import {Location} from "@angular/common";
+import {PlatformService} from "./platform";
 
 @Injectable()
 export class SeoService {
@@ -11,8 +12,14 @@ export class SeoService {
     constructor(private metaService: Meta,
                 private titleService: Title,
                 private router: Router,
-                private configService: ConfigService) {
+                private configService: ConfigService,
+                private platformService: PlatformService) {
+        if (this.platformService.isBrowser) {
+            this._window = window;
+        }
     }
+
+    _window: any;
 
     setMeta(meta) {
         let config = this.configService.config;
@@ -24,6 +31,12 @@ export class SeoService {
         this.metaService.addTags(metaInfo.tags);
 
 
+    }
+
+    reachGoal(event) {
+        if (this.platformService.isBrowser) {
+            this._window.yaCounter31040946.reachGoal(event)
+        }
     }
 
     private makeMetaInfo(meta: MetaInfo) {

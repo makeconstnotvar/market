@@ -2,7 +2,7 @@ import {Component, ElementRef} from "@angular/core";
 import {CategoryProvider, ContractProvider} from "../providers";
 import {Category} from "../models";
 import {GlobalService, NavbarService} from "../services";
-
+import {PlatformService} from "../services/platform";
 
 
 @Component({
@@ -25,7 +25,8 @@ export class DefaultLayout {
                 contractProvider: ContractProvider,
                 navbarService: NavbarService,
                 globalService: GlobalService,
-                elementRef: ElementRef) {
+                elementRef: ElementRef,
+                platformService:PlatformService) {
 
 
         categoryProvider.list().subscribe(response => this.categories = response);
@@ -33,7 +34,12 @@ export class DefaultLayout {
 
 
         globalService.onScrollToEl.subscribe((selector: string = 'market-navbar') => {
-            elementRef.nativeElement.querySelector(selector).scrollIntoView();
+            if(platformService.isBrowser) {
+                let el = elementRef.nativeElement.querySelector(selector);
+                let viewportOffset = el.getBoundingClientRect();
+                if (viewportOffset.top < 0)
+                    el.scrollIntoView();
+            }
         })
     }
 }

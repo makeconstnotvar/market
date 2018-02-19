@@ -52,7 +52,7 @@ module.exports = {
         {
             type: 'large',
             prefix: 'l_',
-            height: '800'
+            height: '600'
         },
         {
             type: 'medium',

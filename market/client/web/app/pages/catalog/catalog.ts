@@ -44,7 +44,9 @@ export class CatalogPage {
                 private seoService: SeoService) {
     }
 
-
+    scrollToMenu() {
+        setTimeout(()=>{this.globalService.onScrollToEl.emit('market-menu')});
+    }
 
     xsChange() {
         this.xs = !this.xs;
@@ -84,7 +86,7 @@ export class CatalogPage {
         this.page = page;
         this.navigate();
         this.fetchProducts();
-
+        this.scrollToMenu();
     }
 
     ngOnInit() {
@@ -103,6 +105,9 @@ export class CatalogPage {
             this.selectParameters();
             this.fetchProducts();
             this.fetchActive();
+
+            this.scrollToMenu();
+
         });
 
         this.route.queryParamMap.subscribe((qpm: any) => {
@@ -233,9 +238,7 @@ export class CatalogPage {
                 if (!this.catalogMode)
                     this.pagerComponent.setup(resp.count, this.page);
                 this.ready = true;
-                setTimeout(() => {
-                    this.globalService.onScrollToEl.emit('market-menu')
-                }, 50)
+
             }
 
         })

@@ -36,3 +36,11 @@ view-page {
     background-color: #d03546;
     border-color: #ba2a38;
 }
+.photos{
+    display: flex;
+    flex-wrap: nowrap;
+    img{
+        width: 100%;
+        height: auto;
+    }
+}

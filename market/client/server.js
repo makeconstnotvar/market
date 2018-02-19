@@ -18,7 +18,7 @@ app.use('/', function (req, res) {
     if (serverjs) {
         let prodivers = [
             {provide: 'serverUrl', useValue: config.system.host},
-            {provide: 'expressRequest', useValue: req}
+            //{provide: 'expressRequest', useValue: req}
         ];
 
         engine = serverjs.expressEngine(prodivers);
