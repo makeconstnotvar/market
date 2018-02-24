@@ -6756,12 +6756,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .hidden-xl-down {
   display: none !important; }
 
-market-footer {
+.footer {
   padding: 30px 0;
   display: block;
   color: #fff;
   background-color: #222222; }
-  market-footer .social {
+  .footer .social {
     border-radius: 50%;
     border: 1px solid #fff;
     color: #fff;
@@ -6770,16 +6770,17 @@ market-footer {
     height: 40px;
     width: 40px;
     text-align: center;
-    line-height: 38px;
     transition: background-color .25s ease-out;
     margin-right: 8px; }
-    market-footer .social:hover {
+    .footer .social:hover {
       border-color: #f75163;
       color: #f75163;
       transition: background-color .25s ease-out; }
-  market-footer .like {
+    .footer .social i {
+      line-height: 38px; }
+  .footer .like {
     margin-bottom: 10px; }
-  market-footer .socials {
+  .footer .socials {
     margin-bottom: 10px; }
 
 jumbotron .slider {
@@ -6975,26 +6976,26 @@ market-menu {
       .navbar .navbar-cart__sum {
         left: 90px; } }
 
-price .price__status {
+.price__status {
   position: relative;
   height: 30px;
   line-height: 30px; }
-  price .price__status-available .yes {
+  .price__status-available .yes {
     color: #74b436; }
-  price .price__status-available .no {
+  .price__status-available .no {
     color: #f75163; }
-  price .price__status-incart {
+  .price__status-incart {
     color: #74b436;
     font-weight: bold; }
 
-price .price__value {
+.price__value {
   color: #f75163;
   line-height: 24px;
   margin-bottom: 10px; }
-  price .price__value.no {
+  .price__value.no {
     color: #bbb; }
 
-price .price__purchase {
+.price__purchase {
   cursor: pointer;
   display: block;
   border-radius: 10px;
@@ -7006,14 +7007,14 @@ price .price__purchase {
   padding: 10px 14px;
   transition: background-color 300ms linear;
   white-space: nowrap; }
-  price .price__purchase:hover, price .price__purchase.active {
+  .price__purchase:hover, .price__purchase.active {
     background-color: #f75163;
     border-color: #f75163;
     color: #fff;
     text-decoration: none;
     transition: background-color 300ms linear; }
 
-price .price--w240 .price__purchase {
+.price--w240 .price__purchase {
   width: 240px; }
 
 maps-yandex {
@@ -7136,27 +7137,27 @@ cart-positions .position-item {
   cart-positions .final-name {
     margin-left: 55px; } }
 
-contacts .separ,
-delivery .separ {
+.contacts .separ,
+.delivery .separ {
   border-bottom: 1px solid #eee; }
 
 @media (max-width: 767.98px) {
-  contacts h2,
-  delivery h2 {
+  .contacts h2,
+  .delivery h2 {
     font-size: 1.9rem; }
-  contacts h3,
-  delivery h3 {
+  .contacts h3,
+  .delivery h3 {
     font-size: 1.6rem; } }
 
 @media (min-width: 576px) {
-  contacts h3,
-  delivery h3 {
+  .contacts h3,
+  .delivery h3 {
     font-size: 1rem; }
-  contacts .separ,
-  delivery .separ {
+  .contacts .separ,
+  .delivery .separ {
     margin-bottom: 15px; }
-  contacts .label,
-  delivery .label {
+  .contacts .label,
+  .delivery .label {
     border-radius: 4px;
     margin-top: 0;
     font-weight: bold; } }
@@ -7308,7 +7309,6 @@ cat-product {
   margin-bottom: 10px;
   transition: background-color 300ms linear; }
   cat-product:hover {
-    background-color: #f7f7f7;
     transition: background-color 300ms linear; }
   cat-product .image {
     position: relative;
@@ -7408,10 +7408,10 @@ cat-sorting {
     cursor: pointer;
     text-align: center;
     border: 1px solid #e8e8e8;
-    transition: background-color 300ms linear; }
+    transition: border-color 300ms linear; }
     .special-product__image:hover {
-      background-color: #f7f7f7;
-      transition: background-color 300ms linear; }
+      border-color: #f75163;
+      transition: border-color 300ms linear; }
     .special-product__image-icon {
       position: absolute;
       color: #333333;

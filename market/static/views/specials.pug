@@ -1,0 +1,44 @@
+extends index.pug
+block jumbo
+    include jumbos/specials.pug
+block content
+    div.container
+        div.row
+            h1.col-12 Магазин сумок GetYourBag.ru
+            p.col-12 Добро пожаловать в магазин сумок и рюкзаков GetYourBag.ru. Это наш маленький семейный бизнес, и мы относимся к нему с предельной заботливостью. Каждый клиент для нас - многоуважаемый покупатель.
+            p.col-12 Мы тщательно отбираем ассортимент. Осматриваем и ощупываем каждую модель, проверяем аккуратность швов, плавность работы молнии и замков. Предлагаем вашему внимаю только то, что нравится самим и надеемся, что наши вкусы совпадут с вашими.
+            p.col-12 У нас нет регистрации и бесплатная доставка. Просто выбираете сумку, пишете номер телефона и курьер выезжает к вам! Мы постарались и выбрали самых профессиональных, быстрых и исполнительных курьеров.
+        div.row
+            each product in products
+                div.special-product.mm-special.col-lg-3.col-md-4.col-sm-6.col-12.product
+                    div.special-product__image
+                        a.special-product__image-link(href=product.url)
+                            img(src=product.cover)
+                    div.special-product__info
+                        //a.special-product__name(href=product.url) #{product.name}
+                        div.price__status
+                            if product.inCart
+                                div.price__status-incart
+                                    span
+                                        i.fa.fa-check-circle.rgap
+                                        | В корзине
+
+                            if !product.inCart
+                                div.price__status-available
+                                    if product.available
+                                        span.yes
+                                            i.fa.fa-check-square-o.rgap
+                                            | В наличии
+                                    if !product.available
+                                        span.no
+                                            i.fa.fa-ban.rgap
+                                            | Отсутствует
+
+                        div.price__value
+                            span #{product.price} руб.
+                        a.price__purchase
+                            i.fa.fa-shopping-cart.rgap
+                            | в корзину
+        div
+            h3 Дальше листать смысла особо нет...
+            p Остальное кончилось так давно, что мы забыли, как оно выглядело!

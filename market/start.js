@@ -6,7 +6,7 @@ const express = require('express'),
     server = require('http').createServer(app),
     config = require('./config'),
     adminApp = require('./admin/application'),
-    clientApp = require('./client/application');
+    clientApp = require('./static/application');
 
 app.use(helmet());
 app.use(bodyParser.json());

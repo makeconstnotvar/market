@@ -14,6 +14,7 @@ function ProductTabsCtrl($scope, $rootScope, $state, Product, Filter, translit) 
         Product.select({query: {_id: pid}}).then(function (response) {
             $scope.product = response.data;
             urlCanChange = !$scope.product.url;
+            $scope.product.charge = $scope.product.price - $scope.product.purchase;
             $scope.product.photos = sortPhotos($scope.product.photos)
         });
     }

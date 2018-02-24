@@ -2,6 +2,9 @@ html {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
 }
+.rgap {
+    margin-right: 6px;
+}
 .m-icon-gap {
     margin-right: 6px;
 }

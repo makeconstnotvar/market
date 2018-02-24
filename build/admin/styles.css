@@ -11093,6 +11093,7 @@ label.regular {
 }
 .image-item{
     border: 1px solid #eee;
+    margin-bottom: 15px;
 }
 .image-row{
     display: flex;
@@ -11163,6 +11164,9 @@ label.regular {
 html {
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
+}
+.rgap {
+    margin-right: 6px;
 }
 .m-icon-gap {
     margin-right: 6px;

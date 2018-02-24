@@ -2,9 +2,9 @@ ProductMainCtrl.$inject = ['$scope', '$state', 'beautify', 'config'];
 
 function ProductMainCtrl($scope, $state, beautify, config) {
     var toState = $state.current.data.toState;
-    
+
     $scope.utils = $scope.utils || {};
-    
+
     $scope.btf = function (field, text) {
         $scope.product[field] = beautify(text);
     };
@@ -18,12 +18,12 @@ function ProductMainCtrl($scope, $state, beautify, config) {
             $state.go(toState.category, {pid: $scope.product._id});
         });
     };
-    
+
     $scope.addStockText = function (force) {
         if (!force || !$scope.product.stockText)
             $scope.product.stockText = config.stockText;
     };
-    
+
     $scope.plus = function () {
         if (!$scope.product.count) {
             $scope.product.count = 1;
@@ -41,8 +41,6 @@ function ProductMainCtrl($scope, $state, beautify, config) {
             $scope.product.count--;
         }
     };
-
-    
 
 
 }

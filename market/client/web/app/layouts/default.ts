@@ -15,7 +15,7 @@ import {PlatformService} from "../services/platform";
             <market-menu [categories]="categories"></market-menu>
             <router-outlet></router-outlet>
         </div>
-        <market-footer></market-footer>
+        <market-footer class="footer"></market-footer>
     `
 })
 export class DefaultLayout {
