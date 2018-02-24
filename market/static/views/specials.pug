@@ -3,11 +3,9 @@ block jumbo
     include jumbos/specials.pug
 block content
     div.container
-        div.row
-            h1.col-12 Магазин сумок GetYourBag.ru
-            p.col-12 Добро пожаловать в магазин сумок и рюкзаков GetYourBag.ru. Это наш маленький семейный бизнес, и мы относимся к нему с предельной заботливостью. Каждый клиент для нас - многоуважаемый покупатель.
-            p.col-12 Мы тщательно отбираем ассортимент. Осматриваем и ощупываем каждую модель, проверяем аккуратность швов, плавность работы молнии и замков. Предлагаем вашему внимаю только то, что нравится самим и надеемся, что наши вкусы совпадут с вашими.
-            p.col-12 У нас нет регистрации и бесплатная доставка. Просто выбираете сумку, пишете номер телефона и курьер выезжает к вам! Мы постарались и выбрали самых профессиональных, быстрых и исполнительных курьеров.
+        h1.text-center Ликвидация женских сумок магазина GetYourBag.ru
+        p.text-center Мы специально сделали очень просто сайт. Все максимально просто: каталог #[i.fa.fa-arrow-right] сумка #[i.fa.fa-arrow-right] корзина
+        p.text-center Все товары новые, отличного качества и в заводской упаковке. Просто нам они больше не нужны!
         div.row
             each product in products
                 div.special-product.mm-special.col-lg-3.col-md-4.col-sm-6.col-12.product
@@ -20,7 +18,7 @@ block content
                             if product.inCart
                                 div.price__status-incart
                                     span
-                                        i.fa.fa-check-circle.rgap
+                                        i.fa.fa-shopping-cart.rgap
                                         | В корзине
 
                             if !product.inCart
@@ -34,11 +32,19 @@ block content
                                             i.fa.fa-ban.rgap
                                             | Отсутствует
 
-                        div.price__value
-                            span #{product.price} руб.
-                        a.price__purchase
+                        - var no = product.available?'':'no'
+                        if product.discount
+                            div.discount(class=no)
+                                span #{product.discount} руб.
+                        div(class=no)
+                            span.price-value #{product.price} руб.
+                            |
+                            |
+                            if product.bonus
+                                span.bonus - #{product.bonus} !!!
+                        //a.price__purchase
                             i.fa.fa-shopping-cart.rgap
-                            | в корзину
+                            | купить!
         div
             h3 Дальше листать смысла особо нет...
             p Остальное кончилось так давно, что мы забыли, как оно выглядело!

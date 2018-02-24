@@ -17,10 +17,10 @@ let clientTemp = 'build/client';
 
 gulp.task('css', function () {
     return gulp.src('market/client/web/styles/common.scss')
-        .pipe(sourcemaps.init())
+        //.pipe(sourcemaps.init())
         .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
         .pipe(concat('styles.css'))
-        .pipe(sourcemaps.write('.'))
+        //.pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(clientTemp))
 });
 gulp.task('loading', function () {

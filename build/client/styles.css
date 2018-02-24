@@ -6783,47 +6783,26 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   .footer .socials {
     margin-bottom: 10px; }
 
-jumbotron .slider {
-  background-position: 50%;
+.slider {
+  background-position: 52%;
   background-size: cover;
   height: 400px; }
 
-jumbotron .slide-1 {
-  background-image: url("/img/slide1.jpg"); }
+.slide-1 {
+  background-image: url("/img/bags-3.jpg"); }
 
-jumbotron .slide-2 {
+.slide-2 {
   background-image: url("/img/slide2.jpg"); }
 
-jumbotron .slide-3 {
+.slide-3 {
   background-image: url("/img/slide3.jpg"); }
 
-jumbotron .slogan {
-  float: right;
-  width: 500px;
-  margin: 30px 0; }
-
-@media (max-width: 1199.98px) {
-  jumbotron .slider {
-    background-position: 60%; } }
-
-@media (max-width: 991.98px) {
-  jumbotron .slider {
-    height: 300px; }
-  jumbotron .slogan {
-    width: 350px; }
-  jumbotron h1 {
-    font-size: 1.8rem; } }
-
-@media (max-width: 767.98px) {
-  jumbotron .slider {
-    background-position: 58%; }
-  jumbotron .slogan {
-    width: 285px; } }
-
-@media (max-width: 575.98px) {
-  jumbotron .slider {
-    background-position: 38%;
-    height: 250px; } }
+.slogan {
+  height: 400px;
+  padding-top: 140px;
+  text-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  width: 400px; }
 
 market-menu {
   display: block;
@@ -6880,7 +6859,7 @@ market-menu {
     .navbar .navbar-item__label,
     .navbar .navbar-cart__label {
       position: absolute;
-      bottom: 0;
+      bottom: -14px;
       left: 38px;
       color: #fff;
       font-size: 10px;
@@ -6988,13 +6967,6 @@ market-menu {
     color: #74b436;
     font-weight: bold; }
 
-.price__value {
-  color: #f75163;
-  line-height: 24px;
-  margin-bottom: 10px; }
-  .price__value.no {
-    color: #bbb; }
-
 .price__purchase {
   cursor: pointer;
   display: block;
@@ -7016,6 +6988,25 @@ market-menu {
 
 .price--w240 .price__purchase {
   width: 240px; }
+
+.discount {
+  text-decoration: line-through;
+  color: #bbb;
+  font-size: 18px; }
+
+.bonus {
+  background-color: #f75163;
+  color: #fff;
+  border-radius: 4px;
+  padding: 4px;
+  margin-left: 6px;
+  font-size: 14px; }
+
+.price-value {
+  color: #fff;
+  font-size: 24px; }
+  .price-value.no {
+    color: #bbb; }
 
 maps-yandex {
   width: 100%; }
@@ -7425,8 +7416,8 @@ cat-sorting {
       bottom: 0; }
   .special-product__info {
     background: #313037;
-    padding: 18px;
-    text-align: center; }
+    text-align: center;
+    padding: 10px; }
   .special-product__name {
     color: #fff;
     display: block;
@@ -7574,5 +7565,3 @@ textarea {
         background-color: rgba(255, 165, 0, 0.25)
     }
 }*/
-
-/*# sourceMappingURL=styles.css.map */

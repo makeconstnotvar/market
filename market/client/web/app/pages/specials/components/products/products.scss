@@ -29,9 +29,9 @@
     }
     &__info {
         background: #313037;
-        padding: 18px;
         text-align: center;
-
+        padding: 10px;
+        //display: flex;
     }
     &__name {
         color: $white;

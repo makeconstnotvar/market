@@ -4,7 +4,10 @@ const bll = require('../../api/business'),
 
 module.exports = function (req, res, next) {
     let options = {
-        order: {count: -1, _id: -1}, take: 0, projection: {
+        query: {publish: true,price:{$gt:0}},
+        order: {count: -1, _id: -1,},
+        take: 0,
+        projection: {
             'name': 1,
             'price': 1,
             'discount': 1,
@@ -16,6 +19,7 @@ module.exports = function (req, res, next) {
         }
     };
     seo('specials').then(seo => {
+        seo = seo||{};
         seo.image = '/img/logo.jpg';
 
         bll.contract.select({query: {uid: req.uid, status: 'temp'}})
@@ -39,12 +43,15 @@ function setupView(products, contract) {
     products.forEach(product => {
         product.available = product.count > 0;
 
+        if(product.discount && product.price)
+        product.bonus = product.discount - product.price;
+
         if (product.category && product.category.url)
             product.url = `/${product.category.url}/${product.url}`;
 
         if (product.photos) {
 
-                product.cover = `/photos/${product._id}/l_${product.photos[0].fileId}`
+            product.cover = `/photos/${product._id}/l_${product.photos[0].fileId}`
 
         }
         if (contract && contract.positions) {

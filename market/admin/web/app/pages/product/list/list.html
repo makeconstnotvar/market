@@ -14,8 +14,10 @@
                     <th></th>
                     <th></th>
                     <th>Название</th>
-                    <th>Цена</th>
-                    <th>Наличие</th>
+                    <th>Закупка</th>
+                    <th>Акция</th>
+                    <th class="info">Цена</th>
+                    <th class="gray-bg">Наличие</th>
                     <th class="text-center" title="Располагается на главной странице"><i class="fa fa-home"></i></th>
                     <th class="text-center" title="Видимость на клиентском сайте"><i class="fa fa-eye"></i></th>
                     <th class="text-center" title="Удаление товара"><i class="fa fa-trash-o"></i></th>
@@ -42,7 +44,13 @@
                         </div>
                     </td>
                     <td class="no-padding price">
-                        <input id="price" ng-model="product.price" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:'input'}" ng-change="save(product)">
+                        <input ng-model="product.purchase" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:'input'}" ng-change="save(product)">
+                    </td>
+                    <td class="no-padding price">
+                        <input ng-model="product.discount" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:'input'}" ng-change="save(product)">
+                    </td>
+                    <td class="no-padding price info">
+                        <input ng-model="product.price" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:'input'}" ng-change="save(product)">
                     </td>
                     <td class="no-padding my-count">
                         <div class="input-group ">

@@ -75,6 +75,9 @@ gulp.task('watch-js', function () {
 });
 gulp.task('watch-css', function () {
     return gulp.watch([
-        `${adminWeb}/css/*.css`
+        `${shared}/css/bootstrap.css`,
+        `${shared}/css/*.css`,
+        `${adminWeb}/css/*.css`,
+        `${adminWeb}/app/**/*.css`
     ], gulp.series('css'));//, 'css'
 });
