@@ -13,7 +13,8 @@ function tildaResolver(url, prev, done) {
     return {file: url};
 }
 
-let clientTemp = 'build/client';
+//let clientTemp = 'build/client';
+let clientTemp = 'market/static/scripts';
 
 gulp.task('css', function () {
     return gulp.src('market/client/web/styles/common.scss')
@@ -44,4 +45,4 @@ gulp.task('watch', gulp.series('css', function watch() {
         'market/client/web/app/**/*.scss'], gulp.series('css'))
 }));
 
-gulp.task('default', gulp.series('css', 'loading', 'inject'));
+gulp.task('default', gulp.series('css'/*, 'loading', 'inject'*/));

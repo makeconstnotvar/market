@@ -1,12 +1,12 @@
 
 
     .slider {
-        background-position: 52%;
+        background-position: 50%;
         background-size: cover;
-        height: 400px;
+        //height: 400px;
     }
     .slide-1 {
-        background-image: url('/img/bags-3.jpg');
+        background-image: url('/img/bags-31.jpg');
     }
 
     .slide-2 {
@@ -18,11 +18,22 @@
     }
 
     .slogan {
-        height: 400px;
-        padding-top: 140px;
-        text-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
-        color:#fff;
-        width: 400px;
+        height: 500px;
+        padding-top: 70px;
+        text-shadow: 0 0 25px black;
+        color: #fff;
+        width: 625px;
+        margin-right: -74px;
+        .title{
+            font-size: 6rem;
+        }
+        .subtitle{
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+        .minititle{
+            font-size: 12px;
+        }
     }
     @include media-breakpoint-down(lg) {
 

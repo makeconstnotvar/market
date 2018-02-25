@@ -1,7 +1,7 @@
 .navbar {
     display: block;
     user-select: none;
-    background-color: #222222;
+    background-color: #313037;
     .navbar-item,
     .navbar-cart {
         //display: inline-block;
@@ -11,7 +11,7 @@
         &:hover,
         &:focus {
             .navbar-cart__sum, .navbar-cart__count {
-                background-color: #000;
+                background-color: #313037;
                 transition: background-color .25s ease-out;
             }
             text-decoration: none;
