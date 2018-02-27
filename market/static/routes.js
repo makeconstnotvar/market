@@ -12,8 +12,7 @@ router.get('/delivery', (req, res) => {
 });
 router.get('/cart', handlers.cart);
 router.get('/history', handlers.history);
-router.get('/handbags/:pid', handlers.product);
-router.get('/backpacks/:pid', handlers.product);
+router.get('/:categoryUrl/:pid/:image?', handlers.product);
 router.post('/contract', handlers.contract);
 router.use((req, res) => {
     res.render('notfound');

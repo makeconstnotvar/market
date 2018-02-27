@@ -1,3 +1,47 @@
 extends index.pug
 block content
-    div Продукт
+    div.container
+        a.btn.btn-red.pull-right.m-back(href="/")
+            i.fa.fa-chevron-left.rgap Назад
+
+        h1.me-name #{product.name}
+        p #{product.description}
+        div.col-12.text-center.photo
+            img.img-fluid( itemprop="image" src=product.selectedImageSrc alt=product.name)
+
+        div.photos
+            each image in product.images
+                a.me-link.text-center.active(href=image.url)
+                    img( src=image.src)
+
+
+        div.row
+            div.col-12
+                div( itemscope="" itemtype="http://schema.org/Product")
+                meta( itemprop="name" content="Женская велюровая сумка Vera Victoria Vito.")
+                meta( itemprop="description" content="Формованная сумка на руку с изящным изгибом. Выглядит значительно дороже, чем стоит. Приятного шоколадного оттенка. Снаружи и внутри карманы на молнии. К сумке прилагается длинный ремень. Металлические ножки придают устойчивость. Сумку удобно держать за круглые ручки. Внутрь помещаются документы размера А4.")
+                meta( itemprop="image" content="https://getyourbag.ru/photos/5a7f68157854904ca943bc81/l_jzhakNMw.jpg")
+
+        div( itemscope="" itemtype="http://schema.org/ImageObject")
+        meta( itemprop="contentUrl" content="https://getyourbag.ru/photos/5a7f68157854904ca943bc81/l_jzhakNMw.jpg")
+
+        div( itemprop="offers" itemscope="" itemtype="http://schema.org/Offer")
+
+        div.price__status
+
+
+        div.price__status-available
+            span.yes(href="http://schema.org/InStock" itemprop="availability")
+                i.fa.fa-check-square-o.rgap В наличии
+
+
+        div.price__valuespan(itemprop="price4999 руб.")
+            meta( content="RUB" itemprop="priceCurrency")
+            a.price__purchasei.fa.fa-shopping-cart.rgap в корзину
+
+        div.row
+            div.me-info.col-md-12.col-lg-6
+                h2 Описание
+
+
+
