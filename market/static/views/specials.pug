@@ -35,11 +35,11 @@ block content
                                             i.fa.fa-ban.rgap
                                             | Отсутствует
 
-                        - var no = product.available?'':'no'
+                        - var availableClass = product.available?'':'no'
                         if product.discount
-                            div.discount(class=no)
+                            div.discount(class=availableClass)
                                 span #{product.discount} руб.
-                        div(class=no)
+                        div(class=availableClass)
                             span.price-value #{product.price} руб.
                             |
                             |

@@ -59,6 +59,9 @@ module.exports = function (req, res, next) {
         product.available = product.count > 0;
         product.photos = product.photos.filter(photo => photo.fileType === 'image');
 
+        if(product.discount && product.price)
+            product.bonus = product.discount - product.price;
+
         if (product.photos) {
             product.photos = product.photos.sort((f1, f2) => f1.order - f2.order);
             product.images = product.photos.map(photo => {
