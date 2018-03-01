@@ -1,4 +1,5 @@
 const mongoose = require('mongoose'),
+    random = require('mongoose-random'),
     embeddedParameter = require('./embeddedParameter'),
     embeddedPhoto = require('./embeddedPhoto'),
     embeddedFile = require('./embeddedFile'),
@@ -37,6 +38,6 @@ const productSchema = mongoose.Schema({
     template: {type: mongoose.Schema.Types.ObjectId, ref: 'Template'},
     parameters: [embeddedParameter]
 });
-
+productSchema.plugin(random);
 
 module.exports = productSchema;

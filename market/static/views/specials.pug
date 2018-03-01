@@ -1,53 +1,19 @@
+
 extends index.pug
 block jumbo
     include jumbos/specials.pug
 block content
+
     div.container
         div.row
             div.col
-
                 h2 Все товары новые, отличного качества и в заводской упаковке.
-                p Просто нам они больше не нужны!
                 p Так же Вам стоит знать, что мы тщательно осматриваем все сумки и брак сразу возвращаем производителю.
         div.row
+            include controls/card.pug
             each product in products
-                div.special-product.mm-special.col-lg-3.col-md-4.col-sm-6.col-12.product
-                    div.special-product__image
-                        a.special-product__image-link(href=product.url)
-                            img(src=product.cover)
-                    div.special-product__info
-                        //a.special-product__name(href=product.url) #{product.name}
-                        div.price__status
-                            if product.inCart
-                                div.price__status-incart
-                                    span
-                                        i.fa.fa-shopping-cart.rgap
-                                        | В корзине
+                +card(product, 'col-lg-3 col-md-4 col-sm-6 col-12')
 
-                            if !product.inCart
-                                div.price__status-available
-                                    if product.available
-                                        span.yes
-                                            i.fa.fa-check-square-o.rgap
-                                            | В наличии
-                                    if !product.available
-                                        span.no
-                                            i.fa.fa-ban.rgap
-                                            | Отсутствует
-
-                        - var availableClass = product.available?'':'no'
-                        if product.discount
-                            div.discount(class=availableClass)
-                                span #{product.discount} руб.
-                        div(class=availableClass)
-                            span.price-value #{product.price} руб.
-                            |
-                            |
-                            if product.bonus
-                                span.bonus - #{product.bonus} !!!
-                        //a.price__purchase
-                            i.fa.fa-shopping-cart.rgap
-                            | купить!
         div.row
             div.col
                 h3 Дальше листать смысла особо нет...

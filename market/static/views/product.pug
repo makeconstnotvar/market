@@ -43,6 +43,10 @@ block content
                 if product.information
                     h2 Описание
                     div !{product.information}
-
+        div.row.no-gutters
+            include controls/card.pug
+            each random in randoms
+                //div #{random.name}
+                +card(random,'col')
 
 

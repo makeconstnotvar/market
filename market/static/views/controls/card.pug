@@ -1,0 +1,34 @@
+mixin card(product,className)
+    div.special-product.mm-special.product(class=className)
+        div.special-product__image
+            a.special-product__image-link(href=product.url)
+                img(src=product.cover)
+        div.special-product__info
+            div.price__status
+                if product.inCart
+                    div.price__status-incart
+                        span
+                            i.fa.fa-shopping-cart.rgap
+                            | В корзине
+
+                if !product.inCart
+                    div.price__status-available
+                        if product.available
+                            span.yes
+                                i.fa.fa-check-square-o.rgap
+                                | В наличии
+                        if !product.available
+                            span.no
+                                i.fa.fa-ban.rgap
+                                | Отсутствует
+
+            - var availableClass = product.available?'':'no'
+            if product.discount
+                div.discount(class=availableClass)
+                    span #{product.discount} руб.
+            div(class=availableClass)
+                span.price-value #{product.price} руб.
+                |
+                |
+                if product.bonus
+                    span.bonus - #{product.bonus} !!!

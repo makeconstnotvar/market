@@ -10,6 +10,7 @@ module.exports = function (req, res, next) {
 
     series({
         product: getProduct,
+        randoms: getRandom,
         contract: getContract
     }, processView);
 
@@ -20,7 +21,7 @@ module.exports = function (req, res, next) {
         }).populate('category').populate('parameters.parameter').lean().exec((err, product) => {
             if (err)
                 callback(err);
-            if (!product || product.category.url!==categoryUrl) {
+            if (!product || product.category.url !== categoryUrl) {
                 res.setStatus(404).render('notfound', {requestUrl: url});
             }
             else {
@@ -34,6 +35,15 @@ module.exports = function (req, res, next) {
                 }
 
             }
+        })
+    }
+
+    function getRandom(callback) {
+        bll.category.select({query: {url: categoryUrl}}).exec((err, category) => {
+            bll.product.model.findRandom({category: category._id, count:{$gte:1}}).limit(5).exec((err, products) => {
+                if (err) callback(err);
+                else callback(null, products)
+            });
         })
     }
 
@@ -52,14 +62,15 @@ module.exports = function (req, res, next) {
             image: `/photos/${product._id}/${product.images && product.images[0]}`,
             title: product.name
         };
-        res.render('product', {product, seo});
+        let randoms = results.randoms.map(product=>{return getViewFields(product, results.contract);});
+        res.render('product', {product, seo, randoms});
     }
 
     function getViewFields(product, contract) {
         product.available = product.count > 0;
         product.photos = product.photos.filter(photo => photo.fileType === 'image');
 
-        if(product.discount && product.price)
+        if (product.discount && product.price)
             product.bonus = product.discount - product.price;
 
         if (product.photos) {
