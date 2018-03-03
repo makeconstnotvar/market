@@ -63,13 +63,6 @@ module.exports = class extends Base {
         })
     }
 
-    /*findRandom(options){
-        options = options || {};
-        let projection = options.projection || {},
-            query = options.query || {};
-        return this.model.findRandom(query, projection);
-    }*/
-
 };
 
 

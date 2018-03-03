@@ -6767,10 +6767,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   background-image: url("/img/bags-31.jpg"); }
 
 .slide-2 {
-  background-image: url("/img/slide2.jpg"); }
+  background-image: url("/img/bags-32.jpg"); }
 
 .slide-3 {
-  background-image: url("/img/slide3.jpg"); }
+  background-image: url("/img/bags-35.jpg"); }
 
 .slogan {
   height: 500px;
@@ -6781,6 +6781,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-right: -74px; }
   .slogan .title {
     font-size: 6rem; }
+  .slogan .title2 {
+    font-size: 4rem; }
   .slogan .subtitle {
     font-size: 1.5rem;
     margin-bottom: 40px; }
@@ -7114,30 +7116,13 @@ cart-positions .position-item {
   cart-positions .final-name {
     margin-left: 55px; } }
 
-.contacts .separ,
+.delivery .label {
+  font-weight: bold; }
+
 .delivery .separ {
-  border-bottom: 1px solid #eee; }
-
-@media (max-width: 767.98px) {
-  .contacts h2,
-  .delivery h2 {
-    font-size: 1.9rem; }
-  .contacts h3,
-  .delivery h3 {
-    font-size: 1.6rem; } }
-
-@media (min-width: 576px) {
-  .contacts h3,
-  .delivery h3 {
-    font-size: 1rem; }
-  .contacts .separ,
-  .delivery .separ {
-    margin-bottom: 15px; }
-  .contacts .label,
-  .delivery .label {
-    border-radius: 4px;
-    margin-top: 0;
-    font-weight: bold; } }
+  border-bottom: 1px solid #eee;
+  margin-bottom: 15px;
+  padding-bottom: 15px; }
 
 catalog {
   margin-bottom: 20px;

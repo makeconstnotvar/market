@@ -1,3 +1,7 @@
-module.exports = function (req,res,next) {
-    res.render('history')
-} ;
+let seo = require('../handlers/seo');
+
+module.exports = function (req, res, next) {
+    seo('history').then(seo => {
+        res.render('history',       {seo})
+    });
+};

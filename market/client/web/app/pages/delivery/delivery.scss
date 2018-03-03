@@ -1,27 +1,14 @@
-.contacts,
+
 .delivery {
-    .separ {
-        border-bottom: 1px solid #eee;
-    }
-    @include media-breakpoint-down(sm) {
-        h2 {
-            font-size: 1.9rem;
-        }
-        h3 {
-            font-size: 1.6rem;
-        }
-    }
-    @include media-breakpoint-up(sm) {
-        h3 {
-            font-size: 1rem;
-        }
-        .separ {
-            margin-bottom: 15px;
-        }
+
+
         .label {
-            border-radius: 4px;
-            margin-top: 0;
+
             font-weight: bold;
         }
+    .separ {
+        border-bottom: 1px solid #eee;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
     }
 }

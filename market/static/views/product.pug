@@ -6,7 +6,7 @@ block content
                 div
                     a.btn.btn-red.m-back(href="/")
                         i.fa.fa-chevron-left.rgap
-                        | Каталог сумок
+                        | Распродажа сумок
 
                 h1.me-name #{product.name}
                 div #{product.description}
@@ -43,10 +43,15 @@ block content
                 if product.information
                     h2 Описание
                     div !{product.information}
-        div.row.no-gutters
+
+        div.row
+            div.col-12
+                h2 Торопись, пока еще кое-что интересное осталось!
             include controls/card.pug
             each random in randoms
-                //div #{random.name}
-                +card(random,'col')
-
+                +card(random,'col-lg-3 col-sm-6 col-12')
+        div
+            a.btn.btn-red.m-back(href="/")
+                i.fa.fa-chevron-left.rgap
+                | Распродажа сумок
 

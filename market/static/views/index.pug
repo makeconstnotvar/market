@@ -24,8 +24,9 @@ html
         script(src="/scripts/flipclock.min.js")
         script(src="/scripts/timer.js")
         block head
-    body
-        include controls/navbar.pug
-        block jumbo
-        block content
+    body.sticky
+        div.sticky-content
+            include controls/navbar.pug
+            block jumbo
+            block content
         include controls/footer.pug

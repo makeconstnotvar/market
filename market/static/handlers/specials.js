@@ -1,4 +1,5 @@
 const bll = require('../../api/business'),
+    views = require('./views'),
     seo = require('./seo');
 
 
@@ -29,7 +30,7 @@ module.exports = function (req, res, next) {
             bll.product.selectAll(options).populate('category').lean().exec((err, products) => {
                 if (err) return next(err);
 
-                setupView(products, contract);
+                views.specials(products, contract);
 
                 res.render('specials', {products, seo})
             });
@@ -37,30 +38,3 @@ module.exports = function (req, res, next) {
     });
 };
 
-
-function setupView(products, contract) {
-
-    products.forEach(product => {
-        product.available = product.count > 0;
-
-        if(product.discount && product.price)
-        product.bonus = product.discount - product.price;
-
-        if (product.category && product.category.url)
-            product.url = `/${product.category.url}/${product.url}`;
-
-        if (product.photos) {
-
-            product.cover = `/photos/${product._id}/l_${product.photos[0].fileId}`
-
-        }
-        if (contract && contract.positions) {
-            product.inCart = !!contract.positions.find(position => {
-                if (position.product)
-                    return product._id.equals(position.product._id)
-            });
-        }
-    });
-
-    return products;
-}

@@ -1,0 +1,13 @@
+extends index.pug
+block jumbo
+    include jumbos/empty.pug
+block content
+    div.container.view-first
+        div
+            a.btn.btn-red.m-back(href="/")
+                i.fa.fa-chevron-left.rgap
+                | Распродажа сумок
+        h1 Корзина покупок
+        div
+            div.alert.alert-info
+                span В корзине пока нет ни одного товара

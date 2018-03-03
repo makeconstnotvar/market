@@ -17,7 +17,7 @@
 
 $(function () {
     let friday = new Date();
-    friday.setDate(friday.getDate() + (1 + 4 - friday.getDay()) % 7);
+    friday.setDate(friday.getDate() + (8 + 4 - friday.getDay()) % 7);
     friday.setHours(21);
     friday.setMinutes(0);
     friday.setSeconds(0);

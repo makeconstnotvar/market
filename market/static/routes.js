@@ -1,21 +1,28 @@
 let express = require('express'),
-    handlers  = require('./handlers'),
-    router = express.Router();
+    handlers = require('./handlers'),
+    router = express.Router(),
+    seo = require('./handlers/seo');
 
 
 router.get('/', handlers.specials);
 router.get('/contacts', (req, res) => {
-    res.render('contacts')
+    seo('contacts').then(seo => {
+        res.render('contacts', {seo})
+    });
 });
 router.get('/delivery', (req, res) => {
-    res.render('delivery')
+    seo('delivery').then(seo => {
+        res.render('delivery', {seo})
+    });
 });
 router.get('/cart', handlers.cart);
-router.get('/history', handlers.history);
+router.get('/cart/:cid', handlers.history);
 router.get('/:categoryUrl/:pid/:image?', handlers.product);
 router.post('/contract', handlers.contract);
 router.use((req, res) => {
-    res.render('notfound');
+    seo('notfound').then(seo => {
+        res.render('notfound', {seo})
+    });
 });
 
 // error handler
