@@ -2,11 +2,10 @@ extends index.pug
 
 block content
     div.container.view-first
-
         h1 Корзина покупок
         div
-            div.alert.alert-info
-                span В корзине пока нет ни одного товара
+            div.alert.alert-success
+                span #{message}
         div
             a.btn.btn-red.m-back(href="/")
                 i.fa.fa-chevron-left.rgap

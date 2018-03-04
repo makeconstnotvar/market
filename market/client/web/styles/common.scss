@@ -83,7 +83,10 @@ textarea {
     border-radius: 4px;
     margin: 0 6px;
 }
-
+td.no-padding {
+    padding: 0 !important;
+    vertical-align: middle;
+}
 
 /*
 @include media-breakpoint-up(xs) {

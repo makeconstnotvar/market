@@ -1,88 +1,72 @@
 extends index.pug
-block jumbo
-    include jumbos/cart.pug
 block content
     div.container.view-first
-        div
-            a.btn.btn-red.m-back(href="/")
-                i.fa.fa-chevron-left.rgap
-                | Распродажа сумок
         h1 Корзина покупок
-
-
-        div.row.position-item.even
-            div.col-sm-12.col-md-6.d-flex.position-first
-                span.align-self-center.mr-2 1
-                span.align-self-center.mr-2
-                    img( src="/photos/5581e5ef5a60cc681052b83e/s_LbA712zz.png")
-                a.pointer.align-self-center(href="/backpacks/krasno-fioletovyy-portfel-s-sobachkoy-alliance") Красно-фиолетовый портфель с собачкой Alliance
-
-            div.col-sm-12.col-md-6.d-flex
-                button.btn.btn-secondary.pointer.mr-2.align-self-center
-                    i.fa.fa-minus
-                button.btn.btn-secondary.pointer.mr-2.align-self-center
-                    i.fa.fa-plus
-                span.align-self-center.mr-2.align-self-center 1 x 2800 = 2800 рублей
-                button.btn.btn-danger.text-center.pointer.ml-auto.align-self-center
-                    i.fa.fa-times
-
-        div.row.final
-            div.col-3.col-sm-6
-                div.final-name Итого
-            div.col-9.col-sm-6
-                div.final-price 2800 рублей
-
+        table.table.table-striped
+            each position in current.positions
+                tr
+                    td.no-padding
+                        img.pl-2.pr-2( src=position.product.cover)
+                    td
+                        a.pointer(href="/backpacks/krasno-fioletovyy-portfel-s-sobachkoy-alliance") #{position.product.name}
+                    td
+                        span #{position.product.price} рублей
+                    td
+                        button.btn.btn-danger.text-center.pointer
+                            i.fa.fa-times
+            tr.final
+                td(colspan=2) Итого
+                td(colspan=2) #{current.final} рублей
         h2 Контакты
         p Мы обещаем не использовать ваш номер телефона в рекламных целях. Так же обещаем не передавать его третьим лицам.
         p Если у вас имеются особые пожелания, напишите их в комментарии к заказу, мы обязательно прочитаем и постараемся выполнить.
-        div.d-flex.flex-column.form-horizontal
+        form.d-flex.flex-column.form-horizontal(method="post")
             div.form-group.row
                 label.title.col-12.col-md-2( for="phone" )
                     i.fa.fa-asterisk  Телефон
                 div.col-12.col-md-10
-                    input.form-control( id="phone" type="text" )
+                    input.form-control( id="phone" name='phone' type="text" )
                     span.text-muted например, 89261234567, но можно так +7(926)123-45-67
-
             div.form-group.row
                 label.title.col-12.col-md-2( for="name") Ваше имя
                 div.col-12.col-md-10
-                    input.form-control( id="name" type="text" )
-
+                    input.form-control( id="name" name='name' type="text" )
             div.form-group.row
                 label.title.col-12.col-md-2( for="address") Адрес
                 div.col-12.col-md-10
-                    input.form-control( id="address" type="text" )
-
+                    input.form-control( id="address" name='address' type="text" )
             div.form-group.row
                 label.title.col-12.col-md-2  Уведомления
                 div.col-12.col-md-10
                     div.form-check
                         label.form-check-label( for="sendsms")
-                            input.form-check-input(  id="sendsms" type="checkbox")
+                            input.form-check-input(  id="sendsms" name='sendSms' type="checkbox")
                             | Отправлять в смс
             div.form-group.row
                 label.title.col-12.col-md-2  Получение
                 div.col-12.col-md-10
                     div.form-check
                     label.form-check-label( for="auto" )
-                        input.form-check-input( id="auto" name="delivery" type="radio")
+                        input.form-check-input( id="auto" name="auto" checked type="radio")
                         | Доставка курьером
                         a( href="/delivery") (бесплатно, срок 1-2 дня)
 
                     div.form-check
                     label.form-check-label( for="manual" )
-                        input.form-check-input( id="manual" name="delivery" type="radio" )
+                        input.form-check-input( id="manual" name="manual" type="radio" )
                         | Самовывоз
                         a(  href="/delivery") (бесплатно от м. Новые черемушки 10:00-19:00)
             div.form-group.row
                 label.title.col-12.col-md-2( for="note") Комментарий
                 div.col-12.col-md-10
-                    textarea.form-control( cols="20" id="note" rows="4")
+                    textarea.form-control( cols="20" id="note" name='note' rows="4")
             div.form-group.row
                 div.col-10.submit
                     p Нажимая на кнопку "Заказать", я даю согласие на
+                        |
+                        |
                         a( href="/files/privacy_policy.pdf" target="_blank") обработку персональных данных
                 div.col-10.d-flex.submit
-                    button.btn.btn-primary.pointer.mr-3 Заказать
+                    button.btn.btn-primary.pointer.mr-3(type='submit') Заказать
 
 

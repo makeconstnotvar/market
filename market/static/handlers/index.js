@@ -3,4 +3,5 @@ const cart = require('./cart'),
     history = require('./history'),
     product = require('./product'),
     specials = require('./specials');
-module.exports = {cart, contract, history, product, specials};
+cartpost = require('./cartpost');
+module.exports = {cart, contract, history, product, specials,cartpost};

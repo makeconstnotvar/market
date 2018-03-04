@@ -16,9 +16,9 @@ router.get('/delivery', (req, res) => {
     });
 });
 router.get('/cart', handlers.cart);
+router.post('/cart', handlers.cartpost);
 router.get('/cart/:cid', handlers.history);
 router.get('/:categoryUrl/:pid/:image?', handlers.product);
-router.post('/contract', handlers.contract);
 router.use((req, res) => {
     seo('notfound').then(seo => {
         res.render('notfound', {seo})

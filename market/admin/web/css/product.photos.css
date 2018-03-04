@@ -27,7 +27,7 @@
     color: #e94d51;
     transition: color .3s ease-out;
 }
-.product-photos td.no-padding{
+.no-padding{
     padding: 0 !important;
 }
 .product-photos .me-order{

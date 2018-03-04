@@ -7092,28 +7092,26 @@ cart-history .final {
 cart-history .position-item {
   padding: 10px 0; }
 
-cart-positions .final {
+.final {
   background-color: #d9edf7;
   line-height: 45px;
-  font-weight: bold;
-  box-shadow: inset 0 0 4px 2px white; }
+  font-weight: bold; }
 
-cart-positions .final-price {
+.final-price {
   margin-left: 95px; }
 
-cart-positions .even {
-  background-color: #efefef;
-  box-shadow: inset 0 0 4px 2px white; }
+.even {
+  background-color: #efefef; }
 
-cart-positions .position-item {
+.position-item {
   padding: 10px 0; }
 
 @media (max-width: 767.98px) {
-  cart-positions .position-first {
+  .position-first {
     margin-bottom: 5px; } }
 
 @media (min-width: 576px) {
-  cart-positions .final-name {
+  .final-name {
     margin-left: 55px; } }
 
 .delivery .label {
@@ -7531,6 +7529,10 @@ textarea {
   color: #fff;
   border-radius: 4px;
   margin: 0 6px; }
+
+td.no-padding {
+  padding: 0 !important;
+  vertical-align: middle; }
 
 /*
 @include media-breakpoint-up(xs) {
