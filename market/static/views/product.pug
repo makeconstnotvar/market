@@ -29,7 +29,7 @@ block content
                         if product.bonus
                             span.bonus - #{product.bonus} !!!
                     div
-                        button.price__purchase.js-contract
+                        button.price__purchase.js-contract(data-pid=product._id)
                             i.fa.fa-shopping-cart.rgap
                             | в корзину
         div.text-center.photo
