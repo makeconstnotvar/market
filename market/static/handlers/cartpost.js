@@ -35,7 +35,7 @@ module.exports = function (req, res, next) {
                 //number: contract.number,
                 message: `<strong>Заказ № ${contract.number} принят.</strong> Скоро наш менеджер свяжется с вами.`,
                 //status: contractor.getStatusName(contract.status),
-                seo
+                seo, status:req.shared.status
             });
         });
     });

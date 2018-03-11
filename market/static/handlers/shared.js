@@ -1,11 +1,11 @@
 const bll = require('../../api/business');
-module.exports = function (req, res, next) {
-    req.shared = {};
-    bll.contract.select({query: {uid: req.uid, status: 'temp'}}).exec((err, contract) => {
-        if (err) return next(err);
-        req.shared.status = getCartStatus(contract);
-        next();
-    });
+module.exports = function (uid) {
+    return new Promise((resolve, reject) => {
+        bll.contract.select({query: {uid, status: 'temp'}}).exec((err, contract) => {
+            if (err) reject(err);
+            resolve(getCartStatus(contract));
+        });
+    })
 };
 
 function getCartStatus(contract) {

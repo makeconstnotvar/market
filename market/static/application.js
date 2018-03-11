@@ -11,7 +11,7 @@ app.use('/', secure.cookies, routes);
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     console.log(err);
-    res.render('error');
+    res.render('error',{ status:req.shared.status});
 });
 
 module.exports = app;

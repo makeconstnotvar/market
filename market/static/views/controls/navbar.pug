@@ -16,7 +16,12 @@ dib.navbar
                     a.navbar-cart__link( href="/cart")
                         i.fa.fa-shopping-cart.rgap.hidden-xs-down
                         span Корзина
-                        b.navbar-cart__label пока что пустая
+                        unless status.sum
+                            b.navbar-cart__label пока что пустая
+                    if status.count
+                        span.navbar-cart__count #{status.count}
+                    if status.sum
+                        span.navbar-cart__sum #{status.sum}
                 div.navbar-item.navbar-item--phone
                     a.navbar-item__link.active(href="/contacts")
                         i.fa.fa-phone-square.rgap.hidden-xs-down
@@ -32,4 +37,9 @@ dib.navbar
                     a.navbar-cart__link( href="/cart")
                         i.fa.fa-shopping-cart.rgap.hidden-xs-down
                         span Корзина
-                        b.navbar-cart__label пока что пустая
+                        unless status.sum
+                            b.navbar-cart__label пока что пустая
+                    if status.count
+                        span.navbar-cart__count #{status.count}
+                    if status.sum
+                        span.navbar-cart__sum #{status.sum}

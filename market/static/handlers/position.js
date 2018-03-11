@@ -1,11 +1,13 @@
 let bll = require('../../api/business');
 
 
-module.exports = function (req, res, next) {
-    let pid = req.body.pid,
-        uid = req.uid;
+module.exports = function (uid,pid) {
+    return new Promise((resolve,reject)=>{
+
+
+
     bll.product.select({query: {_id: pid}}).exec((err, product) => {
-        if (err) return res.send(500);
+        if (err) return reject(err);
         let newPosition = {
             product: product._id,
             count: 1,
@@ -13,21 +15,21 @@ module.exports = function (req, res, next) {
             sum: product.price,
         };
         bll.contract.select({query: {'uid': uid, status: 'temp'}}).lean().exec((err, contract) => {
-            if (err) return res.send(500);
+            if (err) return reject(err);
             if (contract && contract.positions) {
                 updateContract(contract, newPosition)
-                    .then(contract => res.send(getCartStatus(contract)))
-                    .catch(err =>  {res.send(500)});
+                    .then(contract => resolve(getCartStatus(contract)))
+                    .catch(err =>  {reject(err)});
             }
             else {
                 insertContract(uid, newPosition)
-                    .then(contract => res.send(getCartStatus(contract)))
-                    .catch(err =>  {res.send(500)});
+                    .then(contract => resolve(getCartStatus(contract)))
+                    .catch(err =>  {reject(err)});
             }
         })
     });
 
-
+    })
 };
 
 function insertContract(uid, newPosition) {
