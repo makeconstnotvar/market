@@ -18,7 +18,27 @@
             font-weight: bold;
         }
     }
-
+    &__incart{
+        cursor: pointer;
+        display: block;
+        border-radius: 10px;
+        border: solid 1px #548d2e;
+        background-color: #74b436;
+        color: #fff !important;
+        text-align: center;
+        text-decoration: none;
+        padding: 10px 14px;
+        @include transition300(background-color);
+        white-space: nowrap;
+        &:hover,
+        &.active {
+            background-color: #548d2e;
+            border-color: #3b6c26;
+            color: #fff;
+            text-decoration: none;
+            @include transition300(background-color);
+        }
+    }
     &__purchase {
         cursor: pointer;
         display: block;

@@ -6952,6 +6952,25 @@ market-menu {
     color: #74b436;
     font-weight: bold; }
 
+.price__incart {
+  cursor: pointer;
+  display: block;
+  border-radius: 10px;
+  border: solid 1px #548d2e;
+  background-color: #74b436;
+  color: #fff !important;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 14px;
+  transition: background-color 300ms linear;
+  white-space: nowrap; }
+  .price__incart:hover, .price__incart.active {
+    background-color: #548d2e;
+    border-color: #3b6c26;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 300ms linear; }
+
 .price__purchase {
   cursor: pointer;
   display: block;
@@ -7533,6 +7552,9 @@ textarea {
 td.no-padding {
   padding: 0 !important;
   vertical-align: middle; }
+
+.min-w285 {
+  min-width: 285px; }
 
 /*
 @include media-breakpoint-up(xs) {

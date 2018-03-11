@@ -70,7 +70,7 @@ router.get('/cart/:cid', function (req, res, next) {
 router.get('/:categoryUrl/:pid/:image?', function (req, res, next) {
     handlers.product(req.uid, req.params).then(data => {
         if (data.notfound)
-            res.status(404).render('notfound', {requestUrl: req.url});
+            next();
         else if (data.redirect)
             res.redirect(data.redirect);
         else
@@ -80,12 +80,19 @@ router.get('/:categoryUrl/:pid/:image?', function (req, res, next) {
 router.post('/:categoryUrl/:pid/:image?', function (req, res, next) {
     handlers.position(req.uid, req.body.pid).then(status => {
         req.shared.status = status;
-
+        handlers.product(req.uid, req.params).then(data => {
+            if (data.notfound)
+                next();
+            else if (data.redirect)
+                res.redirect(data.redirect);
+            else
+                res.render('product', {...data, status: req.shared.status});
+        })
     })
 });
 router.use((req, res, next) => {
     seo('notfound').then(seo => {
-        res.render('notfound', {seo, status: req.shared.status})
+        res.status(404).render('notfound', {seo, status: req.shared.status})
     });
 });
 

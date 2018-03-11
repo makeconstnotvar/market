@@ -10,13 +10,17 @@ block content
 
                 h1.me-name #{product.name}
                 div #{product.description}
-            div.col-sm-12.col-md-auto.mb-3
+            div.col-sm-12.col-md-auto.mb-3.min-w285
                 div.view-buy
                     div.price__status
                         div.price__status-available
                             span.yes
-                                i.fa.fa-check-square-o.rgap
-                                | В наличии
+                                if product.inCart
+                                    i.fa.fa-check-circle.rgap
+                                    | в корзине
+                                else
+                                    i.fa.fa-check-square-o.rgap
+                                    | в наличии
                     div
                         span.discount-text старая цена:
                         |
@@ -28,10 +32,14 @@ block content
                         |
                         if product.bonus
                             span.bonus - #{product.bonus} !!!
-                    div
-                        button.price__purchase.js-contract(data-pid=product._id)
-                            i.fa.fa-shopping-cart.rgap
-                            | в корзину
+                    form(method="post")
+                        input.hide(name="pid" value=product._id)
+                        if product.inCart
+                            a.price__incart(href='/cart') перейти в корзину
+                        else
+                            button.price__purchase(type="submit" data-pid=product._id)
+                                i.fa.fa-shopping-cart.rgap
+                                | в корзину
         div.text-center.photo
             img.img-fluid(src=product.selectedImageSrc alt=product.name)
         div.photos

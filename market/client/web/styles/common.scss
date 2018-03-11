@@ -87,7 +87,9 @@ td.no-padding {
     padding: 0 !important;
     vertical-align: middle;
 }
-
+.min-w285{
+    min-width: 285px;
+}
 /*
 @include media-breakpoint-up(xs) {
     body {
