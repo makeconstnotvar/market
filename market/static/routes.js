@@ -37,7 +37,7 @@ router.get('/contacts', (req, res) => {
         res.render('contacts', {seo, status: req.shared.status})
     }).catch(err => {
         next(err)
-    });;
+    });
 });
 
 router.get('/delivery', (req, res) => {
@@ -45,7 +45,7 @@ router.get('/delivery', (req, res) => {
         res.render('delivery', {seo, status: req.shared.status})
     }).catch(err => {
         next(err)
-    });;
+    });
 });
 
 router.get('/cart', function (req, res, next) {
@@ -60,10 +60,15 @@ router.get('/cart', function (req, res, next) {
         next(err)
     });
 });
+
 router.post('/cart', function (req, res, next) {
-
-
+    seo('cart').then(seo => {
+        handlers.cartpost(req.body).then(contract => {
+            res.render('done',{contract,seo, status: req.shared.status})
+        })
+    });
 });
+
 router.get('/cart/:cid', function (req, res, next) {
 
 });
