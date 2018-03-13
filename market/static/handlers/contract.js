@@ -196,6 +196,7 @@ function getData(uid) {
                         current.final = 0;
                         contractsCovers(current);
                         current.positions.forEach(position => {
+                            position.product.link = `/${position.product.category.url}/${position.product.url}`;
                             current.final += position.product.price
                         });
                     }

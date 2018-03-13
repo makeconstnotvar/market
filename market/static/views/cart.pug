@@ -8,17 +8,17 @@ block content
                     td.no-padding
                         img.pl-2.pr-2( src=position.product.cover)
                     td
-                        a.pointer(href="/backpacks/krasno-fioletovyy-portfel-s-sobachkoy-alliance") #{position.product.name}
+                        a.pointer(href=position.product.link) #{position.product.name}
                     td
                         span #{position.product.price} рублей
                     td
-                        button.btn.btn-danger.text-center.pointer
+                        button.btn.btn-danger.text-center.pointer.js-restore
                             i.fa.fa-times
             tr.final
                 td(colspan=2) Итого
                 td(colspan=2) #{current.final} рублей
         h2 Контакты
-        p Мы обещаем не использовать ваш номер телефона в рекламных целях. Так же обещаем не передавать его третьим лицам.
+        p Мы обещаем не использовать ваш номер телефона в рекламных целях. Так же обещаем не передавать его третьим лицам, кроме курьера, разумеется.
         p Если у вас имеются особые пожелания, напишите их в комментарии к заказу, мы обязательно прочитаем и постараемся выполнить.
         form.d-flex.flex-column.form-horizontal(method="post")
             div.form-group.row
