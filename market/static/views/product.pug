@@ -44,7 +44,7 @@ block content
             img.img-fluid(src=product.selectedImageSrc alt=product.name)
         div.photos
             each image in product.images
-                a.me-link.text-center(href=image.url)
+                a.me-link.text-center.js-restore(href=image.url class=image.active)
                     img( src=image.src)
         div.row
             div.me-info.col-md-12.col-lg-6

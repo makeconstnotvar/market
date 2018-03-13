@@ -23,11 +23,12 @@ html
         script(src="https://code.jquery.com/jquery-3.3.1.min.js")
         script(src="/scripts/flipclock.min.js")
         script(src="/scripts/timer.js")
-        script(src="/scripts/contract.js")
+        script(src="/scripts/sneak.js")
         block head
-    body.sticky
+    body.sticky.cloak
         div.sticky-content
             include controls/navbar.pug
             block jumbo
             block content
         include controls/footer.pug
+        script(src="/scripts/restore.js")

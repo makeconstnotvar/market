@@ -5,7 +5,7 @@ function specials(products, contract) {
     products.forEach(product => {
         product.available = product.count > 0;
 
-        if(product.discount && product.price)
+        if (product.discount && product.price)
             product.bonus = product.discount - product.price;
 
         if (product.category && product.category.url)
@@ -25,6 +25,7 @@ function specials(products, contract) {
 
     return products;
 }
+
 function product(product, contract) {
     product.available = product.count > 0;
     product.photos = product.photos.filter(photo => photo.fileType === 'image');
@@ -35,14 +36,30 @@ function product(product, contract) {
     if (product.photos) {
         product.photos = product.photos.sort((f1, f2) => f1.order - f2.order);
         product.images = product.photos.map(photo => {
+
             return {
+                id: photo._id.toString(),
                 url: `/${product.categoryUrl}/${product.url}/${photo._id}`,
                 src: `/photos/${product._id}/m_${photo.fileId}`
             }
         });
-        let photo = product.photos.find(photo => photo._id.toString() === product.imageId);
 
-        product.selectedImageSrc = photo ? `/photos/${product._id}/l_${photo.fileId}` : product.images[0].src;
+
+        let photo;
+        if (product.imageId) {
+            photo = product.photos.find(photo => photo._id.toString() === product.imageId);
+            product.images.forEach(image => {
+                if (image.id === product.imageId)
+                    image.active = 'active'
+            })
+
+        }
+
+        else {
+            photo = product.photos[0];
+            product.images[0].active = 'active';
+        }
+        product.selectedImageSrc = `/photos/${product._id}/l_${photo.fileId}`;
     }
 
     if (contract && contract.positions) {
