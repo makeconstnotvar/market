@@ -49,23 +49,40 @@ router.get('/delivery', (req, res) => {
 });
 
 router.get('/cart', function (req, res, next) {
-    handlers.contract.getData(req.uid).then(data => {
-        if (data.current) {
-            res.render('cart', {...data, status: req.shared.status});
-        }
-        else {
-            res.render('empty', {...data, status: req.shared.status});
-        }
-    }).catch(err => {
-        next(err)
+    seo('cart').then(seo => {
+        handlers.contract.getData(req.uid).then(data => {
+            if (data.current && data.current.positions && data.current.positions.length) {
+                res.render('cart', {...data, seo});
+            }
+            else {
+                res.render('empty', {...data, seo});
+            }
+        })
     });
 });
 
 router.post('/cart', function (req, res, next) {
+    let {remove} = req.body;
     seo('cart').then(seo => {
-        handlers.cartpost(req.body).then(contract => {
-            res.render('done',{contract,seo, status: req.shared.status})
-        })
+        if (remove)
+            handlers.contract.remove(req.uid, req.body.pid).then(data => {
+                if (data.current && data.current.positions && data.current.positions.length) {
+                    res.render('cart', {...data, seo});
+                }
+                else {
+                    res.render('empty', {...data, seo});
+                }
+            });
+        else
+            handlers.cartpost(req.body).then(data => {
+                res.render('done', {...data, seo})
+            });
+    });
+});
+router.post('/cart/remove', function (req, res, next) {
+
+    seo('cart').then(seo => {
+
     });
 });
 

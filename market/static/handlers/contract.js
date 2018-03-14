@@ -175,45 +175,71 @@ function updateContract(contract, newPosition) {
     })
 }
 
-function getData(uid) {
+function remove(uid, pid) {
     return new Promise((resolve, reject) => {
-        seo('cart').then(seo => {
-            bll.contract.selectAll({query: {uid: uid}})
-                .deepPopulate('positions.product.category')
-                .lean()
-                .exec((err, contracts) => {
-                    if (err) return reject(err);
 
-                    let current = contracts.find(contract => {
-                        return contract.status === 'temp';
+        bll.contract.selectAll({query: {uid}})
+            .deepPopulate('positions.product.category')
+            .lean()
+            .exec((err, contracts) => {
+                if (err) reject(err);
+
+                let current = contracts.find(contract => (contract.status === 'temp'));
+                let history = getCartHistory(contracts.filter(contract => (contract.status === 'placed' || contract.status === 'progress' || contract.status === 'done')));
+                current.positions = current.positions.filter(position => position.product._id.toString() != pid);
+
+                bll.contract.update(current).lean().exec((err,current) => {
+                    if (err) reject(err);
+
+                    current.final = 0;
+                    contractsCovers(current);
+                    current.positions.forEach(position => {
+                        position.product.link = `/${position.product.category.url}/${position.product.url}`;
+                        current.final += position.product.price
                     });
-
-                    let history = getCartHistory(contracts.filter(contract => {
-                        return contract.status === 'placed' || contract.status === 'progress' || contract.status === 'done';
-                    }));
-
-                    if (current && current.positions) {
-                        current.final = 0;
-                        contractsCovers(current);
-                        current.positions.forEach(position => {
-                            position.product.link = `/${position.product.category.url}/${position.product.url}`;
-                            current.final += position.product.price
-                        });
-                    }
+                    let status = getCartStatus(current);
 
                     resolve({
                         current,
                         history,
-                        seo
+                        status
                     })
+                })
 
-                });
-        });
+
+            });
+
+
+    })
+
+}
+
+function getData(uid) {
+    return new Promise((resolve, reject) => {
+        bll.contract.selectAll({query: {uid: uid}})
+            .deepPopulate('positions.product.category')
+            .lean()
+            .exec((err, contracts) => {
+                if (err) return reject(err);
+                let current = contracts.find(contract => (contract.status === 'temp'));
+                let history = getCartHistory(contracts.filter(contract => (contract.status === 'placed' || contract.status === 'progress' || contract.status === 'done')));
+                if (current && current.positions) {
+                    current.final = 0;
+                    contractsCovers(current);
+                    current.positions.forEach(position => {
+                        position.product.link = `/${position.product.category.url}/${position.product.url}`;
+                        current.final += position.product.price
+                    });
+                }
+                let status = getCartStatus(current);
+                resolve({current, history, status})
+            });
     })
 }
 
 module.exports = {
     getData,
     sendMySms,
+    remove,
     getStatusName
 }

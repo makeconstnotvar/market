@@ -12,8 +12,11 @@ block content
                     td
                         span #{position.product.price} рублей
                     td
-                        button.btn.btn-danger.text-center.pointer.js-restore
-                            i.fa.fa-times
+                        form(method="post")
+                            input.hide(name="pid" value=position.product._id)
+                            input.hide(name="remove" value=1)
+                            button.btn.btn-danger.text-center.pointer.js-restore(type="submit")
+                                i.fa.fa-times
             tr.final
                 td(colspan=2) Итого
                 td(colspan=2) #{current.final} рублей
