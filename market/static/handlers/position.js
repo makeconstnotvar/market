@@ -1,4 +1,5 @@
-let bll = require('../../api/business');
+let bll = require('../../api/business'),
+    getCartStatus = require('./contract-util').getCartStatus;
 
 
 module.exports = function (uid,pid) {
@@ -60,15 +61,3 @@ function updateContract(contract, newPosition) {
     })
 }
 
-function getCartStatus(contract) {
-    let sum = 0, count = 0;
-    if (contract && contract.positions)
-        contract.positions.forEach(position => {
-            sum += position.sum;
-            count += position.count;
-        });
-    return {
-        sum,
-        count
-    }
-}

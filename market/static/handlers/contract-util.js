@@ -1,6 +1,4 @@
 let bll = require('../../api/business'),
-    seo = require('../handlers/seo'),
-    _ = require('underscore'),
     Sms = require('sms_ru');
 
 function getCartHistory(histories) {
@@ -237,9 +235,44 @@ function getData(uid) {
     })
 }
 
+function place (newContract) {
+    return new Promise((resolve, reject) => {
+        let {_id, phone, name, address, auto, note, sendSms, manual} = newContract;
+        let delivery;
+        if (auto === 'on')
+            delivery = 'auto';
+        if (manual === 'on')
+            delivery = 'manual';
+        let contractUpdate = {
+            phone,
+            name,
+            address,
+            note,
+            sendSms,
+            delivery,
+            status: 'placed',
+            date: new Date()
+        };
+        contractUpdate.dates = [{
+            status: contractUpdate.status,
+            date: contractUpdate.date
+        }];
+        bll.contract.select({query: {_id}}).lean().exec((err, contract) => {
+            let contractUpdated = {...contract, ...contractUpdate};
+            bll.contract.update(contractUpdated).exec((err,contract) => {
+                if (err) reject(err);
+                sendMySms(contract);
+                let status = getCartStatus();
+                resolve({contract,status});
+            });
+        })
+
+    });
+}
+
 module.exports = {
     getData,
-    sendMySms,
     remove,
-    getStatusName
-}
+    place,
+    getCartStatus
+};

@@ -74,17 +74,12 @@ router.post('/cart', function (req, res, next) {
                 }
             });
         else
-            handlers.cartpost(req.body).then(data => {
+            handlers.contract.place(req.body).then(data => {
                 res.render('done', {...data, seo})
             });
     });
 });
-router.post('/cart/remove', function (req, res, next) {
 
-    seo('cart').then(seo => {
-
-    });
-});
 
 router.get('/cart/:cid', function (req, res, next) {
 
