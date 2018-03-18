@@ -1,0 +1,43 @@
+cat-sorting {
+
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px 0;
+    user-select: none;
+    li {
+        position: relative;
+    }
+
+    .sorting-title {
+
+    }
+
+    .sorting-icon {
+        position: absolute;
+        top: 10px;
+        left: 4px;
+    }
+    .list-inline-item {
+        position: relative;
+        border-radius: 0.25rem;
+        padding: 2px 8px 2px 24px;
+        &.default {
+            padding: 2px 8px;
+        }
+        &.active {
+            background-color: $gray-200;
+
+        }
+    }
+    @include media-breakpoint-down(sm) {
+
+        font-size: 13px;
+        .list-inline-item {
+            padding: 2px 5px 2px 20px;
+        }
+        .list-inline-item:not(:last-child) {
+            margin-right: 2px;
+        }
+    }
+}

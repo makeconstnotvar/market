@@ -1,0 +1,33 @@
+.footer {
+    padding: 30px 0;
+    display: block;
+    color: #fff;
+    background-color: #313037;
+    .social {
+        border-radius: 50%;
+        border: 1px solid #fff;
+        color: #fff;
+        display: inline-block;
+        overflow: hidden;
+        height: 40px;
+        width: 40px;
+        text-align: center;
+
+        transition: background-color .25s ease-out;
+        margin-right: 8px;
+        &:hover {
+            border-color: #f75163;
+            color: #f75163;
+            transition: background-color .25s ease-out;
+        }
+        i{
+            line-height: 38px;
+        }
+    }
+    .like {
+        margin-bottom: 10px;
+    }
+    .socials{
+        margin-bottom: 10px;
+    }
+}

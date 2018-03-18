@@ -1,0 +1,16 @@
+cart-history {
+    .even {
+        background-color: #efefef;
+        box-shadow: inset 0 0 4px 2px rgba(255,255,255,1);
+    }
+    .final {
+        background-color: #d9edf7;
+        line-height: 45px;
+        font-weight: bold;
+        margin-bottom: 50px;
+        box-shadow: inset 0 0 4px 2px rgba(255,255,255,1);
+    }
+    .position-item {
+        padding: 10px 0;
+    }
+}

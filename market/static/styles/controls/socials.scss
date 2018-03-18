@@ -1,0 +1,12 @@
+.me-soc-msg{
+    margin-top: 6px;
+}
+.me-social{
+    display: inline-block;
+    margin-right: 6px;
+    transition: color 300ms ease-out;
+    &:hover{
+        color: #f75163;
+        transition: color 300ms ease-out;
+    }
+}

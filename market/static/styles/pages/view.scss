@@ -1,0 +1,70 @@
+
+    .me-link {
+        cursor: pointer;
+        border: solid 1px #fff;
+        display: inline-block;
+        transition: border-color 300ms;
+        &.active {
+            border: solid 1px #f75163;
+        }
+        &:hover {
+            border: solid 1px #f75163;
+            transition: border-color 300ms;
+        }
+    }
+    .price__purchase{
+        width: 240px;
+    }
+    .price__value{
+        font-size: 24px;
+    }
+    .photo {
+        border: 1px solid #e8e8e8;
+        margin-bottom: 1px;
+    }
+    .view-first{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+.view-buy{
+
+    border: 1px solid #e8e8e8;
+    padding: 20px;
+
+    .price__value{
+        font-size: 30px;
+        display: flex;
+        span{
+            align-self: center;
+        }
+    }
+    .discount-text,
+    .discount {
+        text-decoration: none;
+        font-size: 14px;
+    }
+}
+.btn-red {
+    color: #fff;
+    //margin-top: 20px;
+    //margin-left: 20px;
+    background-color: #f75163;
+    border-color: #d44756;
+}
+.btn-red.active, .btn-red.focus, .btn-red:active, .btn-red:focus, .btn-red:hover, .open>.dropdown-toggle.btn-red {
+    color: #fff;
+    background-color: #d03546;
+    border-color: #ba2a38;
+}
+.photos{
+    display: flex;
+    flex-wrap: nowrap;
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
+.hide{
+    display: none!important;
+}

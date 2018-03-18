@@ -1,0 +1,52 @@
+cat-filter {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    .parameters {
+        & > li {
+            border: solid #e8e8e8;
+            border-width: 0 1px 1px 1px;
+            transition: background-color 300ms;
+            overflow: hidden;
+            padding: 0 15px;
+            &:first-child {
+                border-top-width: 1px;
+            }
+            &:hover{
+                background-color: #f7f7f7;
+                transition: background-color 300ms;
+            }
+        }
+    }
+
+    .parameter-head {
+        margin: 4px 0;
+    }
+
+    .parameter-body .grey {
+        color: #bbb;
+    }
+
+    .parameter-name:hover {
+        color: #e94d51;
+    }
+
+    .parameters > li:hover .parameter-head {
+        color: #e94d51;
+    }
+
+    .parameter-string {
+        margin-bottom: 10px;
+    }
+
+    .parameter-focus {
+        border-color: #e94d51;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(233, 77, 81, 0.6);
+    }
+    .parameters {
+        user-select: none;
+
+        min-height: 550px;
+
+    }
+
+}

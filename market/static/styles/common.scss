@@ -1,0 +1,122 @@
+@import "awesome";
+@import "bootstrap";
+//@import "roboto";
+@import "variables";
+@import "sticky";
+@import "animation";
+@import "override/type";
+@import "override/pagination";
+@import "override/utils";
+@import "../app/styles";
+
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+}
+
+application {
+    display: block;
+}
+
+html {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    min-width: 320px;
+
+}
+
+.rgap {
+    margin-right: 6px;
+}
+
+.lgap {
+    margin-left: 6px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.block {
+    display: block;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+a.undecorate {
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+}
+
+a.unstyled {
+    color: $body-color;
+}
+
+.cloak {
+    opacity: 0;
+    &.visible {
+        opacity: 1;
+        transition: opacity 300ms;
+    }
+
+}
+
+textarea {
+    overflow-x: hidden
+}
+
+.helper {
+    background-color: #313037;
+    padding: 2px 4px;
+    color: #fff;
+    border-radius: 4px;
+    margin: 0 6px;
+}
+td.no-padding {
+    padding: 0 !important;
+    vertical-align: middle;
+}
+.min-w285{
+    min-width: 285px;
+}
+/*
+@include media-breakpoint-up(xs) {
+    body {
+        background-color: rgba(255, 0, 0, 0.25)
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    body {
+        background-color: rgba(0, 128, 0, 0.25)
+    }
+}
+
+@include media-breakpoint-up(md) {
+    body {
+        background-color: rgba(0, 0, 255, 0.25)
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    body {
+        background-color: rgba(238, 130, 238, 0.25)
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    body {
+        background-color: rgba(255, 165, 0, 0.25)
+    }
+}*/

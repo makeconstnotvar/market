@@ -1,0 +1,33 @@
+filter-buttons {
+    height: 42px;
+    line-height: 42px;
+    &.first {
+        .button {
+            border-width: 1px 1px 0 0;
+            &:first-child {
+                border-width: 1px 1px 0 1px;
+            }
+        }
+    }
+    &.last {
+        .button {
+            border-width: 0 1px  1px 0;
+            &:first-child {
+                border-width: 0 1px 1px 1px;
+            }
+        }
+    }
+    .button {
+        border: solid #e8e8e8;
+
+        padding: 0 15px;
+        color: $black;
+        transition: background-color 300ms;
+
+        &:hover {
+            color: $white;
+            background-color: $red;
+            transition: background-color 300ms;
+        }
+    }
+}

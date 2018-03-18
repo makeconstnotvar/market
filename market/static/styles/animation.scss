@@ -1,0 +1,3 @@
+@mixin transition300($property) {
+    transition: $property 300ms linear;
+}

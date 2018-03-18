@@ -1,0 +1,55 @@
+
+
+    .slider {
+        background-position: 50%;
+        background-size: cover;
+        //height: 400px;
+    }
+    .slide-1 {
+        background-image: url('/img/bags-31.jpg');
+    }
+
+    .slide-2 {
+        background-image: url('/img/bags-32.jpg');
+    }
+
+    .slide-3 {
+        background-image: url('/img/bags-35.jpg');
+    }
+
+    .slogan {
+        height: 500px;
+        padding-top: 70px;
+        text-shadow: 0 0 25px black;
+        color: #fff;
+        width: 625px;
+        margin-right: -74px;
+        .title{
+            font-size: 6rem;
+        }
+        .title2{
+            font-size: 4rem;
+        }
+
+        .subtitle{
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+        .minititle{
+            font-size: 12px;
+        }
+    }
+    @include media-breakpoint-down(lg) {
+
+    }
+    @include media-breakpoint-down(md) {
+
+    }
+    @include media-breakpoint-down(sm) {
+
+    }
+    @include media-breakpoint-down(xs) {
+
+
+    }
+

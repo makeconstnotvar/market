@@ -1,0 +1,94 @@
+
+.price {
+    &__status {
+        position: relative;
+        height: 30px;
+        line-height: 30px;
+        &-available {
+            .yes {
+                color: #74b436;
+            }
+            .no {
+                color: #f75163;
+            }
+        }
+        &-incart {
+            //opacity: 0;
+            color: #74b436;
+            font-weight: bold;
+        }
+    }
+    &__incart{
+        cursor: pointer;
+        display: block;
+        border-radius: 10px;
+        border: solid 1px #548d2e;
+        background-color: #74b436;
+        color: #fff !important;
+        text-align: center;
+        text-decoration: none;
+        padding: 10px 14px;
+        @include transition300(background-color);
+        white-space: nowrap;
+        &:hover,
+        &.active {
+            background-color: #548d2e;
+            border-color: #3b6c26;
+            color: #fff;
+            text-decoration: none;
+            @include transition300(background-color);
+        }
+    }
+    &__purchase {
+        cursor: pointer;
+        display: block;
+        border-radius: 10px;
+        border: solid 1px #9d9ca1;
+        background-color: #313037;
+        color: #fff !important;
+        text-align: center;
+        text-decoration: none;
+        padding: 10px 14px;
+        @include transition300(background-color);
+        white-space: nowrap;
+        &:hover,
+        &.active {
+            background-color: #f75163;
+            border-color: #f75163;
+            color: #fff;
+            text-decoration: none;
+            @include transition300(background-color);
+        }
+    }
+    &--w240 {
+        .price__purchase {
+            width: 240px;
+        }
+    }
+}
+.discount-text{
+    color: #bbb;
+}
+.discount {
+    text-decoration: line-through;
+    color: #bbb;
+    font-size: 18px;
+}
+
+.bonus {
+    background-color: #f75163;
+    color: #fff;
+    border-radius: 4px;
+    padding: 4px;
+    margin-left: 6px;
+    font-size: 14px;
+}
+
+.price-value {
+    color: #fff;
+    font-size: 24px;
+    &.no {
+        color: #bbb;
+    }
+
+}
