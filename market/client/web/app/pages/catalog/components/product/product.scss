@@ -6,7 +6,7 @@ cat-product {
     @include transition300(background-color);
 
     &:hover {
-        //border-color: #f75163;
+        background-color: #f7f7f7;
         @include transition300(background-color);
     }
     .image {

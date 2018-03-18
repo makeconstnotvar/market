@@ -7,10 +7,10 @@
         cursor: pointer;
         text-align: center;
         border: 1px solid #e8e8e8;
-        transition: border-color 300ms linear;
+        transition: background-color 300ms linear;
         &:hover {
-            border-color: #f75163;
-            transition: border-color 300ms linear;
+            background-color: #f7f7f7;
+            transition: background-color 300ms linear;
         }
         &-icon {
             position: absolute;
@@ -29,9 +29,9 @@
     }
     &__info {
         background: #313037;
+        padding: 18px;
         text-align: center;
-        padding: 10px;
-        //display: flex;
+
     }
     &__name {
         color: $white;

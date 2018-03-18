@@ -1,8 +1,8 @@
-.footer {
+market-footer {
     padding: 30px 0;
     display: block;
     color: #fff;
-    background-color: #313037;
+    background-color: #222222;
     .social {
         border-radius: 50%;
         border: 1px solid #fff;
@@ -12,7 +12,7 @@
         height: 40px;
         width: 40px;
         text-align: center;
-
+        line-height: 38px;
         transition: background-color .25s ease-out;
         margin-right: 8px;
         &:hover {
@@ -20,9 +20,7 @@
             color: #f75163;
             transition: background-color .25s ease-out;
         }
-        i{
-            line-height: 38px;
-        }
+
     }
     .like {
         margin-bottom: 10px;

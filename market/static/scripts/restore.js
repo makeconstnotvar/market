@@ -1,4 +1,4 @@
-(function() {
+$(function() {
     var sneaky = new ScrollSneak(location.hostname),
         links = document.getElementsByClassName('js-restore')       ;
 
@@ -10,4 +10,4 @@
     for (var j = 0; j < cloaks.length; j++) {
         cloaks[j].className += " visible";
     }
-})();
+});

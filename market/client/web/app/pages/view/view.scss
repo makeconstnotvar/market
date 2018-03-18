@@ -1,4 +1,6 @@
-
+view-page {
+    min-height: 1200px;
+    display: block;
     .me-link {
         cursor: pointer;
         border: solid 1px #fff;
@@ -20,35 +22,12 @@
     }
     .photo {
         border: 1px solid #e8e8e8;
-        margin-bottom: 1px;
-    }
-    .view-first{
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-.view-buy{
-
-    border: 1px solid #e8e8e8;
-    padding: 20px;
-
-    .price__value{
-        font-size: 30px;
-        display: flex;
-        span{
-            align-self: center;
-        }
-    }
-    .discount-text,
-    .discount {
-        text-decoration: none;
-        font-size: 14px;
     }
 }
 .btn-red {
     color: #fff;
-    //margin-top: 20px;
-    //margin-left: 20px;
+    margin-top: 0.3rem;
+    margin-left: 20px;
     background-color: #f75163;
     border-color: #d44756;
 }
@@ -64,7 +43,4 @@
         width: 100%;
         height: auto;
     }
-}
-.hide{
-    display: none!important;
 }

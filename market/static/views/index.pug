@@ -1,5 +1,6 @@
 html
     head
+        - if(!seo) seo = {}
         meta(charset='UTF-8')
         title=seo.title
         meta(name="description" content=seo.description)
@@ -18,12 +19,12 @@ html
         include controls/meta
         include controls/favicons
         //include controls/seo
-        link(rel="stylesheet" href="/scripts/styles.css")
-        link(rel="stylesheet" href="/scripts/flipclock.css")
-        script(src="https://code.jquery.com/jquery-3.3.1.min.js")
-        script(src="/scripts/flipclock.min.js")
-        script(src="/scripts/timer.js")
-        script(src="/scripts/sneak.js")
+        //- inject:css
+        link(rel="stylesheet", href="/styles/styles.css")
+        //- endinject
+        //- inject:js
+        script(src="/scripts/scripts.js")
+        //- endinject
         block head
     body.sticky.cloak
         div.sticky-content
@@ -31,4 +32,3 @@ html
             block jumbo
             block content
         include controls/footer.pug
-        script(src="/scripts/restore.js")

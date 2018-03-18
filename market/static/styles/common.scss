@@ -1,13 +1,14 @@
-@import "awesome";
-@import "bootstrap";
-//@import "roboto";
+@import "libs/awesome";
+@import "libs/bootstrap";
+@import "libs/roboto";
+@import "libs/flipclock";
 @import "variables";
 @import "sticky";
 @import "animation";
 @import "override/type";
 @import "override/pagination";
 @import "override/utils";
-@import "../app/styles";
+@import "styles";
 
 html,
 body {

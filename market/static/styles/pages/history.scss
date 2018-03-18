@@ -1,3 +1,18 @@
+cart-history{
+    .final {
+        background-color: #d9edf7;
+    }
+}cart-contact{
+     .title{
+         font-weight: bold;
+     }
+     @include media-breakpoint-up(md) {
+         .submit {
+             margin-left: auto !important;
+         }
+
+     }
+ }
 cart-history {
     .even {
         background-color: #efefef;
@@ -14,3 +29,33 @@ cart-history {
         padding: 10px 0;
     }
 }
+.final {
+    background-color: #d9edf7;
+    line-height: 45px;
+    font-weight: bold;
+
+}
+.final-price {
+    margin-left: 95px;
+}
+.even {
+    background-color: #efefef;
+
+}
+.position-item {
+    padding: 10px 0;
+}
+@include media-breakpoint-down(sm) {
+    .position-first {
+        margin-bottom: 5px;
+    }
+}
+@include media-breakpoint-up(sm) {
+    .final-name {
+        margin-left: 55px;
+    }
+
+}
+
+
+

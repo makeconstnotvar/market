@@ -1,55 +1,57 @@
 
-
+jumbotron {
     .slider {
         background-position: 50%;
         background-size: cover;
-        //height: 400px;
+        height: 400px;
     }
     .slide-1 {
-        background-image: url('/img/bags-31.jpg');
+        background-image: url('/img/slide1.jpg');
     }
 
     .slide-2 {
-        background-image: url('/img/bags-32.jpg');
+        background-image: url('/img/slide2.jpg');
     }
 
     .slide-3 {
-        background-image: url('/img/bags-35.jpg');
+        background-image: url('/img/slide3.jpg');
     }
 
     .slogan {
-        height: 500px;
-        padding-top: 70px;
-        text-shadow: 0 0 25px black;
-        color: #fff;
-        width: 625px;
-        margin-right: -74px;
-        .title{
-            font-size: 6rem;
-        }
-        .title2{
-            font-size: 4rem;
-        }
-
-        .subtitle{
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-        }
-        .minititle{
-            font-size: 12px;
-        }
+        float: right;
+        width: 500px;
+        margin: 30px 0;
     }
     @include media-breakpoint-down(lg) {
-
+        .slider {
+            background-position: 60%;
+        }
     }
     @include media-breakpoint-down(md) {
-
+        .slider {
+            height: 300px;
+        }
+        .slogan {
+            width: 350px;
+        }
+        h1 {
+            font-size: 1.8rem;
+        }
     }
     @include media-breakpoint-down(sm) {
-
+        .slider {
+            background-position: 58%;
+        }
+        .slogan {
+            width: 285px;
+        }
     }
     @include media-breakpoint-down(xs) {
-
+        .slider {
+            background-position: 38%;
+            height: 250px;
+        }
 
     }
 
+}
