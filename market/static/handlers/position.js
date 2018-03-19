@@ -1,5 +1,5 @@
 let bll = require('../../api/business'),
-    getCartStatus = require('./contract-util').getCartStatus;
+    getCartStatus = require('./contract').getCartStatus;
 
 
 module.exports = function (uid,pid) {

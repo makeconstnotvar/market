@@ -19,5 +19,5 @@ app.use('/', clientApp);
 app.set('port', process.env.PORT || config.system.port || '3000');
 
 server.listen(app.get('port'), function () {
-    console.log(`Магаз запущен http://${config.system.domain} порт:${app.get('port')}`);
+    console.log(`Магаз запущен http://market.static порт:${app.get('port')}`);
 });

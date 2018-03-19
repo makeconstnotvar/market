@@ -60,6 +60,13 @@ router.get('/cart', function (req, res, next) {
         })
     });
 });
+router.get('/cart/:cid', function (req, res, next) {
+    seo('history').then(seo => {
+        handlers.contract.history(req.params.cid).then(contract => {
+            res.render('history', {contract, seo, status: req.shared.status});
+        })
+    });
+});
 
 router.post('/cart', function (req, res, next) {
     let {remove} = req.body;

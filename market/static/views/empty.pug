@@ -11,3 +11,13 @@ block content
             a.btn.btn-red.m-back(href="/")
                 i.fa.fa-chevron-left.rgap
                 | Распродажа сумок
+        if history
+            h2 История заказов
+            ul.list-unstyled
+                each h in history
+                    li.cart-history-item
+                        a(href=h.link)
+                            b #{h.status}
+                            |
+                            |
+                            span #{h.date}

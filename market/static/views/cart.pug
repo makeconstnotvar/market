@@ -73,4 +73,14 @@ block content
                     input.hide(name="_id" value=current._id)
                     button.btn.btn-primary.pointer.mr-3(type='submit') Заказать
 
+        if history
+            h2 История заказов
+            ul.list-unstyled
+                each h in history
+                    li.cart-history-item
+                        a(href='cart/#[h._id]')
+                            b #{h.status}
+                            |
+                            |
+                            span #{h.date}
 

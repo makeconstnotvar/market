@@ -8,6 +8,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use('/', secure.cookies, routes);
 
+
 app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     console.log(err);

@@ -1,13 +1,17 @@
 let bll = require('../../api/business'),
-    Sms = require('sms_ru');
+    Sms = require('sms_ru'),
+    moment = require('moment');
+
+moment.locale('ru');
 
 function getCartHistory(histories) {
     var historiesView = [];
     if (histories)
         histories.forEach(function (hist) {
             historiesView.push({
-                _id: hist._id,
-                date: hist.date,
+                //_id: hist._id,
+                link: `/cart/${hist._id}`,
+                date: moment(hist.date).format('DD.MM.YYYY'),
                 status: getStatusName(hist.status)
             })
         });
@@ -173,6 +177,28 @@ function updateContract(contract, newPosition) {
     })
 }
 
+function history(_id) {
+    return new Promise((resolve, reject) => {
+        bll.contract.select({query:{_id}})
+            .deepPopulate('positions.product.category')
+            .lean()
+            .exec((err,contract)=>{
+            if (err) reject(err);
+
+                contract.final = 0;
+                contractsCovers(contract);
+                contract.positions.forEach(position => {
+                    position.product.link = `/${position.product.category.url}/${position.product.url}`;
+                    contract.final += position.product.price
+                });
+                contract.time = moment(contract.date).format('HH:MM');
+                contract.date = moment(contract.date).format('DD.MM.YYYY');
+                contract.status= getStatusName(contract.status);
+            resolve(contract);
+        })
+    })
+}
+
 function remove(uid, pid) {
     return new Promise((resolve, reject) => {
 
@@ -186,7 +212,7 @@ function remove(uid, pid) {
                 let history = getCartHistory(contracts.filter(contract => (contract.status === 'placed' || contract.status === 'progress' || contract.status === 'done')));
                 current.positions = current.positions.filter(position => position.product._id.toString() != pid);
 
-                bll.contract.update(current).lean().exec((err,current) => {
+                bll.contract.update(current).lean().exec((err, current) => {
                     if (err) reject(err);
 
                     current.final = 0;
@@ -235,7 +261,7 @@ function getData(uid) {
     })
 }
 
-function place (newContract) {
+function place(newContract) {
     return new Promise((resolve, reject) => {
         let {_id, phone, name, address, auto, note, sendSms, manual} = newContract;
         let delivery;
@@ -259,11 +285,11 @@ function place (newContract) {
         }];
         bll.contract.select({query: {_id}}).lean().exec((err, contract) => {
             let contractUpdated = {...contract, ...contractUpdate};
-            bll.contract.update(contractUpdated).exec((err,contract) => {
+            bll.contract.update(contractUpdated).exec((err, contract) => {
                 if (err) reject(err);
                 sendMySms(contract);
                 let status = getCartStatus();
-                resolve({contract,status});
+                resolve({contract, status});
             });
         })
 
@@ -274,5 +300,6 @@ module.exports = {
     getData,
     remove,
     place,
-    getCartStatus
+    getCartStatus,
+    history
 };

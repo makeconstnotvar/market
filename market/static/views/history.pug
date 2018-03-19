@@ -1,3 +1,32 @@
 extends index.pug
 block content
-    div История покупок
+    div.container.view-first
+        h1 История покупок
+        p Этот заказ был сделан
+            |
+            |
+            strong #{contract.date}
+            |
+            | в
+            |
+            strong #{contract.time}
+        p Номер:
+            |
+            |
+            strong #{contract.number}
+        p Статус:
+            |
+            |
+            strong #{contract.status}
+        table.table.table-striped
+            each position in contract.positions
+                tr
+                    td.no-padding
+                        img.pl-2.pr-2( src=position.product.cover)
+                    td
+                        a.pointer(href=position.product.link) #{position.product.name}
+                    td
+                        span #{position.product.price} рублей
+            tr.final
+                td(colspan=2) Итого
+                td(colspan=2) #{contract.final} рублей
