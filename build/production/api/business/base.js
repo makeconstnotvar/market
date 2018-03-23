@@ -50,6 +50,9 @@ module.exports = class {
     count(query) {
         return this.model.count(query)
     }
+    model(){
+        return this.model;
+    }
 };
 
 

@@ -11129,7 +11129,7 @@ label.regular {
     color: #e94d51;
     transition: color .3s ease-out;
 }
-.product-photos td.no-padding{
+.no-padding{
     padding: 0 !important;
 }
 .product-photos .me-order{
@@ -11593,7 +11593,7 @@ textarea {
 .mb-filter  .mm-margin10{
     margin-left: 10px;
 }
-.product-list td.no-padding {
+td.no-padding {
     padding: 0 !important;
     vertical-align: middle;
 }

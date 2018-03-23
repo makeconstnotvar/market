@@ -16,14 +16,14 @@
 }, 1000);*/
 
 $(function () {
-    let friday = new Date();
+    var friday = new Date();
     friday.setDate(friday.getDate() + (8 + 4 - friday.getDay()) % 7);
     friday.setHours(21);
     friday.setMinutes(0);
     friday.setSeconds(0);
     friday.setMilliseconds(0);
 
-    let distance = (friday - new Date().getTime())/1000;
+    var distance = (friday - new Date().getTime())/1000;
 
 
     var clock = $('#timer').FlipClock(distance,{

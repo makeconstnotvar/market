@@ -23,10 +23,12 @@ function tildaResolver(url, prev, done) {
 let production = 'build/production',
     productionClientWeb = 'build/production/client/web',
     productionAdminWeb = 'build/production/admin/web',
+    productionStaticWeb = 'build/production/static',
     clientTemp = 'build/client',
     adminTemp = 'build/admin',
     sourceAdminWeb = 'market/admin/web',
-    shared = 'market/admin/shared';
+    shared = 'market/admin/shared',
+    static = 'market/static';
 
 //copy files
 gulp.task('files', function () {
@@ -36,10 +38,17 @@ gulp.task('files', function () {
         'market/admin/router/**/*',
         'market/api/**/*',
         'market/start.js',
+        'market/start-static.js',
         'market/client/*.js',
         'market/client/router/**/*',
         'market/client/web/scripts/*',
-        'market/client/web/fonts/*'
+        'market/client/web/fonts/*',
+        `${static}/files/*`,
+        `${static}/fonts/*`,
+        `${static}/handlers/*`,
+        `${static}/img/*`,
+        `${static}/views/**/*`,
+        `${static}/*`,
     ], {base: 'market'})
         .pipe(gulp.dest(production));
 });
@@ -117,7 +126,7 @@ gulp.task('inject:client', function () {
         .pipe(gulp.dest(`${productionClientWeb}/views`));
 });
 
-//admin task
+//admin tasks
 gulp.task('templates', function () {
     return gulp.src(`${sourceAdminWeb}/app/**/*.html`)
         .pipe(minifyHtml({
@@ -179,9 +188,40 @@ gulp.task('inject:admin', function () {
         .pipe(gulp.dest(`${productionAdminWeb}/views`));
 });
 
+//static tasks
+gulp.task('static:css', function () {
+    return gulp.src('market/static/styles/common.scss')
+        .pipe(sass({importer: tildaResolver}).on('error', sass.logError))
+        .pipe(concat('styles.css'))
+        .pipe(clean())
+        .pipe(hash())
+        .pipe(gulp.dest(`${productionStaticWeb}/styles`))
+});
+gulp.task('static:js', function () {
+    return gulp.src([
+        'market/static/scripts/jquery.js',
+        'market/static/scripts/sneak.js',
+        'market/static/scripts/flipclock.js',
+        'market/static/scripts/*.js'
+    ])
+        .pipe(concat('scripts.js'))
+        .pipe(uglify())
+        .pipe(hash())
+        .pipe(gulp.dest(`${productionStaticWeb}/scripts`))
+});
+
+gulp.task('static:inject', function () {
+    const cssFiles = gulp.src(`${productionStaticWeb}/styles/styles-*.css`);
+    const jsFiles = gulp.src(`${productionStaticWeb}/scripts/scripts-*.js`);
+    return gulp.src(`${productionStaticWeb}/views/index.pug`)
+        .pipe(inject(cssFiles, {ignorePath: productionStaticWeb}))
+        .pipe(inject(jsFiles, {ignorePath: productionStaticWeb}))
+        .pipe(gulp.dest(`${productionStaticWeb}/views`));
+});
+
 //result
-gulp.task('build:prod', gulp.series('client:css', 'loading', 'package', 'worker', 'files', 'config:prod', 'favicons', 'json', 'hash:js','hash:css', 'server', 'images', 'templates', 'admin:js', 'admin:css', 'inject:client', 'inject:admin'));
-gulp.task('build:test', gulp.series('client:css', 'loading', 'package', 'worker', 'files', 'config:test', 'favicons', 'json', 'hash:js','hash:css', 'server', 'images', 'templates', 'admin:js', 'admin:css', 'inject:client', 'inject:admin'));
+gulp.task('build:prod', gulp.series('client:css', 'loading', 'package', 'worker', 'files', 'config:prod', 'favicons', 'json', 'hash:js', 'hash:css', 'server', 'images', 'templates', 'admin:js', 'admin:css', 'inject:client', 'inject:admin'));
+gulp.task('build:test', gulp.series('client:css', 'loading', 'package', 'worker', 'files', 'config:test', 'favicons', 'json', 'hash:js', 'hash:css', 'server', 'images', 'templates', 'admin:js', 'admin:css', 'inject:client', 'inject:admin'));
 
 
 gulp.task('clean:prod', function () {
