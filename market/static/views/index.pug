@@ -2,20 +2,20 @@ html
     head
         - if(!seo) seo = {}
         meta(charset='UTF-8')
-        title=seo.title
-        meta(name="description" content=seo.description)
-        meta(name="image" content=seo.image)
-        meta(itemprop="name" content=seo.title)
-        meta(itemprop="description" content=seo.description)
-        meta(itemprop="image" content=seo.image)
-        meta(name="twitter:title" content=seo.title)
-        meta(name="twitter:description" content=seo.description)
-        meta(name="twitter:url" content=seo.url)
-        meta(name="twitter:image" content=seo.image)
-        meta(name="og:title" content=seo.title)
-        meta(name="og:description" content=seo.description)
-        meta(name="og:url" content=seo.url)
-        meta(name="og:image" content=seo.image)
+        title=meta.title
+        meta(name="description" content=meta.description)
+        meta(name="image" content=meta.image)
+        meta(itemprop="name" content=meta.title)
+        meta(itemprop="description" content=meta.description)
+        meta(itemprop="image" content=meta.image)
+        meta(name="twitter:title" content=meta.title)
+        meta(name="twitter:description" content=meta.description)
+        meta(name="twitter:url" content=meta.url)
+        meta(name="twitter:image" content=meta.image)
+        meta(name="og:title" content=meta.title)
+        meta(name="og:description" content=meta.description)
+        meta(name="og:url" content=meta.url)
+        meta(name="og:image" content=meta.image)
         include controls/meta
         include controls/favicons
         //include controls/seo
