@@ -43,22 +43,26 @@ block content
                 div.col-12.col-md-10
                     div.form-check
                         label.form-check-label( for="sendsms")
-                            input.form-check-input(  id="sendsms" name='sendSms' type="checkbox")
+                            input.form-check-input(  id="sendsms" name='sendSms' type="checkbox" value="true")
+                            |
                             | Отправлять в смс
             div.form-group.row
                 label.title.col-12.col-md-2  Получение
                 div.col-12.col-md-10
                     div.form-check
-                    label.form-check-label( for="auto" )
-                        input.form-check-input( id="auto" name="auto" checked type="radio")
-                        | Доставка курьером
-                        a( href="/delivery") (бесплатно, срок 1-2 дня)
-
+                        label.form-check-label( for="auto" )
+                            input.form-check-input( id="auto" name="delivery" value="auto" checked type="radio")
+                            |
+                            | Доставка курьером
+                            |
+                            a( href="/delivery") (бесплатно, срок 1-2 дня)
                     div.form-check
-                    label.form-check-label( for="manual" )
-                        input.form-check-input( id="manual" name="manual" type="radio" )
-                        | Самовывоз
-                        a(  href="/delivery") (бесплатно от м. Новые черемушки 10:00-19:00)
+                        label.form-check-label( for="manual" )
+                            input.form-check-input( id="manual" name="delivery" value="manual" type="radio" )
+                            |
+                            | Самовывоз
+                            |
+                            a(  href="/delivery") (бесплатно от м. Новые черемушки 10:00-19:00)
             div.form-group.row
                 label.title.col-12.col-md-2( for="note") Комментарий
                 div.col-12.col-md-10

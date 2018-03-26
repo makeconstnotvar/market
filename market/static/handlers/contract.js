@@ -1,11 +1,13 @@
 let bll = require('../../api/business'),
+    config = require('../../config'),
     Sms = require('sms_ru'),
+    nodemailer = require('nodemailer'),
     moment = require('moment');
 
 moment.locale('ru');
 
 function getCartHistory(histories) {
-    var historiesView = [];
+    let historiesView = [];
     if (histories)
         histories.forEach(function (hist) {
             historiesView.push({
@@ -64,10 +66,10 @@ function getCartStatus(contract) {
 
 function sendMySms(contract) {
     return new Promise((resolve, reject) => {
-        if (config.sendSms) {
-            const sms = new Sms(config.smsApi);
+        if (config.contacts.sendSms && !contract.notifyAdmin) {
+            const sms = new Sms(config.contacts.smsApi);
             sms.sms_send({
-                to: config.myPhone,
+                to: config.contacts.myPhone,
                 text: 'Новый заказ ' + contract.number,
                 time: new Date() / 1000 + 60,
                 translit: false,
@@ -90,8 +92,8 @@ function sendMySms(contract) {
 
 function sendSms(contract) {
     return new Promise((resolve, reject) => {
-        if (contract.notifyClient && contract.sendSms && !contract.alreadySent && config.sendSms) {
-            const sms = new Sms(config.smsApi);
+        if (contract.notifyClient && contract.sendSms && !contract.alreadySent && config.contacts.sendSms) {
+            const sms = new Sms(config.contacts.smsApi);
             sms.sms_send({
                 to: contract.phone,
                 text: contract.smsText,
@@ -126,7 +128,7 @@ function getStatusName(statusCode) {
 
 function insertContract(uid, newPosition) {
     return new Promise((resolve, reject) => {
-        var contract = {
+        let contract = {
             positions: [newPosition],
             uid: uid,
             status: 'temp'
@@ -140,16 +142,16 @@ function insertContract(uid, newPosition) {
 
 function updateContract(contract, newPosition) {
     return new Promise((resolve, reject) => {
-        var positionsWithProduct = contract.positions.filter(position => {
-            return position.product.toString() == newPosition.product
+        let positionsWithProduct = contract.positions.filter(position => {
+            return position.product.toString() === newPosition.product
         });
         if (!positionsWithProduct.length) {
             contract.positions.push(newPosition);
         }
         else {
             if (newPosition.color) {
-                var positionsWithColor = positionsWithProduct.find(position => {
-                    return (position.color && newPosition.color) ? position.color._id == newPosition.color._id : false;
+                let positionsWithColor = positionsWithProduct.find(position => {
+                    return (position.color && newPosition.color) ? position.color._id === newPosition.color._id : false;
                 });
 
                 if (positionsWithColor) {
@@ -159,7 +161,7 @@ function updateContract(contract, newPosition) {
                 else contract.positions.push(newPosition);
             }
             else {
-                var positionWithoutColor = positionsWithProduct.find(position => {
+                let positionWithoutColor = positionsWithProduct.find(position => {
                     return !position.color
                 });
                 if (positionWithoutColor) {
@@ -210,7 +212,7 @@ function remove(uid, pid) {
 
                 let current = contracts.find(contract => (contract.status === 'temp'));
                 let history = getCartHistory(contracts.filter(contract => (contract.status === 'placed' || contract.status === 'progress' || contract.status === 'done')));
-                current.positions = current.positions.filter(position => position.product._id.toString() != pid);
+                current.positions = current.positions.filter(position => position.product._id.toString() !== pid);
 
                 bll.contract.update(current).lean().exec((err, current) => {
                     if (err) reject(err);
@@ -263,12 +265,7 @@ function getData(uid) {
 
 function place(newContract) {
     return new Promise((resolve, reject) => {
-        let {_id, phone, name, address, auto, note, sendSms, manual} = newContract;
-        let delivery;
-        if (auto === 'on')
-            delivery = 'auto';
-        if (manual === 'on')
-            delivery = 'manual';
+        let {_id, phone, delivery, name, address, note, sendSms} = newContract;
         let contractUpdate = {
             phone,
             name,
@@ -285,12 +282,16 @@ function place(newContract) {
         }];
         bll.contract.select({query: {_id}}).lean().exec((err, contract) => {
             let contractUpdated = {...contract, ...contractUpdate};
-            bll.contract.update(contractUpdated).exec((err, contract) => {
-                if (err) reject(err);
-                sendMySms(contract);
-                let status = getCartStatus();
-                resolve({contract, status});
+            sendMySms(contractUpdated).then(()=>{contractUpdated.notifyAdmin=true;},()=>{contractUpdated.notifyAdmin=false;}).then(()=>{
+                bll.contract.update(contractUpdated).exec((err, contract) => {
+                    if (err) reject(err);
+                    let status = getCartStatus();
+                    resolve({contract, status});
+                });
             });
+
+
+
         })
 
     });

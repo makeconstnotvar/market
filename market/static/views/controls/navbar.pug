@@ -3,16 +3,16 @@ dib.navbar
         div.row
             div.navbar-item.navbar-item--brand.navbar-block
                 a.navbar-item__link.active(href="/")
-                    i.fa.fa-shopping-bag.rgap.hidden-xs-down
-                    span(itemprop="name") Распродажа сумок
+                    i.fa.fa-shopping-bag.rgap
+                    span(itemprop="name") Get Your Bag
                     b.navbar-item__label Москва
-            div.d-flex.justify-content-end.ml-auto
-                div.navbar-item.navbar-item--delivery.hidden-md-down
+            div.d-flex.flex-wrap.justify-content-end.ml-auto
+                div.navbar-item.navbar-item--delivery
                     a.navbar-item__link(href="/delivery")
                         i.fa.fa-truck.rgap.hidden-xs-down
                         span Доставка
                         b.navbar-item__label бесплатно
-                div.navbar-item.navbar-item--cart.hidden-md-down
+                div.navbar-item.navbar-item--cart
                     a.navbar-cart__link( href="/cart")
                         i.fa.fa-shopping-cart.rgap.hidden-xs-down
                         span Корзина
@@ -27,19 +27,3 @@ dib.navbar
                         i.fa.fa-phone-square.rgap.hidden-xs-down
                         span( itemprop="telephone") +7(925)477-5001
                         b.navbar-item__label 10:00-21:00
-            div.d-flex.hidden-lg-up
-                div.navbar-item.navbar-item--delivery
-                    a.navbar-item__link( href="/delivery")
-                        i.fa.fa-truck.rgap.hidden-xs-down
-                        span Доставка
-                        b.navbar-item__label бесплатно
-                div.navbar-item.navbar-item--cart
-                    a.navbar-cart__link( href="/cart")
-                        i.fa.fa-shopping-cart.rgap.hidden-xs-down
-                        span Корзина
-                        unless status.sum
-                            b.navbar-cart__label пока что пустая
-                    if status.count
-                        span.navbar-cart__count #{status.count}
-                    if status.sum
-                        span.navbar-cart__sum #{status.sum}

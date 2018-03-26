@@ -1,0 +1,19 @@
+mixin pumpkin(image, price, discount)
+    div.special-product.mm-special.product.col-lg-3.col-md-4.col-sm-6.col-12
+        div.special-product__image
+            a.special-product__image-link.pumpkin
+                img(src=image)
+        div.special-product__info
+            div.price__status
+                div.price__status-available
+                    span.no
+                        i.fa.fa-ban.rgap
+                        | Отсутствует
+            div.discount.no
+                span #{discount} руб.
+            div.no
+                span.price-value #{price} руб.
+                |
+                |
+                - var bonus = discount - price
+                span.bonus - #{bonus} !!!

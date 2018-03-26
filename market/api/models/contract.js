@@ -21,6 +21,7 @@ var contractSchema = new mongoose.Schema({
         status: String,
         date: Date
     }],
+    notifyAdmin: Boolean,
     notifyClient: Boolean,
     smsText: String,
     //correctPhone: String,

@@ -10,10 +10,15 @@ block content
                 p Так же Вам стоит знать, что мы тщательно осматриваем все сумки и брак сразу возвращаем производителю.
         div.row
             include controls/card.pug
+            include controls/pumpkin.pug
             each product in products
                 +card(product, 'col-lg-3 col-md-4 col-sm-6 col-12')
-
+            +pumpkin('/img/pumpkin1.jpg', 3250, 3999)
+            +pumpkin('/img/pumpkin2.jpg', 1900, 2390)
+            +pumpkin('/img/pumpkin3.jpg', 3400, 3999)
+            +pumpkin('/img/pumpkin4.jpg', 4850, 5500)
         div.row
             div.col
                 h3 Дальше листать смысла особо нет...
                 p Остальное кончилось так давно, что мы забыли, как оно выглядело!
+                p И нужно поспешить, пока все сумки не стали тыквами.

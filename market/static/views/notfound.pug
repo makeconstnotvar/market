@@ -1,6 +1,21 @@
 extends index.pug
-block jumbo
-    include jumbos/notfound.pug
+
 block content
+    div.slider.notfound
+        div.slogan
     div.container.view-first
-        div Не найдено
+
+        h1 Страница не найдена
+        p Но вам повезло, у нас есть много других замечательных страниц.
+        p Можно попробовать начать сначала:
+        ul
+            li
+                a(href="/") Распродажа сумок
+
+        h2 Информационные страницы
+        p Несколько слов о том, как легко и просто получить купленный у нас товар:
+        ul
+            li
+                a(href="/delivery") Бесплатная доставка курьером и самовывоз
+            li
+                a(href="/contacts") Контакты и наши гарантии

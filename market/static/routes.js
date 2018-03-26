@@ -52,10 +52,10 @@ router.post('/cart', async (req, res, next) => {
     if (remove) {
         let data = await handlers.contract.remove(req.uid, req.body.pid);
         if (data.current && data.current.positions && data.current.positions.length) {
-            res.render('cart', {...data, seo});
+            res.render('cart', {...data, meta});
         }
         else {
-            res.render('empty', {...data, seo});
+            res.render('empty', {...data, meta});
         }
     }
     else {

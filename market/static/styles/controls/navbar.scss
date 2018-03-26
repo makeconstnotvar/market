@@ -4,7 +4,6 @@
     background-color: #313037;
     .navbar-item,
     .navbar-cart {
-        //display: inline-block;
         position: relative;
         transition: background-color .25s ease-out;
         &.active,
@@ -81,7 +80,7 @@
             }
         }
         &--brand {
-            width: 240px;
+            width: 185px;
             .fa {
                 width: 20px;
             }
@@ -105,16 +104,16 @@
             }
             &--brand,
             &--phone{
-                width: 160px
+                width: 100%
             }
             &--stocks {
                 width: 95px
             }
             &--cart{
-                width: 130px;
+                width: 50%;
             }
             &--delivery {
-                width: 95px
+                width: 50%;
             }
             &__label {
                 left: 10px;

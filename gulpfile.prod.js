@@ -220,8 +220,8 @@ gulp.task('static:inject', function () {
 });
 
 //result
-gulp.task('build:prod', gulp.series('client:css', 'loading', 'package', 'worker', 'files', 'config:prod', 'favicons', 'json', 'hash:js', 'hash:css', 'server', 'images', 'templates', 'admin:js', 'admin:css', 'inject:client', 'inject:admin'));
-gulp.task('build:test', gulp.series('client:css', 'loading', 'package', 'worker', 'files', 'config:test', 'favicons', 'json', 'hash:js', 'hash:css', 'server', 'images', 'templates', 'admin:js', 'admin:css', 'inject:client', 'inject:admin'));
+gulp.task('build:prod', gulp.series('client:css', 'loading', 'package', 'worker', 'files', 'config:prod', 'favicons', 'json', 'hash:js', 'hash:css', 'server', 'images', 'templates', 'admin:js', 'admin:css','static:css','static:js', 'static:inject','inject:client', 'inject:admin'));
+gulp.task('build:test', gulp.series('client:css', 'loading', 'package', 'worker', 'files', 'config:test', 'favicons', 'json', 'hash:js', 'hash:css', 'server', 'images', 'templates', 'admin:js', 'admin:css','static:css','static:js', 'static:inject','inject:client', 'inject:admin'));
 
 
 gulp.task('clean:prod', function () {

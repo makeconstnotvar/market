@@ -9,6 +9,8 @@ cat-product {
         //border-color: #f75163;
         @include transition300(background-color);
     }
+
+
     .image {
         position: relative;
         height: 240px;

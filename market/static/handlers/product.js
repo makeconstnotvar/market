@@ -43,7 +43,16 @@ module.exports = function (uid, params) {
 
         function getRandom(callback) {
             bll.category.select({query: {url: categoryUrl}}).exec((err, category) => {
-                bll.product.model.findRandom({category: category._id, count:{$gte:1}}).limit(4).exec((err, products) => {
+                bll.product.model.findRandom({category: category._id, count:{$gte:1}},{
+                    'name': 1,
+                        'price': 1,
+                        'discount': 1,
+                        'count': 1,
+                        'url': 1,
+                        'category': 1,
+                        'photos': {$elemMatch: {fileType: 'cover'}},
+                    'photos.fileId': 1
+                }).populate('category').limit(4).exec((err, products) => {
                     if (err) callback(err);
                     else callback(null, products)
                 });
@@ -60,13 +69,13 @@ module.exports = function (uid, params) {
         function processView(err, results) {
             if (err) reject(err);
             let product = views.product(results.product, results.contract);
-            let seo = {
+            let meta = {
                 description: product.description,
                 image: `/photos/${product._id}/${product.images && product.images[0]}`,
                 title: product.name
             };
             let randoms = views.specials(results.randoms, results.contract);
-            resolve({product, seo, randoms});
+            resolve({product, meta, randoms});
         }
 
     });

@@ -1,6 +1,9 @@
 .special-product {
     margin-bottom: 20px;
     overflow: hidden;
+    .pumpkin{
+        overflow: hidden;
+    }
     &__image {
         position: relative;
         height: 242px;
