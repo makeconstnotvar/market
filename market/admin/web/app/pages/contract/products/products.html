@@ -1,6 +1,9 @@
-
-<div class="row form-group product-list">
-
+<div class="row">
+    <div class="col-xs-12">
+        <div ui-view="filter"></div>
+    </div>
+</div>
+<div class="row product-list">
     <div class="col-sm-6">
         <div ui-view="products"></div>
     </div>
@@ -11,9 +14,9 @@
                 <td width="39px" class="btn-danger text-center m-pointer" ng-click="remove(position.product._id)">
                     <i class="fa fa-minus"></i></td>
                 <td class="cover">
-                    <img ng-repeat="photo in position.product.photos | filter:getCover" ng-src="{{'/photos/' + position.product._id + '/' + photo.fileId}}">
+                    <img ng-repeat="photo in position.product.photos | filter:getCover" ng-src="{{'/photos/' + position.product._id + '/s_' + photo.fileId}}">
                 </td>
-                <td><a ng-href="{{'products/main/'+position.product._id}}" ng-bind="position.product.name"></a></td>
+                <td><a ng-href="{{'/admin/products/main/'+position.product._id}}" ng-bind="position.product.name"></a></td>
                 <td width="10%"><span ng-bind="position.product.price"></span><i class="fa fa-rub"></i></td>
                 <td class="my-cart-change no-padding">
                     <div class="input-group">

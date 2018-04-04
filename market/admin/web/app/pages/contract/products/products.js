@@ -1,19 +1,20 @@
 ContractProductsCtrl.$inject = ['$rootScope', '$scope', '$stateParams', '$state', 'Product', 'Contract', 'Filter'];
+
 function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product, Contract, Filter) {
     var toState = $state.current.data.toState,
         filterName = $state.current.data.filterName,
         filter = Filter(filterName);
 
-    Contract.select({query:{_id:$stateParams.id}}).then(function (response) {
+    Contract.select({query: {_id: $stateParams.id}}).then(function (response) {
         $scope.contract = response.data;
         getProducts();
         getCount();
     });
 
 
-    $scope.$on('product.ts:search', getProducts);
+    $scope.$on('product:search', getProducts);
 
-    $scope.$on('product.ts:search', getCount);
+    $scope.$on('product:search', getCount);
 
     $scope.$on('page:change', getProducts);
 
@@ -23,7 +24,7 @@ function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product,
 
     $scope.$on('productAddList:remove', remove);
 
-    $scope.remove = function(productId){
+    $scope.remove = function (productId) {
         $rootScope.$broadcast('productAddList:remove', productId);
     };
 
@@ -87,11 +88,11 @@ function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product,
 
         Product.selectAll({order: query.order, skip: skip, take: take, query: query}).then(function (response) {
             var products = response.data;
-            for(var i = 0; i < products.length;i++){
-                products[i].selected = !!$scope.contract.positions.find(function (position) {
-                    return products[i]._id == position.product._id
+            products.forEach(product => {
+                product.selected = !!$scope.contract.positions.find(function (position) {
+                    return product._id == position.product._id
                 });
-            }
+            });
             $rootScope.$broadcast('productAddList:init', products);
         });
     }
@@ -115,7 +116,7 @@ function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product,
     }
 
     function remove(e, productId) {
-        $scope.contract.positions = $scope.contract.positions.filter(function(position){
+        $scope.contract.positions = $scope.contract.positions.filter(function (position) {
             return position.product._id != productId;
         });
         setFinal($scope.contract.positions);

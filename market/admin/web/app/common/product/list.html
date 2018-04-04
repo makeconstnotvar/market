@@ -8,7 +8,7 @@
         <td ng-if="!product.selected" width="39px" title="Добавить продукт" class="btn-default text-center my-pointer" ng-click="add(product)">
             <i class="fa fa-minus"></i>
         </td>
-        <td class="cover"><img ng-repeat="photo in product.photos | filter:getCover" ng-src="{{'/photos/' + product._id + '/' + photo.fileId}}"></td>
+        <td class="cover"><img ng-repeat="photo in product.photos | filter:getCover" ng-src="{{'/photos/' + product._id + '/s_' + photo.fileId}}"></td>
         <td><a ng-href="{{'products/edit/'+product._id}}" ng-bind="product.name"></a></td>
         <td ng-bind="product.price"></td>
         <td ng-bind="product.category.name"></td>

@@ -50868,7 +50868,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/common/product/list.html',
-    '<table class="table table-bordered table-hover"><tbody><tr ng-repeat="product in products"><td ng-if="product.selected" width="39px" title="Убрать продукт" class="btn-default text-center my-pointer success" ng-click="remove(product)"><i class="fa fa-check"></i></td><td ng-if="!product.selected" width="39px" title="Добавить продукт" class="btn-default text-center my-pointer" ng-click="add(product)"><i class="fa fa-minus"></i></td><td class="cover"><img ng-repeat="photo in product.photos | filter:getCover" ng-src="{{\'/photos/\' + product._id + \'/\' + photo.fileId}}"></td><td><a ng-href="{{\'products/edit/\'+product._id}}" ng-bind="product.name"></a></td><td ng-bind="product.price"></td><td ng-bind="product.category.name"></td></tr></tbody></table>');
+    '<table class="table table-bordered table-hover"><tbody><tr ng-repeat="product in products"><td ng-if="product.selected" width="39px" title="Убрать продукт" class="btn-default text-center my-pointer success" ng-click="remove(product)"><i class="fa fa-check"></i></td><td ng-if="!product.selected" width="39px" title="Добавить продукт" class="btn-default text-center my-pointer" ng-click="add(product)"><i class="fa fa-minus"></i></td><td class="cover"><img ng-repeat="photo in product.photos | filter:getCover" ng-src="{{\'/photos/\' + product._id + \'/s_\' + photo.fileId}}"></td><td><a ng-href="{{\'products/edit/\'+product._id}}" ng-bind="product.name"></a></td><td ng-bind="product.price"></td><td ng-bind="product.category.name"></td></tr></tbody></table>');
 }]);
 })();
 
@@ -50915,8 +50915,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/category/wrap.html',
-    '<div ui-view="wrap"></div>');
+  $templateCache.put('admin/pages/404/404.html',
+    '<div class="row"><div class="col-sm-12"><h1>404</h1></div></div>');
 }]);
 })();
 
@@ -50927,8 +50927,8 @@ try {
   module = angular.module('admin-templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/404/404.html',
-    '<div class="row"><div class="col-sm-12"><h1>404</h1></div></div>');
+  $templateCache.put('admin/pages/category/wrap.html',
+    '<div ui-view="wrap"></div>');
 }]);
 })();
 
@@ -51072,7 +51072,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/contract/list/list.html',
-    '<div class="row form-group" ng-show="showEmptyPlaced"><div class="col-sm-12"><span>Пока не поступило ни одного заказа</span> <a ng-click="newContract()" class="btn btn-primary">Создать</a></div></div><div class="row form-group" ng-show="showEmptyMessage"><div class="col-sm-12" ng-bind="emptyMessage"></div></div><div class="row form-group my-ord-row" ng-show="contracts.length>0" ng-repeat="contract in contracts"><div class="col-xs-12 col-sm-5 col-md-3 col-lg-3"><table class="table"><tbody><tr><td colspan="2"><a title="Редактировать заказ" class="btn btn-default pull-left contract120" ng-click="edit(contract._id)"><i class="fa fa-pencil-square-o"></i> Изменить</a> <a title="Удалить заказ" class="btn btn-danger pull-right" ng-click="toDelete(contract._id)"><i class="fa fa-times"></i></a></td></tr><tr><td colspan="2"><a class="btn btn-primary contract120" title="Изменить статус заказа" ng-click="toStatus(contract._id)"><i class="fa fa-cog"></i> Обработать</a></td></tr><tr><td><b>Номер:</b></td><td ng-bind="contract.number"></td></tr><tr><td><b>Дата:</b></td><td ng-bind="contract.date| date:\'dd.MM.yyyy\'"></td></tr><tr><td><b>Время:</b></td><td ng-bind="contract.date| date:\'HH:mm:ss\'"></td></tr></tbody></table></div><div class="col-xs-12 col-sm-7 col-md-4 col-lg-4"><table class="table"><tr><td><b>Имя:</b></td><td ng-bind="contract.name"></td></tr><tr><td><b>Телефон:</b></td><td ng-bind="contract.phone"></td></tr><tr><td><b class="text-nowrap">Способ получения:</b></td><td><span ng-if="contract.delivery==\'auto\'">Доставка курьером</span> <span ng-if="contract.delivery==\'manual\'">Самовывоз</span></td></tr><tr><td><b>Адрес:</b></td><td ng-bind="contract.address"></td></tr><tr><td><b>Комментарий:</b></td><td ng-bind="contract.note"></td></tr></table></div><div class="col-xs-12 col-sm-12 col-md-5 col-lg-5"><table class="table table-bordered"><tbody><tr><th>Товар</th><th>Шт</th><th>Цена за шт.</th><th>Сумма</th></tr><tr ng-repeat="position in contract.positions"><td ng-bind="position.product.name"></td><td ng-bind="position.count"></td><td ng-bind="position.product.price"></td><td ng-bind="position.sum"></td></tr><tr class="info"><td colspan="3"><strong>итого:</strong></td><td><strong ng-bind="contract.final"></strong></td></tr></tbody></table></div></div>');
+    '<div class="row form-group" ng-show="showEmptyPlaced"><div class="col-sm-12"><span>Пока не поступило ни одного заказа</span> <a ng-click="newContract()" class="btn btn-primary">Создать</a></div></div><div class="row form-group" ng-show="showEmptyMessage"><div class="col-sm-12" ng-bind="emptyMessage"></div></div><div class="row form-group my-ord-row contract-list" ng-show="contracts.length>0" ng-repeat="contract in contracts"><div class="col-xs-12 col-sm-6 col-md-4"><table class="table table-bordered table-no-padding"><tbody><tr><td colspan="2"><a title="Редактировать заказ" class="btn btn-default pull-left contract120 rgap" ng-click="edit(contract._id)">Редактировать</a> <a class="btn btn-primary contract120 rgap" title="Изменить статус заказа" ng-click="toStatus(contract._id)">Обработать</a> <a title="Удалить заказ" class="btn btn-danger pull-right" ng-click="toDelete(contract._id)"><i class="fa fa-times"></i></a></td></tr><tr><td><b>Номер:</b></td><td ng-bind="contract.number"></td></tr><tr><td><b>Дата:</b></td><td ng-bind="contract.date| date:\'dd.MM.yyyy\'"></td></tr><tr><td><b>Время:</b></td><td ng-bind="contract.date| date:\'HH:mm:ss\'"></td></tr></tbody></table></div><div class="col-xs-12 col-sm-6 col-md-4"><table class="table table-bordered table-no-padding"><tr><td><b>Имя:</b></td><td ng-bind="contract.name"></td></tr><tr><td><b>Телефон:</b></td><td ng-bind="contract.phone"></td></tr><tr><td><b class="text-nowrap">Способ получения:</b></td><td><span ng-if="contract.delivery==\'auto\'">Доставка курьером</span> <span ng-if="contract.delivery==\'manual\'">Самовывоз</span></td></tr><tr><td><b>Адрес:</b></td><td ng-bind="contract.address"></td></tr><tr><td><b>Комментарий:</b></td><td ng-bind="contract.note"></td></tr></table></div><div class="col-xs-12 col-sm-12 col-md-4"><table class="table table-bordered table-no-padding"><tbody><tr><th></th><th>Артикул</th><th>Товар</th><th>Цена</th><th>Шт</th></tr><tr ng-repeat="position in contract.positions"><td class="cover"><img fade-in="" ng-repeat="photo in position.product.photos | filter:getCover" ng-src="{{\'/photos/\' + position.product._id + \'/s_\' + photo.fileId}}"></td><td ng-bind="position.product.article"></td><td><a ng-href="{{\'/admin/products/main/\'+position.product._id}}" ng-bind="position.product.name || position.name"></a></td><td ng-bind="position.product.price || position.price"></td><td ng-bind="position.count"></td></tr><tr class="info"><td colspan="4"><strong>итого:</strong></td><td><strong ng-bind="contract.final"></strong></td></tr></tbody></table></div></div>');
 }]);
 })();
 
@@ -51084,7 +51084,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/contract/products/products.html',
-    '<div class="row form-group product-list"><div class="col-sm-6"><div ui-view="products"></div></div><div class="col-sm-6"><table class="table table-bordered table-hover"><tbody><tr ng-repeat="position in contract.positions"><td width="39px" class="btn-danger text-center m-pointer" ng-click="remove(position.product._id)"><i class="fa fa-minus"></i></td><td class="cover"><img ng-repeat="photo in position.product.photos | filter:getCover" ng-src="{{\'/photos/\' + position.product._id + \'/\' + photo.fileId}}"></td><td><a ng-href="{{\'products/main/\'+position.product._id}}" ng-bind="position.product.name"></a></td><td width="10%"><span ng-bind="position.product.price"></span><i class="fa fa-rub"></i></td><td class="my-cart-change no-padding"><div class="input-group"><a class="btn btn-default input-group-addon" ng-click="minus(position)"><i class="fa fa-minus"></i></a> <input ng-disabled="true" type="text" value="1" class="form-control m-cart-center" ng-model="position.count"> <a class="btn btn-default input-group-addon" ng-click="plus(position)"><i class="fa fa-plus"></i></a></div></td><td width="10%" class="info"><span ng-bind="position.sum"></span><i class="fa fa-rub"></i></td></tr></tbody><tfoot><tr><td colspan="2"></td><td colspan="3"><b>Итого</b></td><td class="info"><span ng-bind="contract.final"></span><i class="fa fa-rub"></i></td></tr></tfoot></table><a class="btn btn-success m-rgap" ng-click="save()">Сохранить</a> <a class="btn btn-warning" ng-click="cancel()">Отмена</a></div></div>');
+    '<div class="row"><div class="col-xs-12"><div ui-view="filter"></div></div></div><div class="row product-list"><div class="col-sm-6"><div ui-view="products"></div></div><div class="col-sm-6"><table class="table table-bordered table-hover"><tbody><tr ng-repeat="position in contract.positions"><td width="39px" class="btn-danger text-center m-pointer" ng-click="remove(position.product._id)"><i class="fa fa-minus"></i></td><td class="cover"><img ng-repeat="photo in position.product.photos | filter:getCover" ng-src="{{\'/photos/\' + position.product._id + \'/s_\' + photo.fileId}}"></td><td><a ng-href="{{\'/admin/products/main/\'+position.product._id}}" ng-bind="position.product.name"></a></td><td width="10%"><span ng-bind="position.product.price"></span><i class="fa fa-rub"></i></td><td class="my-cart-change no-padding"><div class="input-group"><a class="btn btn-default input-group-addon" ng-click="minus(position)"><i class="fa fa-minus"></i></a> <input ng-disabled="true" type="text" value="1" class="form-control m-cart-center" ng-model="position.count"> <a class="btn btn-default input-group-addon" ng-click="plus(position)"><i class="fa fa-plus"></i></a></div></td><td width="10%" class="info"><span ng-bind="position.sum"></span><i class="fa fa-rub"></i></td></tr></tbody><tfoot><tr><td colspan="2"></td><td colspan="3"><b>Итого</b></td><td class="info"><span ng-bind="contract.final"></span><i class="fa fa-rub"></i></td></tr></tfoot></table><a class="btn btn-success m-rgap" ng-click="save()">Сохранить</a> <a class="btn btn-warning" ng-click="cancel()">Отмена</a></div></div>');
 }]);
 })();
 
@@ -51097,90 +51097,6 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/contract/status/status.html',
     '<div class="row form-group"><div class="col-xs-12"><div class="mb-contract-status"><a class="me-contract-edit m-pointer" href="" ng-click="toEdit()"><i class="fa fa-cogs"></i></a><table><tbody><tr><td>Номер заказа:</td><td ng-bind="contract.number"></td></tr><tr><td>Дата:</td><td ng-bind="contract.date| date:\'dd.MM.yyyy\'"></td></tr><tr><td>Время:</td><td ng-bind="contract.date| date:\'HH:mm:ss\'"></td></tr><tr><td>Имя клиента:</td><td ng-bind="contract.name"></td></tr><tr><td>Адрес доставки:</td><td ng-bind="contract.address"></td></tr><tr><td>Комментарий:</td><td ng-bind="contract.note"></td></tr></tbody></table></div></div><div class="col-xs-12"><div class="mb-contract-status"><table><tbody><tr><td>Текущий статус заказа</td><td ng-bind="contract.status|statusName"></td></tr><tr><td>Будет изменен на</td><td><select ng-options="status as status.name for status in statuses" ng-model="status"><option style="display:none" value="">select a region</option></select></td></tr></tbody></table></div></div><div class="col-xs-12"><div class="mb-contract-status"><table><tbody><tr><td><i style="color: red" class="fa fa-asterisk m-icon-gap"></i><label for="phone">Телефон клиента</label></td><td><input id="phone" type="text" class="form-control" ng-model="contract.phone"></td></tr></tbody></table></div></div><div class="col-xs-12"><div class="mb-contract-status"><table><tbody><tr><td>Форма доставки</td><td><span ng-if="contract.delivery==\'auto\'">Доставка курьером</span> <span ng-if="contract.delivery==\'manual\'">Самовывоз</span></td></tr><tr><td><i ng-if="contract.sendSms && contract.notifyClient" style="color: red" class="fa fa-asterisk"></i>Текст сообщения (смс)</td><td ng-if="contract.sendSms"><span ng-bind="\'Заказ \'+contract.number+\' принят. \'"></span><a ng-click="addAcceptText()">добавить в начало</a> <textarea rows="3" class="form-control" ng-model="contract.smsText"></textarea></td><td ng-if="!contract.sendSms"><span>Клиент не хочет получать смс уведомления</span></td></tr><tr><td>Подтвердить отправку</td><td class="checkbox"><label for="sendsms"><input type="checkbox" id="sendsms" ng-model="contract.notifyClient"> <span ng-if="contract.notifyClient">Отправить сообщение</span> <span ng-if="!contract.notifyClient">Сообщение не будет отправлено</span></label></td></tr></tbody></table></div></div></div><div class="row form-group"><div class="col-sm-offset-3 col-sm-9"><button class="btn btn-primary m-rgap" ng-click="ok()">Подтвердить</button> <button class="btn btn-warning" ng-click="cancel()">Отмена</button><div class="alert alert-danger" ng-if="showSmsError">Ошибка</div></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/category/category.html',
-    '<div class="row form-group" ng-if="product"><label class="col-sm-2 control-label">Выбранный продукт</label><div class="col-sm-10"><span ng-bind="product.name + \' \' + product.extra"></span></div></div><div class="row form-group"><label class="col-sm-2 control-label">Категории</label><div class="col-sm-10"><ul class="list-unstyled"><li class="checkbox" ng-repeat="category in categories" ng-include="\'admin/pages/product/category/tree.html\'"></li></ul></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a ng-click="save()" class="btn btn-success">Сохранить</a></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/category/tree.html',
-    '<div class="my-cat-block my-small"><div class="radio-inline"><label for="{{category._id}}"><input id="{{category._id}}" ng-model="product.category" ng-value="category" ng-checked="category._id==product.category._id" name="catRadios" type="radio"> <span ng-bind="category.name"></span></label></div><a title="Удалить категорию" ng-click="remove(category._id)" class="pull-right margin-left-10 text-danger"><i class="fa fa-times"></i></a> <a title="Редактировать категорию" ng-click="edit(category._id)" class="pull-right margin-left-10"><i class="fa fa-pencil-square-o"></i></a></div><ul class="list-unstyled my-cat-list" ng-if="category.children"><li ng-class="{\'padding-left-40\': category.level==\'1\', \'padding-left-80\': category.level==\'2\', \'padding-left-120\': category.level==\'3\'}" ng-repeat="category in category.children" ng-include="\'admin/pages/product/category/tree.html\'"></li></ul>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/filter/filter.html',
-    '<div class="mb-filter"><div class="row"><div class="col-xs-12"><div class="form-group"><div class="input-group"><input ng-model="filter.text" ng-enter="query()" class="form-control" placeholder="название товара"> <a class="input-group-addon btn btn-success" ng-click="query()">Поиск</a></div></div><div class="form-inline"><div class="inline m-rgap"><div>категория</div><select class="form-control" ng-model="filter.category" ng-change="query()" ng-options="category._id as category.name for category in source.categories"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>видимость</div><select class="form-control" ng-model="filter.publish" ng-change="query()" ng-options="publish.value as publish.name for publish in source.publishes"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>наличие</div><select class="form-control" ng-model="filter.count" ng-change="query()" ng-options="count.value as count.name for count in source.counts"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>на главной</div><select class="form-control" ng-model="filter.special" ng-change="query()" ng-options="special.value as special.name for special in source.specials"><option value="">не важно</option></select></div><button class="btn btn-danger form-control" ng-click="clear()">Сбросить</button></div></div></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/delete/delete.html',
-    '<div class="row form-group"><div class="col-sm-12">Вы уверены что хотите удалить продукт <b ng-bind="product.name"></b><b ng-bind="\' \' + product.extra"></b>?</div></div><div class="row form-group"><div class="col-sm-12"><button class="btn btn-success" ng-click="ok(product._id)">Удалить</button> <button class="btn btn-warning" ng-click="cancel()">Отмена</button></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/list/list.html',
-    '<form class="product-list"><div class="row" ng-show="products.length==0"><div class="col-sm-12"><span>Вы не создали ни одного продукта</span> <a ng-click="newProduct()" class="btn btn-primary">Создать</a></div></div><div class="row" ng-show="products.length>0"><div class="col-sm-12"><table class="table table-bordered table-hover"><thead><tr><th></th><th></th><th></th><th>Название</th><th>Закупка</th><th>Акция</th><th class="info">Цена</th><th class="gray-bg">Наличие</th><th class="text-center" title="Располагается на главной странице"><i class="fa fa-home"></i></th><th class="text-center" title="Видимость на клиентском сайте"><i class="fa fa-eye"></i></th><th class="text-center" title="Удаление товара"><i class="fa fa-trash-o"></i></th></tr></thead><tbody><tr ng-repeat="product in products"><td title="Основные параметры" class="btn-default text-center m-pointer button" ng-click="edit(product._id)"><i class="fa fa-pencil-square-o"></i></td><td title="Редактировать описание" class="btn-default text-center m-pointer button" ng-click="toInfo(product._id)"><i class="fa fa-info"></i></td><td title="Фотографии" class="cover m-pointer" ng-click="toPhoto(product._id)"><img fade-in="" ng-repeat="photo in product.photos | filter:getCover" ng-src="{{\'/photos/\' + product._id + \'/s_\' + photo.fileId}}"></td><td class="name"><div><span ng-bind="product.name"></span><span ng-show="product.extra" ng-bind="\' \' + product.extra"></span></div><div class="url"><span class="m-url-red" title="Товар продается по акции" ng-if="product.stock">A</span> <span class="m-url-purple" title="Количество загруженных картинок" ng-bind="\'к:\'+product.imageCount"></span> <span class="m-url-purple" title="Количество загруженных обложек" ng-bind="\'о:\'+product.coverCount"></span> <span title="Url продукта" ng-bind="product.url"></span></div></td><td class="no-padding price"><input ng-model="product.purchase" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding price"><input ng-model="product.discount" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding price info"><input ng-model="product.price" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding my-count"><div class="input-group"><a class="btn btn-default input-group-addon" ng-click="minus(product)"><i class="fa fa-minus"></i></a> <input ng-disabled="true" id="count" ng-model="product.count" class="form-control text-center"> <a class="btn btn-default input-group-addon" ng-click="plus(product)"><i class="fa fa-plus"></i></a></div></td><td class="m-pointer button m-hover" ng-click="invert(product, \'special\')"><i class="fa center-correct" ng-class="product.special?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="m-pointer button m-hover" ng-click="invert(product, \'publish\')"><i class="fa center-correct" ng-class="product.publish?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="btn-danger text-center m-pointer button" title="Удалить товар" ng-click="delete(product._id)"><i class="fa fa-times"></i></td></tr></tbody></table></div></div></form>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/new/new.html',
-    '<div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="name">Название <i class="fa fa-asterisk my-red"></i></label><div class="col-sm-10"><input id="name" ng-model="product.name" class="form-control" ng-model-options="{updateOn:\'input\'}" ng-change="nameToUrl()"></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="url">Url</label><div class="col-sm-10"><div class="input-group m-input-group"><input id="url" ng-model="product.url" class="form-control"> <a class="btn btn-default input-group-addon" ng-click="nameToUrl()" title="Создать url из названия"><i class="fa fa-refresh"></i></a></div></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="code">Модель</label><div class="col-sm-10"><input id="code" ng-model="product.code" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="article">Артикул</label><div class="col-sm-10"><input id="article" ng-model="product.article" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Описание</label><div class="col-sm-10"><textarea rows="4" class="form-control" ng-model="product.details"></textarea></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a ng-click="save()" class="btn btn-success margin-right-10">Сохранить</a> <span ng-show="noNameError" class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span></div></div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('admin-templates');
-} catch (e) {
-  module = angular.module('admin-templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('admin/pages/product/tabs/tabs.html',
-    '<div class="photolist"><div class="photolist-item"><a ng-click="toState(p._id)" class="product-link" ng-class="{\'active\':product._id == p._id}" ng-repeat="p in products"><img ng-if="p.cover" fade-in="" ng-src="{{\'/photos/\' + p._id + \'/s_\' + p.cover}}"></a></div><div class="product-box" ui-view="editor"></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a class="btn btn-success m-rgap" ng-click="save()">Сохранить</a></div></div>');
 }]);
 })();
 
@@ -51229,6 +51145,90 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('admin/pages/parameter/list/list.html',
     '<div class="row form-group" ng-if="parameters.length==0"><div class="col-sm-12"><span>Вы не создали ни одного параметра</span> <a ng-click="toNew()" class="btn btn-primary">Создать</a></div></div><div class="row form-group" ng-if="parameters.length>0"><div class="col-sm-12"><table class="table table-bordered table-hover"><thead><tr><th></th><th>Название</th><th>Описание</th><th>Тип</th><th>Возможные значения</th><th></th></tr></thead><tbody><tr ng-repeat="parameter in parameters"><td width="39px" title="Редактировать параметр" class="btn-warning text-center my-pointer" ng-click="toEdit(parameter._id)"><i class="fa fa-pencil-square-o"></i></td><td><span ng-bind="parameter.name"></span><span ng-if="parameter.unit" ng-bind="\', \'+parameter.unit"></span><div class="param-url" ng-bind="parameter.url"></div></td><td><span ng-if="parameter.details" ng-bind="parameter.details"></span></td><td ng-bind="parameter.behavior"></td><td><ul ng-if="parameter.values" class="list-inline no-margin"><li class="li-params" ng-repeat="v in parameter.values"><span ng-bind="v.value"></span><div class="param-url" ng-bind="v.url"></div></li></ul></td><td width="39px" title="Удалить параметр" class="btn-danger text-center my-pointer" ng-click="toRemove(parameter._id)"><i class="fa fa-times"></i></td></tr></tbody></table></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/product/category/category.html',
+    '<div class="row form-group" ng-if="product"><label class="col-sm-2 control-label">Выбранный продукт</label><div class="col-sm-10"><span ng-bind="product.name + \' \' + product.extra"></span></div></div><div class="row form-group"><label class="col-sm-2 control-label">Категории</label><div class="col-sm-10"><ul class="list-unstyled"><li class="checkbox" ng-repeat="category in categories" ng-include="\'admin/pages/product/category/tree.html\'"></li></ul></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a ng-click="save()" class="btn btn-success">Сохранить</a></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/product/category/tree.html',
+    '<div class="my-cat-block my-small"><div class="radio-inline"><label for="{{category._id}}"><input id="{{category._id}}" ng-model="product.category" ng-value="category" ng-checked="category._id==product.category._id" name="catRadios" type="radio"> <span ng-bind="category.name"></span></label></div><a title="Удалить категорию" ng-click="remove(category._id)" class="pull-right margin-left-10 text-danger"><i class="fa fa-times"></i></a> <a title="Редактировать категорию" ng-click="edit(category._id)" class="pull-right margin-left-10"><i class="fa fa-pencil-square-o"></i></a></div><ul class="list-unstyled my-cat-list" ng-if="category.children"><li ng-class="{\'padding-left-40\': category.level==\'1\', \'padding-left-80\': category.level==\'2\', \'padding-left-120\': category.level==\'3\'}" ng-repeat="category in category.children" ng-include="\'admin/pages/product/category/tree.html\'"></li></ul>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/product/delete/delete.html',
+    '<div class="row form-group"><div class="col-sm-12">Вы уверены что хотите удалить продукт <b ng-bind="product.name"></b><b ng-bind="\' \' + product.extra"></b>?</div></div><div class="row form-group"><div class="col-sm-12"><button class="btn btn-success" ng-click="ok(product._id)">Удалить</button> <button class="btn btn-warning" ng-click="cancel()">Отмена</button></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/product/filter/filter.html',
+    '<div class="mb-filter"><div class="row"><div class="col-xs-12"><div class="form-group"><div class="input-group"><input ng-model="filter.text" ng-enter="query()" class="form-control" placeholder="название товара"> <a class="input-group-addon btn btn-success" ng-click="query()">Поиск</a></div></div><div class="form-inline"><div class="inline m-rgap"><div>категория</div><select class="form-control" ng-model="filter.category" ng-change="query()" ng-options="category._id as category.name for category in source.categories"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>видимость</div><select class="form-control" ng-model="filter.publish" ng-change="query()" ng-options="publish.value as publish.name for publish in source.publishes"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>наличие</div><select class="form-control" ng-model="filter.count" ng-change="query()" ng-options="count.value as count.name for count in source.counts"><option value="">не важно</option></select></div><div class="inline m-rgap"><div>на главной</div><select class="form-control" ng-model="filter.special" ng-change="query()" ng-options="special.value as special.name for special in source.specials"><option value="">не важно</option></select></div><button class="btn btn-danger form-control" ng-click="clear()">Сбросить</button></div></div></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/product/list/list.html',
+    '<form class="product-list"><div class="row" ng-show="products.length==0"><div class="col-sm-12"><span>Вы не создали ни одного продукта</span> <a ng-click="newProduct()" class="btn btn-primary">Создать</a></div></div><div class="row" ng-show="products.length>0"><div class="col-sm-12"><table class="table table-bordered table-hover"><thead><tr><th></th><th></th><th></th><th>Название</th><th>Закупка</th><th>Акция</th><th class="info">Цена</th><th class="gray-bg">Наличие</th><th class="text-center" title="Располагается на главной странице"><i class="fa fa-home"></i></th><th class="text-center" title="Видимость на клиентском сайте"><i class="fa fa-eye"></i></th><th class="text-center" title="Удаление товара"><i class="fa fa-trash-o"></i></th></tr></thead><tbody><tr ng-repeat="product in products"><td title="Основные параметры" class="btn-default text-center m-pointer button" ng-click="edit(product._id)"><i class="fa fa-pencil-square-o"></i></td><td title="Редактировать описание" class="btn-default text-center m-pointer button" ng-click="toInfo(product._id)"><i class="fa fa-info"></i></td><td title="Фотографии" class="cover m-pointer" ng-click="toPhoto(product._id)"><img fade-in="" ng-repeat="photo in product.photos | filter:getCover" ng-src="{{\'/photos/\' + product._id + \'/s_\' + photo.fileId}}"></td><td class="name"><div><span ng-bind="product.name"></span><span ng-show="product.extra" ng-bind="\' \' + product.extra"></span></div><div class="url"><span class="m-url-red" title="Товар продается по акции" ng-if="product.stock">A</span> <span class="m-url-purple" title="Количество загруженных картинок" ng-bind="\'к:\'+product.imageCount"></span> <span class="m-url-purple" title="Количество загруженных обложек" ng-bind="\'о:\'+product.coverCount"></span> <span title="Url продукта" ng-bind="product.url"></span></div></td><td class="no-padding price"><input ng-model="product.purchase" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding price"><input ng-model="product.discount" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding price info"><input ng-model="product.price" class="form-control text-center no-margin-bottom me-price" ng-model-options="{updateOn:\'input\'}" ng-change="save(product)"></td><td class="no-padding my-count"><div class="input-group"><a class="btn btn-default input-group-addon" ng-click="minus(product)"><i class="fa fa-minus"></i></a> <input ng-disabled="true" id="count" ng-model="product.count" class="form-control text-center"> <a class="btn btn-default input-group-addon" ng-click="plus(product)"><i class="fa fa-plus"></i></a></div></td><td class="m-pointer button m-hover" ng-click="invert(product, \'special\')"><i class="fa center-correct" ng-class="product.special?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="m-pointer button m-hover" ng-click="invert(product, \'publish\')"><i class="fa center-correct" ng-class="product.publish?\'fa-check-square-o\':\'fa-square-o\'"></i></td><td class="btn-danger text-center m-pointer button" title="Удалить товар" ng-click="delete(product._id)"><i class="fa fa-times"></i></td></tr></tbody></table></div></div></form>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/product/new/new.html',
+    '<div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="name">Название <i class="fa fa-asterisk my-red"></i></label><div class="col-sm-10"><input id="name" ng-model="product.name" class="form-control" ng-model-options="{updateOn:\'input\'}" ng-change="nameToUrl()"></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="url">Url</label><div class="col-sm-10"><div class="input-group m-input-group"><input id="url" ng-model="product.url" class="form-control"> <a class="btn btn-default input-group-addon" ng-click="nameToUrl()" title="Создать url из названия"><i class="fa fa-refresh"></i></a></div></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="code">Модель</label><div class="col-sm-10"><input id="code" ng-model="product.code" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label my-pointer" for="article">Артикул</label><div class="col-sm-10"><input id="article" ng-model="product.article" class="form-control"></div></div><div class="row form-group"><label class="col-sm-2 control-label">Описание</label><div class="col-sm-10"><textarea rows="4" class="form-control" ng-model="product.details"></textarea></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a ng-click="save()" class="btn btn-success margin-right-10">Сохранить</a> <span ng-show="noNameError" class="text-danger">Нужно обязательно заполнить поле <strong>Название</strong></span></div></div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('admin-templates');
+} catch (e) {
+  module = angular.module('admin-templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('admin/pages/product/tabs/tabs.html',
+    '<div class="photolist"><div class="photolist-item"><a ng-click="toState(p._id)" class="product-link" ng-class="{\'active\':product._id == p._id}" ng-repeat="p in products"><img ng-if="p.cover" fade-in="" ng-src="{{\'/photos/\' + p._id + \'/s_\' + p.cover}}"></a></div><div class="product-box" ui-view="editor"></div></div><div class="row form-group"><div class="col-sm-offset-2 col-sm-10"><a class="btn btn-success m-rgap" ng-click="save()">Сохранить</a></div></div>');
 }]);
 })();
 
@@ -52625,15 +52625,15 @@ function ContractRouter($stateProvider,config,OnExitHandlerProvider) {
             url: '/products?{page}',
             views: {
                 'products@root.contracts.edit.products': {
-                    templateUrl: baseCommon+'product.ts/list.html',
+                    templateUrl: baseCommon+'product/list.html',
                     controller: 'ProductAddListCtrl'
                 },
                 'pager@':{
                     templateUrl: baseCommon + 'pager/pager.html',
                     controller: 'PagerCtrl'
                 },
-                'filter@base': {
-                    templateUrl: config.path +'/pages/product.ts/filter/filter.html',
+                'filter@root.contracts.edit.products': {
+                    templateUrl: config.path +'pages/product/filter/filter.html',
                     controller: 'ProductFilterCtrl'
                 }
             },
@@ -52686,7 +52686,8 @@ function ContractRouter($stateProvider,config,OnExitHandlerProvider) {
                     {state: 'root.contracts.list.progress', name: 'Исполняются'},
                     {state: 'root.contracts.list.done', name: 'Выполнены'},
                     {state: 'root.contracts.list.cancel', name: 'Отменены'},
-                    {state: 'root.contracts.list.delete', name: 'Удалены'}
+                    {state: 'root.contracts.list.delete', name: 'Удалены'},
+                    {state: 'root.contracts.list.temp', name: 'Временные'}
                 ]
 
             }
@@ -52718,6 +52719,13 @@ function ContractRouter($stateProvider,config,OnExitHandlerProvider) {
             data: {
                 status: 'cancel',
                 emptyMessage:'Отсутствуют контракты в статусе "Отменены"'
+            }
+        })
+        .state('root.contracts.list.temp', {
+            url: '/temp',
+            data: {
+                status: 'temp',
+                emptyMessage:'Отсутствуют контракты в статусе "Временный"'
             }
         })
         .state('root.contracts.list.delete', {
@@ -53621,7 +53629,9 @@ function ContractCtrl($scope, $state, Contract) {
     $scope.newContract = function () {
         $state.go(toState.new);
     };
-
+    $scope.getCover = function (photo) {
+        return photo.fileType == 'cover';
+    };
     function search(data) {
 
         Contract.selectAll({query: {status: data.status}, order: {date: -1}}).then(function (response) {
@@ -53672,21 +53682,22 @@ ContractNewCtrl.$inject = ['$scope', '$state', 'Contract'];
 angular.module('controller').controller('ContractNewCtrl', ContractNewCtrl);
 
 ContractProductsCtrl.$inject = ['$rootScope', '$scope', '$stateParams', '$state', 'Product', 'Contract', 'Filter'];
+
 function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product, Contract, Filter) {
     var toState = $state.current.data.toState,
         filterName = $state.current.data.filterName,
         filter = Filter(filterName);
 
-    Contract.select({query:{_id:$stateParams.id}}).then(function (response) {
+    Contract.select({query: {_id: $stateParams.id}}).then(function (response) {
         $scope.contract = response.data;
         getProducts();
         getCount();
     });
 
 
-    $scope.$on('product.ts:search', getProducts);
+    $scope.$on('product:search', getProducts);
 
-    $scope.$on('product.ts:search', getCount);
+    $scope.$on('product:search', getCount);
 
     $scope.$on('page:change', getProducts);
 
@@ -53696,7 +53707,7 @@ function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product,
 
     $scope.$on('productAddList:remove', remove);
 
-    $scope.remove = function(productId){
+    $scope.remove = function (productId) {
         $rootScope.$broadcast('productAddList:remove', productId);
     };
 
@@ -53760,11 +53771,11 @@ function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product,
 
         Product.selectAll({order: query.order, skip: skip, take: take, query: query}).then(function (response) {
             var products = response.data;
-            for(var i = 0; i < products.length;i++){
-                products[i].selected = !!$scope.contract.positions.find(function (position) {
-                    return products[i]._id == position.product._id
+            products.forEach(product => {
+                product.selected = !!$scope.contract.positions.find(function (position) {
+                    return product._id == position.product._id
                 });
-            }
+            });
             $rootScope.$broadcast('productAddList:init', products);
         });
     }
@@ -53788,7 +53799,7 @@ function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product,
     }
 
     function remove(e, productId) {
-        $scope.contract.positions = $scope.contract.positions.filter(function(position){
+        $scope.contract.positions = $scope.contract.positions.filter(function (position) {
             return position.product._id != productId;
         });
         setFinal($scope.contract.positions);
@@ -55165,80 +55176,12 @@ function CategoryMainCtrl($scope, $state) {
 
 
 angular.module('controller').controller('CategoryMainCtrl', CategoryMainCtrl);
-function CategoryPhotoCtrl($scope, $stateParams, Category, Files) {
-
-    $scope.resize = function (dataType) {
-        Files.resize($stateParams.cid, this.photo.fileId, dataType);
-    };
-
-    $scope.remove = function (fileId) {
-        $scope.category.photos = $scope.category.photos.filter(function (photo) {
-            return photo.fileId != fileId;
-        });
-        Files.remove($stateParams.cid, fileId).then(function () {
-            Category.update($scope.category);
-        });
-    };
-
-
-    $scope.onFileSelect = function (files) {
-        var formData = new FormData();
-        files.forEach(function (file) {
-            formData.append($scope.category._id, file);
-        });
-        Files.insert(formData, 'photo').then(function (response) {
-            $scope.category.photos = $scope.category.photos || [];
-            $scope.category.photos = $scope.category.photos.concat(response.data);
-            $scope.save();
-        })
-    };
-
-}
-CategoryPhotoCtrl.$inject = ['$scope', '$stateParams', 'Category', 'Files'];
-
-angular.module('controller').controller('CategoryPhotoCtrl', CategoryPhotoCtrl);
-
 function ConvertCtrl($scope) {
 
 }
 ConvertCtrl.$inject = ['$scope'];
 
 angular.module('controller').controller('СonvertCtrl', ConvertCtrl);
-function ProductFileCtrl($scope, $stateParams, Product, Files, beautify, translit) {
-
-    $scope.remove = function (fileId) {
-        $scope.product.files = $scope.product.files.filter(function (file) {
-            return file.fileId != fileId;
-        });
-        Files.remove($stateParams.cid, fileId).then(function () {
-            Product.update($scope.product);
-        });
-
-    };
-    $scope.convert = function(pid,fid){
-        Files.convert(pid,fid)
-    };
-    $scope.makeUrl = function () {
-        this.file.url = translit(this.file.name);
-    };
-    $scope.onFileSelect = function onFileSelect($files) {
-        var formData = new FormData();
-        for (var i = 0; i < $files.length; i++) {
-            formData.append($scope.product._id, $files[i]);
-        }
-        Files.insert(formData, 'file').then(function (response) {
-            $scope.product.files = $scope.product.files || [];
-            $scope.product.files = $scope.product.files.concat(response.data);
-        })
-    };
-    $scope.btf = function (details) {
-        this.file.details = beautify(details);
-    };
-
-}
-ProductFileCtrl.$inject = ['$scope', '$stateParams', 'Product', 'Files', 'beautify', 'translit'];
-
-angular.module('controller').controller('ProductFileCtrl', ProductFileCtrl);
 ProductInfoCtrl.$inject = ['$scope', '$state', 'beautify', 'translit'];
 
 function ProductInfoCtrl($scope,  $state, beautify, translit) {
@@ -55289,6 +55232,74 @@ function ProductInfoCtrl($scope,  $state, beautify, translit) {
 
 angular.module('controller').controller('ProductInfoCtrl', ProductInfoCtrl);
 
+function ProductFileCtrl($scope, $stateParams, Product, Files, beautify, translit) {
+
+    $scope.remove = function (fileId) {
+        $scope.product.files = $scope.product.files.filter(function (file) {
+            return file.fileId != fileId;
+        });
+        Files.remove($stateParams.cid, fileId).then(function () {
+            Product.update($scope.product);
+        });
+
+    };
+    $scope.convert = function(pid,fid){
+        Files.convert(pid,fid)
+    };
+    $scope.makeUrl = function () {
+        this.file.url = translit(this.file.name);
+    };
+    $scope.onFileSelect = function onFileSelect($files) {
+        var formData = new FormData();
+        for (var i = 0; i < $files.length; i++) {
+            formData.append($scope.product._id, $files[i]);
+        }
+        Files.insert(formData, 'file').then(function (response) {
+            $scope.product.files = $scope.product.files || [];
+            $scope.product.files = $scope.product.files.concat(response.data);
+        })
+    };
+    $scope.btf = function (details) {
+        this.file.details = beautify(details);
+    };
+
+}
+ProductFileCtrl.$inject = ['$scope', '$stateParams', 'Product', 'Files', 'beautify', 'translit'];
+
+angular.module('controller').controller('ProductFileCtrl', ProductFileCtrl);
+function CategoryPhotoCtrl($scope, $stateParams, Category, Files) {
+
+    $scope.resize = function (dataType) {
+        Files.resize($stateParams.cid, this.photo.fileId, dataType);
+    };
+
+    $scope.remove = function (fileId) {
+        $scope.category.photos = $scope.category.photos.filter(function (photo) {
+            return photo.fileId != fileId;
+        });
+        Files.remove($stateParams.cid, fileId).then(function () {
+            Category.update($scope.category);
+        });
+    };
+
+
+    $scope.onFileSelect = function (files) {
+        var formData = new FormData();
+        files.forEach(function (file) {
+            formData.append($scope.category._id, file);
+        });
+        Files.insert(formData, 'photo').then(function (response) {
+            $scope.category.photos = $scope.category.photos || [];
+            $scope.category.photos = $scope.category.photos.concat(response.data);
+            $scope.save();
+        })
+    };
+
+}
+CategoryPhotoCtrl.$inject = ['$scope', '$stateParams', 'Category', 'Files'];
+
+angular.module('controller').controller('CategoryPhotoCtrl', CategoryPhotoCtrl);
+
 ProductMainCtrl.$inject = ['$scope', '$state', 'beautify', 'config'];
 
 function ProductMainCtrl($scope, $state, beautify, config) {
@@ -55338,6 +55349,30 @@ function ProductMainCtrl($scope, $state, beautify, config) {
 
 
 angular.module('controller').controller('ProductMainCtrl', ProductMainCtrl);
+
+function ProductVideoCtrl($scope,   $sce, _) {
+        $scope.trustSrc = function trustSrc(src) {
+        return $sce.trustAsResourceUrl(src);
+    };
+
+    $scope.addVideo = function addVideo() {
+        $scope.product.videos = $scope.product.videos || [];
+        $scope.product.videos.push({path: $scope.uploadvideo});
+        delete $scope.uploadvideo;
+    };
+
+    $scope.deleteVideo = function deleteVideo() {
+        var currentVideo = this.video;
+
+        $scope.product.videos = _.filter($scope.product.videos, function (video) {
+            return video.$$hashKey != currentVideo.$$hashKey;
+        });
+    };
+}
+
+ProductVideoCtrl.$inject = ['$scope', '$sce', '_'];
+
+angular.module('controller').controller('ProductVideoCtrl', ProductVideoCtrl);
 
 ProductPhotoCtrl.$inject = ['$scope', '$stateParams', 'Files'];
 
@@ -55395,29 +55430,5 @@ function ProductPhotoCtrl($scope, $stateParams, Files) {
 }
 
 angular.module('controller').controller('ProductPhotoCtrl', ProductPhotoCtrl);
-
-function ProductVideoCtrl($scope,   $sce, _) {
-        $scope.trustSrc = function trustSrc(src) {
-        return $sce.trustAsResourceUrl(src);
-    };
-
-    $scope.addVideo = function addVideo() {
-        $scope.product.videos = $scope.product.videos || [];
-        $scope.product.videos.push({path: $scope.uploadvideo});
-        delete $scope.uploadvideo;
-    };
-
-    $scope.deleteVideo = function deleteVideo() {
-        var currentVideo = this.video;
-
-        $scope.product.videos = _.filter($scope.product.videos, function (video) {
-            return video.$$hashKey != currentVideo.$$hashKey;
-        });
-    };
-}
-
-ProductVideoCtrl.$inject = ['$scope', '$sce', '_'];
-
-angular.module('controller').controller('ProductVideoCtrl', ProductVideoCtrl);
 
 //# sourceMappingURL=scripts.js.map

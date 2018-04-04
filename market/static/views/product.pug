@@ -54,10 +54,19 @@ block content
                 a.me-link.text-center.js-restore(href=image.url class=image.active)
                     img( src=image.src)
         div.row
-            div.me-info.col-md-12.col-lg-6
+            div.me-info.col-12
                 if product.information
                     h2 Описание
                     div !{product.information}
+        div.row
+            div.me-info.col-12
+                if product.parameters
+                    h2 Характеристики
+                    table.table.table-bordered
+                        each parameter in product.parameters
+                            tr
+                                td #{parameter.name}
+                                td #{parameter.value}
 
         div.row
             div.col-12

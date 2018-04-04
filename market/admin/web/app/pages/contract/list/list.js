@@ -28,7 +28,9 @@ function ContractCtrl($scope, $state, Contract) {
     $scope.newContract = function () {
         $state.go(toState.new);
     };
-
+    $scope.getCover = function (photo) {
+        return photo.fileType == 'cover';
+    };
     function search(data) {
 
         Contract.selectAll({query: {status: data.status}, order: {date: -1}}).then(function (response) {

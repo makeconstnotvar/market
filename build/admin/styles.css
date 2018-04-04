@@ -10852,6 +10852,9 @@ label.regular {
 .label{
     padding: .2em .6em .2em;
 }
+.pagination{
+    margin: 0;
+}
 .me-cat-name {
     position: relative;
 }
@@ -11508,6 +11511,10 @@ a.my-link:focus {
 .mm-margin10{
     margin-bottom: 10px;
 }
+.table-no-padding  > tbody > tr > td{
+    padding: 2px;
+}
+
 .mb-template .me-order {
     width: 120px;
     padding: 0;
@@ -11646,7 +11653,7 @@ td.no-padding {
 .product-list i.center-correct {
     margin-left: 5px;
 }
-
+.contract-list .cover,
 .product-list .cover {
     padding: 0;
     text-align: center;

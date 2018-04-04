@@ -81,15 +81,15 @@ function ContractRouter($stateProvider,config,OnExitHandlerProvider) {
             url: '/products?{page}',
             views: {
                 'products@root.contracts.edit.products': {
-                    templateUrl: baseCommon+'product.ts/list.html',
+                    templateUrl: baseCommon+'product/list.html',
                     controller: 'ProductAddListCtrl'
                 },
                 'pager@':{
                     templateUrl: baseCommon + 'pager/pager.html',
                     controller: 'PagerCtrl'
                 },
-                'filter@base': {
-                    templateUrl: config.path +'/pages/product.ts/filter/filter.html',
+                'filter@root.contracts.edit.products': {
+                    templateUrl: config.path +'pages/product/filter/filter.html',
                     controller: 'ProductFilterCtrl'
                 }
             },
@@ -142,7 +142,8 @@ function ContractRouter($stateProvider,config,OnExitHandlerProvider) {
                     {state: 'root.contracts.list.progress', name: 'Исполняются'},
                     {state: 'root.contracts.list.done', name: 'Выполнены'},
                     {state: 'root.contracts.list.cancel', name: 'Отменены'},
-                    {state: 'root.contracts.list.delete', name: 'Удалены'}
+                    {state: 'root.contracts.list.delete', name: 'Удалены'},
+                    {state: 'root.contracts.list.temp', name: 'Временные'}
                 ]
 
             }
@@ -174,6 +175,13 @@ function ContractRouter($stateProvider,config,OnExitHandlerProvider) {
             data: {
                 status: 'cancel',
                 emptyMessage:'Отсутствуют контракты в статусе "Отменены"'
+            }
+        })
+        .state('root.contracts.list.temp', {
+            url: '/temp',
+            data: {
+                status: 'temp',
+                emptyMessage:'Отсутствуют контракты в статусе "Временный"'
             }
         })
         .state('root.contracts.list.delete', {

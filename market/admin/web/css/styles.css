@@ -345,3 +345,6 @@ a.my-link:focus {
 .mm-margin10{
     margin-bottom: 10px;
 }
+.table-no-padding  > tbody > tr > td{
+    padding: 2px;
+}

@@ -17,7 +17,7 @@ module.exports = class extends Base {
     }
 
     changeParameters(product, newParams) {
-        //product.ts - продукт с параметрами со значениями, объект (не могнуз)
+        //product - продукт с параметрами со значениями, объект (не могнуз)
         //newParams - список параметров, объект (не могнуз)
 
         var product = tools.mongooseToObject(product),

@@ -40,7 +40,11 @@ module.exports = class extends Base {
 
     update(req, res, next) {
         var item = req.body;
-        sendSms(item)
+        bll.contract.update(item).exec((err, contract) => {
+            if (err) return next(err);
+            res.send('ok');
+        });
+        /*sendSms(item)
             .then(sms => {
                     item.alreadySent = true;
                     item.messages.push({
@@ -57,11 +61,8 @@ module.exports = class extends Base {
                 })
 
             .then(() => {
-                bll.contract.update(item).exec((err, contract) => {
-                    if (err) return next(err);
-                    res.send('ok');
-                });
-            })
+
+            })*/
 
 
     }

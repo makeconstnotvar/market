@@ -8,27 +8,17 @@
     <div class="col-sm-12" ng-bind="emptyMessage"></div>
 </div>
 
-<div class="row form-group my-ord-row" ng-show="contracts.length>0" ng-repeat="contract in contracts">
-    <div class="col-xs-12 col-sm-5 col-md-3 col-lg-3">
-        <table class="table">
+<div class="row form-group my-ord-row contract-list" ng-show="contracts.length>0" ng-repeat="contract in contracts">
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <table class="table table-bordered table-no-padding">
             <tbody>
             <tr>
                 <td colspan="2">
-                    <a title="Редактировать заказ" class="btn btn-default pull-left contract120" ng-click="edit(contract._id)"><i class="fa fa-pencil-square-o"></i>
-                        Изменить</a>
-                    <a title="Удалить заказ" class="btn btn-danger pull-right" ng-click="toDelete(contract._id)">
-                        <i class="fa fa-times"></i>
-                    </a>
+                    <a title="Редактировать заказ" class="btn btn-default pull-left contract120 rgap" ng-click="edit(contract._id)">Редактировать</a>
+                    <a class="btn btn-primary contract120 rgap" title="Изменить статус заказа" ng-click="toStatus(contract._id)">Обработать</a>
+                    <a title="Удалить заказ" class="btn btn-danger pull-right" ng-click="toDelete(contract._id)"><i class="fa fa-times"></i></a>
                 </td>
             </tr>
-
-            <tr>
-                <td colspan="2">
-                    <a class="btn btn-primary contract120" title="Изменить статус заказа" ng-click="toStatus(contract._id)"><i class="fa fa-cog"></i>
-                        Обработать</a>
-                </td>
-            </tr>
-
             <tr>
                 <td>
                     <b>Номер: </b>
@@ -50,8 +40,8 @@
             </tbody>
         </table>
     </div>
-    <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-        <table class="table">
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <table class="table table-bordered table-no-padding">
             <tr>
                 <td><b>Имя: </b></td>
                 <td ng-bind="contract.name"></td>
@@ -77,23 +67,27 @@
             </tr>
         </table>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
-        <table class="table table-bordered">
+    <div class="col-xs-12 col-sm-12 col-md-4">
+        <table class="table table-bordered table-no-padding">
             <tbody>
             <tr>
+                <th></th>
+                <th>Артикул</th>
                 <th>Товар</th>
+                <th>Цена</th>
                 <th>Шт</th>
-                <th>Цена за шт.</th>
-                <th>Сумма</th>
             </tr>
             <tr ng-repeat="position in contract.positions">
-                <td ng-bind="position.product.name"></td>
+                <td class="cover">
+                    <img fade-in ng-repeat="photo in position.product.photos | filter:getCover" ng-src="{{'/photos/' + position.product._id + '/s_' + photo.fileId}}">
+                </td>
+                <td ng-bind="position.product.article"></td>
+                <td><a ng-href="{{'/admin/products/main/'+position.product._id}}" ng-bind="position.product.name || position.name"></a></td>
+                <td ng-bind="position.product.price || position.price"></td>
                 <td ng-bind="position.count"></td>
-                <td ng-bind="position.product.price"></td>
-                <td ng-bind="position.sum"></td>
             </tr>
             <tr class="info">
-                <td colspan="3"><strong>итого:</strong></td>
+                <td colspan="4"><strong>итого:</strong></td>
                 <td><strong ng-bind="contract.final"></strong></td>
             </tr>
             </tbody>
