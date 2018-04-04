@@ -40,31 +40,24 @@ module.exports = class extends Base {
 
     update(req, res, next) {
         var item = req.body;
+        var smsItem = Object.assign({}, item);
         bll.contract.update(item).exec((err, contract) => {
             if (err) return next(err);
             res.send('ok');
         });
-        /*sendSms(item)
-            .then(sms => {
-                    item.alreadySent = true;
-                    item.messages.push({
-                        code: sms.code,
-                        description: sms.description,
-                        ids: sms.ids,
-                        date: new Date(),
-                        text: item.smsText
-                    });
-                    return;
-                },
-                error => {
-                    return;
-                })
-
-            .then(() => {
-
-            })*/
-
-
+        sendSms(smsItem).then(sms => {
+            smsItem.alreadySent = true;
+            smsItem.messages.push({
+                code: sms.code,
+                description: sms.description,
+                ids: sms.ids,
+                date: new Date(),
+                text: smsItem.smsText
+            });
+            bll.contract.update(smsItem).exec((err, contract) => {
+                if (err) return next(err);
+            });
+        })
     }
 
     // клиентские методы
