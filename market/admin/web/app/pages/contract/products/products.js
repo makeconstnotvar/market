@@ -88,7 +88,7 @@ function ContractProductsCtrl($rootScope, $scope, $stateParams, $state, Product,
 
         Product.selectAll({order: query.order, skip: skip, take: take, query: query}).then(function (response) {
             var products = response.data;
-            products.forEach(product => {
+            products.forEach(function(product) {
                 product.selected = !!$scope.contract.positions.find(function (position) {
                     return product._id == position.product._id
                 });
