@@ -19,65 +19,48 @@ import {DefaultLayout} from "../layouts/default";
 import {Safe} from "../pipes/safe";
 
 const appRoutes: Routes = [
-    {path: 'notfound', component: NotfoundPage},
-    {path: '', component: DefaultLayout, children: [
-
-            {path: '', component: SpecialsPage},
-
-            {path: 'delivery', component: DeliveryPage},
-            {path: 'contacts', component: ContactsPage},
-            {path: 'cart', component: CartPage},
-            {path: 'cart/:contract', component: HistoryPage},
-            {path: 'stocks', component: StocksPage},
-            {path: 'catalog/:categoryName', component: CatalogPage, data: {catalogMode: true}},
-            {path: ':categoryName/:productId', component: ViewPage},
-            {path: ':categoryName', component: CatalogPage},
-            {path: '**', redirectTo: 'notfound'}
-        ]}
+  {path: 'notfound', component: NotfoundPage},
+  {
+    path: '', component: DefaultLayout, children: [
+      {path: '', component: SpecialsPage},
+      {path: 'delivery', component: DeliveryPage},
+      {path: 'contacts', component: ContactsPage},
+      {path: 'cart', component: CartPage},
+      {path: 'cart/:contract', component: HistoryPage},
+      {path: 'stocks', component: StocksPage},
+      {path: 'catalog/:categoryName', component: CatalogPage, data: {catalogMode: true}},
+      {path: ':categoryName/:productId', component: ViewPage},
+      {path: ':categoryName', component: CatalogPage},
+      {path: '**', redirectTo: 'notfound'}
+    ]
+  }
 
 
 ];
 
 @NgModule({
-    declarations: [
-        CartPage,
-        HistoryPage,
-        CatalogPage,
-        DeliveryPage,
-        SpecialsPage,
-        StocksPage,
-        ViewPage,
-        NotfoundPage,
-        ContactsPage,
-        Safe
-    ],
-    imports: [
-        BrowserModule,
-        ControlsModule,
-        ModuleComponentsSpecials,
-        ModuleComponentsView,
-        ModuleComponentsCart,
-        ModuleComponentsCatalog,
-        RouterModule.forRoot(appRoutes)
-    ],
-    exports: [
-        CartPage,
-        HistoryPage,
-        CatalogPage,
-        DeliveryPage,
-        SpecialsPage,
-        StocksPage,
-        ViewPage,
-        NotfoundPage,
-        ContactsPage
-    ]
-})
-class PagesModule {
-
-}
-
-export {
-    PagesModule,
+  declarations: [
+    CartPage,
+    HistoryPage,
+    CatalogPage,
+    DeliveryPage,
+    SpecialsPage,
+    StocksPage,
+    ViewPage,
+    NotfoundPage,
+    ContactsPage,
+    Safe
+  ],
+  imports: [
+    BrowserModule,
+    ControlsModule,
+    ModuleComponentsSpecials,
+    ModuleComponentsView,
+    ModuleComponentsCart,
+    ModuleComponentsCatalog,
+    RouterModule.forRoot(appRoutes)
+  ],
+  exports: [
     CartPage,
     HistoryPage,
     CatalogPage,
@@ -87,4 +70,21 @@ export {
     ViewPage,
     NotfoundPage,
     ContactsPage
+  ]
+})
+class PagesModule {
+
+}
+
+export {
+  PagesModule,
+  CartPage,
+  HistoryPage,
+  CatalogPage,
+  DeliveryPage,
+  SpecialsPage,
+  StocksPage,
+  ViewPage,
+  NotfoundPage,
+  ContactsPage
 }
