@@ -30,7 +30,7 @@
         "mammoth": "^1.4.3",
         "mkdirp": "^0.5.1",
         "moment": "^2.21.0",
-        "mongodb": "^3.0.3",
+        "mongodb": "^3.1.13",
         "mongoose": "^4.13.9",
         "mongoose-deep-populate": "^3.0.0",
         "mongoose-random": "^0.1.1",
