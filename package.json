@@ -35,7 +35,7 @@
         "mongoose-deep-populate": "^3.0.0",
         "mongoose-random": "^0.1.1",
         "node-uuid": "^1.4.8",
-        "nodemailer": "^4.6.3",
+        "nodemailer": "^6.4.16",
         "randomstring": "^1.1.5",
         "raw-loader": "^0.5.1",
         "readdirp": "^2.1.0",
