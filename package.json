@@ -29,7 +29,7 @@
         "helmet": "^3.9.0",
         "mammoth": "^1.4.3",
         "mkdirp": "^0.5.1",
-        "moment": "^2.21.0",
+        "moment": "^2.29.4",
         "mongodb": "^3.0.3",
         "mongoose": "^4.13.9",
         "mongoose-deep-populate": "^3.0.0",
